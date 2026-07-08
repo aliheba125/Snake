@@ -1,0 +1,70 @@
+# Backend Protocol & Activation Model — `snakeseller.com`
+
+Reverse-engineered from the Dart object pool (`../../dart-blutter/pp.txt`), decompiled Java/smali,
+and live behavior. This documents *how the tool talks to its backend* and *how its licensing
+economy works* — for the analysis report. No server interaction beyond the app's own normal use
+was performed.
+
+---
+
+## Transport & request envelope
+
+- **Single endpoint:** `POST https://rest.snakeseller.com/api/request/`
+- **Envelope (JSON over HTTPS):**
+  ```json
+  { "encryptedData": "<base64 application-layer ciphertext>",
+    "deviceId": "<device identifier>",
+    "timestamp": <epoch> }
+  ```
+  - `timestamp` — replay protection.
+  - `deviceId` — binds a request/activation to a device; drives the ban/link system
+    (*"device is BANNED"*, *"This subscription is for a single device only"*,
+    *"linked from other device"*, *"already has an active subscription, please use another device ID"*).
+  - Multiple logical operations are multiplexed over the one endpoint via `action`/`type`/`route`/
+    `method` fields inside the decrypted payload.
+- **Application-layer encryption** lives in the **Dart layer (pointycastle)**, layered *over* TLS.
+  This is why the payload never surfaces through the exported `SSL_write` and never touches the
+  native `FUN_00160208` — those are unrelated subsystems.
+
+## Crypto stack (Dart / pointycastle)
+
+Primitives present in the object pool: **AES, RSA (PKCS1/OAEP/PSS), ECDSA, SHA-256, X25519, PKCS7/8**,
+plus **CRC32** tables. Typical shape for this kind of envelope (inferred, not yet pinned to exact
+Dart offsets): JSON body → symmetric encrypt (AES) → key/handshake protected by RSA or X25519 →
+base64 → `encryptedData`, with a signature/CRC for integrity. Pinning the exact construction is a
+follow-up via Blutter offsets in `../../dart-blutter/` (documentation-only).
+
+## Related hosts
+
+`rest.snakeseller.com/api/request/` (API) · `www.snakeengine.com/topup/` (purchase) ·
+Firebase (`fennec-6d906`, messaging/installations/analytics) · Google OAuth
+(`accounts` / `snakeengine.com/oauth/google`) · social/share links.
+
+## Activation / subscription economy (server-authoritative)
+
+Decrypted UI strings describe a **seller-based** licensing economy where **all validity lives on the
+server**, not in any client-checkable algorithm:
+
+| String (decrypted) | Meaning |
+|---|---|
+| "Congratulations, Key was activated successfully for" | activation is confirmed by the server |
+| "You don't have enough balance to activate" | sellers hold a **server-side balance** |
+| "The device you try to activate is BANNED" | server-side ban check |
+| "You can't activate. Tier is not the same" | server-side tier check |
+| "Create Key", "Key Details", "Activate For (*)" | keys are **records in the vendor DB**, minted by sellers |
+| "You don't have any active subscription for this game." | per-game entitlement, checked in Dart against a server-fetched list |
+
+**Consequence for analysis:** activation keys are **issued and validated server-side** (tied to
+seller balance + ban/tier state). There is **no client-side key algorithm / keygen** — a key is a
+database record, not a value derived from a formula. The per-game **subscription** gate in the Dart
+layer, and the game-patch ciphertext that feeds `FUN_00160208`, both come from the server only for a
+genuinely entitled account. (No local cached game-patch ciphertext exists — the app's `files/`
+directory holds only image caches.)
+
+## Native string interception (recovered live)
+
+`Native.ilil(index)` decrypts a small set of sensitive native strings at runtime. Recovered values
+(`recovered_strings.json`): `id_token`, `com.miniclip.googleplaygames.Authentication`, the Google
+OAuth client id `918010152455-…`, `https://snakeengine.com/oauth/google`, `loginCallback`,
+`onLoginResult` — i.e. the engine hooks the target game's Google Play Games / Miniclip auth and
+injects its own OAuth flow + callbacks. This is the account/entitlement half of the cheat engine.
