@@ -64,8 +64,34 @@ function getNativeClass() {
   return null;
 }
 
+// hook PackageManager to reveal which game package the engine looks for
+function installPMHooks() {
+  try {
+    var PM = Java.use('android.app.ApplicationPackageManager');
+    ['getPackageInfo', 'getApplicationInfo', 'getLaunchIntentForPackage', 'getPackageUid'].forEach(function (mname) {
+      try {
+        PM[mname].overloads.forEach(function (o) {
+          o.implementation = function () {
+            var pkg = arguments.length > 0 ? ('' + arguments[0]) : '?';
+            send({ t: 'pm', fn: mname, pkg: pkg });
+            return o.apply(this, arguments);
+          };
+        });
+      } catch (e) {}
+    });
+    send({ t: 'log', m: 'PackageManager hooks installed' });
+  } catch (e) { send({ t: 'log', m: 'PM hook err ' + e }); }
+  // also catch Runtime.exec("pm ...") and ProcessBuilder
+  try {
+    var RT = Java.use('java.lang.Runtime');
+    RT.exec.overload('[Ljava.lang.String;').implementation = function (arr) { try { send({ t: 'exec', cmd: arr.join(' ') }); } catch (e) {} return this.exec(arr); };
+    RT.exec.overload('java.lang.String').implementation = function (c) { send({ t: 'exec', cmd: '' + c }); return this.exec(c); };
+  } catch (e) {}
+}
+
 // passive hooks (catch any app-driven calls too)
 function installJavaHooks() {
+  installPMHooks();
   var N = getNativeClass();
   if (!N) return false;
   try {
@@ -77,7 +103,73 @@ function installJavaHooks() {
   } catch (e) { send({ t: 'log', m: 'java hook err: ' + e }); return false; }
 }
 
+function hexToBytes(h) { var a = []; for (var i = 0; i < h.length; i += 2) a.push(parseInt(h.substr(i, 2), 16)); return a; }
+function mkVec(bytes) {
+  var buf = Memory.alloc(bytes.length || 1);
+  if (bytes.length) buf.writeByteArray(bytes);
+  var vec = Memory.alloc(24);
+  vec.writePointer(buf); vec.add(8).writePointer(buf.add(bytes.length)); vec.add(16).writePointer(buf.add(bytes.length));
+  return vec;
+}
+function mkEmptyVec() { var vec = Memory.alloc(24); vec.writePointer(ptr(0)); vec.add(8).writePointer(ptr(0)); vec.add(16).writePointer(ptr(0)); return vec; }
+
 rpc.exports = {
+  // Directly invoke the live KDF: key = live FUN_00161788(seed1, seed2)  -> validate crypto_scheme.py
+  kdf: function (seed1, seed2) {
+    var b = baseOf('libengine.so'); if (!b) return null;
+    var fn = new NativeFunction(b.add(0x161788), 'void', ['pointer', 'uint32', 'int64', 'int64']);
+    var out = mkEmptyVec();
+    fn(out, seed1, seed2, 0);
+    var keyPtr = out.readPointer();
+    if (keyPtr.isNull()) return null;
+    return hx(keyPtr, 32);
+  },
+  // Directly invoke the live AES: out = live FUN_00160208(key, input)  -> determine mode/direction
+  aes: function (keyHex, inHex) {
+    var b = baseOf('libengine.so'); if (!b) return null;
+    var fn = new NativeFunction(b.add(0x160208), 'long', ['pointer', 'pointer', 'pointer']);
+    var kvec = mkVec(hexToBytes(keyHex));
+    var ivec = mkVec(hexToBytes(inHex));
+    var ovec = mkEmptyVec();
+    fn(kvec, ivec, ovec);
+    var v = readVec(ovec);
+    return v ? hx(v.ptr, v.len) : null;
+  },
+  // run KDF on an APP thread (proper allocator/TLS context) via clock_gettime hook
+  kdfOnApp: function (seed1, seed2) {
+    return new Promise(function (resolve) {
+      var b = baseOf('libengine.so');
+      if (!b) { resolve(null); return; }
+      var fn = new NativeFunction(b.add(0x161788), 'void', ['pointer', 'uint32', 'int64', 'int64']);
+      var state = { pending: true, running: false, result: null };
+      function expAny(n) { var f = null; try { f = Module.getGlobalExportByName(n); } catch (e) {} return f; }
+      var cg = expAny('clock_gettime');
+      var listener = Interceptor.attach(cg, {
+        onEnter: function () {
+          if (!state.pending || state.running) return;
+          // only run on a non-frida thread
+          if (Process.getCurrentThreadId() === Process.id) { /* still fine */ }
+          state.running = true; state.pending = false;
+          try {
+            var out = Memory.alloc(24);
+            out.writePointer(ptr(0)); out.add(8).writePointer(ptr(0)); out.add(16).writePointer(ptr(0));
+            fn(out, seed1, seed2, 0);
+            var kp = out.readPointer();
+            state.result = kp.isNull() ? 'NULL' : hx(kp, 32);
+          } catch (e) { state.result = 'ERR:' + e; }
+        }
+      });
+      var waited = 0;
+      var iv = setInterval(function () {
+        waited += 30;
+        if (state.result !== null || waited > 8000) {
+          clearInterval(iv);
+          try { listener.detach(); } catch (e) {}
+          resolve(state.result);
+        }
+      }, 30);
+    });
+  },
   init: function () {
     var nat = false, jav = false;
     try { nat = installNative(); } catch (e) { send({ t: 'log', m: 'installNative err ' + e }); }
