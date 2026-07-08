@@ -78,6 +78,66 @@ com.snake (Snake Engine v2.2.6)
 
 ---
 
+## Analysis Workflow (what was done)
+
+1. Downloaded `SE_2.2.6.apk` from the release; verified SHA-256 against the release asset.
+2. Identified the app as Flutter (Dart AOT) with an obfuscated native engine.
+3. jadx 1.5.1 — decompiled `classes.dex` to Java (2418 classes).
+4. apktool 2.10.0 — decoded manifest, resources, smali.
+5. Blutter (built against Dart VM 3.5.4) — recovered Dart pseudo-source + object pool from `libapp.so`.
+6. Ghidra 12.1.2 — decompiled 2242/2418 functions of `libengine.so` to C.
+7. pyelftools/capstone — analyzed ELF sections, 44 constructors, relocations, protection.
+8. Qiling/Unicorn — emulated init constructors; observed runtime `mmap(RWX)` + timing checks.
+9. Extracted strings from every binary (~76k) and consolidated documentation.
+
+## Servers & Endpoints
+
+| Host / URL | Role |
+|------------|------|
+| `https://rest.snakeseller.com/api/request/` | Primary backend API (single endpoint; encrypted payload) |
+| `https://www.snakeengine.com/topup/` | Top-up / purchase page |
+| `firebaseinstallations.googleapis.com` | Firebase Installations |
+| `www.googleapis.com/auth/userinfo.email` | Google OAuth scope |
+| `play.google.com/store/apps/details` | Play Store links |
+| `apkpure.com/search` | External APK search |
+| `flagsapi.com` | Country flags (UI) |
+| `t.me`, `wa.me`, `discord.com/invite`, `facebook.com`, `imgur.com` | Social / share links |
+
+API request fields (Dart layer): `encryptedData`, `deviceId`, `timestamp` — application-layer encrypted payload over HTTPS.
+
+## Databases & Storage
+
+- Cloud: Firebase project `fennec-6d906`; storage bucket `fennec-6d906.firebasestorage.app`; Firebase Cloud Messaging; Firebase Analytics/Measurement (local SQLite measurement DB — `ALTER TABLE apps ...`).
+- Local: Isar (Flutter embedded NoSQL) indicators present in `libapp.so` (`Isar`, `pragma`); SQLite underlying.
+
+## Libraries & Dependencies
+
+### AndroidX / Google / Kotlin (from META-INF *.version)
+| Library | Version |
+|---------|---------|
+| androidx.core | 1.13.1 |
+| androidx.appcompat | 1.7.0 |
+| androidx.activity | 1.8.1 |
+| androidx.fragment | 1.7.1 |
+| androidx.lifecycle-runtime | 2.7.0 |
+| androidx.recyclerview | 1.1.0 |
+| androidx.window | 1.2.0 |
+| com.google.android.material | 1.11.0 |
+| kotlinx-coroutines-core | 1.7.1 |
+
+Also present: androidx annotation, cardview, coordinatorlayout, drawerlayout, dynamicanimation, emoji2, viewpager/viewpager2, transition, vectordrawable(-animated), startup-runtime, profileinstaller, tracing, savedstate, documentfile, localbroadcastmanager, privacysandbox.ads-adservices, databinding/viewbinding.
+
+### Firebase / Google Play Services
+Firebase Messaging, Firebase Installations, Firebase Analytics/Measurement, Firebase Common/Components/Concurrent, Google Sign-In (GMS auth), Google DataTransport, Google Play Services (measurement, dynamite).
+
+### Flutter / Dart
+Flutter engine ≈ 3.24.x (Dart 3.5.4). Dart packages detected: `ffi`, `stack_trace`; cryptography stack via pointycastle/asn1 (RSA, ECDSA, SHA family, AES GCM/CBC, PKCS, base64).
+
+### Native libraries
+- `libengine.so` — custom native engine (virtualization container + hook engine), NDK r25b / clang 14.
+- `libflutter.so` — Flutter engine (Google).
+- `libapp.so` — Dart AOT compiled app code.
+
 ## Repository Layout
 
 ```
