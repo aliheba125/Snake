@@ -1,0 +1,14 @@
+Advanced Qiling emulation (real syscall layer)
+
+SYSCALLS:
+  mmap	39
+  clock_gettime	36
+
+instructions=264000000 mmap=39 exec_alloc=39
+
+FILE/HOST/EXEC ACCESSES:
+
+WRITE BUFFERS:
+
+DECRYPTED-CANDIDATE STRINGS IN ALLOCATED MEM (1):
+  ol,pjdmb'ocgi~!
