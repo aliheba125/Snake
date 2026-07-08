@@ -1,0 +1,7 @@
+package androidx.appcompat.view.menu;
+
+/* loaded from: classes.dex */
+public abstract /* synthetic */ class cu {
+    public static /* synthetic */ void a() {
+    }
+}

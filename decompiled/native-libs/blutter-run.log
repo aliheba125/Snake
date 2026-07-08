@@ -1,0 +1,213 @@
+Cloning into '/projects/sandbox/snake_decompile/tools/blutter/dartsdk/v3.5.4'...
+remote: Enumerating objects: 2434, done.        
+remote: Counting objects:   0% (1/2434)        remote: Counting objects:   1% (25/2434)        remote: Counting objects:   2% (49/2434)        remote: Counting objects:   3% (74/2434)        remote: Counting objects:   4% (98/2434)        remote: Counting objects:   5% (122/2434)        remote: Counting objects:   6% (147/2434)        remote: Counting objects:   7% (171/2434)        remote: Counting objects:   8% (195/2434)        remote: Counting objects:   9% (220/2434)        remote: Counting objects:  10% (244/2434)        remote: Counting objects:  11% (268/2434)        remote: Counting objects:  12% (293/2434)        remote: Counting objects:  13% (317/2434)        remote: Counting objects:  14% (341/2434)        remote: Counting objects:  15% (366/2434)        remote: Counting objects:  16% (390/2434)        remote: Counting objects:  17% (414/2434)        remote: Counting objects:  18% (439/2434)        remote: Counting objects:  19% (463/2434)        remote: Counting objects:  20% (487/2434)        remote: Counting objects:  21% (512/2434)        remote: Counting objects:  22% (536/2434)        remote: Counting objects:  23% (560/2434)        remote: Counting objects:  24% (585/2434)        remote: Counting objects:  25% (609/2434)        remote: Counting objects:  26% (633/2434)        remote: Counting objects:  27% (658/2434)        remote: Counting objects:  28% (682/2434)        remote: Counting objects:  29% (706/2434)        remote: Counting objects:  30% (731/2434)        remote: Counting objects:  31% (755/2434)        remote: Counting objects:  32% (779/2434)        remote: Counting objects:  33% (804/2434)        remote: Counting objects:  34% (828/2434)        remote: Counting objects:  35% (852/2434)        remote: Counting objects:  36% (877/2434)        remote: Counting objects:  37% (901/2434)        remote: Counting objects:  38% (925/2434)        remote: Counting objects:  39% (950/2434)        remote: Counting objects:  40% (974/2434)        remote: Counting objects:  41% (998/2434)        remote: Counting objects:  42% (1023/2434)        remote: Counting objects:  43% (1047/2434)        remote: Counting objects:  44% (1071/2434)        remote: Counting objects:  45% (1096/2434)        remote: Counting objects:  46% (1120/2434)        remote: Counting objects:  47% (1144/2434)        remote: Counting objects:  48% (1169/2434)        remote: Counting objects:  49% (1193/2434)        remote: Counting objects:  50% (1217/2434)        remote: Counting objects:  51% (1242/2434)        remote: Counting objects:  52% (1266/2434)        remote: Counting objects:  53% (1291/2434)        remote: Counting objects:  54% (1315/2434)        remote: Counting objects:  55% (1339/2434)        remote: Counting objects:  56% (1364/2434)        remote: Counting objects:  57% (1388/2434)        remote: Counting objects:  58% (1412/2434)        remote: Counting objects:  59% (1437/2434)        remote: Counting objects:  60% (1461/2434)        remote: Counting objects:  61% (1485/2434)        remote: Counting objects:  62% (1510/2434)        remote: Counting objects:  63% (1534/2434)        remote: Counting objects:  64% (1558/2434)        remote: Counting objects:  65% (1583/2434)        remote: Counting objects:  66% (1607/2434)        remote: Counting objects:  67% (1631/2434)        remote: Counting objects:  68% (1656/2434)        remote: Counting objects:  69% (1680/2434)        remote: Counting objects:  70% (1704/2434)        remote: Counting objects:  71% (1729/2434)        remote: Counting objects:  72% (1753/2434)        remote: Counting objects:  73% (1777/2434)        remote: Counting objects:  74% (1802/2434)        remote: Counting objects:  75% (1826/2434)        remote: Counting objects:  76% (1850/2434)        remote: Counting objects:  77% (1875/2434)        remote: Counting objects:  78% (1899/2434)        remote: Counting objects:  79% (1923/2434)        remote: Counting objects:  80% (1948/2434)        remote: Counting objects:  81% (1972/2434)        remote: Counting objects:  82% (1996/2434)        remote: Counting objects:  83% (2021/2434)        remote: Counting objects:  84% (2045/2434)        remote: Counting objects:  85% (2069/2434)        remote: Counting objects:  86% (2094/2434)        remote: Counting objects:  87% (2118/2434)        remote: Counting objects:  88% (2142/2434)        remote: Counting objects:  89% (2167/2434)        remote: Counting objects:  90% (2191/2434)        remote: Counting objects:  91% (2215/2434)        remote: Counting objects:  92% (2240/2434)        remote: Counting objects:  93% (2264/2434)        remote: Counting objects:  94% (2288/2434)        remote: Counting objects:  95% (2313/2434)        remote: Counting objects:  96% (2337/2434)        remote: Counting objects:  97% (2361/2434)        remote: Counting objects:  98% (2386/2434)        remote: Counting objects:  99% (2410/2434)        remote: Counting objects: 100% (2434/2434)        remote: Counting objects: 100% (2434/2434), done.        
+remote: Compressing objects:   0% (1/1965)        remote: Compressing objects:   1% (20/1965)        remote: Compressing objects:   2% (40/1965)        remote: Compressing objects:   3% (59/1965)        remote: Compressing objects:   4% (79/1965)        remote: Compressing objects:   5% (99/1965)        remote: Compressing objects:   6% (118/1965)        remote: Compressing objects:   7% (138/1965)        remote: Compressing objects:   8% (158/1965)        remote: Compressing objects:   9% (177/1965)        remote: Compressing objects:  10% (197/1965)        remote: Compressing objects:  11% (217/1965)        remote: Compressing objects:  12% (236/1965)        remote: Compressing objects:  13% (256/1965)        remote: Compressing objects:  14% (276/1965)        remote: Compressing objects:  15% (295/1965)        remote: Compressing objects:  16% (315/1965)        remote: Compressing objects:  17% (335/1965)        remote: Compressing objects:  18% (354/1965)        remote: Compressing objects:  19% (374/1965)        remote: Compressing objects:  20% (393/1965)        remote: Compressing objects:  21% (413/1965)        remote: Compressing objects:  22% (433/1965)        remote: Compressing objects:  23% (452/1965)        remote: Compressing objects:  24% (472/1965)        remote: Compressing objects:  25% (492/1965)        remote: Compressing objects:  26% (511/1965)        remote: Compressing objects:  27% (531/1965)        remote: Compressing objects:  28% (551/1965)        remote: Compressing objects:  29% (570/1965)        remote: Compressing objects:  30% (590/1965)        remote: Compressing objects:  31% (610/1965)        remote: Compressing objects:  32% (629/1965)        remote: Compressing objects:  33% (649/1965)        remote: Compressing objects:  34% (669/1965)        remote: Compressing objects:  35% (688/1965)        remote: Compressing objects:  36% (708/1965)        remote: Compressing objects:  37% (728/1965)        remote: Compressing objects:  38% (747/1965)        remote: Compressing objects:  39% (767/1965)        remote: Compressing objects:  40% (786/1965)        remote: Compressing objects:  41% (806/1965)        remote: Compressing objects:  42% (826/1965)        remote: Compressing objects:  43% (845/1965)        remote: Compressing objects:  44% (865/1965)        remote: Compressing objects:  45% (885/1965)        remote: Compressing objects:  46% (904/1965)        remote: Compressing objects:  47% (924/1965)        remote: Compressing objects:  48% (944/1965)        remote: Compressing objects:  49% (963/1965)        remote: Compressing objects:  50% (983/1965)        remote: Compressing objects:  51% (1003/1965)        remote: Compressing objects:  52% (1022/1965)        remote: Compressing objects:  53% (1042/1965)        remote: Compressing objects:  54% (1062/1965)        remote: Compressing objects:  55% (1081/1965)        remote: Compressing objects:  56% (1101/1965)        remote: Compressing objects:  57% (1121/1965)        remote: Compressing objects:  58% (1140/1965)        remote: Compressing objects:  59% (1160/1965)        remote: Compressing objects:  60% (1179/1965)        remote: Compressing objects:  61% (1199/1965)        remote: Compressing objects:  62% (1219/1965)        remote: Compressing objects:  63% (1238/1965)        remote: Compressing objects:  64% (1258/1965)        remote: Compressing objects:  65% (1278/1965)        remote: Compressing objects:  66% (1297/1965)        remote: Compressing objects:  67% (1317/1965)        remote: Compressing objects:  68% (1337/1965)        remote: Compressing objects:  69% (1356/1965)        remote: Compressing objects:  70% (1376/1965)        remote: Compressing objects:  71% (1396/1965)        remote: Compressing objects:  72% (1415/1965)        remote: Compressing objects:  73% (1435/1965)        remote: Compressing objects:  74% (1455/1965)        remote: Compressing objects:  75% (1474/1965)        remote: Compressing objects:  76% (1494/1965)        remote: Compressing objects:  77% (1514/1965)        remote: Compressing objects:  78% (1533/1965)        remote: Compressing objects:  79% (1553/1965)        remote: Compressing objects:  80% (1572/1965)        remote: Compressing objects:  81% (1592/1965)        remote: Compressing objects:  82% (1612/1965)        remote: Compressing objects:  83% (1631/1965)        remote: Compressing objects:  84% (1651/1965)        remote: Compressing objects:  85% (1671/1965)        remote: Compressing objects:  86% (1690/1965)        remote: Compressing objects:  87% (1710/1965)        remote: Compressing objects:  88% (1730/1965)        remote: Compressing objects:  89% (1749/1965)        remote: Compressing objects:  90% (1769/1965)        remote: Compressing objects:  91% (1789/1965)        remote: Compressing objects:  92% (1808/1965)        remote: Compressing objects:  93% (1828/1965)        remote: Compressing objects:  94% (1848/1965)        remote: Compressing objects:  95% (1867/1965)        remote: Compressing objects:  96% (1887/1965)        remote: Compressing objects:  97% (1907/1965)        remote: Compressing objects:  98% (1926/1965)        remote: Compressing objects:  99% (1946/1965)        remote: Compressing objects: 100% (1965/1965)        remote: Compressing objects: 100% (1965/1965), done.        
+Receiving objects:   0% (1/2434)Receiving objects:   1% (25/2434)Receiving objects:   2% (49/2434)Receiving objects:   3% (74/2434)Receiving objects:   4% (98/2434)Receiving objects:   5% (122/2434)Receiving objects:   6% (147/2434)Receiving objects:   7% (171/2434)Receiving objects:   8% (195/2434)Receiving objects:   9% (220/2434)Receiving objects:  10% (244/2434)Receiving objects:  11% (268/2434)Receiving objects:  12% (293/2434)Receiving objects:  13% (317/2434)Receiving objects:  14% (341/2434)Receiving objects:  15% (366/2434)Receiving objects:  16% (390/2434)Receiving objects:  17% (414/2434)Receiving objects:  18% (439/2434)Receiving objects:  19% (463/2434)Receiving objects:  20% (487/2434)Receiving objects:  21% (512/2434)Receiving objects:  22% (536/2434)Receiving objects:  23% (560/2434)Receiving objects:  24% (585/2434)Receiving objects:  25% (609/2434)Receiving objects:  26% (633/2434)Receiving objects:  27% (658/2434)Receiving objects:  28% (682/2434)Receiving objects:  29% (706/2434)Receiving objects:  30% (731/2434)Receiving objects:  31% (755/2434)Receiving objects:  32% (779/2434)Receiving objects:  33% (804/2434)Receiving objects:  34% (828/2434)Receiving objects:  35% (852/2434)Receiving objects:  36% (877/2434)Receiving objects:  37% (901/2434)Receiving objects:  38% (925/2434)Receiving objects:  39% (950/2434)Receiving objects:  40% (974/2434)Receiving objects:  41% (998/2434)Receiving objects:  42% (1023/2434)Receiving objects:  43% (1047/2434)Receiving objects:  44% (1071/2434)Receiving objects:  45% (1096/2434)Receiving objects:  46% (1120/2434)Receiving objects:  47% (1144/2434)Receiving objects:  48% (1169/2434)Receiving objects:  49% (1193/2434)Receiving objects:  50% (1217/2434)Receiving objects:  51% (1242/2434)Receiving objects:  52% (1266/2434)Receiving objects:  53% (1291/2434)Receiving objects:  54% (1315/2434)Receiving objects:  55% (1339/2434)Receiving objects:  56% (1364/2434)Receiving objects:  57% (1388/2434)Receiving objects:  58% (1412/2434)Receiving objects:  59% (1437/2434)Receiving objects:  60% (1461/2434)Receiving objects:  61% (1485/2434)Receiving objects:  62% (1510/2434)Receiving objects:  63% (1534/2434)Receiving objects:  64% (1558/2434)Receiving objects:  65% (1583/2434)Receiving objects:  66% (1607/2434)Receiving objects:  67% (1631/2434)Receiving objects:  68% (1656/2434)Receiving objects:  69% (1680/2434)Receiving objects:  70% (1704/2434)Receiving objects:  71% (1729/2434)Receiving objects:  72% (1753/2434)Receiving objects:  73% (1777/2434)Receiving objects:  74% (1802/2434)Receiving objects:  75% (1826/2434)Receiving objects:  76% (1850/2434)Receiving objects:  77% (1875/2434)Receiving objects:  78% (1899/2434)Receiving objects:  79% (1923/2434)Receiving objects:  80% (1948/2434)Receiving objects:  81% (1972/2434)Receiving objects:  82% (1996/2434)Receiving objects:  83% (2021/2434)Receiving objects:  84% (2045/2434)Receiving objects:  85% (2069/2434)Receiving objects:  86% (2094/2434)Receiving objects:  87% (2118/2434)Receiving objects:  88% (2142/2434)Receiving objects:  89% (2167/2434)Receiving objects:  90% (2191/2434)Receiving objects:  91% (2215/2434)Receiving objects:  92% (2240/2434)Receiving objects:  93% (2264/2434)remote: Total 2434 (delta 40), reused 1406 (delta 29), pack-reused 0 (from 0)        
+Receiving objects:  94% (2288/2434)Receiving objects:  95% (2313/2434)Receiving objects:  96% (2337/2434)Receiving objects:  97% (2361/2434)Receiving objects:  98% (2386/2434)Receiving objects:  99% (2410/2434)Receiving objects: 100% (2434/2434)Receiving objects: 100% (2434/2434), 1.29 MiB | 16.15 MiB/s, done.
+Resolving deltas:   0% (0/40)Resolving deltas:   2% (1/40)Resolving deltas:   5% (2/40)Resolving deltas:   7% (3/40)Resolving deltas:  10% (4/40)Resolving deltas:  12% (5/40)Resolving deltas:  15% (6/40)Resolving deltas:  17% (7/40)Resolving deltas:  20% (8/40)Resolving deltas:  27% (11/40)Resolving deltas:  30% (12/40)Resolving deltas:  32% (13/40)Resolving deltas:  35% (14/40)Resolving deltas:  37% (15/40)Resolving deltas:  40% (16/40)Resolving deltas:  42% (17/40)Resolving deltas:  45% (18/40)Resolving deltas:  47% (19/40)Resolving deltas:  50% (20/40)Resolving deltas:  55% (22/40)Resolving deltas:  57% (23/40)Resolving deltas:  60% (24/40)Resolving deltas:  62% (25/40)Resolving deltas:  65% (26/40)Resolving deltas:  67% (27/40)Resolving deltas:  70% (28/40)Resolving deltas:  72% (29/40)Resolving deltas:  77% (31/40)Resolving deltas:  80% (32/40)Resolving deltas:  82% (33/40)Resolving deltas:  85% (34/40)Resolving deltas:  87% (35/40)Resolving deltas:  90% (36/40)Resolving deltas:  92% (37/40)Resolving deltas:  95% (38/40)Resolving deltas:  97% (39/40)Resolving deltas: 100% (40/40)Resolving deltas: 100% (40/40), done.
+warning: refs/tags/3.5.4 4ebb51be54ca1cf22a66e7d59884c76f10552730 is not a commit!
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /projects/sandbox/snake_decompile/tools/blutter/build/dartvm3.5.4_android_arm64
+[1/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/base64.cc.o
+[2/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/allocation.cc.o
+[3/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_comments.cc.o
+[4/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/bit_vector.cc.o
+[5/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/canonical_tables.cc.o
+[6/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_observers.cc.o
+[7/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/bootstrap_natives.cc.o
+[8/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/bss_relocs.cc.o
+[9/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/bitmap.cc.o
+[10/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_patcher_arm.cc.o
+[11/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/class_table.cc.o
+[12/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_patcher_riscv.cc.o
+[13/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_patcher_ia32.cc.o
+[14/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_patcher_x64.cc.o
+[15/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/constants_arm.cc.o
+[16/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/constants_ia32.cc.o
+[17/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/constants_arm64.cc.o
+[18/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/constants_riscv.cc.o
+[19/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/constants_x64.cc.o
+[20/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/class_finalizer.cc.o
+[21/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpu_arm.cc.o
+[22/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpu_riscv.cc.o
+[23/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpu_x64.cc.o
+[24/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpu_ia32.cc.o
+[25/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpu_arm64.cc.o
+[26/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/closure_functions_cache.cc.o
+[27/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpuinfo_android.cc.o
+[28/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpuid.cc.o
+[29/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpuinfo_fuchsia.cc.o
+[30/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpuinfo_macos.cc.o
+[31/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpuinfo_win.cc.o
+[32/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpuinfo_linux.cc.o
+[33/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/debugger_arm.cc.o
+[34/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_patcher.cc.o
+[35/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_patcher_arm64.cc.o
+[36/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/debugger_ia32.cc.o
+[37/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/datastream.cc.o
+[38/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/deferred_objects.cc.o
+[39/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/deopt_instructions.cc.o
+[40/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/debugger_riscv.cc.o
+[41/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/debugger_x64.cc.o
+[42/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_descriptors.cc.o
+[43/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/dispatch_table.cc.o
+[44/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/dart_api_state.cc.o
+[45/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/debugger.cc.o
+[46/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/debugger_arm64.cc.o
+[47/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/experimental_features.cc.o
+[48/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/double_conversion.cc.o
+[49/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/dart.cc.o
+[50/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/elf.cc.o
+[51/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/dwarf.cc.o
+[52/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/app_snapshot.cc.o
+[53/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/dart_entry.cc.o
+[54/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/instructions_arm.cc.o
+[55/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/ffi_callback_metadata.cc.o
+[56/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/flags.cc.o
+[57/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/field_table.cc.o
+[58/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/exceptions.cc.o
+[59/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/instructions_ia32.cc.o
+[60/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/instructions_x64.cc.o
+[61/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/runtime_entry_arm.cc.o
+[62/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/instructions_riscv.cc.o
+[63/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/kernel.cc.o
+[64/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/kernel_binary.cc.o
+[65/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/gdb_helpers.cc.o
+[66/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/kernel_loader.cc.o
+[67/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/handles.cc.o
+[68/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/image_snapshot.cc.o
+[69/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/instructions.cc.o
+[70/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/instructions_arm64.cc.o
+[71/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/memory_region.cc.o
+[72/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/isolate_reload.cc.o
+[73/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/log.cc.o
+[74/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/json_writer.cc.o
+[75/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/kernel_isolate.cc.o
+[76/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/json_stream.cc.o
+[77/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/lockers.cc.o
+[78/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/longjump.cc.o
+[79/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/native_symbol_win.cc.o
+[80/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/native_symbol_posix.cc.o
+[81/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/megamorphic_cache_table.cc.o
+[82/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/message.cc.o
+[83/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/metrics.cc.o
+[84/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/message_handler.cc.o
+[85/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/native_entry.cc.o
+[86/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/isolate.cc.o
+[87/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/object_graph.cc.o
+[88/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/native_message_handler.cc.o
+[89/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_android.cc.o
+[90/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_fuchsia.cc.o
+[91/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/object_reload.cc.o
+[92/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_macos.cc.o
+[93/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/object_id_ring.cc.o
+[94/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_thread_absl.cc.o
+[95/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_thread_fuchsia.cc.o
+[96/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_thread_android.cc.o
+[97/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_thread.cc.o
+[98/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/object_service.cc.o
+[99/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_thread_linux.cc.o
+[100/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_thread_macos.cc.o
+[101/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_thread_win.cc.o
+[102/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_win.cc.o
+[103/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/object_store.cc.o
+[104/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/proccpuinfo.cc.o
+[105/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os.cc.o
+[106/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/program_visitor.cc.o
+[107/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_linux.cc.o
+[108/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/message_snapshot.cc.o
+[109/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/pending_deopts.cc.o
+[110/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/parser.cc.o
+[111/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/profiler.cc.o
+[112/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/random.cc.o
+[113/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/regexp_assembler_ir.cc.o
+[114/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/port.cc.o
+[115/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/profiler_service.cc.o
+[116/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/raw_object_fields.cc.o
+[117/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/raw_object.cc.o
+[118/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/regexp_assembler.cc.o
+[119/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/object_graph_copy.cc.o
+[120/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/report.cc.o
+[121/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/resolver.cc.o
+[122/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/regexp_assembler_bytecode.cc.o
+[123/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/regexp_ast.cc.o
+[124/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/runtime_entry_riscv.cc.o
+[125/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/runtime_entry_ia32.cc.o
+[126/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/scopes.cc.o
+[127/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/runtime_entry_x64.cc.o
+[128/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/regexp_interpreter.cc.o
+[129/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/reverse_pc_lookup_cache.cc.o
+[130/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/signal_handler_fuchsia.cc.o
+[131/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/signal_handler_android.cc.o
+[132/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/regexp_parser.cc.o
+[133/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/runtime_entry_arm64.cc.o
+[134/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/signal_handler_macos.cc.o
+[135/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/signal_handler_linux.cc.o
+[136/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/signal_handler_win.cc.o
+[137/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/simulator_arm.cc.o
+[138/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/simulator_x64.cc.o
+[139/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/simulator_riscv.cc.o
+[140/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/source_report.cc.o
+[141/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/service_isolate.cc.o
+[142/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/service.cc.o
+[143/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/service_event.cc.o
+[144/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/snapshot.cc.o
+[145/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/regexp.cc.o
+[146/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/stub_code.cc.o
+[147/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/stack_trace.cc.o
+[148/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_interrupter_android.cc.o
+[149/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/tags.cc.o
+[150/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_interrupter.cc.o
+[151/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_interrupter_fuchsia.cc.o
+[152/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/runtime_entry.cc.o
+[153/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_interrupter_macos.cc.o
+[154/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/stack_frame.cc.o
+[155/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_interrupter_win.cc.o
+[156/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/symbols.cc.o
+[157/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_pool.cc.o
+[158/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/timeline_android.cc.o
+[159/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_state.cc.o
+[160/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/timeline_fuchsia.cc.o
+[161/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_stack_resource.cc.o
+[162/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_interrupter_linux.cc.o
+[163/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/simulator_arm64.cc.o
+[164/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/timeline_macos.cc.o
+[165/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/timer.cc.o
+[166/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/unibrow.cc.o
+[167/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_registry.cc.o
+[168/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread.cc.o
+[169/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/unicode_data.cc.o
+[170/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/timeline.cc.o
+[171/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/token.cc.o
+[172/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/token_position.cc.o
+[173/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/unwinding_records.cc.o
+[174/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/virtual_memory.cc.o
+[175/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/virtual_memory_fuchsia.cc.o
+[176/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/unwinding_records_win.cc.o
+[177/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/timeline_linux.cc.o
+[178/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/virtual_memory_win.cc.o
+[179/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/unicode.cc.o
+[180/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/virtual_memory_compressed.cc.o
+[181/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/allocation.cc.o
+[182/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/type_testing_stubs.cc.o
+[183/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/floating_point_win.cc.o
+[184/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/assert.cc.o
+[185/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/syslog_android.cc.o
+[186/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/virtual_memory_posix.cc.o
+[187/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/v8_snapshot_writer.cc.o
+[188/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/hashmap.cc.o
+[189/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/syslog_fuchsia.cc.o
+[190/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/syslog_linux.cc.o
+[191/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/syslog_macos.cc.o
+[192/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/syslog_win.cc.o
+[193/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/visitor.cc.o
+[194/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/unwinding_records.cc.o
+[195/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/unwinding_records_win.cc.o
+[196/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/utils_android.cc.o
+[197/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/unicode.cc.o
+[198/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/utils_fuchsia.cc.o
+[199/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/text_buffer.cc.o
+[200/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/utils.cc.o
+[201/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/utils_win.cc.o
+[202/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/utils_macos.cc.o

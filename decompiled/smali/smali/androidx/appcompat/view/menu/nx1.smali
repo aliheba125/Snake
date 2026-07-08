@@ -1,0 +1,64 @@
+.class public final Landroidx/appcompat/view/menu/nx1;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+# interfaces
+.implements Ljava/lang/Runnable;
+
+
+# instance fields
+.field public final synthetic m:Landroidx/appcompat/view/menu/cb2;
+
+.field public final synthetic n:Landroidx/appcompat/view/menu/kx1;
+
+
+# direct methods
+.method public constructor <init>(Landroidx/appcompat/view/menu/kx1;Landroidx/appcompat/view/menu/cb2;)V
+    .locals 0
+
+    iput-object p1, p0, Landroidx/appcompat/view/menu/nx1;->n:Landroidx/appcompat/view/menu/kx1;
+
+    iput-object p2, p0, Landroidx/appcompat/view/menu/nx1;->m:Landroidx/appcompat/view/menu/cb2;
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public final run()V
+    .locals 3
+
+    iget-object v0, p0, Landroidx/appcompat/view/menu/nx1;->n:Landroidx/appcompat/view/menu/kx1;
+
+    invoke-static {v0}, Landroidx/appcompat/view/menu/kx1;->j(Landroidx/appcompat/view/menu/kx1;)Landroidx/appcompat/view/menu/o82;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroidx/appcompat/view/menu/o82;->o0()V
+
+    iget-object v0, p0, Landroidx/appcompat/view/menu/nx1;->n:Landroidx/appcompat/view/menu/kx1;
+
+    invoke-static {v0}, Landroidx/appcompat/view/menu/kx1;->j(Landroidx/appcompat/view/menu/kx1;)Landroidx/appcompat/view/menu/o82;
+
+    move-result-object v0
+
+    iget-object v1, p0, Landroidx/appcompat/view/menu/nx1;->m:Landroidx/appcompat/view/menu/cb2;
+
+    invoke-virtual {v0}, Landroidx/appcompat/view/menu/o82;->h()Landroidx/appcompat/view/menu/jw1;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Landroidx/appcompat/view/menu/fz1;->n()V
+
+    invoke-virtual {v0}, Landroidx/appcompat/view/menu/o82;->p0()V
+
+    iget-object v2, v1, Landroidx/appcompat/view/menu/cb2;->m:Ljava/lang/String;
+
+    invoke-static {v2}, Landroidx/appcompat/view/menu/mj0;->e(Ljava/lang/String;)Ljava/lang/String;
+
+    invoke-virtual {v0, v1}, Landroidx/appcompat/view/menu/o82;->g(Landroidx/appcompat/view/menu/cb2;)Landroidx/appcompat/view/menu/rw1;
+
+    return-void
+.end method

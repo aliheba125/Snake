@@ -1,0 +1,41 @@
+NATIVE LIBRARIES ANALYSIS (lib/arm64-v8a)
+==========================================
+
+### libapp.so
+size: 5.4M
+sha256: 2d3577fbaaacc7cb63e5b04a5a21572eeee1e0d55b223941d6a5496a91a427c8
+type: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV)
+exported symbols (dynamic):
+   _kDartIsolateSnapshotInstructions
+   _kDartVmSnapshotInstructions
+   ... total exported text symbols: 2
+
+### libengine.so
+size: 8.2M
+sha256: f5d751e6bde8f0595eda9836338e845b029a41d2362743a2a4619ba99f41e3be
+type: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV)
+exported symbols (dynamic):
+   JNI_OnLoad
+   ... total exported text symbols: 1
+
+### libflutter.so
+size: 11M
+sha256: 0baa710d6b7f7de2f8bcc05aa2950bab2989f3a4c95bc7f7bcc23ce84626ee52
+type: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV)
+exported symbols (dynamic):
+   InternalFlutterGpu_CommandBuffer_Initialize
+   InternalFlutterGpu_CommandBuffer_Submit
+   InternalFlutterGpu_Context_GetDefaultColorFormat
+   InternalFlutterGpu_Context_GetDefaultDepthStencilFormat
+   InternalFlutterGpu_Context_GetDefaultStencilFormat
+   InternalFlutterGpu_Context_InitializeDefault
+   InternalFlutterGpu_DeviceBuffer_Initialize
+   InternalFlutterGpu_DeviceBuffer_InitializeWithHostData
+   InternalFlutterGpu_DeviceBuffer_Overwrite
+   InternalFlutterGpu_HostBuffer_EmplaceBytes
+   InternalFlutterGpu_HostBuffer_Initialize
+   InternalFlutterGpu_RenderPass_Begin
+   InternalFlutterGpu_RenderPass_BindIndexBufferDevice
+   InternalFlutterGpu_RenderPass_BindIndexBufferHost
+   InternalFlutterGpu_RenderPass_BindPipeline
+   ... total exported text symbols: 44

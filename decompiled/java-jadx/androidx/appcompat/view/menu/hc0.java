@@ -1,0 +1,10 @@
+package androidx.appcompat.view.menu;
+
+import android.adservices.measurement.MeasurementManager;
+
+/* loaded from: classes.dex */
+public abstract /* synthetic */ class hc0 {
+    public static /* bridge */ /* synthetic */ Class a() {
+        return MeasurementManager.class;
+    }
+}

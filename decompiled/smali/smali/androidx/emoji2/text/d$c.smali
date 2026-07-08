@@ -1,0 +1,22 @@
+.class public interface abstract Landroidx/emoji2/text/d$c;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Landroidx/emoji2/text/d;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x609
+    name = "c"
+.end annotation
+
+
+# virtual methods
+.method public abstract a()Ljava/lang/Object;
+.end method
+
+.method public abstract b(Ljava/lang/CharSequence;IILandroidx/appcompat/view/menu/z21;)Z
+.end method
