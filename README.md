@@ -82,10 +82,10 @@ com.snake (Snake Engine v2.2.6)
 
 1. Downloaded `SE_2.2.6.apk` from the release; verified SHA-256 against the release asset.
 2. Identified the app as Flutter (Dart AOT) with an obfuscated native engine.
-3. jadx 1.5.1 — decompiled `classes.dex` to Java (2418 classes).
+3. jadx 1.5.1 — decompiled `classes.dex` to Java (3086 .java files).
 4. apktool 2.10.0 — decoded manifest, resources, smali.
 5. Blutter (built against Dart VM 3.5.4) — recovered Dart pseudo-source + object pool from `libapp.so`.
-6. Ghidra 12.1.2 — decompiled 2242/2418 functions of `libengine.so` to C.
+6. Ghidra 12.1.2 — decompiled 2241 of 2283 defined functions of `libengine.so` to C (2418 total entries incl. ~135 external/imported).
 7. pyelftools/capstone — analyzed ELF sections, 44 constructors, relocations, protection.
 8. Qiling/Unicorn — emulated init constructors; observed runtime `mmap(RWX)` + timing checks.
 9. Extracted strings from every binary (~76k) and consolidated documentation.
@@ -152,7 +152,7 @@ decompiled/
 ├── REPORT.md                       Overview report
 ├── AndroidManifest.xml             Decoded manifest
 ├── apktool.yml                     Build metadata
-├── java-jadx/                      Decompiled Java (2418 classes)
+├── java-jadx/                      Decompiled Java (3086 .java files)
 │   ├── com/snake/                  App classes (container + JNI bridge)
 │   ├── com/google/                 Firebase / GMS / Material
 │   └── io/flutter/                 Flutter embedding
@@ -173,9 +173,9 @@ decompiled/
     ├── DYNAMIC_ANALYSIS.md         Emulation findings
     ├── runtime-behavior-java.md    Java runtime behavior extracts
     ├── ghidra/
-    │   ├── libengine_decompiled.c  2242/2418 functions decompiled to C (5 MB)
+    │   ├── libengine_decompiled.c  2241 of 2283 defined functions decompiled to C (5 MB)
     │   ├── JNI_OnLoad.c            Extracted native entry point
-    │   └── function_inventory.tsv  All 2418 functions (addr/size/xrefs)
+    │   └── function_inventory.tsv  All 2283 defined functions (addr/size/xrefs)
     ├── strings/
     │   ├── strings_libengine.txt   2061 strings
     │   ├── strings_libapp.txt      11727 strings
@@ -195,7 +195,7 @@ decompiled/
 ## Obfuscation / Protection (libengine.so)
 
 - Type: source-level obfuscation (OLLVM-style), compiled with Android NDK r25b/clang14. No commercial packer, no embedded DEX/payload.
-- Function count: 2418. Decompiled to C: 2242 (~93%). Not decompiled: 17 constructor functions of ~175 KB each (~6 MB of `.text`).
+- Function entries (Ghidra): 2418 total, including ~135 external/imported references with no body. Defined functions (function_inventory.tsv): 2283. Decompiled to C: 2241. Not decompiled: 42 — 17 too-large OLLVM-flattened constructors (~175 KB each, ~6 MB of `.text`) + 24 failed + 1 unmarked.
 - Control-flow flattening: giant flattened dispatcher functions, unrecoverable jumptables.
 - String encryption: native method names not present as plaintext; decrypted at runtime.
 - Inline syscalls: direct `svc #0` (bypasses libc).
@@ -279,7 +279,7 @@ Linear disassembly of `.text` produced 25804 `svc` sites resolving to only 2 val
 | Java decompilation | Complete (obfuscated names) |
 | Resources / manifest / smali | Complete |
 | Dart pseudo-source | Complete (obfuscated names) |
-| Native → C decompilation | 2242/2418 functions |
+| Native → C decompilation | 2241 of 2283 defined functions (2418 total incl. externals) |
 | ELF / protection analysis | Complete |
 | Dynamic emulation | Partial (anti-emulation wall) |
 | Live traffic interception | Not performed |
