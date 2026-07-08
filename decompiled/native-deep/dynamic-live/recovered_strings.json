@@ -1,0 +1,13 @@
+{
+  "_comment": "Runtime-decrypted native strings from com.snake.helper.Native.ilil(index), recovered live via Frida Gadget (LD_PRELOAD) active extraction. These were encrypted at rest in libengine.so and only exist in cleartext at runtime.",
+  "source": "Native.ilil(int index)",
+  "strings": {
+    "0xf11301": "id_token",
+    "0xf11501": "com.miniclip.googleplaygames.Authentication",
+    "0xf11520": "918010152455-tbk8ajicdmlqntolgea1vtlrc94nip3p.apps.googleusercontent.com",
+    "0xf11521": "https://snakeengine.com/oauth/google",
+    "0xf21501": "loginCallback",
+    "0xf31501": "onLoginResult"
+  },
+  "interpretation": "The engine intercepts Google Play Games / Miniclip authentication: hooks com.miniclip.googleplaygames.Authentication, drives a Google OAuth flow (client id 918010152455-..., id_token) against https://snakeengine.com/oauth/google, and injects loginCallback / onLoginResult into the target game."
+}
