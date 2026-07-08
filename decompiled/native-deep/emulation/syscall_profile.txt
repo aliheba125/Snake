@@ -1,0 +1,13 @@
+Total `svc` sites in .text: 25804
+  resolved syscall number: 19979   unresolved(dynamic x8): 5825
+
+  num  name                    count
+   53  fchmodat                12192
+  222  mmap                     7787
+
+=== behavior categories (resolved syscalls) ===
+  file  : 12192
+  mem   : 7787
+  proc  : 0
+  net   : 0
+  other : 0

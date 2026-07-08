@@ -1,0 +1,90 @@
+Qiling/Unicorn emulation of libengine.so init constructors
+REAL syscalls (resolved x8 at runtime):
+  mmap	37
+
+Instructions emulated: 1609
+PROT_EXEC events: 37
+
+Captured path/exec accesses & notable events:
+  auto-mapped page 0x81e000 (access=21)
+  ctor[0]@0x794ac fault: QlErrorCoreHook
+  ctor[1]@0x8e270 fault: QlErrorCoreHook
+  ctor[2]@0x8f4f0 fault: QlErrorCoreHook
+  ctor[3]@0x8f554 fault: QlErrorCoreHook
+  ctor[4]@0x8f5b4 fault: QlErrorCoreHook
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[5]@0xf8098 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[6]@0x11ab10 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[7]@0x147dec fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[8]@0x1750d8 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[9]@0x1a23c4 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[10]@0x1cf6b0 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[11]@0x1fc99c fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[12]@0x229c88 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[13]@0x256f74 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[14]@0x284260 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[15]@0x2b154c fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[16]@0x2de838 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[17]@0x30bb24 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[18]@0x338e10 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[19]@0x3660ec fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[20]@0x3933b8 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[21]@0x3c06a4 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[22]@0x3ed990 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[23]@0x41ac7c fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[24]@0x447f68 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[25]@0x475254 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[26]@0x4a2540 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[27]@0x4cf82c fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[28]@0x4fcb18 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[29]@0x529e04 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[30]@0x5570f0 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[31]@0x5843dc fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[32]@0x5b16c8 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[33]@0x5de9b4 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[34]@0x60bca0 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[35]@0x638f8c fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[36]@0x666278 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[37]@0x693564 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[38]@0x6c0850 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[39]@0x6edb3c fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[40]@0x71ae28 fault: UcError
+  mmap len=0xc prot=0x7 (PROT_EXEC=RWX/RX exec alloc)
+  ctor[41]@0x748114 fault: UcError
+  ctor[42]@0x7e2590 fault: QlErrorCoreHook
+  ctor[43]@0x81ae24 fault: QlErrorCoreHook
