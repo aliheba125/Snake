@@ -81,6 +81,13 @@ com.snake (Snake Engine v2.2.6)
 ## Repository Layout
 
 ```
+raw/                                Original inputs (no re-extraction needed)
+├── SE_2.2.6.apk                    Original APK (30 MB)
+└── lib/arm64-v8a/
+    ├── libapp.so                   Raw Dart AOT library
+    ├── libengine.so                Raw native engine
+    └── libflutter.so               Raw Flutter engine
+
 decompiled/
 ├── REPORT.md                       Overview report
 ├── AndroidManifest.xml             Decoded manifest
@@ -97,6 +104,7 @@ decompiled/
 ├── smali/                          Full Smali (Dalvik bytecode)
 ├── resources/res/                  Decoded resources
 ├── assets/flutter_assets/          Flutter assets
+├── apktool-extras/                 original/, unknown/, META-INF/, kotlin/
 ├── native-libs/
 │   └── native-libs-analysis.txt    ELF symbols / hashes
 └── native-deep/
