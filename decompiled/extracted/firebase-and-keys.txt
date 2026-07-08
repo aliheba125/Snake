@@ -1,0 +1,12 @@
+# Firebase / Google config (res/values/strings.xml)
+  default_web_client_id = 918010152455-ev1pjrrdjvp44r4bjme4ti3khom570eo.apps.googleusercontent.com
+  gcm_defaultSenderId = 918010152455
+  google_api_key = AIzaSyDitW-Y6M8-R2ejqmAL7yd2jqL9Gj_5ANs
+  google_app_id = 1:918010152455:android:84aea0e9d3230800664ca2
+  google_crash_reporting_api_key = AIzaSyDitW-Y6M8-R2ejqmAL7yd2jqL9Gj_5ANs
+  google_storage_bucket = fennec-6d906.firebasestorage.app
+  project_id = fennec-6d906
+
+# API keys / OAuth client IDs found in strings (validated patterns)
+918010152455-ev1pjrrdjvp44r4bjme4ti3khom570eo.apps.googleusercontent.com
+AIzaSyDitW-Y6M8-R2ejqmAL7yd2jqL9Gj_5ANs

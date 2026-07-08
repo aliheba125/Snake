@@ -1,0 +1,56 @@
+# Components declared in AndroidManifest.xml
+## Activities
+com.Entry
+com.google.android.gms.common.api.GoogleApiActivity
+com.snake.helper.InternalWebBrowser
+com.snake.helper.ProxyActivity
+com.snake.helper.ProxyActivity$P0
+com.snake.helper.ProxyActivity$P0_L
+com.snake.helper.ProxyActivity$P1
+com.snake.helper.ProxyActivity$P1_L
+com.snake.helper.ProxyActivity$P2
+com.snake.helper.ProxyActivity$P2_L
+com.snake.helper.ProxyActivity$P3
+com.snake.helper.ProxyActivity$P3_L
+com.snake.helper.ProxyPendingActivity$P0
+com.snake.helper.ProxyPendingActivity$P1
+com.snake.helper.ProxyPendingActivity$P2
+com.snake.helper.ProxyPendingActivity$P3
+com.snake.helper.TransparentProxyActivity$P0
+com.snake.helper.TransparentProxyActivity$P1
+com.snake.helper.TransparentProxyActivity$P2
+com.snake.helper.TransparentProxyActivity$P3
+## Services
+com.google.android.datatransport.runtime.backends.TransportBackendDiscovery
+com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService
+com.google.android.gms.measurement.AppMeasurementJobService
+com.google.android.gms.measurement.AppMeasurementService
+com.google.firebase.components.ComponentDiscoveryService
+com.google.firebase.messaging.FirebaseMessagingService
+com.snake.helper.DaemonService
+com.snake.helper.DaemonService$DaemonInnerService
+com.snake.helper.ProxyJobService$P0
+com.snake.helper.ProxyJobService$P1
+com.snake.helper.ProxyJobService$P2
+com.snake.helper.ProxyJobService$P3
+com.snake.helper.ProxyService$P0
+com.snake.helper.ProxyService$P1
+com.snake.helper.ProxyService$P2
+com.snake.helper.ProxyService$P3
+com.snake.helper.ProxyVpnService
+## Receivers
+androidx.profileinstaller.ProfileInstallReceiver
+com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver
+com.google.android.gms.measurement.AppMeasurementReceiver
+com.google.firebase.iid.FirebaseInstanceIdReceiver
+com.snake.helper.ProxyBroadcastReceiver
+## Providers
+androidx.core.content.FileProvider
+androidx.startup.InitializationProvider
+com.google.firebase.provider.FirebaseInitProvider
+com.snake.helper.FileProvider
+com.snake.helper.ProxyContentProvider$P0
+com.snake.helper.ProxyContentProvider$P1
+com.snake.helper.ProxyContentProvider$P2
+com.snake.helper.ProxyContentProvider$P3
+com.snake.helper.SystemCallProvider

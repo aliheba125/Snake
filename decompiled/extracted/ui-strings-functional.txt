@@ -1,0 +1,424 @@
+Account *
+Account Manager
+Accounts List
+Activate
+Activated For
+Activate For (*)
+activateSystemCursor
+Activating your code
+Activation was successful
+active
+Add Device
+Additional error: 
+Ang device na sinusubukan mong i-activate ay BANNED
+Ang Inyong Seller ID :
+Ang iyong account ay banned
+Ang subscription na ito ay para sa isang device lamang
+Ang subscription ng device na ito ay naka-link mula sa ibang device (*)
+ApiError
+AppLifecycleState.inactive
+Are you sure you want to logout?
+ArgumentError
+ArgumentError.
+ArgumentError.value
+assets/link.svg
+Attempt to execute code removed by Dart AOT compiler (TFA)
+AudioBalanceLeft
+AudioBalanceRight
+authorityKeyIdentifier
+Bagong Update
+Balance:
+by a synchronously-called image error listener
+Cannot read link
+Cannot remove from a fixed-length list
+Cannot remove from an unmodifiable list
+Cannot send errors on sockets
+characterCodePoint
+charCodes	
+Checking For Update
+CodeInput
+codePoint
+Code Sale
+CodeSourceMap
+color-profile
+Comprobando Actualizaciones
+CONNECT
+connection
+Connection attempt cancelled, host: 
+Connection closed before data was received
+Connection closed before full body was received
+Connection closed before full header was received
+Connection closed before response was received
+Connection closed while receiving data
+Connection failed
+ConnectionState.
+Connection terminated during handshake
+Convert
+Converting object did not return an encodable object:
+Converting object to an encodable object failed:
+Convertir
+Create Key
+Cyclic error in JSON stringify
+Data on closed connection
+Data on failed connection
+decompressLicenses
+Detalye ng Key
+device
+Device
+deviceId
+Device id:
+Device ID:
+devicePixelRatio
+Device removed
+Device was not found
+Downloading
+ecPublicKey
+enableInteractiveSelection
+Encoded surrogate
+Enter device id
+Enter Other device id
+Enter your code
+Entry Key
+Error al cargar feeds
+Error al cargar notificaciones
+Error de inicio de sesi
+Error desconocido, reinicie la aplicaci
+Error event raised in event handler : error condition has been reset
+Error fetching text: 
+Error getting type of FileSystemEntity
+Error sa Pag-login.
+Exists failed
+expires
+extKeyUsage
+Facebook Login Method
+Failed host lookup: '
+Failed to create server socket
+Failed to decode data using encoding '
+Failed to decode data using encoding 'utf-8'
+Failed to load feeds
+Failed to load image
+Failed to load notifications
+Failed to parse header value
+Failed to parse HTTP, 
+Failed to rasterize a picture: 
+Failure[
+FloatingCursorDragState.update
+flush failed
+FlutterError
+flutter/keyboard
+flutter/keydata
+flutter/keyevent
+Gagal memuat feed
+GameButton1
+GameButton10f
+GameButton11
+GameButton12
+GameButton13
+GameButton14
+GameButton15
+GameButton16
+GameButton2
+GameButton3
+GameButton4
+GameButton5
+GameButton6
+GameButton7
+GameButton8
+GameButton9
+GameButtonA
+GameButtonB
+GameButtonC
+GameButtonLeft1
+GameButtonLeft2
+GameButtonMode
+GameButtonRight1
+GameButtonRight2
+GameButtonSelect
+GameButtonStart
+GameButtonThumbLeft
+GameButtonThumbRight
+GameButtonX
+GameButtonY
+GameButtonZ
+Game Selection
+get:hashCode
+Get Key
+getKeyboardState
+Get Subscription
+Getting current working directory failed
+GlobalObjectKey
+Global Seller
+Gumawa ng Key
+HapticFeedbackType.mediumImpact
+HapticFeedbackType.selectionClick
+HapticFeedback.vibrate
+hashCode
+helperError
+Hindi kilalang error mangyaring i-restart ang app
+Hindi mo ma-activate. Hindi pareho ang Tier
+Hindi nahanap ang device
+Hindi nahanap ang Device ID, mangyaring suriin ito
+Hindi na-load ang mga feed
+Hindi na-load ang mga notification
+HTTP connection timed out after 
+HTTP request failed. Client is already closed.
+HTTP request failed, statusCode: 
+https://rest.snakeseller.com/api/request/
+https://www.snakeengine.com/topup/
+Hubo un error cr
+Hubo un error desconocido
+I-activate
+I-activate Para sa (*)
+I-convert
+identityHashCode
+I-enter ang device ID
+If you have screen shots please upload to https://imgur.com/ and share links
+I-install
+Ilagay ang iyong code
+Ina-activate ang iyong code
+inactive
+inactiveGray
+init:hashCode
+Install
+InternalError: '
+Internal error: unexpected format for ready message: '
+InternetAddress('
+InternetAddressType: 
+isLink
+I-tap para mag-logout sa iyong seller account
+Iyong Bansa
+Iyong mga Key
+keyBag
+keyboard
+keyboardAppearance
+KeyboardLayoutSelect
+KeyboardLockMode.
+KeyboardSide.
+keyCode
+keyDataThenRawKeyData
+KeyDataTransitMode.
+Key Details
+keydown
+KeyEventDeviceType.
+KeyEventResult.
+KeyEventType.
+keymap
+Key not in map.
+Keys were created successfully
+keyUsage
+Key was activated successfully for
+Key was copied successfully.
+Kumuha ng Key
+Kumuha ng Subscription
+LanguageError
+LateError
+LateError.fieldADI
+LateError.fieldNI
+LateInitializationError: 
+length failed
+Link: '
+LinkedListEntry is already in a LinkedList
+Link.fromRawPath
+Listahan ng mga Account
+localKeyID
+Login Error.
+Login only for sellers
+Login para sa mga seller lamang
+Logout
+Magdagdag ng Device
+Maglagay ng Ibang device ID
+Mag-login
+Mag-logout
+Mag-subscribe
+Mag-update Ngayon
+Mangyaring i-enter ang buong device ID.
+Mangyaring ilagay ang buong code.
+Mangyaring i-restart ang app upang mai-load ang subscription
+Matagumpay ang pag-activate
+Matagumpay na na-activate ang key para sa
+Matagumpay na nagawa ang mga key
+Matagumpay na nakopya ang inyong seller ID
+Matagumpay na nakopya ang iyong device ID
+Matagumpay na nakopya ang key.
+materialBanner
+May hindi kilalang error
+Mga Bagong Key
+Mga Key
+Mga Nagamit na Key
+Mga Nakabahaging Device:
+Mga Notification
+Mga Opisyal na Seller
+Naabot mo na ang limitasyon ng mga device na maaari mong idagdag
+Na-activate Para sa
+Na-convert ang subscription
+n activa a Internet
+Nag-a-update
+Nagche-check ng Update
+Nagda-download
+Nagkaroon ng kritikal na error. Mangyaring tanggalin ang app at i-install muli
+Naidagdag na ang device na ito
+n convertida
+n, convertir a clave generar
+New Keys
+New Update
+NextUserProfile
+No Features are listed for this subscription
+NonConvert
+Non-https connection "
+Non-link syntax delimiter found with character "
+No notifications yet
+NOTE: ALL OTHER DEVICES WILL BE REMOVED
+Notification
+notifications
+Notifications
+n restante no es convertible. Necesita al menos *
+Official Seller
+Official Sellers
+onError
+operation failed
+Opisyal na Seller
+OS Error
+OSError
+OSError.
+OutOfMemoryError
+OutOfMemoryError.
+Out of unicode range
+PAALALA: LAHAT NG IBANG DEVICE AY TATANGGALIN
+Pagpili ng Subscription
+Pangalan ng Tier
+panZoomUpdate
+parseLicenses
+Password o Passcode
+Password Or Passcode
+Pattern matching error
+pkcs-8ShroudedKeyBag
+plainCodePoint
+Please add the full code.
+Please Enter the full device id.
+Please restart the app to load the subscription
+PointerDeviceKind.
+Profile
+Proxy failed to establish tunnel (
+RangeError
+RangeError.
+RangeError.range
+rawKeyData
+read failed
+Read failed
+readInto failed
+registeredAddress
+remove
+Report was sent successfully. Thank you
+routeInformationUpdated
+scanCode
+s conectado a Internet, Snake Engine necesita una conexi
+ScrollViewKeyboardDismissBehavior.
+Seller Alert!
+Server error: 
+Shared Devices:
+Sigurado ka bang gusto mong mag-logout?
+Sila tambah lebih banyak butiran.
+specifiedLogicalKey
+StackOverflowError
+StackOverflowError.
+StateError
+StateError.
+subjectKeyIdentifier
+Subscribe
+Subscription
+Subscription converted
+Subscription passed to TLS upgrade is paused
+Subscription Selection
+success
+Success
+Success[
+Successfully copied your seller ID
+Successful parse results do not have a message.
+Supported Games
+Tap to logout from your seller account
+TextInputClient.onConnectionClosed
+TextInputClient.removeTextPlaceholder
+TextInputClient.updateEditingState
+TextInputClient.updateEditingStateWithDeltas
+TextInputClient.updateEditingStateWithTag
+TextInputClient.updateFloatingCursor
+TextInput.updateConfig
+The Device ID was not found, please check it
+The device you try to activate is BANNED
+The error handler of Future.catchError must return a value of the future's type
+The Remaining Duration is not convertible. You need at least *
+There was a critical error. Please delete the app and install it again
+There was an unknown error
+This device can have access to seller login. Please login to your account.
+This device is already added
+This device subscription is linked from other device (*)
+This game version is not supported. please install other version . from * to #
+This subscription is for a single device only
+This will clear all your saved data and you'll need to login again.
+Tier Name
+Tinanggal ang device
+Token copied successfully
+Trying to set 'Connection: Keep-Alive' on HTTP 1.0 headers with no ContentLength
+UIKeyInputDownArrow
+UIKeyInputEnd
+UIKeyInputEscape
+UIKeyInputF1
+UIKeyInputF10
+UIKeyInputF11
+UIKeyInputF12
+UIKeyInputF2
+UIKeyInputF3
+UIKeyInputF4
+UIKeyInputF5
+UIKeyInputF6
+UIKeyInputF7
+UIKeyInputF8
+UIKeyInputF9
+UIKeyInputHome
+UIKeyInputLeftArrow
+UIKeyInputPageDown
+UIKeyInputPageUp
+UIKeyInputRightArrow
+UIKeyInputUpArrow
+Unable to decode time
+unicodeScalarValues
+UnimplementedError
+UnimplementedError: 
+Unknown error
+Unknown error please restart the app
+Unknown key event type: 
+Unknown keymap for key events: 
+UnlinkedCall
+UnwindError
+Update
+updateBackGestureProgress
+Update Now
+Upload error: 
+Upload failed with status: 
+Used Keys
+utf8DecodeLicenses
+UZDST 1092:2009 I digital signature public key
+UZDST 1092:2009 II digital signature public key
+VectorGraphicsDecodeException: Failed to decode vector graphic from 
+vm:awaiter-link
+Wala kaming opisyal na seller sa bansang ito.
+Wala kang aktibong subscription para sa larong ito.
+Wala kang sapat na balanse para i-activate
+Walang mga feature na nakalista para sa subscription na ito
+Wala pang notifications
+We don't have any official sellers in this country.
+when reporting an error to an image listener
+while dispatching notifications for 
+while processing a key handler
+while processing a raw key listener
+while processing the key message handler
+Write failed
+writeFrom failed
+You can't activate. Tier is not the same
+You don't have any active subscription for this game.
+You don't have enough balance to activate
+Your account is banned
+Your device id was copied successfully
+You reached the limit of devices that you can add
+Your Keys
+Your Seller Id :
