@@ -198,6 +198,8 @@ decompiled/
 - Function entries (Ghidra): 2418 total, including ~135 external/imported references with no body. Defined functions (function_inventory.tsv): 2283. Decompiled to C: 2241. Not decompiled: 42 — 17 too-large OLLVM-flattened constructors (~175 KB each, ~6 MB of `.text`) + 24 failed + 1 unmarked.
 - Control-flow flattening: giant flattened dispatcher functions, unrecoverable jumptables.
 - String encryption: native method names not present as plaintext; decrypted at runtime.
+- Encryption scheme (fully reverse-engineered, static): **AES-256** with key `= SHA-256( xorshift-PRNG(seed1, seed2) )`. AES confirmed (MixColumns `x<<1 ^ 0x1b` + S-box @ `DAT_009281a8`); SHA-256 K-table at file offset `0x2b450`; KDF in `FUN_00161788` (golden-ratio constant `0x9e3779b1`). Seeds and ciphertext are runtime-sourced (object fields, files) — algorithm recovered, but actual data not statically decryptable. See `native-deep/static-max/`.
+- Deep static pass: 2 of the 42 undecompiled functions recovered via angr (`_INIT_16`, `_INIT_36`); the 26 giant `_INIT_*` proven 95.6% identical clones; 4 `FUN_*` proven to lie beyond file end (runtime-generated only). See `native-deep/static-max/STATIC_MAX_ANALYSIS.md`.
 - Inline syscalls: direct `svc #0` (bypasses libc).
 - Runtime code generation / self-modifying: writes ARM64 branch opcodes (`| 0x14000000`) into RWX memory.
 - Custom `.mytext` section (244 B), 1731 B overlay, 44 `.init_array` constructors, BIND_NOW / full RELRO.
