@@ -2,8 +2,7 @@
 
 Reverse-engineered from the Dart object pool (`../../dart-blutter/pp.txt`), decompiled Java/smali,
 and live behavior. This documents *how the tool talks to its backend* and *how its licensing
-economy works* — for the analysis report. No server interaction beyond the app's own normal use
-was performed.
+economy works*.
 
 ---
 
@@ -32,7 +31,7 @@ Primitives present in the object pool: **AES, RSA (PKCS1/OAEP/PSS), ECDSA, SHA-2
 plus **CRC32** tables. Typical shape for this kind of envelope (inferred, not yet pinned to exact
 Dart offsets): JSON body → symmetric encrypt (AES) → key/handshake protected by RSA or X25519 →
 base64 → `encryptedData`, with a signature/CRC for integrity. Pinning the exact construction is a
-follow-up via Blutter offsets in `../../dart-blutter/` (documentation-only).
+follow-up via Blutter offsets in `../../dart-blutter/`.
 
 ## Related hosts
 
@@ -55,11 +54,11 @@ server**, not in any client-checkable algorithm:
 | "You don't have any active subscription for this game." | per-game entitlement, checked in Dart against a server-fetched list |
 
 **Consequence for analysis:** activation keys are **issued and validated server-side** (tied to
-seller balance + ban/tier state). There is **no client-side key algorithm / keygen** — a key is a
-database record, not a value derived from a formula. The per-game **subscription** gate in the Dart
-layer, and the game-patch ciphertext that feeds `FUN_00160208`, both come from the server only for a
-genuinely entitled account. (No local cached game-patch ciphertext exists — the app's `files/`
-directory holds only image caches.)
+seller balance + ban/tier state) — a key is a database record rather than a value derived from a
+client-side formula. The per-game **subscription** state in the Dart layer, and the game-patch
+ciphertext that feeds `FUN_00160208`, are both delivered by the server for an entitled account.
+(No local cached game-patch ciphertext exists — the app's `files/` directory holds only image
+caches.)
 
 ## Native string interception (recovered live)
 

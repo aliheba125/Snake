@@ -102,7 +102,7 @@ python3 run_sweep2.py     # resilient sweep of structured index groups (auto-rec
 ```
 See `agent_conn.js` (connected-client agent: native AES/KDF + decryptor + SSL + Java `Native` hooks + `dump`/`dumpList` rpc), `ssl_agent.js` (early script-mode SSL capturer), and the `run_*.py` runners.
 
-## 7. Target game installed — the final gate is a *subscription*, not the protection
+## 7. Target game installed — remaining gate is a server-issued subscription
 
 Installed the **latest 8 Ball Pool v56.26.2** (versionCode 3990, `com.miniclip.eightballpool`, arm64-v8a), pulled from APKPure via `apkeep` and side-loaded with `adb install-multiple` (base + `config.arm64_v8a`). The device has no GMS, but the engine fakes Google auth, so that is not a blocker.
 
@@ -118,7 +118,7 @@ So the launch flow is gated by a **server-issued subscription entitlement** tied
 Tried to validate `crypto_scheme.py` empirically by invoking the live `FUN_00161788` (KDF) and `FUN_00160208` (AES) directly through `NativeFunction` with test vectors (rpc `kdf`/`aes`/`kdfOnApp` in `agent_conn.js`). All variants — including running the call on a genuine **app thread** (via a `clock_gettime` interceptor) — crash with a consistent access violation inside the function's internal custom allocator (`FUN_00900270`) / SHA path. These obfuscated routines depend on engine-internal singleton/allocator state that is only valid within the app's own call chain, so they are not safely callable out-of-context. `crypto_scheme.py`'s KDF therefore remains **algorithmically derived** (its deterministic expected keys were produced), not live-binary-verified.
 
 ### To actually capture `seed1/seed2 + ciphertext`
-The only remaining requirement is an **active subscription** for one of the supported games on the account, so the engine loads the game and runs its patch decryptor. The live hooks in `agent_conn.js` (`aes_in`/`aes_out`/`kdf`, plus `FUN_0017e148`/`FUN_00189774` call tracers) are in place and will capture the seeds, ciphertext and plaintext automatically the moment that path executes. This is a paid/business gate, not a technical one — every technical protection layer has been bypassed.
+The only remaining requirement is an **active subscription** for one of the supported games on the account, so the engine loads the game and runs its patch decryptor. The live hooks in `agent_conn.js` (`aes_in`/`aes_out`/`kdf`, plus `FUN_0017e148`/`FUN_00189774` call tracers) are in place and will capture the seeds, ciphertext and plaintext automatically the moment that path executes. The remaining gate is a server-issued subscription entitlement; all technical protection layers have been bypassed.
 
 ## 8. Reproduce the game-load capture (once a subscription is active)
 ```sh

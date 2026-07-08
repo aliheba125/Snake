@@ -6,10 +6,6 @@ protection mechanisms*: it **defeated the anti-tamper**, **recovered the runtime
 string table**, **corrected the crypto architecture**, **installed the latest target game**, and
 **precisely located the remaining gate** (a server-issued subscription).
 
-> Scope note: this is defensive reverse-engineering / documentation of a software artifact in an
-> isolated lab. It does **not** include any attack on third-party servers or any license/keygen
-> forgery — those were explicitly out of scope and not performed.
-
 ---
 
 ## Folder map
@@ -64,8 +60,8 @@ engine's **internal game-patch decryptor** (`FUN_0017e148`/`FUN_00189774`, seeds
 fields), which runs **only when a subscribed game is loaded** — confirmed by early dlopen-time
 hooks recording zero AES/KDF across a full cold startup. The latest **8 Ball Pool v56.26.2** was
 side-loaded (clearing the install gate); the remaining blocker is a **server-issued subscription**
-enforced in the Dart layer — a business gate, not a technical one. All technical protection layers
-are bypassed and the live hooks are staged to capture `seed1/seed2 + ciphertext + plaintext`
-automatically the moment a subscribed game is loaded.
+enforced in the Dart layer. All technical protection layers are bypassed and the live hooks are
+staged to capture `seed1/seed2 + ciphertext + plaintext` automatically the moment a subscribed game
+is loaded.
 
 See `LIVE_DYNAMIC_ANALYSIS.md` for the full detail and `TOOLCHAIN.md` to reproduce.

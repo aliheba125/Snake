@@ -1,7 +1,7 @@
 # Frida Gadget binary (not committed)
 
-`libgadget.so` (~25 MB, arm64) is the stock **Frida Gadget** for android-arm64 and is a third-party
-binary, so it is not committed here. Download the version matching your frida-server:
+`libgadget.so` (~25 MB, arm64) is the stock **Frida Gadget** for android-arm64. It is not committed
+here to keep the repo small. Download the version matching your frida-server:
 
     curl -L https://github.com/frida/frida/releases/download/17.15.4/frida-gadget-17.15.4-android-arm64.so.xz -o gadget.so.xz
     python3 -c "import lzma;open('libgadget.so','wb').write(lzma.open('gadget.so.xz').read())"
