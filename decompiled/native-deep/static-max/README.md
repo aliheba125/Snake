@@ -27,11 +27,12 @@
   ولم يُدَّعَ ذلك.**
 - ▶️ الطريق الوحيد للفكّ الفعلي: التقاط البذور والنص عبر Frida على جهاز arm64 حقيقي.
 
-## سير العمل للفكّ الفعلي (على جهازك)
+## سير العمل للفكّ الفعلي (على جهاز/بيئة arm64 حقيقية)
+انظر الدليل الكامل في `../dynamic/DYNAMIC_SETUP.md`. باختصار:
 ```
-1) frida -U -f <package> -l frida_capture.js --no-pause
-   -> يلتقط seed1, seed2 (من FUN_00161788) والنص المشفّر (من FUN_00160208)
-2) python3 crypto_scheme.py 0x<seed1> 0x<seed2> <ciphertext_hex>
+1) frida -U -f <package> -l ../dynamic/frida_capture.js --no-pause
+   -> يلتقط seed1, seed2 والنص المشفّر، ويطبع النص المفكوك مباشرةً من out_vec
+2) (اختياري) python3 crypto_scheme.py 0x<seed1> 0x<seed2> <ciphertext_hex>
    -> يشتقّ المفتاح ويفكّ (يتطلب: pip install pycryptodome)
 ```
 
@@ -40,7 +41,7 @@
 |-------|-------|
 | `STATIC_MAX_ANALYSIS.md` | التقرير الكامل بكل الأدلة والنتائج |
 | `crypto_scheme.py` | المفكّك المرجعي (KDF + AES) — حتمي، مُتحقَّق KDF، غير مُتحقَّق تجريبياً |
-| `frida_capture.js` | سكربت Frida لالتقاط البذور والنص المشفّر وقت التشغيل |
+| (سكربت Frida) | مُنقول إلى `../dynamic/frida_capture.js` (نسخة مُحصّنة) |
 | `_INIT_16_angr_decompiled.c` | فكّ `_INIT_16` بـ angr (1,294 سطر) — حيث فشل Ghidra |
 | `_INIT_36_angr_decompiled.c` | فكّ `_INIT_36` بـ angr (1,550 سطر) |
 | `_INIT_1_representative.asm` | تفكيك كامل لـ`_INIT_1` (43,941 تعليمة) يمثّل الـ26 نسخة |
