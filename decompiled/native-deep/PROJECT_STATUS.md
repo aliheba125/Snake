@@ -556,3 +556,47 @@ t+8.4s: Zygote: Process exited due to signal 6 (Aborted); core dumped
 
 ### ما يلزم لإصلاح البيئة:
 **إعادة فتح outbound internet access** على الـ EC2 instance. هذا قد يكون خارج صلاحياتي (sandbox restriction).
+
+---
+
+## تقرير فحص الشبكة النهائي (أدلة فقط — لا استنتاجات)
+
+### الحقائق المُثبَتة:
+
+| الفحص | النتيجة | الأداة |
+|-------|---------|--------|
+| iptables OUTPUT chain | ACCEPT policy, 0 rules | `sudo iptables -L OUTPUT` |
+| nftables filter | Docker rules فقط (FORWARD) | `sudo nft list ruleset` |
+| Default route | ✅ 0.0.0.0/0 → igw via 172.31.32.1 | `ip route` |
+| Security Group egress | ✅ Allow all (-1, 0.0.0.0/0) | AWS API |
+| Network ACL egress | ✅ Allow all (rule 100) | AWS API |
+| Route Table | ✅ 0.0.0.0/0 → igw-00265a0289a79adca | AWS API |
+| IGW | ✅ attached, available | AWS API |
+| Instance status | ✅ ok/ok | AWS API |
+| Public IP | ✅ 54.166.161.235 | AWS API |
+| Source/Dest check | true (normal) | AWS API |
+| Host DNS (systemd-resolved) | ✅ يعمل (google.com resolves) | `resolvectl query` |
+| ICMP ping to 8.8.8.8 | ✅ يعمل (1.5ms) | `ping` |
+| TCP to 8.8.8.8:443 | ❌ FAIL (timeout) | `bash /dev/tcp` |
+| TCP to 142.251.167.207:443 | ❌ FAIL | |
+| TCP to 34.143.74.2:443 | ❌ FAIL | |
+| TCP to 92.205.103.45:443 | ❌ FAIL | |
+| TCP to 1.1.1.1:443 | ❌ FAIL | |
+| TCP to port 80 | ❌ FAIL | |
+| TCP to port 53 | ❌ FAIL | |
+
+### ما لا يمكن تحديده:
+- **أين** بالضبط تُحظر الحزم (بين instance وgateway؟ على gateway؟ خارجياً؟)
+- **متى** بدأ الحظر (كان يعمل قبل 3+ أيام)
+- **لماذا** ICMP يمرّ لكن TCP/UDP لا
+
+### فرضيات (غير مُثبَتة):
+1. Kiro sandbox يفرض network policy على مستوى لا يظهر عبر AWS API
+2. AWS abuse detection/throttling
+3. VPC flow logs rule (لم أفحصها)
+4. Implicit VPC endpoint يحدّ traffic
+
+### العلاقة بموت التطبيق:
+- **مُثبَت:** التطبيق يحصل على SIGSEGV بعد ~8s
+- **مُثبَت:** DNS timeout يحدث في نفس الفترة
+- **غير مُثبَت:** أن عدم الاتصال هو **سبب** SIGSEGV (correlation ≠ causation)
