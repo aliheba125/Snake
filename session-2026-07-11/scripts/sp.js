@@ -1,0 +1,1 @@
+var f=new File("/data/local/tmp/patch_log.txt","w");f.write("0x461a6c\n");var n=0;var iv=setInterval(function(){n++;var fl=Process.findModuleByName("libflutter.so");if(fl){clearInterval(iv);Memory.patchCode(fl.base.add(4594284),8,function(c){c.writeU32(0x52800000);c.add(4).writeU32(0xD65F03C0);});f.write("ok\n");f.flush();}if(n>200){clearInterval(iv);}},50);

@@ -1,0 +1,42 @@
+[
+  {
+    "trial": 1,
+    "pid": "54547",
+    "survived": false,
+    "detach_reason": "connection-terminated",
+    "events": [
+      {
+        "t": "eng",
+        "base": "0xe377a3e84000",
+        "size": 8630272
+      },
+      {
+        "t": "hook",
+        "status": "OK",
+        "addr": "0xe377a3fe5788"
+      }
+    ],
+    "crash_log": "",
+    "tombstone": "*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***\nBuild fingerprint: 'redroid/redroid_arm64/redroid_arm64:11/RD2A.211001.002/eng.frank.20240527.143222:userdebug/test-keys'\nRevision: '0'\nABI: 'arm64'\nTimestamp: 2026-07-08 19:39:12+0000\npid: 32942, tid: 32942, name: com.snake  >>> com.snake <<<\nuid: 10119\nsignal 11 (SIGSEGV), code 2 (SEGV_ACCERR), fault addr 0xff6db89433d4\n    x0  0000ff6db1a1a000  x1  0000ff6db1a1b000  x2  0000000000000007  x3  0000000000000022\n    x4  ffffffffffffffff  x5  0000000000000000  x6  0000000000000026  x7  7f7f7f7f7f7f7f7f\n    x8  0000ff6db1aff000  x9  0000ff6db1a1b000  x10 0000000017fffc00  x11 0000000000000030\n    x12 0000ff7049dfccb8  x13 0000ff7049dfcd00  x14 0000ff7049dfcc84  x15 0000ff7049dfc000\n    x16 0000ff7049dfac68  x17 0000ff7049df2ce0  x18 0000ff704e6e6000  x19 0000000000000007\n    x20 0000000000001000  x21 0000ff6db1a1a000  x22 0000000000000400  x23 0000ffffd1a00b20\n    x24 0000ff6d4a8ab334  x25 0000000000000400  x26 00000000d4200000  x27 0000000014000000\n    x28 0000000003ffffff  x29 0000ffffd1a00bb0\n    lr  0000ff6d4b01d748  sp  0000ffffd1a009a0  pc  0000ff6db89433d4  pst 0000000060001000\n\nbacktrace:\n      #00 pc 00000000014fd3d4  <anonymous:ff6db7446000>\n\nmemory near x0:\n    0000ff6db1a19fe0 0000000000000000 0000000000000000  ................\n    0000ff6db1a19ff0 0000000000000000 0000000000000000  ................\n    0000ff6db1a1a000 d42098a715bca4f5 ffffffffd45e7cf3  ...... ..|^.....\n    0000ff6db1a1a010 d420c4b01580476c ffffffffd45ee1b0  lG.... ...^.....\n    0000ff6db1a1a020 d42095ce14bc058b ffffffffd45e77e8  ...... ..w^.....\n    0000ff6db1a1a030 d420671614870b39 ffffffffd45e48dc  9....g ..H^.....\n    0000ff6db1a1a040 d420aa5416d057d8 ffffffffd45e828c  .W..T. ...^.....\n    0000ff6db1a1a050 d420642814a6ca49 ffffffffd45e04d4  I...(d ...^.....\n    0000ff6db1a1a060 d420e0ea15a73bcb ffffffffd45e19d5  .;.... ...^.....\n    0000ff6db1a1a070 d4206e8d17d4130a ffffffffd45e9973  .....n .s.^.....\n    0000ff6db1a1a080 d"
+  },
+  {
+    "trial": 2,
+    "pid": "54797",
+    "survived": false,
+    "detach_reason": "connection-terminated",
+    "events": [
+      {
+        "t": "eng",
+        "base": "0xe2ef98a82000",
+        "size": 8630272
+      },
+      {
+        "t": "hook",
+        "status": "OK",
+        "addr": "0xe2ef98be3788"
+      }
+    ],
+    "crash_log": "",
+    "tombstone": "*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***\nBuild fingerprint: 'redroid/redroid_arm64/redroid_arm64:11/RD2A.211001.002/eng.frank.20240527.143222:userdebug/test-keys'\nRevision: '0'\nABI: 'arm64'\nTimestamp: 2026-07-08 19:39:12+0000\npid: 32942, tid: 32942, name: com.snake  >>> com.snake <<<\nuid: 10119\nsignal 11 (SIGSEGV), code 2 (SEGV_ACCERR), fault addr 0xff6db89433d4\n    x0  0000ff6db1a1a000  x1  0000ff6db1a1b000  x2  0000000000000007  x3  0000000000000022\n    x4  ffffffffffffffff  x5  0000000000000000  x6  0000000000000026  x7  7f7f7f7f7f7f7f7f\n    x8  0000ff6db1aff000  x9  0000ff6db1a1b000  x10 0000000017fffc00  x11 0000000000000030\n    x12 0000ff7049dfccb8  x13 0000ff7049dfcd00  x14 0000ff7049dfcc84  x15 0000ff7049dfc000\n    x16 0000ff7049dfac68  x17 0000ff7049df2ce0  x18 0000ff704e6e6000  x19 0000000000000007\n    x20 0000000000001000  x21 0000ff6db1a1a000  x22 0000000000000400  x23 0000ffffd1a00b20\n    x24 0000ff6d4a8ab334  x25 0000000000000400  x26 00000000d4200000  x27 0000000014000000\n    x28 0000000003ffffff  x29 0000ffffd1a00bb0\n    lr  0000ff6d4b01d748  sp  0000ffffd1a009a0  pc  0000ff6db89433d4  pst 0000000060001000\n\nbacktrace:\n      #00 pc 00000000014fd3d4  <anonymous:ff6db7446000>\n\nmemory near x0:\n    0000ff6db1a19fe0 0000000000000000 0000000000000000  ................\n    0000ff6db1a19ff0 0000000000000000 0000000000000000  ................\n    0000ff6db1a1a000 d42098a715bca4f5 ffffffffd45e7cf3  ...... ..|^.....\n    0000ff6db1a1a010 d420c4b01580476c ffffffffd45ee1b0  lG.... ...^.....\n    0000ff6db1a1a020 d42095ce14bc058b ffffffffd45e77e8  ...... ..w^.....\n    0000ff6db1a1a030 d420671614870b39 ffffffffd45e48dc  9....g ..H^.....\n    0000ff6db1a1a040 d420aa5416d057d8 ffffffffd45e828c  .W..T. ...^.....\n    0000ff6db1a1a050 d420642814a6ca49 ffffffffd45e04d4  I...(d ...^.....\n    0000ff6db1a1a060 d420e0ea15a73bcb ffffffffd45e19d5  .;.... ...^.....\n    0000ff6db1a1a070 d4206e8d17d4130a ffffffffd45e9973  .....n .s.^.....\n    0000ff6db1a1a080 d"
+  }
+]

@@ -1,0 +1,37 @@
+{
+ "events": {
+  "kdf": [],
+  "aes_in": [],
+  "aes_out": []
+ },
+ "res": {
+  "ilil": {
+   "0xf11301": "id_token",
+   "0xf11501": "com.miniclip.googleplaygames.Authentication",
+   "0xf11520": "918010152455-tbk8ajicdmlqntolgea1vtlrc94nip3p.apps.googleusercontent.com",
+   "0xf11521": "https://snakeengine.com/oauth/google",
+   "0xf21501": "loginCallback",
+   "0xf31501": "onLoginResult",
+   "0xf30001": "",
+   "0xf20001": "",
+   "0xf10021": "",
+   "0xf10020": "",
+   "0xf10001": "",
+   "0xf0fe01": ""
+  },
+  "djp": {
+   "0xf11301": null,
+   "0xf11501": null,
+   "0xf11520": null,
+   "0xf11521": null,
+   "0xf21501": null,
+   "0xf31501": null,
+   "0xf30001": null,
+   "0xf20001": null,
+   "0xf10021": null,
+   "0xf10020": null,
+   "0xf10001": null,
+   "0xf0fe01": null
+  }
+ }
+}

@@ -1,0 +1,107 @@
+uname -m
+lsb_release -a
+free -h
+nproc
+sudo apt update
+uname -m
+lsb_release -a
+free -h
+nproc
+sudo apt update
+Skip to Main Content
+Search
+[Alt+S]
+United States (N. Virginia)
+aliheba1255 (401644593786)
+aliheba1255
+Content loaded
+2
+ubuntu@ip-172-31-36-94:~$ sudo apt update
+sudo apt install -y linux-modules-extra-$(uname -r)
+uname -m
+lsb_release -a
+free -h
+nproc
+sudo apt update
+lsmod | grep -i binder
+sudo modprobe binder_linux
+find /lib/modules/$(uname -r) -iname '*binder*'; echo "----- CONFIG -----"; grep BINDER /boot/config-$(uname -r); echo "----- MODPROBE -----"; sudo modprobe -v binder_linux; echo "----- DEVICES -----"; ls -la /dev | grep binder
+sudo mkdir -p /dev/binderfs && sudo mount -t binder binder /dev/binderfs && ls -la /dev/binderfs
+sudo mkdir -p /dev/binderfs && sudo mount -t binder binder /dev/binderfs 2>/dev/null || true
+ls -la /dev/binderfs
+ls /dev/binderfs/features && cat /dev/binderfs/features/*
+sudo apt install -y docker.io
+sudo systemctl enable --now docker && sudo docker --version && sudo docker run --rm hello-world
+sudo docker pull redroid/redroid:11.0.0-arm64
+sudo docker search redroid/redroid
+sudo docker pull redroid/redroid:latest
+sudo docker image inspect redroid/redroid:latest --format '{{.Architecture}}'
+sudo docker run -d --name redroid --privileged -v /dev/binderfs:/dev/binderfs -p 5555:5555 redroid/redroid:latest androidboot.hardware=redroid androidboot.redroid_gpu_mode=guest
+sudo docker ps
+sudo apt install -y adb
+sudo apt install -y adb && adb connect localhost:5555 && sleep 8 && adb devices && echo "BOOT:" && adb shell getprop sys.boot_completed && echo "ABI:" && adb shell getprop ro.product.cpu.abi && echo "ANDROID:" && adb shell getprop ro.build.version.release
+adb -s localhost:5555 shell getprop sys.boot_completed && adb -s localhost:5555 shell getprop ro.product.cpu.abi && adb -s localhost:5555 shell getprop ro.build.version.release
+adb -s localhost:5555 shell getprop | grep -E "boot|zygote|surface|system"
+adb -s localhost:5555 shell pm list packages | head
+sudo docker rm -f redroid
+sudo docker pull redroid/redroid:11.0.0
+mkdir -p ~/redroid-data
+sudo docker run -d --name redroid --privileged -v /dev/binderfs:/dev/binderfs -v ~/redroid-data:/data -p 5555:5555 redroid/redroid:11.0.0 androidboot.hardware=redroid androidboot.redroid_gpu_mode=guest
+adb disconnect
+adb connect localhost:5555
+adb -s localhost:5555 shell getprop ro.build.version.release
+adb -s localhost:5555 shell getprop sys.boot_completed
+adb -s localhost:5555 shell pm list packages | head
+sudo docker run --rm quay.io/skopeo/stable list-tags docker://docker.io/redroid/redroid | head -50
+sudo docker pull redroid/redroid:11.0.0-240527
+sudo docker ps
+sudo docker ps -a
+sudo docker logs redroid --tail 100
+sudo docker rm -f redroid 2>/dev/null
+mkdir -p ~/redroid-data
+sudo docker run -d --name redroid --privileged -v /dev/binderfs:/dev/binderfs -v ~/redroid-data:/data -p 5555:5555 redroid/redroid:11.0.0-240527 androidboot.hardware=redroid androidboot.redroid_gpu_mode=guest
+sudo docker ps
+adb disconnect
+adb connect localhost:5555
+sleep 60
+adb -s localhost:5555 devices
+adb -s localhost:5555 shell getprop sys.boot_completed
+adb -s localhost:5555 shell getprop ro.build.version.release
+pip3 install frida-tools --break-system-packages
+sudo apt update
+pip3 --version
+sudo apt install -y python3-pip
+pip3 --version
+pip3 install frida-tools --break-system-packages
+FV=$(frida --version)
+echo "frida = $FV"
+export PATH="$HOME/.local/bin:$PATH"
+frida --version
+FV=$(frida --version)
+echo "frida = $FV"
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+cd /tmp
+wget -q https://github.com/frida/frida/releases/download/17.15.4/frida-server-17.15.4-android-arm64.xz
+unxz -f frida-server-17.15.4-android-arm64.xz
+adb -s localhost:5555 push frida-server-17.15.4-android-arm64 /data/local/tmp/frida-server
+adb -s localhost:5555 shell "chmod 755 /data/local/tmp/frida-server"
+adb -s localhost:5555 shell "nohup /data/local/tmp/frida-server >/dev/null 2>&1 &"
+frida-ls-devices
+sudo apt install -y git
+git clone https://github.com/aliheba125/Snake.git ~/Snake
+ls ~/Snake
+adb -s localhost:5555 install ~/Snake/raw/SE_2.2.6.apk
+adb -s localhost:5555 shell pm list packages | grep snake
+frida -U -f com.snake -l ~/Snake/decompiled/native-deep/dynamic/frida_capture.js --no-pause
+frida -U -f com.snake -l ~/Snake/decompiled/native-deep/dynamic/frida_capture.js
+adb -s localhost:5555 shell monkey -p com.snake 1
+frida-ps -U | grep snake
+frida -U -n com.snake -l ~/Snake/decompiled/native-deep/dynamic/frida_capture.js
+frida -U -f com.snake
+adb -s localhost:5555 shell monkey -p com.snake 1
+frida-ps -U | grep snake
+adb -s localhost:5555 shell ps -A | grep -i snake
+adb -s localhost:5555 logcat -d -t 200 | grep -iE "snake|FATAL|crash|exception"
+adb -s localhost:5555 shell ps -A | grep -i snake
+adb -s localhost:5555 logcat -d -t 200 | grep -iE "snake|FATAL|crash|exception"

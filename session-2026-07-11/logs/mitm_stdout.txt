@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/tmp/mitm_run.py", line 8, in <module>
+    log_file = open(LOG_PATH, "w")
+               ^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/tmp/mitm_log.txt'

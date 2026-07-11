@@ -1,0 +1,11 @@
+{
+ "ilil": {
+  "0xf11301": "id_token",
+  "0xf11501": "com.miniclip.googleplaygames.Authentication",
+  "0xf11520": "918010152455-tbk8ajicdmlqntolgea1vtlrc94nip3p.apps.googleusercontent.com",
+  "0xf11521": "https://snakeengine.com/oauth/google",
+  "0xf21501": "loginCallback",
+  "0xf31501": "onLoginResult"
+ },
+ "djp": {}
+}

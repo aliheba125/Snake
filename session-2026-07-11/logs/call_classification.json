@@ -1,0 +1,170 @@
+{
+  "idle_stats": {
+    "total": 378,
+    "groups": {
+      "idle|malloc|0x800290": {
+        "fn": "malloc",
+        "off": "0x800290",
+        "phase": "idle",
+        "count": 45,
+        "sizes": [
+          16,
+          8517680,
+          48,
+          96,
+          80
+        ]
+      },
+      "idle|memcpy|0x5a108": {
+        "fn": "memcpy",
+        "off": "0x5a108",
+        "phase": "idle",
+        "count": 9,
+        "sizes": [
+          8517680,
+          8517680,
+          8517680,
+          8517680,
+          8517680
+        ]
+      },
+      "idle|memcpy|0x7dfe54": {
+        "fn": "memcpy",
+        "off": "0x7dfe54",
+        "phase": "idle",
+        "count": 306,
+        "sizes": [
+          1,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "idle|memcpy|0x800bd8": {
+        "fn": "memcpy",
+        "off": "0x800bd8",
+        "phase": "idle",
+        "count": 18,
+        "sizes": [
+          22,
+          47,
+          22,
+          47,
+          22
+        ]
+      }
+    }
+  },
+  "tap_total": 336,
+  "full_stats": {
+    "total": 714,
+    "groups": {
+      "idle|malloc|0x800290": {
+        "fn": "malloc",
+        "off": "0x800290",
+        "phase": "idle",
+        "count": 45,
+        "sizes": [
+          16,
+          8517680,
+          48,
+          96,
+          80
+        ]
+      },
+      "idle|memcpy|0x5a108": {
+        "fn": "memcpy",
+        "off": "0x5a108",
+        "phase": "idle",
+        "count": 9,
+        "sizes": [
+          8517680,
+          8517680,
+          8517680,
+          8517680,
+          8517680
+        ]
+      },
+      "idle|memcpy|0x7dfe54": {
+        "fn": "memcpy",
+        "off": "0x7dfe54",
+        "phase": "idle",
+        "count": 306,
+        "sizes": [
+          1,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "idle|memcpy|0x800bd8": {
+        "fn": "memcpy",
+        "off": "0x800bd8",
+        "phase": "idle",
+        "count": 18,
+        "sizes": [
+          22,
+          47,
+          22,
+          47,
+          22
+        ]
+      },
+      "tap|malloc|0x800290": {
+        "fn": "malloc",
+        "off": "0x800290",
+        "phase": "tap",
+        "count": 40,
+        "sizes": [
+          16,
+          8517680,
+          48,
+          96,
+          80
+        ]
+      },
+      "tap|memcpy|0x5a108": {
+        "fn": "memcpy",
+        "off": "0x5a108",
+        "phase": "tap",
+        "count": 8,
+        "sizes": [
+          8517680,
+          8517680,
+          8517680,
+          8517680,
+          8517680
+        ]
+      },
+      "tap|memcpy|0x7dfe54": {
+        "fn": "memcpy",
+        "off": "0x7dfe54",
+        "phase": "tap",
+        "count": 272,
+        "sizes": [
+          1,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "tap|memcpy|0x800bd8": {
+        "fn": "memcpy",
+        "off": "0x800bd8",
+        "phase": "tap",
+        "count": 16,
+        "sizes": [
+          22,
+          47,
+          22,
+          47,
+          22
+        ]
+      }
+    }
+  },
+  "near_targets": []
+}

@@ -1,0 +1,9 @@
+=== MITM Fixed ===
+CA_KEY: /home/ubuntu/.mitmproxy/mitmproxy-ca.pem exists=True
+Cert chain loaded OK
+Listening on :443
+App starting...
+Connection from ('172.17.0.2', 56566)
+  TLS handshake FAILED: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)
+Connection from ('172.17.0.2', 56582)
+  TLS handshake FAILED: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)
