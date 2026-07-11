@@ -641,3 +641,43 @@ Result:
 AWS infrastructure (بعد خروج الحزمة من ENI). لا يمكنني إصلاحه من داخل الـ instance.
 
 **بدون outbound TCP:** لا يمكن لأي تطبيق يحتاج اتصال HTTPS أن يعمل — بما فيه Snake Engine.
+
+---
+
+## نتيجة فحص الشبكة النهائية (أدلة packet-level)
+
+### بيانات مُثبَتة:
+
+| Test | Protocol | Destination | Result |
+|------|----------|-------------|--------|
+| tcpdump | TCP SYN | 142.251.163.139:443 | SYN exits, no SYN-ACK |
+| /dev/tcp | TCP | 8.8.8.8:443 | FAIL |
+| /dev/tcp | TCP | 1.1.1.1:80 | FAIL |
+| /dev/tcp | TCP | 93.184.216.34:80 | FAIL |
+| /dev/tcp | TCP | 172.31.0.2:53 (VPC internal) | OK |
+| /dev/tcp | TCP | 169.254.169.254:80 (metadata) | OK |
+| /dev/udp | UDP | 8.8.8.8:53 | OK |
+| ping | ICMP | 8.8.8.8 | OK |
+| Reachability Analyzer | - | ENI → IGW | Reachable |
+
+### AWS Config (all verified OK):
+- Security Group egress: allow all
+- NACL inbound + outbound: allow all
+- Route Table: 0.0.0.0/0 → IGW (active)
+- IGW: available, attached
+- Instance status: ok/ok
+- New Elastic IP allocated + associated: same problem
+
+### الاستنتاج المدعوم بالأدلة:
+**TCP connections إلى عناوين خارجية (عبر IGW) لا تكتمل.** SYN يخرج من الـ instance لكن SYN-ACK لا يعود. TCP إلى عناوين VPC الداخلية يعمل. UDP وICMP إلى خارجية يعملان.
+
+### ما لا يمكن تحديده من هنا:
+- أين بالضبط يُحظر TCP (IGW level? AWS infra? sandbox policy?)
+- لماذا UDP/ICMP يعملان لكن TCP لا
+- هل هذا قيد Kiro sandbox متعمّد أم مشكلة AWS
+
+### العلاقة بانهيار التطبيق:
+- التطبيق يحتاج HTTPS (TCP:443) للاتصال بخادمه
+- TCP:443 محظور → التطبيق لا يستطيع الاتصال
+- بعد ~8 ثوانٍ يحصل على SIGSEGV
+- **هل** عدم الاتصال يُسبّب SIGSEGV مباشرة؟ **غير مُثبَت** — لكنه فرضية معقولة
