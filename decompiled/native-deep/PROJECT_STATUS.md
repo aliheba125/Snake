@@ -285,3 +285,33 @@ Process: ALIVE (no detection)
 ### المسار التالي:
 مراقبة memcpy + malloc من libengine **أثناء وبعد** الضغط على اللعبة
 لتحديد إذا كان هناك نشاط إضافي يتعلّق بالاشتراك/اللعبة.
+
+---
+
+## تصنيف نشاط libengine: idle vs tap (مُثبَت بالبيانات)
+
+### المنهج:
+- Hook memcpy + malloc على libc
+- تسجيل return address (offset في libengine) + حجم + مرحلة
+- مقارنة: 10s idle ثم tap على 8 Ball Pool ثم 8s انتظار
+
+### النتائج:
+
+| Caller (eng+offset) | Function | Idle (10s) | After Tap (8s) | Sizes |
+|---------------------|----------|-----------|----------------|-------|
+| 0x7dfe54 | memcpy | 306 | 272 | 1-2 bytes |
+| 0x800290 | malloc | 45 | 40 | 16 to 8.5MB |
+| 0x800bd8 | memcpy | 18 | 16 | 22-47 bytes |
+| 0x5a108 | memcpy | 9 | 8 | 8.5MB |
+
+### الاستنتاجات المدعومة بالبيانات:
+1. **لا caller جديد** ظهر بعد الـ tap (القائمة متطابقة)
+2. **لا call من عناوين قريبة لـ KDF/AES/FN1/FN2** — هذه الدوال لا تُنفَّذ
+3. النشاط المرصود **دوري وخلفي** (timer-based) — لا علاقة له بتفاعل المستخدم
+4. قرار "no subscription" يحدث **بالكامل في Dart/libapp.so** — libengine لا تُشارك
+
+### ماذا يلزم لتحفيز KDF/AES:
+المسار الوحيد المُثبَت لتحفيز `FUN_0017e148 → FUN_00189774 → FUN_00160208` هو:
+**subscription فعّال** → الضغط على لعبة → Dart يُرسل IPC → libengine:engine تُحمّل اللعبة → KDF/AES تُنفَّذ.
+
+بدون subscription: المسار لا يبدأ. libc hooks جاهزة وستلتقط اللحظة التي يبدأ فيها.
