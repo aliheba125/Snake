@@ -1,0 +1,16 @@
+{
+  "name": "agents",
+  "version": "1.0.0",
+  "main": "agent.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "frida-compile": "^19.0.5",
+    "frida-java-bridge": "^7.0.13"
+  }
+}
