@@ -527,3 +527,32 @@ t+8.4s: Zygote: Process exited due to signal 6 (Aborted); core dumped
 
 ### ما يلزم لإصلاح البيئة:
 **إصلاح DNS في redroid** — هذا هو الحاجز الفعلي. بدون DNS، التطبيق لا يستطيع الاتصال → يموت.
+
+---
+
+## تصحيح: السبب الحقيقي لفشل البيئة
+
+### حقائق مُثبَتة (بأدلة مباشرة):
+1. **كل outbound TCP/UDP محظور** من EC2 instance (كل الـ ports: 22,53,80,443,8080 = BLOCKED)
+2. **فقط ICMP وSSH inbound يعمل**
+3. **AWS Security Group + NACL = مفتوحة بالكامل** (allow all outbound)
+4. **المشكلة في مستوى آخر** (sandbox restriction أو route table أو NAT)
+
+### التسلسل المنطقي:
+- Instance لا تستطيع الوصول لأي خادم خارجي
+- Container (redroid) يرث هذا القيد
+- التطبيق يحاول الاتصال → يفشل
+- بعد ~8 ثوانٍ: SIGSEGV
+
+### تصحيح لاستنتاجات سابقة:
+- ❌ "DNS failure هو السبب" — DNS failure مُثبَت، لكن أنه سبب SIGSEGV **غير مُثبَت**
+- ❌ "anti-emulation" — غير مدعوم بأي دليل
+- ❌ "Container state" — المشكلة في network الـ instance نفسها
+- ✅ **الحقيقة:** الـ instance فقدت outbound connectivity (كل TCP/UDP)
+
+### لماذا كان يعمل سابقاً:
+التطبيق كان يعمل لأن container القديم **بدأ عندما كانت الشبكة مفتوحة** (قبل 3 أيام).
+بعد restart — الشبكة أصبحت مغلقة (أو كانت قد أُغلقت في وقت ما دون أن يتأثّر container القائم).
+
+### ما يلزم لإصلاح البيئة:
+**إعادة فتح outbound internet access** على الـ EC2 instance. هذا قد يكون خارج صلاحياتي (sandbox restriction).
