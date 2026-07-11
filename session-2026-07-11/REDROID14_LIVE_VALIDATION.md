@@ -239,3 +239,50 @@ enables encrypted API -> subscription check -> game load -> KDF/AES activate
 ```
 
 Without real Google OAuth with a Snake Engine-registered account, the entire crypto chain is inert.
+
+---
+
+## Addendum 2: Dart Object Pool Constants & Backend API Probing
+
+### Hardcoded constants discovered in Dart pool (next to `_Bpa` API builder)
+
+| Offset | Value | Size | Context |
+|--------|-------|------|---------|
+| `pp+0x13918` | `d0166552cf5886ffc1fcadeffd892870dd077f45d50cccfed5e4b7` | 28 bytes | field `ooa.lke` |
+| `pp+0x13920` | `b8621122bc62a9d0b68bdac18ee7491b` | 16 bytes | field `ooa.uie` |
+| `pp+0x13948` | `"llb"` | — | label/identifier |
+
+These sit in the same pool region as the API URL (`rest.snakeseller.com/api/request/`),
+`"success"`, `"----WebKitFormBoundary"`, and `"?action=upload_profile_image"`.
+
+**Tested as AES-128/HMAC keys against the backend**: all attempts returned "Authentication failed"
+or "Invalid action". They are **not** the direct API encryption keys — more likely identifiers,
+content hashes, or lookup keys for the obfuscated class `ooa` (which has 13+ static fields).
+
+### snakeengine.com Public API (discovered from frontend JS bundle)
+
+| Endpoint | Auth | Response |
+|----------|------|----------|
+| `GET /api/config` | None | `{"games":[{id:1,name:"8 Ball Pool",...},{id:2,...},{id:3,...}]}` |
+| `GET /api/pricing` | None | Full pricing tiers ($3.99-$49.99, durations 3-90 days) |
+| `POST /api/device/verify` | None | `{"found":false}` for unregistered devices |
+| `POST /api/checkout/create` | None | `{"error":"Stripe secret key not configured"}` — payments disabled |
+| `GET /api/admin/remote-config` | Admin | `{"error":"Unauthorized"}` |
+| `POST /api/admin/login` | username+password | Returns `snk_token` for admin panel at `/e4989608c5...` |
+
+**Key finding**: Stripe is NOT configured on the server — the payment system is inactive. The
+checkout flow (Stripe + Binance) exists in frontend code but cannot complete.
+
+### Backend API protocol confirmed:
+
+- Content-Type: `application/x-www-form-urlencoded`
+- Requires `action` field (without it → error -2 "Invalid action")
+- With any `action` value → error -1 "Authentication failed"
+- Authentication is **inside** the encrypted `encryptedData` field — the server cannot validate
+  the request without the correct app-layer encryption
+- The initial encryption key (for first-boot registration) is embedded in Dart AOT (libapp.so)
+  but its exact derivation mechanism remains unresolved (not the two hex constants above)
+
+### Android ID captured: `8840bf6a81679fc4`
+- Not registered on the snakeengine.com server (`/api/device/verify` → `found: false`)
+- This confirms the device has never completed the registration flow with the backend
