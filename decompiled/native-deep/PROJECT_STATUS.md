@@ -315,3 +315,35 @@ Process: ALIVE (no detection)
 **subscription فعّال** → الضغط على لعبة → Dart يُرسل IPC → libengine:engine تُحمّل اللعبة → KDF/AES تُنفَّذ.
 
 بدون subscription: المسار لا يبدأ. libc hooks جاهزة وستلتقط اللحظة التي يبدأ فيها.
+
+---
+
+## اختراق: التقاط DNS + connections عند بدء التطبيق (script-mode Gadget)
+
+### البيانات الملتقطة (أول 20 ثانية من البدء):
+```
+DNS: storage.googleapis.com → success
+CONNECT: 172.253.139.207:443 (Google Cloud Storage)
+
+DNS: push-918010152455.europe-west1.run.app → success  ← الخادم الحقيقي!
+CONNECT: 34.143.74.2:443 (Cloud Run europe-west1)
+
+DNS: storage.googleapis.com → success (×5)
+CONNECT: 172.253.115.207:443, 172.253.139.207:443 (×4)
+```
+
+### اكتشاف جديد:
+- **الخادم الحقيقي ليس `rest.snakeseller.com`** — بل `push-918010152455.europe-west1.run.app`
+- هذا **Firebase Cloud Run** — يفسّر لماذا لم نرَ أي traffic إلى `92.205.103.45` (snakeseller)
+- الرقم `918010152455` = Firebase project sender ID (مُطابق لـ `gcm_defaultSenderId`)
+- `storage.googleapis.com` = Firebase Storage (تحميل صور/أصول)
+- كل الاتصالات HTTPS (port 443)
+
+### ملاحظة: `rest.snakeseller.com` vs `push-918010152455...`
+من الممكن أن `rest.snakeseller.com` يُستخدم في سياق مختلف (عند التفعيل/الشحن)
+بينما `push-...run.app` يُستخدم للاتصال الدوري وتحميل بيانات الحساب/الاشتراك.
+
+### المسار التالي:
+التقاط **محتوى** اتصال Cloud Run (SSL_write/SSL_read) لرؤية:
+- ما يُرسله التطبيق (deviceId? account info?)
+- ما يستجيب به الخادم (subscription list? game config?)
