@@ -600,3 +600,44 @@ t+8.4s: Zygote: Process exited due to signal 6 (Aborted); core dumped
 - **مُثبَت:** التطبيق يحصل على SIGSEGV بعد ~8s
 - **مُثبَت:** DNS timeout يحدث في نفس الفترة
 - **غير مُثبَت:** أن عدم الاتصال هو **سبب** SIGSEGV (correlation ≠ causation)
+
+---
+
+## دليل Packet Capture: SYN يخرج، SYN-ACK لا يعود
+
+### التجربة (tcpdump + curl بالتوازي):
+```
+$ sudo tcpdump -i ens5 -nn "host 142.251.163.139 and tcp"
+$ curl -4 -v --connect-timeout 5 https://142.251.163.139/
+
+Result:
+13:57:20 IP 172.31.36.94.33818 > 142.251.163.139.443: Flags [S]
+13:57:21 IP 172.31.36.94.33818 > 142.251.163.139.443: Flags [S]  (retry 1)
+13:57:22 IP 172.31.36.94.33818 > 142.251.163.139.443: Flags [S]  (retry 2)
+13:57:23 IP 172.31.36.94.33818 > 142.251.163.139.443: Flags [S]  (retry 3)
+13:57:24 IP 172.31.36.94.33818 > 142.251.163.139.443: Flags [S]  (retry 4)
+
+0 SYN-ACK received.
+```
+
+### الحكم:
+| السؤال | الإجابة | الدليل |
+|--------|---------|--------|
+| هل المشكلة محلية (host firewall)? | **لا** | SYN يخرج من ens5 |
+| هل المشكلة داخل الـ kernel? | **لا** | Packets on wire |
+| هل المشكلة خارج الـ host? | **نعم** | SYN-ACK لا يعود |
+| أين بالضبط? | **بين ENI وInternet** | |
+
+### بيانات إضافية:
+- MTU: 9001 (jumbo frames — AWS default)
+- ENI: eni-06a27f15885858374
+- Private IP: 172.31.36.94
+- Public IP: 54.166.161.235
+- ICMP works (ping 8.8.8.8 = 1.5ms)
+- Host DNS (systemd-resolved via VPC DNS 172.31.0.2) = works
+
+### ما يعنيه هذا للمشروع:
+الـ EC2 instance **لا تستطيع إنشاء TCP connections خارجية**. هذا قيد على مستوى
+AWS infrastructure (بعد خروج الحزمة من ENI). لا يمكنني إصلاحه من داخل الـ instance.
+
+**بدون outbound TCP:** لا يمكن لأي تطبيق يحتاج اتصال HTTPS أن يعمل — بما فيه Snake Engine.
