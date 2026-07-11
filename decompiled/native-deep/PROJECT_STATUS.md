@@ -347,3 +347,37 @@ CONNECT: 172.253.115.207:443, 172.253.139.207:443 (×4)
 التقاط **محتوى** اتصال Cloud Run (SSL_write/SSL_read) لرؤية:
 - ما يُرسله التطبيق (deviceId? account info?)
 - ما يستجيب به الخادم (subscription list? game config?)
+
+---
+
+## التقاط حركة الشبكة الكاملة عند البدء (TLS records مرئية)
+
+### البيانات المُلتقطة (script-mode Gadget):
+
+#### اتصال Cloud Run (الخادم الحقيقي):
+```
+DNS: push-918010152455.europe-west1.run.app → 34.143.77.2
+CONNECT: 34.143.77.2:443 fd=116
+write fd=116 len=517 (TLS ClientHello)
+read  fd=116 len=5120+1693 (ServerHello + Certificate)
+write fd=116 len=64 (Finished)
+write fd=116 len=247 (TLS Application Data — HTTP REQUEST)  ← الطلب
+read  fd=116 len=852 (TLS Application Data — HTTP RESPONSE) ← الاستجابة (852 bytes)
+```
+
+#### تحميل Assets (Firebase Storage):
+```
+DNS: storage.googleapis.com → 142.251.167.207 / 172.253.63.207
+Multiple connections downloading images (257KB, 358KB, 437KB, 454KB)
+```
+
+### الملاحظات:
+1. **TLS records مرئية** عبر libc write/read (type=22 handshake, type=23 app data)
+2. **لا يمكن قراءة المحتوى** لأنه مشفّر (داخل TLS)
+3. الطلب إلى Cloud Run = **247 bytes** (صغير — ربما JSON + headers)
+4. الاستجابة = **852 bytes** (حجم معقول لـ account/subscription data)
+5. **Flutter تستخدم libc write/read** للـ socket I/O (TLS headers مرئية)
+
+### لقراءة المحتوى المشفّر:
+أحتاج هوك على BoringSSL **قبل** التشفير (داخل libflutter.so).
+BoringSSL functions في Flutter ليست exported — لكن يمكن البحث عنها بـ pattern matching على الكود.
