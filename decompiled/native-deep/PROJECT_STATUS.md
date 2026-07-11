@@ -381,3 +381,28 @@ Multiple connections downloading images (257KB, 358KB, 437KB, 454KB)
 ### لقراءة المحتوى المشفّر:
 أحتاج هوك على BoringSSL **قبل** التشفير (داخل libflutter.so).
 BoringSSL functions في Flutter ليست exported — لكن يمكن البحث عنها بـ pattern matching على الكود.
+
+---
+
+## اكتشاف: تحديد cert verify candidates بالتجربة المنهجية
+
+### التجربة:
+Patch كل function منفردة → اتصال بالخادم الحقيقي → هل يبقى حياً؟
+
+### النتائج:
+| Function VA | Patch → Server الحقيقي | التصنيف |
+|-------------|----------------------|---------|
+| 0x4609a8 | DEAD | أساسية لـ TLS |
+| 0x460a9c | DEAD | أساسية لـ TLS |
+| **0x460e5c** | **ALIVE** | **cert verify candidate** |
+| **0x460ec0** | **ALIVE** | **cert verify candidate** |
+| **0x461264** | **ALIVE** | **cert verify candidate** |
+| **0x461a6c** | **ALIVE** | **cert verify candidate** |
+| 0x468f44 | DEAD | أساسية لـ TLS |
+
+### التفسير:
+- DEAD = الدالة ضرورية لإكمال TLS handshake (key exchange, session setup, etc)
+- ALIVE = الدالة **ليست ضرورية** لاتصال ناجح (لأن Server الحقيقي لديه cert صحيح أصلاً) → مرشّحة لـ cert verification
+
+### الخطوة التالية:
+اختبار الـ 4 survivors مع DNS spoofing + MITM لتأكيد أن واحدة منها تُلغي cert check.
