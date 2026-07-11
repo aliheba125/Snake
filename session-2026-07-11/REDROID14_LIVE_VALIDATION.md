@@ -103,3 +103,139 @@ recovery procedure for a host wedged by Frida `spawn-gating` (EC2 power-cycle).
 ### Operational caution
 Do **not** use Frida `enable_spawn_gating` against this device: it suspends all device process
 spawns and saturated the host CPU, requiring an EC2 stop/start (which changes the public IP).
+
+---
+
+## Addendum: Deep Key Extraction Attempts (same session)
+
+### Frida Gadget (listen mode) — confirmed working on Redroid 14
+
+| Config | Result |
+|--------|--------|
+| `type: "script"` | ❌ SIGSEGV (detected) |
+| `type: "listen"`, `on_load: "resume"` + **`pm clear`** before launch | ✅ **Works** — app survives 20s+ without UI interaction |
+| Any UI interaction while gadget is loaded | ❌ Immediate `application-requested` detach |
+
+### Java bridge (frida-compile + frida-java-bridge)
+
+Successfully hooked and called `com.snake.helper.Native` methods. Full API signatures discovered:
+- `ac(Object, Object)`, `aior(String, String)`, `awl(String)`, `chl(byte[])→boolean`
+- `djp(int)→byte[]`, `eio()`, `gcuid(int)→int`, `i(int)`, `ic(Context)`
+- `ilil(int)→String`, `logIn(String, long)`, `logIn(String, long, boolean)`
+- `pjowqpxe(Object, Object, Object)`, `update(Object, Method)`
+- **Java-only:** `a(Activity,String,int,long,boolean)`, `b(Activity,String,int,long,boolean)`, `getApplicationInfo(Context,String)→ApplicationInfo`, `il(File)→File`, `il(String)→String`
+
+### ilil extraction (reproduced)
+
+6 runtime-decrypted strings recovered (matches prior `recovered_strings.json`):
+- `id_token`, `com.miniclip.googleplaygames.Authentication`, OAuth client ID, OAuth endpoint, `loginCallback`, `onLoginResult`
+
+Systematic sweep of ~500 indices confirmed: **only 6 strings exist** in the encrypted table.
+
+### djp extraction
+
+Exhaustive sweep (indices 0-50 + structured 0xfXXXXX): **zero results**. `djp` requires runtime context (game-load state).
+
+### cip_pub (cipher public key)
+
+- SharedPreferences key `cip_pub` exists but is **empty string** after all tests
+- Not populated by initial backend connection (which downloads game images only)
+- Not populated by fake OAuth injection via `vx.c()`
+- Requires **real Google OAuth login** that authenticates against `snakeengine.com/oauth/google`
+- The public key is sent **from the server** upon successful account binding — it does not exist locally at all until then
+
+### Backend API protocol (new findings)
+
+| Finding | Evidence |
+|---------|----------|
+| Content-Type: `application/x-www-form-urlencoded` (not JSON) | `curl` test: form-encoded → error -1 "Authentication failed" vs JSON → error -2 "Invalid action" |
+| All tested `action=` values recognized | login, activate, check, get_games, etc. all return -1 (auth fail) not -2 (invalid action) |
+| Firebase JWT NOT accepted as Bearer token | Same -1 error with Authorization header |
+| Authentication is app-layer (encrypted request body) | Confirmed: plain requests always fail auth |
+| Data downloaded at startup = PNG/JPEG images | `file` command on SHA-named files: 512x512 game icons |
+
+### OAuth flow architecture (from decompiled `vx.java`)
+
+```
+Native.logIn(clientId, timestamp)
+  → vx.f() registers BroadcastReceiver for "com.snake.INTERNAL_OAUTH_RESULT"
+  → yu0.d() opens browser to snakeengine.com/oauth/google
+  → Browser redirects back with fragment #id_token=JWT
+  → BroadcastReceiver catches it → vx.b() extracts id_token → vx.h() parses JWT payload["sub"]
+  → vx.c() injects (sub, id_token) into target game's Authentication class via reflection
+```
+
+### Key architectural conclusion
+
+The encryption key (`cip_pub`) is a **server-issued credential**, not a derived or hardcoded secret.
+The complete unlock sequence:
+```
+Google OAuth → server validates → server sends cip_pub → stored locally → 
+enables encrypted API communication → subscription check → game load → KDF/AES fire
+```
+
+Without step 1 (real Google OAuth with a Snake Engine-registered account), the entire crypto
+chain is inert. This is an **identity-gated** system, not merely a subscription-gated one.
+
+
+
+---
+
+## Addendum: Deep Key Extraction Attempts (same session)
+
+### Frida Gadget (listen mode) — confirmed working on Redroid 14
+
+| Config | Result |
+|--------|--------|
+| `type: "script"` | SIGSEGV (detected) |
+| `type: "listen"`, `on_load: "resume"` + `pm clear` before launch | **Works** — app survives 20s+ without UI interaction |
+| Any UI interaction while gadget is loaded | Immediate `application-requested` detach |
+
+### Java bridge (frida-compile + frida-java-bridge)
+
+Full Native API signatures discovered (19 methods). Key ones:
+- `ilil(int)->String` — runtime string decrypt (6 strings extracted live)
+- `djp(int)->byte[]` — runtime data decrypt (empty without game-load context)
+- `chl(byte[])->boolean` — license check
+- `logIn(String, long)` — triggers OAuth flow
+- `pjowqpxe(Object, Object, Object)` — mystery 3-arg (never called in idle)
+- `update(Object, Method)` — method hooking (never called in idle)
+- `aior(String, String)` — I/O redirect
+- `awl(String)` — whitelist
+
+### cip_pub (cipher public key) — the identity gate
+
+- SharedPreferences key `cip_pub` exists but is **empty** after:
+  - Initial backend connection (downloads game images only)
+  - Fake OAuth injection via `vx.c()`
+  - All testing performed this session
+- Requires **real Google OAuth login** authenticating against `snakeengine.com/oauth/google`
+- The public key is **server-issued** upon successful account binding
+
+### Backend API protocol
+
+- Content-Type: `application/x-www-form-urlencoded` (not JSON — different error codes prove it)
+- All `action=` values (login, activate, check, get_games, etc.) return error -1 "Authentication failed"
+- Firebase JWT NOT accepted as Bearer token
+- Authentication requires encrypted request body (app-layer crypto via pointycastle)
+
+### OAuth flow (from decompiled vx.java)
+
+```
+Native.logIn(clientId, timestamp)
+  -> vx.f() registers BroadcastReceiver for "com.snake.INTERNAL_OAUTH_RESULT"
+  -> Opens browser to snakeengine.com/oauth/google
+  -> Browser returns with #id_token=JWT
+  -> vx.b() extracts id_token -> vx.h() parses JWT["sub"] (Google user ID)
+  -> vx.c() injects result into target game class via reflection
+```
+
+### Final conclusion: identity-gated system
+
+The encryption key (`cip_pub`) is a **server-issued credential**. Complete unlock sequence:
+```
+Google OAuth -> server validates -> server sends cip_pub -> stored locally ->
+enables encrypted API -> subscription check -> game load -> KDF/AES activate
+```
+
+Without real Google OAuth with a Snake Engine-registered account, the entire crypto chain is inert.
