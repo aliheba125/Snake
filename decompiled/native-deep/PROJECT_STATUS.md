@@ -225,3 +225,39 @@ Stalker يُنشئ **نسخة** مُعدَّلة من الكود في ذاكرة
 - ✅ Stalker يعمل ولا يُكتشف
 - ❌ لم ألتقط KDF/AES بعد (مشكلة API وليست مشكلة detection)
 - المطلوب: إصلاح callback + تحفيز المسار (subscription)
+
+---
+
+## بيانات دقيقة: توقيت الإنهاء بعد Interceptor (قابل للتكرار)
+
+### القياس:
+```
+t+0ms:    Interceptor.attach(libengine+0x161788) → success
+t+53ms:   heartbeat 1 (JS event loop working)
+t+1257ms: heartbeat 25 (last received — JS still working)
+t+1332ms: connection-terminated (process dead)
+```
+
+### ما يُستنتج بأمان من البيانات:
+1. Hook يُثبّت بنجاح (لا exception)
+2. JavaScript event loop يعمل بشكل طبيعي لمدة ~1.25s بعد الـ hook
+3. الإنهاء يحدث من thread مختلف عن main/JS thread
+4. الدالة المُهوَّكة (0x161788) لم تُستدعَ قبل الموت
+5. الإنهاء مفاجئ — لا إشارة تحذير
+
+### ما لا يُمكن استنتاجه من هذا وحده:
+- الآلية الدقيقة (هل هي code integrity check أم شيء آخر)
+- أي thread بالضبط يُنفّذ الإنهاء
+- هل هو svc inline أم طريقة أخرى
+
+### المقارنة الموثّقة:
+| الطريقة | الوقت حتى الموت | JS heartbeats |
+|---------|----------------|---------------|
+| Interceptor.attach | ~1.3s | 25 (منتظمة) |
+| Stalker.follow (events only) | 120s+ | - |
+| Stalker.follow + transform (40 threads) | ~10s (عند tap) | - |
+| Stalker.follow + transform (1 thread) | 120s+ (مع tap) | - |
+| بدون hooks | غير محدود | - |
+
+### النتيجة العملية:
+Stalker مع transform على thread واحد هو **المسار الوحيد القابل للتطبيق** لمراقبة libengine دون إسقاط العملية.
