@@ -121,3 +121,28 @@ Tested from the EC2 instance to multiple external destinations:
   block + no external TCP/UDP egress) that cannot be fixed from inside the instance. Resolving it
   requires AWS to lift the account block, or a different (unblocked) environment with working
   egress.
+
+
+---
+
+## 7. Addendum — dry-run vs real-call (important rigor note)
+
+When re-testing the block, `aws ec2 run-instances --dry-run` returned:
+
+```
+An error occurred (DryRunOperation) when calling the RunInstances operation:
+Request would have succeeded, but DryRun flag is set.
+```
+
+This is **NOT** evidence that the block was lifted. A subsequent **real** (non-dry-run)
+`run-instances` again returned `Blocked` with the identical message.
+
+**Conclusion (proven, reproducible):** EC2 dry-run validates IAM permissions and parameters and
+short-circuits *before* the account-validation gate that produces `Blocked`. Therefore a
+`DryRunOperation` success and a real `Blocked` failure are fully consistent, and the account block
+**remained active** at re-test time. Do not treat a dry-run success as proof of account health.
+
+**Practical consequence:** a new EC2 instance cannot be created on account `401644593786` while the
+block persists. Preparing a fresh working server requires either AWS lifting the block (per the
+support URL in the error) or a different, verified AWS account / environment with working external
+egress.
