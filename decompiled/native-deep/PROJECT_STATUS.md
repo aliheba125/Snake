@@ -261,3 +261,27 @@ t+1332ms: connection-terminated (process dead)
 
 ### النتيجة العملية:
 Stalker مع transform على thread واحد هو **المسار الوحيد القابل للتطبيق** لمراقبة libengine دون إسقاط العملية.
+
+---
+
+## اختراق: التقاط أحداث فعلية من libengine عبر libc hooks
+
+### النتيجة (مُثبَتة):
+```
+memcpy hooked on libc → 333 calls from libengine in 10s
+Process: ALIVE (no detection)
+```
+
+### العناوين الملتقطة:
+- `eng+0x5a108`: memcpy بحجم 8.5MB (تحميل مبكّر — snapshot/library copy)
+- `eng+0x7dfe54`: memcpy متكرّر (1-2 bytes × مئات) — نشاط دوري
+
+### الأهمية:
+هذا أول **دليل فعلي** على أن أداة المراقبة تعمل وتلتقط نشاطاً حقيقياً من libengine.
+- Hooks على libc: آمنة ومُنتجة
+- 333 حدث في 10 ثوانٍ = نشاط حقيقي مستمر
+- العملية لم تُكتشف ولم تمت
+
+### المسار التالي:
+مراقبة memcpy + malloc من libengine **أثناء وبعد** الضغط على اللعبة
+لتحديد إذا كان هناك نشاط إضافي يتعلّق بالاشتراك/اللعبة.
