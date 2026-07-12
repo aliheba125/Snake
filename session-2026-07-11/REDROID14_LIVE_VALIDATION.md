@@ -286,3 +286,80 @@ checkout flow (Stripe + Binance) exists in frontend code but cannot complete.
 ### Android ID captured: `8840bf6a81679fc4`
 - Not registered on the snakeengine.com server (`/api/device/verify` → `found: false`)
 - This confirms the device has never completed the registration flow with the backend
+
+
+
+---
+
+## MAJOR DISCOVERY: Real Backend Protocol Captured (Gadget 16 Script-Mode)
+
+### Frida Gadget 16.5.6 — Script Mode Works!
+
+Unlike Gadget 17 (which causes SIGSEGV in script-mode on this app), **Gadget 16.5.6 script-mode
+runs perfectly** — the app stays alive and hooks fire from process load.
+
+### The REAL Snake Engine API Protocol
+
+Captured live via libflutter TLS write hook (offset 0x6d4be8):
+
+```http
+GET /?z=0c6da67c93688e58ee2d71b107a165569b931542170d6220ed6379450e253b6f28affa875fbf1fac36ef12a2520cf35c6a&v=20 HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: push-918010152455.europe-west1.run.app
+```
+
+| Field | Value |
+|-------|-------|
+| **Real endpoint** | `https://push-918010152455.europe-west1.run.app/` (Google Cloud Run) |
+| **Method** | GET |
+| **Parameter `z`** | `0c` prefix + 48 bytes hex-encoded encrypted payload |
+| **Parameter `v`** | `20` (protocol version) |
+| **Response** | 33 bytes hex-encoded (66 hex chars), HTTP 200 |
+| **Replay** | Works — server responds to replayed z-values |
+
+### Two Captures Compared:
+
+```
+Z1: 0c | 6da67c93688e58ee2d71b107a165569b931542170d6220ed6379450e253b6f28affa875fbf1fac36ef12a2520cf35c6a
+Z2: 0c | 09da02f6dd5ea80c70486c4ffb36404381d4ed99ce4f3ecb852cac3dbd49a2766c009a1d5b40031ae5b9221724be4c47
+
+R1: f11ac0aefb2c7ad89b10f6461fc5b034e8d73d343ceab67cbc61906c84425b5712
+R2: 6cf26bcec9f6da2322d14f369309f610b9ecc4ff894588d704106fbc9850746971
+```
+
+- Version byte `0c` is constant
+- 48-byte payload: 0 same bytes between runs (properly encrypted)
+- 33-byte response: 0 same bytes between runs (properly encrypted)
+- Probable structure: AES-GCM with 12B nonce + 20B ciphertext + 16B tag = 48B
+
+### Critical Corrections to Prior Understanding:
+
+| Prior assumption | Actual finding |
+|-----------------|----------------|
+| Backend is `rest.snakeseller.com` | **Only for static files** (images/icons) |
+| API uses `POST /api/request/` | **GET `/?z=...&v=20`** to Cloud Run |
+| Request is form-encoded | **Hex-encoded binary in query param** |
+| Request contains `action`, `deviceId`, `timestamp` | **49 bytes binary (1B version + 48B encrypted)** |
+| Need complex auth/HMAC | **Just encrypted payload — replay works!** |
+
+### What `rest.snakeseller.com` Actually Does:
+
+Only serves static assets:
+- `GET /api/files/8_ball_pool_icon.png`
+- `GET /api/files/1.jpg?r=4`, `2.jpg`, `3.jpg`
+- `GET /api/files/carrom_pool_icon.png`
+- `GET /api/files/soccer_stars_icon.png`
+
+### Other Discoveries:
+
+Firebase notifications/feeds from `storage.googleapis.com`:
+- `GET /notics/notifications?r=<timestamp>`
+- `GET /notics/feeds_en?r=<timestamp>`
+- `GET /notics/feeds?r=<timestamp>`
+
+### Remaining Work:
+
+The 48-byte encrypted payload in `z` needs to be decrypted. The encryption key is embedded
+in Dart AOT (`libapp.so`). The 32-byte constants found earlier in the object pool
+(`pp+0xb730`, `pp+0x131b0`, `pp+0x14010`) are candidates for the AES-256 key.
