@@ -2,6 +2,8 @@
 
 > Status: ✅ Confirmed · 🟨 Partially Confirmed · 🟦 In Progress · ⬜ Not Started · ❓ Unknown · ❌ Disproved
 
+> **Ownership & authorization:** Maps the **owner's own** app, backend, and server components, analyzed with the owner's authorization.
+
 How every component connects. Edges are labelled with the relationship and a status.
 
 ---

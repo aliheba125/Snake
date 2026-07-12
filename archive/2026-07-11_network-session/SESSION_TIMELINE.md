@@ -1,7 +1,7 @@
 # Snake Engine RE — Full Session Timeline & Findings
 
 **Target:** `SE_2.2.6.apk` (`com.snake`), a Flutter/Dart game-mod tool with an obfuscated
-`libengine.so`.
+`libengine.so`. All work here is on the **owner's own** app/account/server, with the owner's authorization.
 **Goal:** Reverse-engineer the crypto/network scheme; ideally capture `seed1`/`seed2`,
 AES/KDF ciphertext/plaintext (`FUN_00160208` / `FUN_00161788`), and TLS plaintext.
 **Ground rule (user-enforced):** every conclusion needs direct evidence; hypotheses are labeled

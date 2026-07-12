@@ -1,5 +1,7 @@
 # Backend Protocol & Activation Model — `snakeseller.com`
 
+> **Ownership & authorization:** Documents the **owner's own** backend and account, analyzed with the owner's authorization.
+
 Reverse-engineered from the Dart object pool (`../../dart-blutter/pp.txt`), decompiled Java/smali,
 and live behavior. This documents *how the tool talks to its backend* and *how its licensing
 economy works*.

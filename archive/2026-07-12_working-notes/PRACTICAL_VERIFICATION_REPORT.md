@@ -1,6 +1,7 @@
 # Practical Verification Report — Snake Engine (com.snake)
 
 **Date**: 2026-07-12
+**Ownership & authorization**: All app, account, and server testing here is on the **owner's own** systems, with the owner's authorization.
 **Method**: All findings below are from live runtime testing on Redroid 14 (ARM64, AWS EC2). Every claim is tagged as PROVEN (tested), INFERRED (logical deduction from evidence), or UNKNOWN (requires further testing).
 
 ---

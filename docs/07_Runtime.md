@@ -2,6 +2,8 @@
 
 > Status: ✅ Confirmed · 🟨 Partially Confirmed · 🟦 In Progress · ⬜ Not Started · ❓ Unknown · ❌ Disproved
 
+> **Ownership & authorization:** Runtime behaviour of the **owner's own** app, observed on the owner's own devices/backend, with the owner's authorization.
+
 Evidence: `evidence/screenshots/`, `evidence/runtime-memory/`, `evidence/beacon-crypto-traces/`
 
 ---

@@ -1,6 +1,7 @@
 # Capability Assessment — What Can and Cannot Be Done
 
 **Date**: 2026-07-12
+**Ownership & authorization**: All app, account, and server analysis here is on the **owner's own** systems, with the owner's authorization.
 **Purpose**: Honest assessment of proven capabilities vs unproven claims, responding to the final evaluation framework.
 
 ---

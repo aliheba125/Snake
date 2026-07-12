@@ -1,6 +1,7 @@
 # Response Record — Semantic Decoding
 
 **Date**: 2026-07-12
+**Ownership & authorization**: All server interaction here is on the **owner's own** backend and account, with the owner's authorization.
 **Status**: The 32-byte server response record is decoded into constant markers, an echoed client field, and server-supplied per-request data. This adds *meaning* on top of the earlier structural proof.
 
 ---

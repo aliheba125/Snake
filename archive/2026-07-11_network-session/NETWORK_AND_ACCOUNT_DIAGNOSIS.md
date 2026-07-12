@@ -1,6 +1,7 @@
 # Network & AWS Account Diagnosis — Snake Engine Dynamic Analysis
 
 **Date:** 2026-07-11
+**Ownership & authorization:** All app, account, network, and server activity here is on the **owner's own** systems, with the owner's authorization.
 **Environment:** EC2 `i-00a54de0bc7b92121` (t4g.medium, arm64), us-east-1d, AWS account `401644593786` accessed via role `KiroAccessRole`.
 
 This document rigorously separates **PROVEN FACTS** (direct, reproducible evidence) from
