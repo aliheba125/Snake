@@ -139,3 +139,82 @@ Different `master_key` per run — the key is regenerated per session by `FUN_00
 - CBC / CFB / OFB / CTR / GCM: the decompiled `FUN_00160640` does not chain blocks (no IV register, no per-block IV update). Plain AES-256-ECB reproduces z byte-for-byte in Run 1 and Run 2 — a chained mode would not.
 - Custom cipher: the S-box captured at runtime is bit-for-bit the standard AES S-box; the key-schedule step matches AES-256's Nk=8 pattern; PyCryptodome's stock AES matches the observed ciphertext exactly.
 - Dart/Java-side encryption: the crypto state pointer, S-box pointer, and master-key pointer are all populated inside `libengine.so`, and z is byte-identical to the output of AES-256-ECB with the value read from those pointers.
+
+
+
+---
+
+# Addendum — Master Key Source: Time-Derived, NOT CSPRNG (proven)
+
+The master key at `*(libengine + 0x8280f0)` is **not** cryptographically random. It is deterministically derived from a coarse timestamp bucket. This was proven both statically (decompiled chain) and empirically (repeated launches produce an identical key).
+
+## Static derivation chain (decompiled)
+
+Key generation happens in `FUN_0016169c` (`libengine + 0x6169c`):
+
+```c
+void FUN_0016169c(buf, seed) {
+    if (seed == 0) {
+        now_us   = FUN_008dde34();               // clock_gettime(CLOCK_REALTIME) -> microseconds
+        now_s    = FUN_008dded0(&now_us);         // now_us / 1000000 -> unix SECONDS
+        seed     = (uint)(now_s - DAT_009281a0) >> 4;   // ~16-second time bucket
+    }
+    tmp16 = FUN_001614a4(seed);                   // custom PRNG expands seed -> 16 bytes
+    FUN_00161428(buf, tmp16, 0x10);               // SHA-256(tmp16) -> 32-byte digest
+    FUN_00161598(buf, seed);                      // Fisher-Yates shuffle of digest, keyed by seed
+    FUN_00161428(&scratch, buf, buf_len);         // SHA-256 again -> 32 bytes
+    master_key = malloc(0x20); copy 32 bytes;     // -> DAT_009280f0
+}
+```
+
+Component identification:
+
+- `FUN_008dde34` = `clock_gettime(CLOCK_REALTIME)` returning `tv_sec*1e6 + tv_nsec/1e3` (microseconds). Confirmed by the decompiled `clock_gettime(0, ...)` call and the arithmetic.
+- `FUN_008dded0` = integer divide by 1,000,000 → Unix seconds.
+- `DAT_009281a0` = a baseline offset computed once in `FUN_0015fa58` as `now_seconds - FUN_0015d14c(...)`.
+- Seed = `(now_seconds - baseline) >> 4` → the key only changes roughly every 16 seconds.
+- `FUN_001614a4` = a custom multiplicative PRNG (constants `-0x5a5a5a5a5a5a5a5b`, xor `0xa3a3a3a3a3a3a3a3`, bit rotations, NEON shifts) turning the seed into 16 bytes.
+- `FUN_00161428` = **standard SHA-256** — verified by:
+  - IV constants at VA `0x110a90`: `6a09e667 bb67ae85 3c6ef372 a54ff53a` = SHA-256 H0-H3.
+  - Round constants K[64] present in the binary at file offset `0x2b450` starting `428a2f98…`.
+  - Message-schedule sigma functions in `FUN_00898a14`: `rotr17 ^ rotr19 ^ shr10` and `rotr7 ^ rotr18 ^ shr3`, with big-endian byte swaps.
+- `FUN_00161598` = Fisher-Yates-style in-place shuffle whose index mixing uses `0x5bd1e995` — the **MurmurHash2** multiply constant — keyed by the same seed.
+
+So: `master_key = SHA256( shuffle_seed( SHA256( PRNG(seed) ) ) )` where `seed = (unix_seconds - baseline) >> 4`.
+
+## Empirical determinism proof (`scripts/keyseed_test.py`)
+
+Four back-to-back launches of `com.snake` within ~5 seconds (same 16-second bucket) were captured. Each reads `*(libengine + 0x8280f0)` (the live master key) and the outgoing `z`.
+
+| Launch | wall time | master key |
+| --- | --- | --- |
+| 0 | 1783873638.58 | `40da61127159267fe9acaf9780d31896c2e53a27ace4e73182e2b49be8debc24` |
+| 1 | 1783873640.24 | `40da61127159267fe9acaf9780d31896c2e53a27ace4e73182e2b49be8debc24` |
+| 2 | 1783873641.90 | `40da61127159267fe9acaf9780d31896c2e53a27ace4e73182e2b49be8debc24` |
+| 3 | 1783873643.55 | `40da61127159267fe9acaf9780d31896c2e53a27ace4e73182e2b49be8debc24` |
+
+**All four launches produced the identical AES-256 master key** — despite each being a fresh process. Distinct keys observed: **1** across 4 launches in the same time bucket.
+
+By contrast the two earlier captures (minutes apart, different buckets) had different keys:
+`1c1a34ce…d1ea` and `9bb50a6e…ea22`.
+
+## Closing the loop (`scripts/verify_shared_key.py`)
+
+Each of the four launches sends a different `z` (the 36-byte plaintext differs per request — 4 leading zero bytes then 32 varying bytes). Using the **single shared time-derived key**, all four `z` values reproduce byte-for-byte via stock AES-256-ECB:
+
+| Launch | plaintext (36 B, key-decrypted) | z reproduced |
+| --- | --- | --- |
+| 0 | `00000000d6b72ca4ae757dd57e979358b621c3f02223bd93b281b4c344f17d37e115deb0` | yes |
+| 1 | `000000004c7fa951cbd17bb23460e9ee51298efc9a2cd0bc80e988b3f2351025d3e5e2ff` | yes |
+| 2 | `00000000edec2930fc5b03d661829dd7d7eda2935a59700dd89ea28a33bcb06d8b1ac8dc` | yes |
+| 3 | `000000008705934cac4f5fcec1dc8e903d899084a90fd83cfce3d6fdc2aa18baaf29bce1` | yes |
+
+## Security implication
+
+Because the AES-256 key is a pure function of a 16-second time bucket (plus a device baseline), an attacker who knows the approximate wall-clock time of a request — and reproduces `FUN_001614a4` + SHA-256 + the keyed shuffle — can regenerate the exact key without any per-session secret, then decrypt every `z`. The key space is effectively the number of candidate time buckets, not 2^256. This is a design weakness, documented here as a factual consequence of the proven derivation, not a recommendation.
+
+## Full answer to "source of key / IV / seeds"
+
+- **Seed**: `(clock_gettime(CLOCK_REALTIME) seconds − baseline) >> 4` — a ~16-second time bucket. Baseline set once in `FUN_0015fa58`.
+- **Key**: `SHA256(shuffle_seed(SHA256(PRNG(seed))))`, 32 bytes, stored at `*(libengine + 0x8280f0)`. Regenerated per process but identical within a time bucket.
+- **IV**: none — AES-256-**ECB**. The leading `0x0c` byte of `z` is the zero-padding length, not an IV.
