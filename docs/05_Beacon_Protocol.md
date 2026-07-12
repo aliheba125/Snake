@@ -2,6 +2,10 @@
 
 > Status: ✅ Confirmed · 🟨 Partially Confirmed · 🟦 In Progress · ⬜ Not Started · ❓ Unknown · ❌ Disproved
 
+> **Ownership & authorization:** All beacon/server interaction described here was performed against
+> the **owner's own** backend and account, on the owner's own devices, with the owner's explicit
+> authorization. This is a documentary study of the owner's own system.
+
 Scripts: [`../scripts/beacon-crypto/`](../scripts/beacon-crypto/) · Evidence:
 [`../evidence/beacon-crypto-traces/`](../evidence/beacon-crypto-traces/),
 [`../evidence/z-samples/`](../evidence/z-samples/)

@@ -12,6 +12,10 @@ A **technical analysis study** of the Android application **Snake Engine**
 app communicates with its backend, how its cryptography works, and how its device-activation
 system operates.
 
+> **Ownership & authorization:** This is a documentary study of the **owner's own** application,
+> account, and backend, conducted on the owner's own devices with the owner's explicit
+> authorization.
+
 This repository is the **single source of truth** for that study. Everything here is labelled
 with an explicit confidence status. Nothing is asserted as fact without linked evidence.
 

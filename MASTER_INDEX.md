@@ -4,6 +4,10 @@
 > **Snake Engine** (`com.snake` v2.2.6). Read the numbered docs in order; every claim carries an
 > explicit confidence status and links to raw evidence.
 
+> **Ownership & authorization:** This is a documentary study of the **owner's own** application,
+> account, and backend, conducted on the owner's own devices with the owner's explicit
+> authorization.
+
 **Status legend (used everywhere):**
 ✅ Confirmed · 🟨 Partially Confirmed · 🟦 In Progress · ⬜ Not Started · ❓ Unknown · ❌ Disproved
 

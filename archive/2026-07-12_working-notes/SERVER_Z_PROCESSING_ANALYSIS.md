@@ -1,6 +1,7 @@
 # Server z-Processing Analysis — Correcting Earlier Overreach
 
 **Date**: 2026-07-12
+**Ownership & authorization**: All server tests below were performed against the **owner's own** backend and account, on the owner's own devices, with the owner's explicit authorization.
 **Purpose**: A methodological review correctly flagged that the earlier claim "the server does not validate z at all" was stronger than the evidence. This document replaces that claim with precise, test-backed statements that distinguish **"the server responds"** from **"the server actually processes z"**.
 
 ---

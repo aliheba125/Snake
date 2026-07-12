@@ -1,6 +1,7 @@
 # PROVEN: The Server Cryptographically Processes z (Bidirectional Protocol Broken)
 
 **Date**: 2026-07-12
+**Ownership & authorization**: All server interaction below was performed against the **owner's own** backend and account, on the owner's own devices, with the owner's explicit authorization.
 **Status**: PROVEN at runtime — the server decrypts the submitted z, recovers the embedded `(time, id)`, and encrypts its response under a key derived from those values. This resolves the open question ("does the server actually *use* z, or just echo a token?") with a decisive, quantified cryptographic test.
 
 ---

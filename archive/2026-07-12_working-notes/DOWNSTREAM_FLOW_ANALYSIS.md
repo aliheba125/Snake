@@ -1,6 +1,7 @@
 # Downstream Flow Analysis — What Happens After the Server Receives z
 
 **Date**: 2026-07-12
+**Ownership & authorization**: All server and app interaction below was performed against the **owner's own** backend and account, on the owner's own devices, with the owner's explicit authorization.
 **Purpose**: The methodological review correctly noted that "the server performs no cryptographic validation" was stronger than the evidence, because only the **input point** was tested. This document traces what happens *after* the request — the app's network topology, whether the response is stored/reused, and whether the app has code to *process* the response. Claims are separated into **measured** vs **capability-proven** vs **unproven**.
 
 ---

@@ -2,6 +2,10 @@
 
 > Status: ✅ Confirmed · 🟨 Partially Confirmed · 🟦 In Progress · ⬜ Not Started · ❓ Unknown · ❌ Disproved
 
+> **Ownership & authorization:** This describes the architecture of the **owner's own**
+> application, analyzed on the owner's own devices and backend, with the owner's explicit
+> authorization.
+
 ---
 
 ## Component map

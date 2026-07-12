@@ -7,6 +7,10 @@ only what was **directly observed** this session, separating proven facts from h
 > Scope note: this is a runtime-behavior validation. It confirms/extends the existing
 > `native-deep/dynamic-live/` analysis. No new secret material was extracted; the terminal
 > blocker (a server-issued subscription) is unchanged.
+>
+> **Ownership & authorization:** All app and server interaction here was performed on the
+> **owner's own** devices, against the owner's own app/account/backend, with the owner's explicit
+> authorization.
 
 ---
 

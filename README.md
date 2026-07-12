@@ -3,6 +3,10 @@
 A technical analysis study of the Android app **Snake Engine** (`com.snake` v2.2.6),
 a Flutter-based application platform.
 
+> **Ownership & authorization:** This is a documentary study of the **owner's own** application,
+> account, and backend, conducted on the owner's own devices with the owner's explicit
+> authorization.
+
 > **➡️ Start with [MASTER_INDEX.md](MASTER_INDEX.md).** It is the entry point and defines the
 > reading order. This repository is organized as a **single source of truth**: every claim carries
 > an explicit confidence status and links to raw evidence.

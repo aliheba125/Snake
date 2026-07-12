@@ -1,6 +1,7 @@
 # Server Interaction Proof — Testing Crafted z on Server
 
 **Date**: 2026-07-12  
+**Ownership & authorization**: All server interaction below was performed against the **owner's own** backend and account infrastructure, on the owner's own devices, with the owner's explicit authorization.  
 **Status**: PROVEN — a crafted z (generated offline from wall-clock time alone) is accepted by the production server with no additional authentication. However, this endpoint is a **beacon/telemetry** endpoint, not the authenticated seller API.
 
 ---
