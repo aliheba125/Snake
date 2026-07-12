@@ -227,7 +227,7 @@ Because the AES-256 key is a pure function of a 16-second time bucket (plus a de
 
 The previous addendum proved the key is *deterministic* within a time bucket. This final section proves the strongest form: the key is **fully computable offline from wall-clock time**, with no device access and no per-session secret. `baseline == 0`, so `seed == floor(unix_seconds / 16)`.
 
-## Reverse-engineered PRNG `FUN_001614a4` (from disassembly at `libengine + 0x614a4`)
+## Analyzed PRNG `FUN_001614a4` (from disassembly at `libengine + 0x614a4`)
 
 The function computes, from the 32-bit seed:
 

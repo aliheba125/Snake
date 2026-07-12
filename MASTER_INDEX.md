@@ -1,4 +1,4 @@
-# MASTER INDEX — Snake Engine Reverse-Engineering Study
+# MASTER INDEX — Snake Engine Analysis Study
 
 > **Start here.** This repository is the single source of truth for the analysis of
 > **Snake Engine** (`com.snake` v2.2.6). Read the numbered docs in order; every claim carries an
@@ -42,7 +42,7 @@
    wall-clock time** and was **reproduced offline byte-for-byte**; the server decrypts `z` and
    keys its reply to the nonce+time inside it (challenge/response, both directions reproduced). ✅
 2. On-device **activation** (6-digit Entry Key) is validated **locally** with **symmetric** crypto
-   (libengine has zero asymmetric primitives), but its exact algorithm is **not** reverse-engineered
+   (libengine has zero asymmetric primitives), but its exact algorithm is **not** determined
    and **no valid key was generated**. ❓ / ⬜
 3. The beacon endpoint has **no meaningful transport/authenticity protection**; the real business
    boundary is the separate seller REST API (not accessed). ✅ / 🟨

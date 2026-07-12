@@ -26,7 +26,7 @@ Realistic progress per axis. Percentages reflect **evidence-backed completion**,
 
 ## Overall
 
-- **Beacon + crypto reverse-engineering:** ✅ essentially complete and independently reproducible.
+- **Beacon + crypto analysis:** ✅ essentially complete and independently reproducible.
 - **Application understanding:** 🟨 high, but Dart-layer logic and the in-game engine are partial.
 - **Activation system:** 🟨 model understood; ❓ algorithm undetermined; ⬜ not demonstrated.
 - **Business/server control:** 🔴 not achieved and not attempted beyond confirming auth is required.

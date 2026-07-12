@@ -44,7 +44,7 @@
 The app has **two independent server relationships**:
 
 1. **Beacon tier** — anonymous, fires once at cold launch, cryptographic challenge/response with
-   the Cloud Run endpoint. No login required. Fully reverse-engineered (see
+   the Cloud Run endpoint. No login required. Fully analyzed (see
    [`05_Beacon_Protocol.md`](05_Beacon_Protocol.md)).
 
 2. **Seller/business tier** — `rest.snakeseller.com/api/request/`, requires email+password login,

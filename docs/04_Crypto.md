@@ -28,7 +28,7 @@ seed        = floor(unix_seconds / 16)                      # ~16-second time bu
 master_key  = SHA256( shuffle_seed( SHA256( PRNG16(seed) ), seed ) )
 ```
 
-Components (reverse-engineered from libengine, verified in Python):
+Components (analyzed from libengine, verified in Python):
 
 - `PRNG16(seed)` = `FUN_001614a4`: from the 32-bit seed,
   `P1 = seed*0xA5A5A5A5A5A5A5A5`, `P2 = seed*0xB4B4B4B4B4B4A000`,

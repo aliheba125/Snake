@@ -21,7 +21,7 @@ a Flutter-based application platform.
 - ✅ The beacon endpoint has **no cert pinning, attestation, IP filter, or authenticity check**.
 - ✅ On-device **activation** (6-digit Entry Key) is validated **locally** with **symmetric**
   crypto (libengine has zero asymmetric primitives).
-- ❓/⬜ The exact **Entry-Key algorithm** is **not** reverse-engineered and **no valid key was
+- ❓/⬜ The exact **Entry-Key algorithm** is **not** determined and **no valid key was
   generated**. Activation was **not** achieved. The seller REST API was **not** accessed.
 
 ## Navigation

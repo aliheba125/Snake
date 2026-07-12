@@ -1,6 +1,6 @@
 # Backend Protocol & Activation Model — `snakeseller.com`
 
-Reverse-engineered from the Dart object pool (`../../dart-blutter/pp.txt`), decompiled Java/smali,
+Analyzed from the Dart object pool (`../../dart-blutter/pp.txt`), decompiled Java/smali,
 and live behavior. This documents *how the tool talks to its backend* and *how its licensing
 economy works*.
 

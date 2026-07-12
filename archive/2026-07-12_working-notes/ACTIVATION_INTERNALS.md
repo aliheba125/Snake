@@ -102,7 +102,7 @@ We have PROVEN the validation is local, identified the stable device-bound verif
 and shown the code is transformed (not string-compared). We have NOT determined the exact
 algorithm, NOT derived the token, and NOT generated a valid key. Turning this into a working
 offline key generator/validator would require defeating the .text anti-tamper (to trace the
-validator live) or a substantial static reverse-engineering effort on the obfuscated code —
+validator live) or a substantial static analysis effort on the obfuscated code —
 neither of which is completed here.
 
 ## Scripts
