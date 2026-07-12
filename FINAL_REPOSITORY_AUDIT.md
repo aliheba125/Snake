@@ -201,3 +201,35 @@ traced to a real, correctly-labeled file, and every real file is reachable from
 `MASTER_INDEX.md`.
 
 [STEERING steer-47ef6ca9-77db-44ab-9faf-0aa3f54799e6: Applied throughout this audit. Nothing was deleted for being old or superseded — the 5 confirmed sets of duplicate/superseded-looking files (dynamic-live captures/runners/agents vs evidence/scripts, kiro_sandbox vs sibling scripts, duplicate screenshots) were all kept in place and instead cross-referenced/explained in docs/09_Evidence.md and REPOSITORY_TREE.md. The single deletion (node_modules/, a 77MB npm dependency tree with zero analytical content, fully reproducible via `npm install`, never referenced by any doc) was made only after confirming it holds no unique research value, and a REMOVED_NODE_MODULES.md note with restore instructions was left in its place so the removal is documented rather than silent.]
+
+
+---
+
+## 8. Second-pass verification (2026-07-12, slow re-audit)
+
+A second, deliberately slow pass was run over the entire repository to catch anything the first
+pass missed. It re-verified the earlier fixes and found **four additional real issues**, all now
+fixed and pushed:
+
+| ID | Issue found in second pass | Fix |
+|----|-----------------------------|-----|
+| S1 | `artifacts/.../dynamic-live/agents/REMOVED_NODE_MODULES.md` linked to `REPOSITORY_TREE.md` and `FINAL_REPOSITORY_AUDIT.md` with **six** `../` levels; the file is only **five** directories deep, so both links were broken. The first-pass link scan had only covered `docs/`+root+`archive/` and never opened files under `artifacts/`. | Corrected to five levels. The link checker was then widened to the **entire tree (all 63 `.md` files)**. |
+| S2 | `.kiro/steering/mandatory-context.md` and `.gitignore` existed but were **absent from `REPOSITORY_TREE.md`**, and `docs/ENVIRONMENT_ACCESS.md` + `FINAL_REPOSITORY_AUDIT.md` were missing from the tree diagram. `MASTER_INDEX.md` did not link the steering file at all. | Added all four to the tree diagram, added a `.kiro/` row to the area table, and linked the mandatory-context steering file from `MASTER_INDEX.md` (reference table + layout block) so humans can find it, not only agents (who receive it auto-injected). |
+| S3 | Stale file counts: `scripts/beacon-crypto/` was documented as **44 files** in three places but actually holds **71**; `scripts/network-diagnosis*/` was **~155** but is **146** (93 + 53); the audit's own link-scan line claimed **44 `.md` files** (the old docs+root+archive subset) instead of the full-tree **63**. | Corrected every count in `REPOSITORY_TREE.md`, `docs/09_Evidence.md`, and this report. Re-confirmed exact: `java-jadx/`=3086, screenshots=17, `memory-scanners/`=8, frida-agents=11 ts + 9 js, `kiro_sandbox/`=33 (24 unique + 9 byte-identical, re-verified via `md5sum`). |
+| S4 | Three July-12 archive working-notes cited the **pre-reorganization flat path** `scripts/{decode_response,decode_mask,prove_cr2,trace_hosts}.py`; those scripts now live under `scripts/beacon-crypto/`. These were the only dangling `scripts/*.py` references in the repo. | Corrected the path prefix in the archive notes (no historical conclusion or wording changed). |
+
+**Re-verification after the second pass:** full-tree markdown-link scan = **63 files, 70 links, 0
+broken**; reverse path scan (every backtick-quoted `scripts/`,`evidence/`,`artifacts/`,`docs/`,
+`archive/`,`.kiro/` reference) = **0 dangling paths** (remaining hits are prose shorthand such as
+`docs/03`, `trial1/2/3.json`, and the intentionally-deleted `node_modules/`, all confirmed to
+resolve to real files); `EVIDENCE_MATRIX.md` = **13/13 cited paths exist**; duplicate-content
+claims re-tested byte-for-byte (`captures/` 5/5, `runners/` 8/8 identical elsewhere — claim
+accurate); working tree clean, no untracked/orphan files. The 90 files in the local working area
+(`tmp_agent/`) were confirmed byte-identical (`md5sum`) to their committed copies — nothing local
+was lost.
+
+**Conclusion of second pass:** the four issues above were documentation/reference hygiene only
+(broken relative links, undocumented config files, drifted counts, moved-file path prefixes). **No
+technical conclusion changed.** The repository is internally consistent: every claim traces to a
+real file, every real file is reachable from `MASTER_INDEX.md`, and the only remaining items are
+the genuine research unknowns in §4 / `UNKNOWNS.md`.
