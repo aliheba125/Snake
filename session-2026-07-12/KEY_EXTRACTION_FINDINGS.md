@@ -124,6 +124,14 @@ this model, **no passive memory/constant scan can ever recover the working key**
 routes are (a) recovering the *master secret + KDF* or (b) intercepting the cipher `init` at
 runtime.
 
+**Simple-KDF forms also ruled out (`scanner6.c`):** deriving the AES-256 key from every candidate
+16/32-byte master in memory via `SHA256(m)`, `SHA256(m‖nonce)`, `SHA256(nonce‖m)`,
+`HMAC-SHA256(m,nonce)`, `HMAC-SHA256(nonce,m)` and then AES-256-GCM-verifying (AAD ∅/0x0c) yields
+**NO DERIVED-MATCH**. So if H2 holds, the derivation is the *complex* documented native KDF
+(xorshift-PRNG seed → golden-ratio `0x9e3779b1` mixing → SHA-256), not a one-line hash — which can
+only be reproduced by reading `FUN_00161788` from `libengine.so` (Ghidra/radare2) or by hooking it
+live. This is the concrete next task.
+
 ---
 
 ## 4. RECOMMENDED NEXT STEP (evidence-driven)
@@ -150,6 +158,7 @@ the key in seconds.
 - `tools/scanner2.c` — OpenSSL-EVP AES-256-GCM **and** ChaCha20-Poly1305 verifier, multi-AAD, self-test.
 - `tools/scanner3.c` — AAD-independent known-plaintext AES-CTR keystream scanner.
 - `tools/scanner5.c` — encrypt-then-MAC key scanner (HMAC-SHA256/SHA1/MD5 + naive keyed SHA256).
+- `tools/scanner6.c` — derived-key (H2) scanner: master→KDF→AES-256-GCM for common KDF forms.
 - `samples/z_fresh_live.txt` — fresh `z` recovered from live main-process memory (+ parsed fields).
 - `samples/z_samples_prior.txt` — the prior session's captured `z` values.
 - `RESULTS_MATRIX.md` — the scan matrix above with the raw scanner stdout.

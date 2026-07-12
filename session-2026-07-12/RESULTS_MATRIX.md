@@ -22,6 +22,7 @@ A GCM/Poly1305 tag match is cryptographic proof (false-positive ≈ 2⁻¹²⁸)
 | 10 | main anon | 1419 | AES-256-GCM + ChaCha | 32 | 8 | **fresh** | ∅,0x0c,"20",nonce,ver+nonce | NO MATCH |
 | 11 | main anon | 1419 | AES-256-GCM | 32 | **1** (unaligned) | **fresh** | ∅,0x0c | NO MATCH |
 | 12 | main anon | 1419 | **Encrypt-then-MAC**: HMAC-SHA256[:16], HMAC-SHA1[:16], HMAC-MD5, SHA256(key‖M), SHA256(M‖key); M ∈ {ct, nonce‖ct, ver‖nonce‖ct, nonce‖ct‖ver}; keylen 16/32 | 16/32 | 8 | fresh + old | n/a | NO MAC-MATCH |
+| 13 | main anon | 1419 | **Derived-key (H2)**: key = {SHA256(m), SHA256(m‖nonce), SHA256(nonce‖m), HMAC-SHA256(m,nonce), HMAC-SHA256(nonce,m)} → AES-256-GCM; master len 16/32 | derived 32 | 8 | fresh | ∅,0x0c | NO DERIVED-MATCH |
 
 **Conclusion:** No static AES-128/192/256-GCM or ChaCha20-Poly1305 key (aligned or unaligned),
 and no AES-CTR key producing an android_id plaintext, exists as contiguous bytes in either
