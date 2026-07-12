@@ -1,0 +1,92 @@
+=== EARLY CAPTURE AGENT LOADED 2026-07-12T01:59:08.458Z ===
+libflutter not yet loaded, retrying...
+Agent init done
+libflutter not yet loaded, retrying...
+libflutter not yet loaded, retrying...
+libflutter not yet loaded, retrying...
+libflutter found @ 0xf131ad6c9000
+Hooked 4/4 TLS write functions
+[arg0] x��1�
+[arg3] GET /?z=0c09da02f6dd5ea80c70486c4ffb36404381d4ed99ce4f3ecb852cac3dbd49a2766c009a1d5b40031ae5b9221724be4c47&v=20 HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: push-918010152455.europe-west1.run.app
+
+
+[arg0] x��1�
+[arg3] GET /notics/notifications?r=1783821548850439 HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: storage.googleapis.com
+
+
+[arg0] x��1�
+[arg3] GET /notics/feeds_en?r=1783821549313643 HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: storage.googleapis.com
+
+
+[arg0] x��1�
+[arg3] GET /notics/feeds?r=1783821549313643 HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: storage.googleapis.com
+
+
+[arg0] x��1�
+[arg3] GET /api/files/soccer_stars_icon.png HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: rest.snakeseller.com
+
+
+[arg0] x��1�
+[arg3] GET /api/files/carrom_pool_icon.png HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: rest.snakeseller.com
+
+
+[arg0] x��1�
+[arg3] GET /api/files/1.jpg?r=4 HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: rest.snakeseller.com
+
+
+[arg0] x��1�
+[arg3] GET /api/files/8_ball_pool_icon.png HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: rest.snakeseller.com
+
+
+[arg0] x��1�
+[arg3] GET /api/files/2.jpg?r=4 HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: rest.snakeseller.com
+
+
+[arg0] x��1�
+[arg3] GET /api/files/3.jpg?r=4 HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: rest.snakeseller.com
+
+
+[arg0] x��1�
+[arg3] GET /notics/notifications_en?r=1783821848850629 HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: storage.googleapis.com
+
+
+[arg0] x��1�
+[arg3] GET /notics/notifications?r=1783821848850629 HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: storage.googleapis.com
+
+

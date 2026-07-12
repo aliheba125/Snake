@@ -1,0 +1,26 @@
+=== KEY EXTRACTION AGENT 2026-07-12T02:12:41.403Z ===
+libflutter @ 0xfdaa060c1000
+Hook installed - waiting for push-918 request...
+*** CAUGHT push-918 request! ***
+Full request: GET /?z=0c6df0e58dd95bb13de18ae9f502dba9ac5a46fca986c46cac30f73b699a96bf21a11d2f17d81d243423969c2e87d343a8&v=20 HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: push-918010152455.europe-west1.run.app
+
+
+z hex: 0c6df0e58dd95bb13de18ae9f502dba9ac5a46fca986c46cac30f73b699a96bf21a11d2f17d81d243423969c2e87d343a8
+z raw bytes (first 16): 0c6df0e58dd95bb13de18ae9f502dba9
+Searching for pattern: 0c 6d f0 e5 8d d9 5b b1 3d e1 8a e9 f5 02 db a9
+Total z-byte locations found: 0
+Searching for hex-string pattern: 30 63 36 64 66 30 65 35 38 64 64 39 35 62 62 31 33 64 65 31 38 61 65 39 66 35 30 32 64 62 61 39
+FOUND z-hex-string @ 0xfda800706e93
+  128B before (ascii): ..............mp......................np..............<......`np.........4....https://push-918010152455.europe-west1.run.app/?z=
+FOUND z-hex-string @ 0xfda800707292
+  128B before (ascii): ..............................Inp......................<......`rp.........2...https://push-918010152455.europe-west1.run.app/?z=
+FOUND z-hex-string @ 0xfda80070737a
+  128B before (ascii): ..............................................................\.......2.......https://push-918010152455.europe-west1.run.app/?z=
+FOUND z-hex-string @ 0xfda80071b968
+  128B before (ascii): 9.q...q..............................51...q.....`F...............................sq..............0......`.q..........@..GET /?z=
+FOUND z-hex-string @ 0xfda80071d9fa
+  128B before (ascii): ................q..................................51.y.q......C........................................q.....\...............z=
+Total hex-string locations: 5

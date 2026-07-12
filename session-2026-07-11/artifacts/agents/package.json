@@ -1,0 +1,1 @@
+{"name":"snake-agent","private":true,"scripts":{"build":"frida-compile agent.ts -o compiled.js"},"dependencies":{"frida-compile":"^19.0.5","frida-java-bridge":"^7.0.13"}}

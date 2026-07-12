@@ -1,0 +1,7 @@
+{
+  "interaction": {
+    "type": "script",
+    "path": "/data/local/tmp/early_capture.js",
+    "on_change": "ignore"
+  }
+}
