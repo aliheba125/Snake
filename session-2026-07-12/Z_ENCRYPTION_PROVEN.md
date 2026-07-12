@@ -287,3 +287,56 @@ END-TO-END: PROVEN
 3. `plaintext = AES-256-ECB-decrypt(key, z[1:])`; `z = z[0] || AES-256-ECB-encrypt(key, plaintext)` — reproduced byte-for-byte.
 
 The effective key space is the set of candidate 16-second time buckets, not 2^256. Every claim above is backed by a matching runtime capture and an independent offline recomputation; none rests on timing correlation or the absence of a signature.
+
+
+
+---
+
+# Plaintext Structure — What `z` Actually Carries (decoded and verified)
+
+The 36-byte plaintext is assembled by `FUN_00165b70` (`libengine + 0x65b70`). Decoded layout:
+
+```
+plaintext[0:4]   = 00 00 00 00                         (zero prefix)
+plaintext[4:36]  = 32 bytes, produced by byte-interleaving two 16-byte blocks:
+      even-index output bytes  <-  block P (16 B)
+      odd-index  output bytes  <-  block Q (16 B, pure random: 2x Mersenne-Twister 64-bit draws)
+
+block P = [ id XOR mask : 8 bytes LE ] [ mask : 4 bytes LE ] [ time XOR mask : 4 bytes LE ]
+   mask = FUN_00152cec()                       (32-bit PRNG value, also returned via param_4)
+   id   = 64-bit random nonce (param_2, two FUN_00152cec draws; also returned to caller)
+   time = param_3 = (clock_gettime seconds - baseline)   [baseline == 0]
+```
+
+The PRNG `FUN_00152cec` seeds a Mersenne-Twister from `/dev/urandom` (see `FUN_00152774("/dev/urandom")` + the `0x6c078965` MT init constant), so the random fields differ every request — which is exactly why the captured plaintext changed on each launch.
+
+## Verification (`scripts/plaintext_decode.py`)
+
+Decoding the fresh-capture plaintext `00000000719601d0…0ab9eddb`:
+
+```
+zero prefix     : 00000000  (all zero: True)
+block Q (random): 96d071d7f1d011d9c672e1f628d8b9db
+mask  (local_70): 0x8759ace5
+id^mask (8B LE) : 0xf88bde6f257d0171
+time^mask (4B)  : 0xed0a6eed
+recovered time  : 0x6a53c208 = 1783874056
+
+capture unix seconds : 1783874056
+recovered time field : 1783874056
+difference (s)       : 0
+```
+
+The timestamp recovered from inside the encrypted payload equals the capture wall-clock time **exactly**. This both (a) confirms the decoded field layout and (b) independently re-confirms `baseline == 0` via a second, unrelated code path (the plaintext builder), consistent with the key-derivation seed.
+
+## Meaning
+
+`z` is a **randomized, timestamped beacon token**, not user data. Each `z` contains:
+
+- a Unix timestamp (seconds), XOR-masked;
+- a 64-bit random session nonce, XOR-masked;
+- the XOR mask itself (so the server can un-mask);
+- 16 bytes of pure random filler (interleaved);
+- a 4-byte zero prefix.
+
+Because the same wall-clock time both seeds the AES key (`floor(time/16)`) and is embedded in the plaintext, a party knowing the request time can regenerate the key, decrypt `z`, and read the nonce/timestamp — end to end, with no device secret.
