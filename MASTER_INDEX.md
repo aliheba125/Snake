@@ -13,6 +13,7 @@
 
 | # | Document | What you learn | Status of the area |
 |---|----------|----------------|--------------------|
+| — | [docs/ENVIRONMENT_ACCESS.md](docs/ENVIRONMENT_ACCESS.md) | **How to connect to the server, device, and Frida — start here if you need to run code** | ✅ |
 | 00 | [docs/00_Project_Overview.md](docs/00_Project_Overview.md) | What the app is, headline results, what was NOT achieved | — |
 | 01 | [docs/01_Architecture.md](docs/01_Architecture.md) | Components, two-tier trust model, data-flow | ✅ |
 | 02 | [docs/02_Static_Analysis.md](docs/02_Static_Analysis.md) | Decompilation, key functions/globals, crypto census | ✅ |
