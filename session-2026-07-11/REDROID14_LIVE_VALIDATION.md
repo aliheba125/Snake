@@ -363,3 +363,40 @@ Firebase notifications/feeds from `storage.googleapis.com`:
 The 48-byte encrypted payload in `z` needs to be decrypted. The encryption key is embedded
 in Dart AOT (`libapp.so`). The 32-byte constants found earlier in the object pool
 (`pp+0xb730`, `pp+0x131b0`, `pp+0x14010`) are candidates for the AES-256 key.
+
+
+
+---
+
+## Final Capture: Three Live z-Payload Samples with Server Responses
+
+### Capture Method (proven reproducible):
+```
+Frida Gadget 16.5.6 (script-mode) + LD_PRELOAD via wrap.com.snake
+Hook: libflutter.so offset 0x6d4be8 (s3_pkt.cc TLS record write)
+arg3 contains the full HTTP plaintext before TLS encryption
+```
+
+### Three Independent Captures:
+
+| # | z parameter (49 bytes hex) | Server Response (33 bytes hex) |
+|---|---------------------------|-------------------------------|
+| 1 | `0c6da67c93688e58ee2d71b107a165569b931542170d6220ed6379450e253b6f28affa875fbf1fac36ef12a2520cf35c6a` | `f11ac0aefb2c7ad89b10f6461fc5b034e8d73d343ceab67cbc61906c84425b5712` |
+| 2 | `0c09da02f6dd5ea80c70486c4ffb36404381d4ed99ce4f3ecb852cac3dbd49a2766c009a1d5b40031ae5b9221724be4c47` | `6cf26bcec9f6da2322d14f369309f610b9ecc4ff894588d704106fbc9850746971` |
+| 3 | `0c3dc709ebc0e50fbd469c4240a77ae8384e22ab051ef50f1174e8f8620a01780fc5e22d218c83caf3a58b0a4b93352b98` | `5877ae76b8338b76a8aa2a2073af765193c431533c809d4c84de501e9f7bdd9f42` |
+
+All three replay successfully: `curl "https://push-918010152455.europe-west1.run.app/?z=<value>&v=20"` returns 200 OK.
+
+### Connection Sequence Observed:
+```
+[CONNECT] 34.143.73.2:443      ← Cloud Run (push-918010152455...) - API endpoint
+[CONNECT] 192.179.18.207:443   ← Google (storage.googleapis.com) - notifications/feeds
+[CONNECT] 92.205.103.45:443    ← rest.snakeseller.com - static files (images)
+```
+
+### Encryption Key Status:
+- 5 candidate keys from Dart pool tested: none decrypts the z payload
+- The actual AES key is derived at runtime or stored in a non-obvious form
+- Decryption attempts: AES-256-GCM, AES-256-CBC, ChaCha20-Poly1305, AES-128-GCM — all failed tag verification
+- ECB produces random-looking output (not valid plaintext)
+- **The key extraction remains the only unresolved item**
