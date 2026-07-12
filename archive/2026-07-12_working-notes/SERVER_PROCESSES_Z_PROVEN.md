@@ -5,7 +5,7 @@
 
 ---
 
-## The decisive test (`scripts/prove_cr2.py`)
+## The decisive test (`scripts/beacon-crypto/prove_cr2.py`)
 
 Because we can craft z with a **known** `(time, id)` (we control the plaintext), we can predict the response key the server *should* use if — and only if — it actually decrypts z:
 
@@ -108,4 +108,4 @@ The reviewer's core question — *"does the server actually accept/use z, or mer
 
 ## Scripts
 - `scripts/prove_challenge_response.py` — first observation of structured decrypts
-- `scripts/prove_cr2.py` — quantified correct-vs-wrong-key test (16/32 vs 0/32)
+- `scripts/beacon-crypto/prove_cr2.py` — quantified correct-vs-wrong-key test (16/32 vs 0/32)

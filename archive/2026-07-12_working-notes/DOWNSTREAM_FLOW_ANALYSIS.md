@@ -15,7 +15,7 @@ Replaced with:
 
 ---
 
-## 1. Network topology (MEASURED — `scripts/trace_hosts.py`)
+## 1. Network topology (MEASURED — `scripts/beacon-crypto/trace_hosts.py`)
 
 Hooking `getaddrinfo`/`connect` in libc (fires for every connection over the whole process lifetime, so it does not race with the early beacon) over a 30 s cold launch + idle window:
 
@@ -98,6 +98,6 @@ Polling the global `DAT_009280f8` (read-only; no code hook, so no anti-tamper tr
 The reviewer's framing stands: understanding and reproducing z is fully established; the *role of the endpoint within the wider system* is now partially mapped (one-shot beacon + a client-side decrypt routine keyed to the request nonce), but a complete, runtime-proven data-flow and any claim about defeating the overall system's authentication remain **out of what has been demonstrated**.
 
 ## Scripts
-- `scripts/trace_hosts.py` — enumerate every host via getaddrinfo/connect
+- `scripts/beacon-crypto/trace_hosts.py` — enumerate every host via getaddrinfo/connect
 - `scripts/trace_interact.py` — host + SSL_write trace with injected UI events
 - `scripts/poll_decrypt_global.py` — poll DAT_009280f0 (key) and DAT_009280f8 (decrypt-store) globals

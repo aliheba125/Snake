@@ -5,7 +5,7 @@
 
 ---
 
-## Method (`scripts/decode_response.py`, `scripts/decode_mask.py`)
+## Method (`scripts/beacon-crypto/decode_response.py`, `scripts/beacon-crypto/decode_mask.py`)
 
 Controlled correlation: craft z with chosen `(time, id, mask)`, decrypt the response with `resp_key(time,id)`, and observe which record bytes change when each input is varied.
 
@@ -70,5 +70,5 @@ The constant markers (`0x00149c`, `131`, `217`, `0x08dee000`) are stable across 
 - Still the beacon protocol only; the seller REST API auth (email+password) is untouched; no account access or auth bypass.
 
 ## Scripts
-- `scripts/decode_response.py` — deterministic-vs-varying + field interpretation
-- `scripts/decode_mask.py` — proves record bytes [0,4,8,12] == client mask
+- `scripts/beacon-crypto/decode_response.py` — deterministic-vs-varying + field interpretation
+- `scripts/beacon-crypto/decode_mask.py` — proves record bytes [0,4,8,12] == client mask
