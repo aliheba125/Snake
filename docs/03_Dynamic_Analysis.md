@@ -56,7 +56,17 @@ ChaCha20‑Poly1305, AES‑CTR (known-plaintext), encrypt-then-MAC, and simple-K
 2.6 GB of live process memory. **All returned NO MATCH.** This correctly ruled out static
 AEAD/CTR/MAC keys and pointed to a derived key — later confirmed as the time-bucket key. The
 scanners' original *framing* (assuming AEAD) was ❌ disproved; their negative *results* remain valid
-and are part of the evidence chain.
+and are part of the evidence chain. Self-test values, NIST KAT vectors, and the full scan matrix are
+in `archive/2026-07-12_working-notes/RESULTS_MATRIX.md` and `KEY_EXTRACTION_FINDINGS.md`; the raw
+scan output logs are in `evidence/scanner-logs/`.
+
+> ⚠️ **Reproducibility caveat:** the 2.6 GB of scanned memory (`dump.bin`, `dump_engine.bin`,
+> `dump_apk.bin`) was too large for git and is **not included in this repository**. It was kept on
+> the remote host used for the session (`44.198.192.12:/tmp/`) and is regenerable with the recipe in
+> `archive/2026-07-12_working-notes/MANIFEST.md` (requires a live rooted Redroid/Android instance with
+> the app running). Anyone re-verifying the "NO MATCH" scanner result from a clean checkout of this
+> repo alone cannot re-run the scan without regenerating those dumps first — only the scanner source
+> and the resulting logs are committed.
 
 ## Practical limits encountered (honest)
 

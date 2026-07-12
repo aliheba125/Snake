@@ -26,7 +26,8 @@ would prove or disprove it. Nothing here should be cited as fact.
 
 ### U‑03 — Derivation of the stable device token `751fb123…` ❓
 - **Known:** 32 bytes, high entropy, session-stable, not on disk, not `SHA256` of
-  android_id/app_instance_id/device_id/model (all tested).
+  android_id/app_instance_id/device_id/model (all tested; the android_id value used,
+  `8840bf6a81679fc4`, is recorded in `evidence/runtime-memory/device_evidence.txt`).
 - **To resolve:** trace the libengine calls that produce it at boot (libc/Stalker), or diff it
   against device inputs across multiple devices.
 

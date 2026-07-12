@@ -14,7 +14,8 @@ Static artifacts live under [`../artifacts/decompiled/`](../artifacts/decompiled
 | Resources/Manifest | apktool 2.10.0 | `artifacts/decompiled/smali/`, `resources/`, `AndroidManifest.xml` | complete |
 | Dart AOT | Blutter (+ Dart VM 3.5.x) | `artifacts/decompiled/dart-blutter/` | ~670 files; symbol names obfuscated |
 | Native | Ghidra | `artifacts/decompiled/native-deep/ghidra/libengine_decompiled.c` | ~2241/2283 functions decompiled |
-| ELF/strings | pyelftools/capstone | `artifacts/decompiled/native-deep/` notes | — |
+| Native (angr) | angr 9.2.102 + capstone + pyelftools + unicorn | `artifacts/decompiled/native-deep/static-max/` | 2 of the 42 Ghidra-failed functions recovered as C (`_INIT_16`, `_INIT_36`); the remaining 40 are shown to be either genuinely absent from the file (4 functions, runtime-generated RWX code) or 26 near-identical 175 KB OLLVM-flattened + self-modifying copies (95.6% byte-identical to each other — one obfuscated routine × 26, not 26 distinct functions) |
+| ELF/strings | pyelftools/capstone | `artifacts/decompiled/native-deep/strings/` (raw dumps) + `artifacts/decompiled/native-deep/` notes | full printable-string extraction for all 4 libraries |
 
 > ⚠️ The `.md` files under `artifacts/decompiled/native-deep/` are the **original July‑8 static
 > analysis notes**. Several of their crypto conclusions were **later disproved** by the July‑12

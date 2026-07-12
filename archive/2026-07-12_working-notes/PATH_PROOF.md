@@ -52,6 +52,11 @@ A **match** requires an overlapping byte sequence, not proximity in time.
 
 ## 3. Results — three reproductions
 
+> **Raw evidence added during the 2026-07-12 repository audit:** the raw capture logs behind the
+> three trials below are preserved at `evidence/runtime-memory/path_proof_trial1.json`,
+> `path_proof_trial2.json`, and `path_proof_trial3.json` (matched by content: boot → hook_ok →
+> modules_loaded → Z_SINK_HIT sequence for each trial).
+
 Force-stop `com.snake` → `am start` → poll for Gadget listen → attach + install
 hooks → wait.
 

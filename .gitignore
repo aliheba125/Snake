@@ -1,0 +1,5 @@
+# Dependency directories — reproducible from package.json/package-lock.json, never commit
+node_modules/
+__pycache__/
+*.pyc
+.venv/

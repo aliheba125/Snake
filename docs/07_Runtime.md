@@ -6,7 +6,7 @@ Evidence: `evidence/screenshots/`, `evidence/runtime-memory/`, `evidence/beacon-
 
 ---
 
-## App UI flow — ✅ Confirmed (15 screenshots, `evidence/screenshots/`)
+## App UI flow — ✅ Confirmed (17 screenshots, `evidence/screenshots/`)
 
 - App opens **directly to the dashboard** — no login screen.
 - Home: rotating banner (8 Ball Pool / Carrom Pool / Soccer Stars), 3 supported games (each ⚠ =

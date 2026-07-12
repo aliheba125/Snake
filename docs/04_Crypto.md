@@ -43,6 +43,10 @@ Components (reverse-engineered from libengine, verified in Python):
 - `reproduce_key.py`: seed `111492102` → device key `40da6112…bc24` (exact match).
 - `fresh_verify.py`: a later launch, seed `111492128` → device key `8192f7fc…975d` (exact match).
 - `end_to_end.py`: time → key → decrypt `z` → recovered plaintext → re-encrypt → identical `z`.
+- Independent cross-check: an earlier angr-based static pass (`artifacts/decompiled/native-deep/static-max/`)
+  re-derived the same `AES-256(SHA256(PRNG(seed1,seed2)))` structure purely from decompiled code, before the
+  live time-bucket seed source was identified — the algorithm shape matches; that pass called the two PRNG
+  inputs generic `seed1`/`seed2` and had not yet identified them as `floor(unix/16)`.
 
 ### Security consequence (✅ Confirmed, stated factually)
 

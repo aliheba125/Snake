@@ -31,7 +31,8 @@ User enters the Entry Key in-app → validated LOCALLY (no network)
    (`test_code_network.py`). It uses libengine's AES (~127 crypto allocations).
 2. **On-device activation crypto is symmetric** — `libengine.so` contains no asymmetric
    primitives whatsoever (no RSA/ECDSA/Ed25519 strings, symbols, or curve constants; P‑256,
-   secp256k1, Ed25519 primes all absent from the raw bytes).
+   secp256k1, Ed25519 primes all absent from the raw bytes; cross-verified independently by an
+   angr-based static pass, see `artifacts/decompiled/native-deep/static-max/`).
 3. **The entered code is transformed, not string-compared** — codes `123456`, `394318`,
    `999999`, `135790`, `999888`, `246810` never appear verbatim in captured buffers.
 4. **A stable 32-byte device token** is processed during Activate:
@@ -48,7 +49,7 @@ User enters the Entry Key in-app → validated LOCALLY (no network)
 
 | Attempt | Result |
 |---------|--------|
-| Brute-force `key = SHA256(code)` → decrypt token, check padding | false positive `0x01` (1/256); tested in-app → **"Code is Not valid"** |
+| Brute-force `key = SHA256(code)` → decrypt token, check padding | false positive `0x01` (1/256); the candidate code `000503` was tested in-app and rejected — see `evidence/screenshots/screen_code_entered.png` (code entered) and `screen_after_valid_code.png` ("Code is Not valid") |
 | Brute-force `key = SHA256(gen32(code, device_id))` (beacon KDF), 1M codes × 4 orderings, strict padding | **0 matches** |
 | Simple KDFs (zero-padded, integer-LE keys) | 0 matches |
 | Live `memcmp` capture during Activate | only the token self-check (always MATCH); the code-vs-expected comparison uses neither `memcmp` nor `strcmp` |

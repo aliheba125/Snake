@@ -18,7 +18,7 @@ conclusion appears here without evidence. IDs match [docs/08_Findings.md](docs/0
 | F‑09/10 | Server decrypts `z`, replies keyed to (time,id); echoes mask | `prove_challenge_response.py`, `prove_cr2.py`, `decode_mask.py` → `evidence/beacon-crypto-traces/` | correct key → 16/32 constant bytes; wrong → 0/32; mask at [0,4,8,12] |
 | F‑11 | Server parses `z` but does not authenticate it | `discriminating_test.py`, `probe_logic.py`, `server_test.py` | garbage→200; odd-length→500; <32B→empty |
 | F‑12 | No cert pin / mTLS / attestation / IP filter | `server_test.py` (curl from multiple nets) + string census | crafted `z` accepted off-device |
-| F‑13 | No login; Device ID; 6-digit Entry Key | `evidence/screenshots/` (15 PNGs) | view screenshots |
+| F‑13 | No login; Device ID; 6-digit Entry Key | `evidence/screenshots/` (17 PNGs, incl. the `000503` test) | view screenshots |
 | F‑14 | Entry-Key validation is local (0 network) | `test_code_network.py` → getaddrinfo hook | 0 new DNS during Activate |
 | F‑15 | libengine has zero asymmetric crypto | string/symbol/constant scan (see docs/02, docs/06) | grep binary; P‑256/secp256k1/Ed25519 primes absent |
 | F‑16 | Entered code is transformed, not string-compared | `hook_memcmp.py`, `capture_activate3.py` → `evidence/beacon-crypto-traces/` | code never appears verbatim; memcmp is token-self-check |
@@ -31,7 +31,7 @@ conclusion appears here without evidence. IDs match [docs/08_Findings.md](docs/0
 
 | ID | Conclusion | Evidence | Missing to reach ✅ |
 |----|-----------|----------|---------------------|
-| P‑01 | Website checkout: DeviceID → pay → Entry Key | frontend strings in `archive/2026-07-11_.../` (snakeengine_frontend.js) | end-to-end purchase not exercised |
+| P‑01 | Website checkout: DeviceID → pay → Entry Key | frontend strings in `evidence/network-pcaps-extra/snakeengine_frontend.js` (+ `snakeengine_main.html`) | end-to-end purchase not exercised |
 | P‑02 | Seller REST API needs email+password | `server_test.py` (returns "Authentication failed") | no credentials; schema unknown |
 | P‑03 | `FUN_0017e148`: symmetric decrypt + ±0xFF time window | Ghidra read of `libengine_decompiled.c` | not confirmed as THE Entry-Key validator |
 | P‑04 | `DAT_009280f8` holds decrypted beacon reply | `poll_decrypt_global.py` | contents unstable; timing-based only |
@@ -51,7 +51,7 @@ conclusion appears here without evidence. IDs match [docs/08_Findings.md](docs/0
 
 | ID | Old claim | Disproving evidence |
 |----|-----------|---------------------|
-| D‑01 | `z` is AEAD/GCM/ChaCha | `scanner*.c` NO MATCH over 2.6 GB + `prove_z.py` ECB reproduction |
+| D‑01 | `z` is AEAD/GCM/ChaCha | `scanner*.c` NO MATCH over 2.6 GB (⚠️ the raw `dump.bin`/`dump_engine.bin`/`dump_apk.bin` memory dumps are **not in this repo** — they were too large for git and were kept on the remote host `44.198.192.12:/tmp/`, see `archive/2026-07-12_working-notes/MANIFEST.md` for the exact regeneration recipe; only the scan *logs* in `evidence/scanner-logs/` and the scanner source in `scripts/memory-scanners/` are committed) + `prove_z.py` ECB reproduction (independently, fully reproducible offline) |
 | D‑02 | `z` is AES-CBC | `prove_z.py`: ECB (not CBC) reproduces `z` exactly |
 | D‑03 | key per-message & erased | `reproduce_key.py`: key reproduced offline from time |
 | D‑04 | `FUN_00160208` never used for network | it decrypts the beacon reply (docs/05) |

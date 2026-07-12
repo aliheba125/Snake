@@ -47,26 +47,40 @@ Snake/
 │       ├── native-deep/        (Ghidra output + July-8 native analysis notes*)
 │       │   ├── ghidra/libengine_decompiled.c   ← primary native source (~2241 fns)
 │       │   ├── ghidra/function_inventory.tsv
+│       │   ├── static-max/     (angr-based decompilation of Ghidra-failed functions; see docs/02, docs/09)
+│       │   ├── strings/        (extracted string dumps, all 4 libraries; see docs/09)
+│       │   ├── dynamic/, emulation/  (small — early dynamic/emulation setup notes)
+│       │   ├── dynamic-live/    (July-8/11 Frida toolchain: agents/, build/, captures/, runners/, docs)
+│       │   │   ⚠️ `captures/` and `runners/` here are byte-identical to files now also organized
+│       │   │      under `evidence/network-diagnosis-logs/` and `scripts/network-diagnosis/`. Kept
+│       │   │      intentionally in BOTH places (nothing deleted for being old/superseded — see
+│       │   │      project policy). Only `agents/node_modules/` (77 MB of standard npm
+│       │   │      dependencies, reproducible via `npm install` from the committed
+│       │   │      `package.json`/`package-lock.json`) was removed, as it is a build artifact with
+│       │   │      zero analytical content, not unique research output.
 │       │   └── *.md            ← *July-8 notes; SOME conclusions DISPROVED (see docs/02)
 │       ├── extracted/          (misc extracted strings/data)
 │       └── REPORT.md           (original apktool/decompile report)
 │
 ├── evidence/                ← RAW PROOF (organized by type, not by date)
-│   ├── screenshots/            (15+ app UI screenshots)
+│   ├── screenshots/            (17 app UI screenshots, incl. the "000503" activation test)
 │   ├── beacon-crypto-traces/   (JSON: memcmp, stalker, capture, correlate runs)
 │   ├── z-samples/              (captured z values + parsed fields)
-│   ├── runtime-memory/         (maps, device evidence, path-proof JSON)
-│   ├── scanner-logs/           (memory-scanner outputs — all NO MATCH)
-│   ├── network-pcaps/          (startup packet captures)
-│   ├── network-pcaps-extra/    (additional captures)
+│   ├── runtime-memory/         (maps, device evidence, path-proof JSON — see docs/09 for what each file is)
+│   ├── scanner-logs/           (memory-scanner outputs — all NO MATCH; scanned dumps are NOT in-repo, see docs/09)
+│   ├── network-pcaps/          (2026-07-11 startup packet captures — small/near-empty, network was blocked)
+│   ├── network-pcaps-extra/    (⚠️ actually 2026-07-12 logs despite folder name — verified by internal timestamps)
 │   ├── mitm-certs/             (mitmproxy CA/certs from July-11 attempts)
 │   └── network-diagnosis-logs/ (July-11 DNS/crash/strings logs)
 │
 ├── scripts/                 ← TOOLING (reproduction + capture)
-│   ├── beacon-crypto/          (Python/JS: capture, reproduce, prove, decode, trace)
-│   ├── memory-scanners/        (scanner.c … scanner9.c — AEAD/CTR/MAC/KDF scans)
-│   ├── network-diagnosis/      (July-11 capture/bypass/diagnosis)
-│   ├── network-diagnosis-extra/(additional July-11 scripts)
+│   ├── beacon-crypto/          (44 files, Python/JS: capture, reproduce, prove, decode, trace —
+│   │                            most cited in docs/09; remainder are exploratory/one-off, see docs/09)
+│   ├── memory-scanners/        (scanner.c … scanner9.c, 8 files — AEAD/CTR/MAC/KDF scans)
+│   ├── network-diagnosis/      (July-11/12 capture/bypass/diagnosis, ~90 files)
+│   ├── network-diagnosis-extra/(additional scripts, ~65 files, incl. `kiro_sandbox/` subfolder:
+│   │                            ~24 unique files + a handful byte-identical to sibling files in the
+│   │                            same tree — kept in both places, nothing deleted)
 │   └── frida-agents/           (agent_*.ts + compiled_*.js — July-11 Frida agents)
 │
 └── archive/                 ← HISTORY (superseded working notes; NOT current truth)

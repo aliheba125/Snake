@@ -39,7 +39,7 @@ Realistic progress per axis. Percentages reflect **evidence-backed completion**,
 - [x] `z` structure, cipher, key derivation — reproduced offline
 - [x] Server challenge/response proven (both directions)
 - [x] Server ingress behaviour characterized; no transport protections
-- [x] App UI flow + network + storage + FFI mapped (15 screenshots)
+- [x] App UI flow + network + storage + FFI mapped (17 screenshots)
 - [x] Activation is local + symmetric; device token identified
 - [x] Repository consolidated into a single source of truth (this refactor)
 

@@ -35,6 +35,7 @@
 | [UNKNOWNS.md](UNKNOWNS.md) | Everything not known + what would prove/disprove it |
 | [ROADMAP.md](ROADMAP.md) | Completed vs remaining, realistic % per axis |
 | [REPOSITORY_TREE.md](REPOSITORY_TREE.md) | Every folder/file explained; why it exists |
+| [FINAL_REPOSITORY_AUDIT.md](FINAL_REPOSITORY_AUDIT.md) | Independent audit of this repository: broken references, orphaned evidence, duplicates, and fixes applied |
 
 ## The three-sentence summary
 
