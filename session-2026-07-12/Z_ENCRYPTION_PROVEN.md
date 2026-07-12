@@ -218,3 +218,72 @@ Because the AES-256 key is a pure function of a 16-second time bucket (plus a de
 - **Seed**: `(clock_gettime(CLOCK_REALTIME) seconds − baseline) >> 4` — a ~16-second time bucket. Baseline set once in `FUN_0015fa58`.
 - **Key**: `SHA256(shuffle_seed(SHA256(PRNG(seed))))`, 32 bytes, stored at `*(libengine + 0x8280f0)`. Regenerated per process but identical within a time bucket.
 - **IV**: none — AES-256-**ECB**. The leading `0x0c` byte of `z` is the zero-padding length, not an IV.
+
+
+
+---
+
+# Final Addendum — Master Key Reproduced OFFLINE From Wall-Clock Time Alone
+
+The previous addendum proved the key is *deterministic* within a time bucket. This final section proves the strongest form: the key is **fully computable offline from wall-clock time**, with no device access and no per-session secret. `baseline == 0`, so `seed == floor(unix_seconds / 16)`.
+
+## Reverse-engineered PRNG `FUN_001614a4` (from disassembly at `libengine + 0x614a4`)
+
+The function computes, from the 32-bit seed:
+
+```
+P1  = (seed * 0xA5A5A5A5A5A5A5A5) mod 2^64        ; mul x8, x9, 0xA5A5...
+P2  = (seed * 0xB4B4B4B4B4B4A000) mod 2^64        ; mul x9, x9, 0xB4B4...A000
+A   = (P2 & ~0x1FFF) | ((P1 >> 51) & 0x1FFF)      ; bfxil x9, x8, #51, #13
+E   = P1 ^ 0xA3A3A3A3A3A3A3A3                      ; eor  x10, x8, 0xA3A3...
+B   = rotl64(E, 7)                                ; ror  x10, x10, #57
+out16 = LE64(A) || LE64(B)                        ; NEON byte-extract (ushl/uzp1/xtn), stp d1,d0
+```
+
+The NEON `ushl`/`uzp1`/`xtn` sequence was verified to be a plain little-endian byte serialization of `A` then `B` (the negative shift vectors at `0x110a50/0xac0/0xb00/0xba0` select byte lanes 0..7).
+
+## Full key formula
+
+```
+seed = floor(unix_seconds / 16)
+key  = SHA256( shuffle_seed( SHA256( prng16(seed) ), seed ) )
+```
+
+`shuffle_seed` = the Fisher-Yates in `FUN_00161598` with per-step mix `s = (s * 0x5bd1e995) ^ (s >> 15)` (MurmurHash2).
+
+## Verification results
+
+`scripts/reproduce_key.py` — recompute the key for the recorded seeds:
+
+| seed | derived key | captured key | match |
+| --- | --- | --- | --- |
+| 111492102 (`floor(1783873640/16)`) | `40da61127159267fe9acaf9780d31896c2e53a27ace4e73182e2b49be8debc24` | same | yes |
+
+`scripts/fresh_verify.py` — an independent fresh launch minutes later:
+
+| seed | derived key | captured key | match |
+| --- | --- | --- | --- |
+| 111492128 (`floor(1783874056/16)`) | `8192f7fc70d13b813c2ac5913469f052c30accef2a7dbc1b29d22309762a975d` | same | yes |
+
+`scripts/end_to_end.py` — the complete chain for the fresh capture, **offline, from the timestamp only**:
+
+```
+1) request time (unix seconds): 1783874056
+2) seed = floor(unix/16)      : 111492128
+3) derived AES-256 key        : 8192f7fc...762a975d   (== device key)
+4) AES-256-ECB decrypt(z)     : 00000000719601d0...ab9eddb 000000000000000000000000
+   pad 0x0c, last 12 bytes zero: True
+   recovered plaintext        : 00000000719601d07d7125d76ff1ded08b11f8d9e5c6ac7259e187f6ed286ed80ab9eddb
+5) re-encrypt -> z            : 0ce08cad...f93ee5d0fa   (== original z)
+END-TO-END: PROVEN
+```
+
+## Conclusion
+
+`z` provides no confidentiality against anyone who knows the request time to within 16 seconds:
+
+1. `seed = floor(request_unix_time / 16)`
+2. `key = SHA256(shuffle(SHA256(prng16(seed)), seed))` — reproduced byte-for-byte on the device, twice, at different times.
+3. `plaintext = AES-256-ECB-decrypt(key, z[1:])`; `z = z[0] || AES-256-ECB-encrypt(key, plaintext)` — reproduced byte-for-byte.
+
+The effective key space is the set of candidate 16-second time buckets, not 2^256. Every claim above is backed by a matching runtime capture and an independent offline recomputation; none rests on timing correlation or the absence of a signature.
