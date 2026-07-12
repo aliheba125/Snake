@@ -1,0 +1,14 @@
+Starting: Intent { cmp=com.snake/com.Entry }
+[*] Force-stopping snake...
+[*] Starting snake...
+[*] Polling for gadget listen...
+[+0.204s] Gadget found (PID 25315)
+[+0.204s] attached
+ERR: Error: unable to find module 'libflutter.so'
+[+0.207s] script loaded
+
+================================================================================
+[*] Total events: 0
+[*] Z SINK hits: 0
+[*] KDF: 0, AES_enc: 0, AES_dec: 0, FUN_167d38: 0
+[*] Full results saved to /tmp/proof_results.json

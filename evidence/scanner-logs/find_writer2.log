@@ -1,0 +1,13 @@
+Starting: Intent { cmp=com.snake/com.Entry }
+[+0.154s] Gadget PID 215412
+[+0ms] {"t": "boot", "ts": 0, "pid": 215412}
+[+302ms] {"t": "modules_ready", "ts": 302, "engine": "0xee7f85aab000"}
+[+302ms] {"t": "hooks_ready", "ts": 302}
+
+================================================================================
+*** Z_SINK_MATCH @ +371ms ***
+z_hex_full: 0c56a7fe90229534db5264bfff68b737e0a7681cf38bd0c97e46d4fe5ece601a986fc26f17314341a5d84753b4f4e9c945
+tracked buffers: 2, matches: 0
+================================================================================
+
+[*] Total: 4, Z_SINK_MATCH: 1

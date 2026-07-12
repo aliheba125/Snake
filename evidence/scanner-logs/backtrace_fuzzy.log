@@ -1,0 +1,222 @@
+Starting: Intent { cmp=com.snake/com.Entry }
+[+0.154s] Gadget PID 214704
+[+0ms] {"t": "boot", "ts": 0, "pid": 214704}
+[+289ms] {"t": "modules_ready", "ts": 289, "engine": "0xf058d2758000"}
+[+289ms] {"t": "hooks_ready", "ts": 289}
+
+================================================================================
+*** FIRST PREFIX_WRITE @ +548ms tid=214765 ***
+  sz=50 dst=0xb400f05b4243b4e0 src=0xf058cdbed000
+  src_str: https://push-918010152455.europe-west1.run.app/?z=
+  Registers:
+    x0 = 0xb400f05b4243b4e0
+    x1 = 0xf058cdbed000
+    x2 = 0x32
+    x19 = 0xf058cdfc4cd0
+    x20 = 0x62
+    x21 = 0xf058cdfc3770
+    x22 = 0xf058cdbed000
+    x23 = 0x32
+    x24 = 0xb400f05b4243b4e0
+    x25 = 0xa0
+    x26 = 0x71
+    x27 = 0xf058cdfc4da0
+    x28 = 0xf058cdfc6000
+    fp = 0xf058cdfc3510
+    lr = 0xf058d2f59d80
+    sp = 0xf058cdfc3510
+    pc = 0xf05c11883a40
+  BT ACCURATE (2 frames):
+    libengine.so+801d80
+    libengine.so+801d80
+  BT FUZZY (16 frames):
+    libengine.so+801d80
+    0xf05bec4565e4
+    0xf05bec4565e4
+    0xf05bec4605f4
+    0xf05bec3d2750
+    0xf05bec278414
+    0xf05bec278434
+    0xf05bec46ad14
+    0xf05bec45bef0
+    0xf05bec3eb7c4
+    0xf05bec3eb7c4
+    0xf05bec3eb7c4
+    0xf05bec3eb7c4
+    0xf05bec3eb7c4
+    0xf05bec3d1c34
+    0xf05bec3eb7c4
+  BT FP-WALK (30 frames):
+    0x3bf058d2801350
+    0xf058b3bec604
+    0xf058b3dfae0c
+    0xf058b3fa5bf0
+    0xf058b3fb8c68
+    0xf058b3fb8b74
+    0xf058b3bfa254
+    0xf058b3f8c3bc
+    0xf058b3f8c294
+    0xf058b3bf93dc
+    0xf058b3bf90a0
+    0xf058b3f73400
+    0xf058b3f94264
+    0xf058b3fd00b0
+    0xf058b3bfa254
+    0xf058b3f8c3bc
+    0xf058b3f8c294
+    0xf058b3bf93dc
+    0xf058b3bf90a0
+    0xf058b3f73400
+    0xf058b3f94264
+    0xf058b3fd00b0
+    0xf058b3bfa254
+    0xf058b3f8c3bc
+    0xf058b3f8c294
+    0xf058b3bf93dc
+    0xf058b3bf90a0
+    0xf058b3f73400
+    0xf058b3f94264
+    0xf058b3fd00b0
+  STACK[0:256]:
+    +000: 404dfccd58f00000501380d258f03b00
+    +010: 604cfccd58f00000d038fccd58f00000
+    +020: 2037fccd58f00000f4b4b760db1a2630
+    +030: 306f46c259f000b4d8ebf8d258f00000
+    +040: 00d0becd58f000003200000000000000
+    +050: b035fccd58f00000e46545ec5bf00000
+    +060: 881bc7075cf00000d035fccd58f00000
+    +070: b035fccd58f00000e46545ec5bf00000
+
+================================================================================
+*** FIRST FULL_READ @ +555ms tid=214765 ***
+  sz=153 dst=0xb400f05a324205d1 src=0xb400f05b4243b4e0
+  src_str: https://push-918010152455.europe-west1.run.app/?z=0cb967efde4d91f60f2d8467db24bc44f89e8c4fc9df3fc77969641c5e0043e861d118ce409da39a279f9f5e5b9be6c196&v=20
+  Registers:
+    x0 = 0xb400f05a324205d1
+    x1 = 0xb400f05b4243b4e0
+    x2 = 0x99
+    x19 = 0x99
+    x20 = 0xf058cdfc37e0
+    x21 = 0xb400f05b4243b4e0
+    x22 = 0xb400f059c2467110
+    x23 = 0x30261adb60b7b4f4
+    x24 = 0xf058cdfc3720
+    x25 = 0xf058cdfc38d0
+    x26 = 0xf058cdfc4c60
+    x27 = 0xf058cdfc4da0
+    x28 = 0xf058cdfc6000
+    fp = 0xf058cdfc34f0
+    lr = 0xf058d27b37f0
+    sp = 0xf058cdfc34f0
+    pc = 0xf05c11883a40
+  BT ACCURATE (2 frames):
+    libengine.so+5b7f0
+    libengine.so+5b7f0
+  BT FUZZY (16 frames):
+    libengine.so+5b7f0
+    libengine.so+7b034
+    libengine.so+7b014
+    libengine.so+a9980
+    0xf05bec4565e4
+    0xf05bec4565e4
+    0xf05bec4605f4
+    0xf05bec3d2750
+    0xf05bec278414
+    0xf05bec278434
+    0xf05bec46ad14
+    0xf05bec45bef0
+    0xf05bec3eb7c4
+    0xf05bec3eb7c4
+    0xf05bec3eb7c4
+    0xf05bec3eb7c4
+  BT FP-WALK (30 frames):
+    libengine.so+7b034
+    libengine.so+a9980
+    0xf058b3bec604
+    0xf058b3dfae0c
+    0xf058b3fa5bf0
+    0xf058b3fb8c68
+    0xf058b3fb8b74
+    0xf058b3bfa254
+    0xf058b3f8c3bc
+    0xf058b3f8c294
+    0xf058b3bf93dc
+    0xf058b3bf90a0
+    0xf058b3f73400
+    0xf058b3f94264
+    0xf058b3fd00b0
+    0xf058b3bfa254
+    0xf058b3f8c3bc
+    0xf058b3f8c294
+    0xf058b3bf93dc
+    0xf058b3bf90a0
+    0xf058b3f73400
+    0xf058b3f94264
+    0xf058b3fd00b0
+    0xf058b3bfa254
+    0xf058b3f8c3bc
+    0xf058b3f8c294
+    0xf058b3bf93dc
+    0xf058b3bf90a0
+    0xf058b3f73400
+    0xf058b3f94264
+
+[+577ms] Z_SINK: GET /?z=0cb967efde4d91f60f2d8467db24bc44f89e8c4fc9df3fc77969641c5e0043e861d118ce409da39a279f9f5e5b9be6c196&v=20 HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: push-918010152455.europe-west1.run.app
+
+�������������������������
+[+810ms] {"t": "FULL_READ", "sz": 7, "tid": 214793, "dst": "0xb400f059724487e9", "src": "0xb400f05ad2439311", "src_str": "redroid", "src_hex": "726564726f6964", "regs": {"x0": "0xb400f059724487e9", "x1": "0xb400f05ad2439311", "x2": "0x7", "x3": "0xf058a35b72a
+[+814ms] {"t": "FULL_READ", "sz": 20, "tid": 214793, "dst": "0xb400f059d24219e1", "src": "0xb400f05ad2439329", "src_str": "redroid14_arm64_only", "src_hex": "726564726f696431345f61726d36345f6f6e6c79", "regs": {"x0": "0xb400f059d24219e1", "x1": "0xb400f05ad243
+[+817ms] {"t": "FULL_READ", "sz": 7, "tid": 214793, "dst": "0xb400f059d24219f6", "src": "0xb400f05ad2439341", "src_str": "redroid", "src_hex": "726564726f6964", "regs": {"x0": "0xb400f059d24219f6", "x1": "0xb400f05ad2439341", "x2": "0x7", "x3": "0xf058a35b725
+[+820ms] {"t": "FULL_READ", "sz": 32, "tid": 214793, "dst": "0xb400f05aa244c28d", "src": "0xb400f0596246d570", "src_str": "\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\uff
+[+915ms] {"t": "FULL_READ", "sz": 65, "tid": 214793, "dst": "0xb400f05b3241d2f0", "src": "0xf058a35b77c0", "src_str": "\u000e\ufffdZ/\ufffdGq\\\ufffdi\u0012\ufffd9zB\ufffd\u0015\ufffdxE+1)j\ufffdG T\u000b\u0013@\u001e\ufffdG\ufffdv\ufffdL/\ufffd\ufffd\u261c\u
+[+917ms] {"t": "FULL_READ", "sz": 69, "tid": 214793, "dst": "0xb400f059d2415a1c", "src": "0xb400f05b3241cc30", "src_str": "\ufffdB00a5135dc3aac5a95dab97c3f3b1f2e8477f7737b69d9e5ce263a92b840b9f1973\ufffd", "src_hex": "004230306135313335646333616163356139356461
+[+1013ms] {"t": "FULL_READ", "sz": 1745, "tid": 214793, "dst": "0xb400f05a42428680", "src": "0xb400f0588a94e000", "src_str": "\n\ufffd\ufffdh\ufffdR\ufffd\ufffd\ufffd&)N\u0004-\ufffdN\ufffd8\ufffd\ufffd\u0002}\ufffd\u0004\ufffd4)\u0152\ufffd\ufffd;\ufffd\ufffd
+[+1017ms] {"t": "FULL_READ", "sz": 39, "tid": 214793, "dst": "0xb400f05a5245c051", "src": "0xb400f05a52475b90", "src_str": "https://rest.snakeseller.com/api/files/", "src_hex": "68747470733a2f2f726573742e736e616b6573656c6c65722e636f6d2f6170692f66696c65732f", "
+[+1019ms] {"t": "FULL_READ", "sz": 39, "tid": 214793, "dst": "0xb400f059d2415a39", "src": "0xb400f05a52468f90", "src_str": "https://storage.googleapis.com/reporst/", "src_hex": "68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f7265706f7273742f", "
+[+1022ms] {"t": "FULL_READ", "sz": 5, "tid": 214793, "dst": "0xb400f05a1245cc92", "src": "0xb400f05a52468be1", "src_str": "SEVIP", "src_hex": "5345564950", "regs": {"x0": "0xb400f05a1245cc92", "x1": "0xb400f05a52468be1", "x2": "0x5", "x3": "0xf058a35b72f8", "x
+[+1024ms] {"t": "FULL_READ", "sz": 18, "tid": 214793, "dst": "0xb400f05a1245cc99", "src": "0xb400f05b12449f51", "src_str": "{\"ar\":\"1.jpg?r=4\"}", "src_hex": "7b226172223a22312e6a70673f723d34227d", "regs": {"x0": "0xb400f05a1245cc99", "x1": "0xb400f05b12449f
+[+1027ms] {"t": "FULL_READ", "sz": 28, "tid": 214793, "dst": "0xb400f05a1245ccac", "src": "0xb400f0596246d300", "src_str": "{\"ar\":\"Best Cheat Engine .\"}", "src_hex": "7b226172223a224265737420436865617420456e67696e65202e227d", "regs": {"x0": "0xb400f05a1245
+[+1029ms] {"t": "FULL_READ", "sz": 18, "tid": 214793, "dst": "0xb400f05a1245ccc9", "src": "0xb400f05b12449f81", "src_str": "{\"ar\":\"Read More\"}", "src_hex": "7b226172223a2252656164204d6f7265227d", "regs": {"x0": "0xb400f05a1245ccc9", "x1": "0xb400f05b12449f
+[+1032ms] {"t": "FULL_READ", "sz": 28, "tid": 214793, "dst": "0xb400f05a1245dc9c", "src": "0xb400f0596247ddd0", "src_str": "https:///www.snakeengine.com", "src_hex": "68747470733a2f2f2f7777772e736e616b65656e67696e652e636f6d", "regs": {"x0": "0xb400f05a1245dc9c
+[+1034ms] {"t": "FULL_READ", "sz": 18, "tid": 214793, "dst": "0xb400f05b5241d539", "src": "0xb400f05b12449fb1", "src_str": "{\"ar\":\"2.jpg?r=4\"}", "src_hex": "7b226172223a22322e6a70673f723d34227d", "regs": {"x0": "0xb400f05b5241d539", "x1": "0xb400f05b12449f
+[+1037ms] {"t": "FULL_READ", "sz": 29, "tid": 214793, "dst": "0xb400f05b5241f28c", "src": "0xb400f05962480dd0", "src_str": "{\"ar\":\"Best For Carrom Pool\"}", "src_hex": "7b226172223a224265737420466f7220436172726f6d20506f6f6c227d", "regs": {"x0": "0xb400f05b5
+[+1039ms] {"t": "FULL_READ", "sz": 16, "tid": 214793, "dst": "0xb400f05b5241d56a", "src": "0xb400f05b12449fe1", "src_str": "{\"ar\":\"Buy Now\"}", "src_hex": "7b226172223a22427579204e6f77227d", "regs": {"x0": "0xb400f05b5241d56a", "x1": "0xb400f05b12449fe1", "
+[+1042ms] {"t": "FULL_READ", "sz": 28, "tid": 214793, "dst": "0xb400f05ad24381fb", "src": "0xb400f0596246ff70", "src_str": "https:///www.snakeengine.com", "src_hex": "68747470733a2f2f2f7777772e736e616b65656e67696e652e636f6d", "regs": {"x0": "0xb400f05ad24381fb
+[+1044ms] {"t": "FULL_READ", "sz": 18, "tid": 214793, "dst": "0xb400f05ad2441d78", "src": "0xb400f05b1244a011", "src_str": "{\"ar\":\"3.jpg?r=4\"}", "src_hex": "7b226172223a22332e6a70673f723d34227d", "regs": {"x0": "0xb400f05ad2441d78", "x1": "0xb400f05b1244a0
+[+1047ms] {"t": "FULL_READ", "sz": 38, "tid": 214793, "dst": "0xb400f05b124570cb", "src": "0xb400f05a5246e2d0", "src_str": "{\"ar\":\"Easy to win with Snake Engine\"}", "src_hex": "7b226172223a224561737920746f2077696e207769746820536e616b6520456e67696e65227d", 
+[+1050ms] {"t": "FULL_READ", "sz": 22, "tid": 214793, "dst": "0xb400f05b12458b32", "src": "0xb400f05b1244a041", "src_str": "{\"ar\":\"Check Sellers\"}", "src_hex": "7b226172223a22436865636b2053656c6c657273227d", "regs": {"x0": "0xb400f05b12458b32", "x1": "0xb4
+[+1052ms] {"t": "FULL_READ", "sz": 28, "tid": 214793, "dst": "0xb400f05b12457109", "src": "0xb400f0596247f0c0", "src_str": "https:///www.snakeengine.com", "src_hex": "68747470733a2f2f2f7777772e736e616b65656e67696e652e636f6d", "regs": {"x0": "0xb400f05b12457109
+[+1055ms] {"t": "FULL_READ", "sz": 11, "tid": 214793, "dst": "0xb400f05a9252892b", "src": "0xb400f05a92524299", "src_str": "8 Ball Pool", "src_hex": "382042616c6c20506f6f6c", "regs": {"x0": "0xb400f05a9252892b", "x1": "0xb400f05a92524299", "x2": "0xb", "x3": "
+[+1057ms] {"t": "FULL_READ", "sz": 20, "tid": 214793, "dst": "0xb400f05a92528937", "src": "0xb400f05a925242b1", "src_str": "8_ball_pool_icon.png", "src_hex": "385f62616c6c5f706f6f6c5f69636f6e2e706e67", "regs": {"x0": "0xb400f05a92528937", "x1": "0xb400f05a9252
+[+1060ms] {"t": "FULL_READ", "sz": 7, "tid": 214793, "dst": "0xb400f05a92528950", "src": "0xb400f05a92524311", "src_str": "56.26.2", "src_hex": "35362e32362e32", "regs": {"x0": "0xb400f05a92528950", "x1": "0xb400f05a92524311", "x2": "0x7", "x3": "0xf058a35b731
+[+1062ms] {"t": "FULL_READ", "sz": 6, "tid": 214793, "dst": "0xb400f05a9252895c", "src": "0xb400f05a92524329", "src_str": "56.7.0", "src_hex": "35362e372e30", "regs": {"x0": "0xb400f05a9252895c", "x1": "0xb400f05a92524329", "x2": "0x6", "x3": "0xf058a35b7318",
+[+1065ms] {"t": "FULL_READ", "sz": 26, "tid": 214793, "dst": "0xb400f05a92528963", "src": "0xb400f05962468aa0", "src_str": "com.miniclip.eightballpool", "src_hex": "636f6d2e6d696e69636c69702e656967687462616c6c706f6f6c", "regs": {"x0": "0xb400f05a92528963", "x1
+[+1067ms] {"t": "FULL_READ", "sz": 64, "tid": 214793, "dst": "0xb400f05a9252897e", "src": "0xb400f05b3241cb70", "src_str": "5bee86eda78132ef1f5610e153ca3f20ba71fb8ea2c3de147a5ee65bc0d22405", "src_hex": "356265653836656461373831333265663166353631306531353363613
+[+1070ms] {"t": "FULL_READ", "sz": 18, "tid": 214793, "dst": "0xb400f05a925289dd", "src": "0xb400f05b5241c051", "src_str": "aes15dfe41ae24.jpg", "src_hex": "61657331356466653431616532342e6a7067", "regs": {"x0": "0xb400f05a925289dd", "x1": "0xb400f05b5241c051",
+[+1073ms] {"t": "FULL_READ", "sz": 18, "tid": 214793, "dst": "0xb400f05a92528a0c", "src": "0xb400f05b5241c089", "src_str": "aes15dfe41ae24.jpg", "src_hex": "61657331356466653431616532342e6a7067", "regs": {"x0": "0xb400f05a92528a0c", "x1": "0xb400f05b5241c089",
+[+1076ms] {"t": "FULL_READ", "sz": 18, "tid": 214793, "dst": "0xb400f05a92528a3b", "src": "0xb400f05b5241c0c1", "src_str": "aes15dfe41ae24.jpg", "src_hex": "61657331356466653431616532342e6a7067", "regs": {"x0": "0xb400f05a92528a3b", "x1": "0xb400f05b5241c0c1",
+[+1078ms] {"t": "FULL_READ", "sz": 18, "tid": 214793, "dst": "0xb400f05a92528a6a", "src": "0xb400f05b5241c0f9", "src_str": "aes15dfe41ae24.jpg", "src_hex": "61657331356466653431616532342e6a7067", "regs": {"x0": "0xb400f05a92528a6a", "x1": "0xb400f05b5241c0f9",
+[+1081ms] {"t": "FULL_READ", "sz": 11, "tid": 214793, "dst": "0xb400f05a92528a8b", "src": "0xb400f05a92524389", "src_str": "Carrom Pool", "src_hex": "436172726f6d20506f6f6c", "regs": {"x0": "0xb400f05a92528a8b", "x1": "0xb400f05a92524389", "x2": "0xb", "x3": "
+[+1083ms] {"t": "FULL_READ", "sz": 20, "tid": 214793, "dst": "0xb400f05a92528a97", "src": "0xb400f05a925243a1", "src_str": "carrom_pool_icon.png", "src_hex": "636172726f6d5f706f6f6c5f69636f6e2e706e67", "regs": {"x0": "0xb400f05a92528a97", "x1": "0xb400f05a9252
+[+1086ms] {"t": "FULL_READ", "sz": 6, "tid": 214793, "dst": "0xb400f05a92528ab0", "src": "0xb400f05a92524401", "src_str": "19.1.0", "src_hex": "31392e312e30", "regs": {"x0": "0xb400f05a92528ab0", "x1": "0xb400f05a92524401", "x2": "0x6", "x3": "0xf058a35b7318",
+[+1088ms] {"t": "FULL_READ", "sz": 6, "tid": 214793, "dst": "0xb400f05a925238cb", "src": "0xb400f05a92524419", "src_str": "18.5.1", "src_hex": "31382e352e31", "regs": {"x0": "0xb400f05a925238cb", "x1": "0xb400f05a92524419", "x2": "0x6", "x3": "0xf058a35b7278",
+[+1091ms] {"t": "FULL_READ", "sz": 19, "tid": 214793, "dst": "0xb400f05a92528ac2", "src": "0xb400f05a925243b9", "src_str": "com.miniclip.carrom", "src_hex": "636f6d2e6d696e69636c69702e636172726f6d", "regs": {"x0": "0xb400f05a92528ac2", "x1": "0xb400f05a925243b
+[+1094ms] {"t": "FULL_READ", "sz": 64, "tid": 214793, "dst": "0xb400f05a424397f6", "src": "0xb400f05b3241d110", "src_str": "428f106b52063bfde7c4d1f58eeab15c8533efbfc267ba8a480cf166f762aa82", "src_hex": "343238663130366235323036336266646537633464316635386565616
+[+1096ms] {"t": "FULL_READ", "sz": 18, "tid": 214793, "dst": "0xb400f05a42439855", "src": "0xb400f05b52422e91", "src_str": "aes15dfe41ae24.jpg", "src_hex": "61657331356466653431616532342e6a7067", "regs": {"x0": "0xb400f05a42439855", "x1": "0xb400f05b52422e91",
+[+1099ms] {"t": "FULL_READ", "sz": 18, "tid": 214793, "dst": "0xb400f05a42439884", "src": "0xb400f05b52422ec9", "src_str": "aes15dfe41ae24.jpg", "src_hex": "61657331356466653431616532342e6a7067", "regs": {"x0": "0xb400f05a42439884", "x1": "0xb400f05b52422ec9",
+[+1102ms] {"t": "FULL_READ", "sz": 18, "tid": 214793, "dst": "0xb400f05a424398b3", "src": "0xb400f05b52422f01", "src_str": "aes15dfe41ae24.jpg", "src_hex": "61657331356466653431616532342e6a7067", "regs": {"x0": "0xb400f05a424398b3", "x1": "0xb400f05b52422f01",
+[+1105ms] {"t": "FULL_READ", "sz": 18, "tid": 214793, "dst": "0xb400f05a424398e2", "src": "0xb400f05b52422f39", "src_str": "aes15dfe41ae24.jpg", "src_hex": "61657331356466653431616532342e6a7067", "regs": {"x0": "0xb400f05a424398e2", "x1": "0xb400f05b52422f39",
+[+1107ms] {"t": "FULL_READ", "sz": 12, "tid": 214793, "dst": "0xb400f05a42439903", "src": "0xb400f05a92524479", "src_str": "Soccer Stars", "src_hex": "536f63636572205374617273", "regs": {"x0": "0xb400f05a42439903", "x1": "0xb400f05a92524479", "x2": "0xc", "x3"
+[+1110ms] {"t": "FULL_READ", "sz": 21, "tid": 214793, "dst": "0xb400f05a42439910", "src": "0xb400f05a92524491", "src_str": "soccer_stars_icon.png", "src_hex": "736f636365725f73746172735f69636f6e2e706e67", "regs": {"x0": "0xb400f05a42439910", "x1": "0xb400f05a9
+[+1112ms] {"t": "FULL_READ", "sz": 7, "tid": 214793, "dst": "0xb400f05a4243992a", "src": "0xb400f05a925244f1", "src_str": "36.14.2", "src_hex": "33362e31342e32", "regs": {"x0": "0xb400f05a4243992a", "x1": "0xb400f05a925244f1", "x2": "0x7", "x3": "0xf058a35b728
+[+1115ms] {"t": "FULL_READ", "sz": 6, "tid": 214793, "dst": "0xb400f05a42439936", "src": "0xb400f05a92524509", "src_str": "36.5.2", "src_hex": "33362e352e32", "regs": {"x0": "0xb400f05a42439936", "x1": "0xb400f05a92524509", "x2": "0x6", "x3": "0xf058a35b7288",
+[+1118ms] {"t": "FULL_READ", "sz": 24, "tid": 214793, "dst": "0xb400f05a4243993d", "src": "0xb400f05962485a20", "src_str": "com.miniclip.soccerstars", "src_hex": "636f6d2e6d696e69636c69702e736f636365727374617273", "regs": {"x0": "0xb400f05a4243993d", "x1": "0x
+[+1120ms] {"t": "FULL_READ", "sz": 64, "tid": 214793, "dst": "0xb400f05a42439956", "src": "0xb400f05b3241ca50", "src_str": "5bee86eda78132ef1f5610e153ca3f20ba71fb8ea2c3de147a5ee65bc0d22405", "src_hex": "356265653836656461373831333265663166353631306531353363613
+[+1123ms] {"t": "FULL_READ", "sz": 18, "tid": 214793, "dst": "0xb400f05a424399b5", "src": "0xb400f05a32421c71", "src_str": "aes15dfe41ae24.jpg", "src_hex": "61657331356466653431616532342e6a7067", "regs": {"x0": "0xb400f05a424399b5", "x1": "0xb400f05a32421c71",
+[+1126ms] {"t": "FULL_READ", "sz": 18, "tid": 214793, "dst": "0xb400f05a424399e4", "src": "0xb400f05a32421ca9", "src_str": "aes15dfe41ae24.jpg", "src_hex": "61657331356466653431616532342e6a7067", "regs": {"x0": "0xb400f05a424399e4", "x1": "0xb400f05a32421ca9",
+[+1129ms] {"t": "FULL_READ", "sz": 18, "tid": 214793, "dst": "0xb400f05a42439a13", "src": "0xb400f05a32421ce1", "src_str": "aes15dfe41ae24.jpg", "src_hex": "61657331356466653431616532342e6a7067", "regs": {"x0": "0xb400f05a42439a13", "x1": "0xb400f05a32421ce1",
+
+[*] Events: 57

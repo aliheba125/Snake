@@ -1,0 +1,94 @@
+Starting: Intent { cmp=com.snake/com.Entry }
+[*] Force-stopping snake...
+[*] Starting snake...
+[+0.153s] Gadget found (PID 25786)
+[+0.154s] attached
+[+0ms] {"t": "boot", "ts": 0, "pid": 25786}
+[+0ms] {"t": "hook_ok", "target": "malloc", "ts": 0}
+[+0ms] {"t": "hook_ok", "target": "dlopen"}
+[+0ms] {"t": "init_done", "ts": 0}
+[+0.196s] script loaded
+[+9ms] dlopen: libjavacrypto.so
+[+162ms] dlopen: libsoundpool.so
+[+163ms] dlopen: libaudioeffect_jni.so
+[+168ms] dlopen: librtp_jni.so
+[+183ms] dlopen: librs_jni.so
+[+324ms] dlopen: /system/framework/oat/arm64/android.hidl.base-V1.0-java.odex
+[+329ms] dlopen: /system/framework/oat/arm64/android.hidl.manager-V1.0-java.odex
+[+331ms] dlopen: /system/framework/oat/arm64/android.test.base.odex
+[+355ms] dlopen: /vendor/lib64/hw/android.hardware.graphics.mapper@2.0-impl-2.1.so
+[+358ms] dlopen: /vendor/lib64/egl/libEGL_angle.so
+[+359ms] dlopen: /vendor/lib64/egl/libGLESv1_CM_angle.so
+[+360ms] dlopen: /vendor/lib64/egl/libGLESv2_angle.so
+[+364ms] dlopen: libGLESv2_angle.so
+[+364ms] dlopen: libandroid.so
+[+364ms] dlopen: libjnigraphics.so
+[+366ms] dlopen: libwebviewchromium_loader.so
+[+369ms] dlopen: libstats_jni.so
+[+372ms] dlopen: /data/app/~~-SLMF5zKiY4RBcAV7qaZSg==/com.snake-TrUkxRHPJajpbTnWRub8UQ==/oat/arm64/base.odex
+[+377ms] dlopen: libframework-connectivity-jni.so
+[+626ms] dlopen: /data/app/~~-SLMF5zKiY4RBcAV7qaZSg==/com.snake-TrUkxRHPJajpbTnWRub8UQ==/base.apk!/lib/arm64-v8a/libengine.so
+[+755ms] dlopen: libGLESv2_angle.so
+[+760ms] dlopen: /data/app/~~-SLMF5zKiY4RBcAV7qaZSg==/com.snake-TrUkxRHPJajpbTnWRub8UQ==/base.apk!/lib/arm64-v8a/libflutter.so
+[+774ms] dlopen: libGLESv2_angle.so
+[+776ms] 315 modules loaded. First 30:
+  app_process64 @ 0xbcdc1f520000 size=135168
+  linker64 @ 0xf4ad7b978000 size=1535024
+  libandroid_runtime.so @ 0xf4ad3991c000 size=2564096
+  libbinder.so @ 0xf4ad62f19000 size=913408
+  libcutils.so @ 0xf4ad4b40d000 size=204800
+  libhidlbase.so @ 0xf4ad70d2e000 size=835584
+  liblog.so @ 0xf4ad422c7000 size=200704
+  libnativeloader.so @ 0xf4ad731b9000 size=270336
+  libsigchain.so @ 0xf4ad50a4c000 size=204800
+  libutils.so @ 0xf4ad40009000 size=200704
+  libwilhelm.so @ 0xf4ad4384d000 size=413696
+  libc++.so @ 0xf4ad5ac9c000 size=827392
+  libc.so @ 0xf4ad6669d000 size=5570560
+  libm.so @ 0xf4ad6d41a000 size=397312
+  libdl.so @ 0xf4ad3cd48000 size=204800
+  libbase.so @ 0xf4ad6d494000 size=397312
+  libharfbuzz_ng.so @ 0xf4ad4f84b000 size=991232
+  libminikin.so @ 0xf4ad3fe15000 size=335872
+  libz.so @ 0xf4ad3ff06000 size=200704
+  android.media.audio.common.types-V2-cpp.so @ 0xf4ad71488000 size=204800
+  audioclient-types-aidl-cpp.so @ 0xf4ad70f81000 size=135168
+  audioflinger-aidl-cpp.so @ 0xf4ad51705000 size=491520
+  audiopolicy-types-aidl-cpp.so @ 0xf4ad71744000 size=135168
+  spatializer-aidl-cpp.so @ 0xf4ad7168d000 size=208896
+  av-types-aidl-cpp.so @ 0xf4ad717cb000 size=135168
+  android.hardware.camera.device@3.2.so @ 0xf4ad70c8e000 size=348160
+  libandroid_net.so @ 0xf4ad5ac57000 size=135168
+  libbattery.so @ 0xf4ad5714a000 size=135168
+  libnetdutils.so @ 0xf4ad70f45000 size=204800
+  libmemtrack.so @ 0xf4ad3d144000 size=200704
+[+777ms] {"t": "all_hooks_installed", "ts": 777}
+[+800ms] dlopen: vulkan.pastel.so
+[+853ms] dlopen: /vendor/lib64/hw/android.hardware.graphics.mapper@2.0-impl-2.1.so
+[+854ms] dlopen: /vendor/lib64/hw/gralloc.redroid.so
+
+================================================================================
+*** Z SINK HIT @ +1212ms ***
+z_hex   : 0c72bbfbdf91cb064287efb55fcde782a0950aaf8f649fd5cca19864a934912cf1362b6428ea187a54878d8a2f31afab13
+iv_hex  : 72bbfbdf91cb064287efb55fcde782a0
+ct_hex  : 950aaf8f649fd5cca19864a934912cf1362b6428ea187a54878d8a2f31afab13
+RING size: 3000
+SINK backtrace (deep):
+   libflutter.so+6d4b5c
+   libflutter.so+6d9260
+   libflutter.so+7f1bfc
+   libflutter.so+7e8808
+   libflutter.so+87a5b0
+   libflutter.so+86bd78
+   libflutter.so+86bb08
+   libflutter.so+8ff0c4
+   libflutter.so+8c3540
+   libc.so+cb6ac
+   libc.so+68220
+N raw locations: 0
+================================================================================
+[+1231ms] dlopen: libGLESv2_angle.so
+
+================================================================================
+[*] Z SINK: 1, KDF: 0, AES_enc: 0, AES_dec: 0, FUN_167d38: 0
+[*] Full results saved to /tmp/proof_results3.json

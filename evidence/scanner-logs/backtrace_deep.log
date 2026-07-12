@@ -1,0 +1,271 @@
+Starting: Intent { cmp=com.snake/com.Entry }
+[+0.153s] Gadget PID 214540
+[+0ms] {"t": "boot", "ts": 0, "pid": 214540}
+[+1ms] {"t": "boot_done", "ts": 1}
+[+289ms] {"t": "modules_ready", "ts": 289, "engine": "0xe64441e54000", "flutter": "0xe64427615000"}
+[+295ms] {"t": "hooks_ready", "ts": 295}
+
+=== PREFIX_WRITE @ +519ms tid=214602 ===
+  sz=50 dst=0xb400e6455de3bae0 src=0xe6443db5e000
+  src_str: https://push-918010152455.europe-west1.run.app/?z=
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+        sp=0xe644265f9510 fp=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+801d80 (0xe64442655d80)
+    libengine.so+801d80 (0xe64442655d80)
+
+=== PREFIX_WRITE @ +519ms tid=214602 ===
+  sz=50 dst=0xb400e6455de3bae0 src=0xe6443db5e000
+  src_str: https://push-918010152455.europe-west1.run.app/?z=
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+        sp=0xe644265f9510 fp=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+801d80 (0xe64442655d80)
+    libengine.so+801d80 (0xe64442655d80)
+
+=== FULL_READ @ +520ms tid=214602 ===
+  sz=153 dst=0xb400e645bde21791 src=0xb400e6455de3bae0
+  src_str: https://push-918010152455.europe-west1.run.app/?z=0cfbb26330afea1aef9613232c0ce4d764a01cb69f2ced52ec76dc22f030fca3ca25f830b8dcce609e79f6448741f8732d&v=20
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +520ms tid=214602 ===
+  sz=153 dst=0xb400e645bde21791 src=0xb400e6455de3bae0
+  src_str: https://push-918010152455.europe-west1.run.app/?z=0cfbb26330afea1aef9613232c0ce4d764a01cb69f2ced52ec76dc22f030fca3ca25f830b8dcce609e79f6448741f8732d&v=20
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+[+542ms] *** Z_SINK: GET /?z=0cfbb26330afea1aef9613232c0ce4d764a01cb69f2ced52ec76dc22f030fca3ca25f830b8dcce609e79f6448741f8732d&v=20 HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: push-918010152455
+
+=== FULL_READ @ +814ms tid=214634 ===
+  sz=7 dst=0xb400e6461de1ee69 src=0xb400e644cde39811
+  src_str: redroid
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +814ms tid=214634 ===
+  sz=7 dst=0xb400e6461de1ee69 src=0xb400e644cde39811
+  src_str: redroid
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +815ms tid=214634 ===
+  sz=20 dst=0xb400e645dde0eb41 src=0xb400e644cde39829
+  src_str: redroid14_arm64_only
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +815ms tid=214634 ===
+  sz=20 dst=0xb400e645dde0eb41 src=0xb400e644cde39829
+  src_str: redroid14_arm64_only
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +815ms tid=214634 ===
+  sz=7 dst=0xb400e645dde0eb56 src=0xb400e644cde39841
+  src_str: redroid
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +816ms tid=214634 ===
+  sz=7 dst=0xb400e645dde0eb56 src=0xb400e644cde39841
+  src_str: redroid
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +816ms tid=214634 ===
+  sz=32 dst=0xb400e6451de4f45d src=0xb400e6465de78350
+  src_str: ��������������������������������
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +816ms tid=214634 ===
+  sz=32 dst=0xb400e6451de4f45d src=0xb400e6465de78350
+  src_str: ��������������������������������
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +910ms tid=214634 ===
+  sz=65 dst=0xb400e6462de27190 src=0xe644049487c0
+  src_str: @�[���oO�6���C?���M���H�z?ztM�P)8�����3���㕝�f�Pj�]�G�y
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +910ms tid=214634 ===
+  sz=65 dst=0xb400e6462de27190 src=0xe644049487c0
+  src_str: @�[���oO�6���C?���M���H�z?ztM�P)8�����3���㕝�f�Pj�]�G�y
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +911ms tid=214634 ===
+  sz=69 dst=0xb400e645dde0fd7c src=0xb400e6462de26590
+  src_str: �B007b2d868e444aeb4037702ca3b608e46336f8dbdea5af781c94e2e51654963a3f�
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +911ms tid=214634 ===
+  sz=69 dst=0xb400e645dde0fd7c src=0xb400e6462de26590
+  src_str: �B007b2d868e444aeb4037702ca3b608e46336f8dbdea5af781c94e2e51654963a3f�
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1005ms tid=214634 ===
+  sz=1448 dst=0xb400e646ade1fc70 src=0xb400e64400309000
+  src_str: 	�$c$��	����[�m��B}�:~lKNo�e�
+�������gꤣ�����.5J�k�}�����X�v^r���+�����?�Q�+W��r��	����≘���+�M��7��=��vt�+��G�������,F�D"u�,Bހ��tKЈ�ᄘB���y�^G�������__���������9?c�7�u�;	%�#!T�ﻲK��"4�k�����w\�K/R5*�'3��B�˶Iޠ��:�G�{��@����ƕgNA�R�MU�
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1005ms tid=214634 ===
+  sz=1448 dst=0xb400e646ade1fc70 src=0xb400e64400309000
+  src_str: 	�$c$��	����[�m��B}�:~lKNo�e�
+�������gꤣ�����.5J�k�}�����X�v^r���+�����?�Q�+W��r��	����≘���+�M��7��=��vt�+��G�������,F�D"u�,Bހ��tKЈ�ᄘB���y�^G�������__���������9?c�7�u�;	%�#!T�ﻲK��"4�k�����w\�K/R5*�'3��B�˶Iޠ��:�G�{��@����ƕgNA�R�MU�
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1006ms tid=214634 ===
+  sz=297 dst=0xb400e645cde3a7b8 src=0xb400e64400309000
+  src_str: l4ֲp]�$�J_�s�!��x��-%���A�v��E�df��L�@��*�b�bus����(Ե�%+�k���z���B�����@ԫ�Y���`�1��i,��k`v��K�~и��~����q�j�;�]Y�ܸ�H��z�jc���{�a�7�˅�C��e��\�g����ޓr�F}�]�bݞ��X���Y�I#������W��#�F��p�L�����&#y9:҃�V0����P�V>K�E�F}�%��7J/U�q
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1006ms tid=214634 ===
+  sz=297 dst=0xb400e645cde3a7b8 src=0xb400e64400309000
+  src_str: l4ֲp]�$�J_�s�!��x��-%���A�v��E�df��L�@��*�b�bus����(Ե�%+�k���z���B�����@ԫ�Y���`�1��i,��k`v��K�~и��~����q�j�;�]Y�ܸ�H��z�jc���{�a�7�˅�C��e��\�g����ޓr�F}�]�bݞ��X���Y�I#������W��#�F��p�L�����&#y9:҃�V0����P�V>K�E�F}�%��7J/U�q
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1010ms tid=214634 ===
+  sz=39 dst=0xb400e6459de7b751 src=0xb400e6459de64a50
+  src_str: https://rest.snakeseller.com/api/files/
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1010ms tid=214634 ===
+  sz=39 dst=0xb400e6459de7b751 src=0xb400e6459de64a50
+  src_str: https://rest.snakeseller.com/api/files/
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1011ms tid=214634 ===
+  sz=39 dst=0xb400e645dde0f939 src=0xb400e6459de727d0
+  src_str: https://storage.googleapis.com/reporst/
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1011ms tid=214634 ===
+  sz=39 dst=0xb400e645dde0f939 src=0xb400e6459de727d0
+  src_str: https://storage.googleapis.com/reporst/
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1012ms tid=214634 ===
+  sz=5 dst=0xb400e6458de54b32 src=0xb400e6459de75ea1
+  src_str: SEVIP
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1012ms tid=214634 ===
+  sz=5 dst=0xb400e6458de54b32 src=0xb400e6459de75ea1
+  src_str: SEVIP
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1013ms tid=214634 ===
+  sz=18 dst=0xb400e6458de54b39 src=0xb400e6467de4af11
+  src_str: {"ar":"1.jpg?r=4"}
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1013ms tid=214634 ===
+  sz=18 dst=0xb400e6458de54b39 src=0xb400e6467de4af11
+  src_str: {"ar":"1.jpg?r=4"}
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1014ms tid=214634 ===
+  sz=28 dst=0xb400e6458de54b4c src=0xb400e6465de7ef20
+  src_str: {"ar":"Best Cheat Engine ."}
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1014ms tid=214634 ===
+  sz=28 dst=0xb400e6458de54b4c src=0xb400e6465de7ef20
+  src_str: {"ar":"Best Cheat Engine ."}
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1015ms tid=214634 ===
+  sz=18 dst=0xb400e6458de54b69 src=0xb400e6467de4af41
+  src_str: {"ar":"Read More"}
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+
+=== FULL_READ @ +1015ms tid=214634 ===
+  sz=18 dst=0xb400e6458de54b69 src=0xb400e6467de4af41
+  src_str: {"ar":"Read More"}
+  regs: x19=None x20=None x21=None x22=None x23=None x24=None
+  BACKTRACE (up to 20 frames):
+    libengine.so+5b7f0 (0xe64441eaf7f0)
+    libengine.so+5b7f0 (0xe64441eaf7f0)

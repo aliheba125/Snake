@@ -1,0 +1,64 @@
+Starting: Intent { cmp=com.snake/com.Entry }
+[+0.154s] Gadget PID 214377
+[+0ms] {"t": "boot", "ts": 0, "pid": 214377}
+[+1ms] {"t": "boot_done", "ts": 1}
+[+289ms] {"t": "modules_ready", "ts": 289}
+[+293ms] {"t": "init_ready", "ts": 293}
+[+397ms] {"t": "PREFIX", "ts": 397, "dst": "0xb400f3a597042090", "tid": 214440}
+[+397ms] {"t": "STALKER_START", "tid": 214440, "dst_low": "0xb400f3a597042090", "dst_high": "0xb400f3a597042158", "ts": 397}
+[+401ms] {"t": "URL_COMPLETE", "ts": 401, "url": "https://push-918010152455.europe-west1.run.app/?z=0c2606ae2572f9ed0f02aeb1387c44ae29109763513fc1ddfb16b3871134b4ad534972066191b658b821746d8c203f6b75&v=20\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\b\ufffd\b\ufffd\ufffd\ufffd/\u0003\ufffd\ufffd\ufffd\ufffd\ufff
+[+401ms] {"t": "STALKER_STOP", "tid": 214440, "writes_captured": 0, "ts": 401}
+[+401ms] {"t": "FULL_END", "ts": 401}
+[+417ms] {"t": "Z_SINK_HIT", "data": "GET /?z=0c2606ae2572f9ed0f02aeb1387c44ae29109763513fc1ddfb16b3871134b4ad534972066191b658b821746d8c203f6b75&v=20 HTTP/1.1\r\nuser-agent: Dart/3.5 (dart:io)\r\naccept-encoding: gzip\r\nhost: push-918010152455.europe-west1.run.app\r\n\r\n\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd
+[+619ms] {"t": "FULL_END", "ts": 619}
+[+619ms] {"t": "FULL_END", "ts": 619}
+[+619ms] {"t": "FULL_END", "ts": 619}
+[+619ms] {"t": "FULL_END", "ts": 619}
+[+711ms] {"t": "FULL_END", "ts": 711}
+[+711ms] {"t": "FULL_END", "ts": 711}
+[+803ms] {"t": "FULL_END", "ts": 803}
+[+803ms] {"t": "FULL_END", "ts": 803}
+[+804ms] {"t": "FULL_END", "ts": 804}
+[+804ms] {"t": "FULL_END", "ts": 804}
+[+804ms] {"t": "FULL_END", "ts": 804}
+[+804ms] {"t": "FULL_END", "ts": 804}
+[+804ms] {"t": "FULL_END", "ts": 804}
+[+804ms] {"t": "FULL_END", "ts": 804}
+[+804ms] {"t": "FULL_END", "ts": 804}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}
+[+805ms] {"t": "FULL_END", "ts": 805}

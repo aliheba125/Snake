@@ -1,0 +1,200 @@
+Starting: Intent { cmp=com.snake/com.Entry }
+[+0.153s] Gadget PID 215246
+[+0ms] {"t": "boot", "ts": 0, "pid": 215246}
+[+287ms] {"t": "modules_ready", "ts": 287, "engine": "0xf5d270f93000"}
+[+287ms] {"t": "hooks_ready", "ts": 287}
+[+337ms] ALLOC_64 addr=0xb400f5d3a383bf60 caller_lr=libengine.so+93dc0 caller3_lr=linker64+5aea0
+[+337ms] WATCH_ARM addr=0xb400f5d3a383bf60
+[+337ms] ALLOC_64 addr=0xb400f5d3a383bf60 caller_lr=libengine.so+5a46c caller3_lr=libengine.so+5a328
+[+337ms] WATCH_ARM addr=0xb400f5d3a383bf60
+[+338ms] ALLOC_64 addr=0xb400f5d3a383bf60 caller_lr=libengine.so+5a56c caller3_lr=libengine.so+5a334
+[+338ms] WATCH_ARM addr=0xb400f5d3a383bf60
+[+338ms] ALLOC_64 addr=0xb400f5d3a383bf60 caller_lr=libengine.so+5b4c0 caller3_lr=libengine.so+940a4
+[+338ms] WATCH_ARM addr=0xb400f5d3a383bf60
+[+338ms] ALLOC_64 addr=0xb400f5d3a383bf60 caller_lr=libengine.so+5b574 caller3_lr=libengine.so+5b4e8
+[+339ms] WATCH_ARM addr=0xb400f5d3a383bf60
+[+339ms] ALLOC_64 addr=0xb400f5d3a383bf60 caller_lr=libengine.so+5b574 caller3_lr=libengine.so+5b4e8
+[+339ms] WATCH_ARM addr=0xb400f5d3a383bf60
+[+340ms] ALLOC_64 addr=0xb400f5d3a383bf60 caller_lr=libengine.so+5b574 caller3_lr=libengine.so+5b4e8
+[+340ms] WATCH_ARM addr=0xb400f5d3a383bf60
+[+340ms] ALLOC_64 addr=0xb400f5d3a383bf60 caller_lr=libengine.so+5b574 caller3_lr=libengine.so+5b4e8
+[+340ms] WATCH_ARM addr=0xb400f5d3a383bf60
+[+371ms] ALLOC_64 addr=0xb400f5d3a3837d70 caller_lr=libengine.so+6005c caller3_lr=libengine.so+5fe44
+[+371ms] WATCH_ARM addr=0xb400f5d3a3837d70
+
+[+388ms] *** Z_SINK: GET /?z=0c2a5e27adf544c866d43681c84f814589dfbb0fbc2e6e6223d023c098925284aeae6e55f1663d216ad968a4e27ac4d91e&v=20 HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: push-918010152455
+[+488ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+488ms] WATCH_ARM addr=0xb400f5d3a3831a60
+[+488ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+488ms] WATCH_ARM addr=0xb400f5d3a382cd30
+[+489ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+489ms] WATCH_ARM addr=0xb400f5d3a382cd30
+[+490ms] ALLOC_64 addr=0xb400f5d3a383c690 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+490ms] WATCH_ARM addr=0xb400f5d3a383c690
+[+494ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+494ms] WATCH_ARM addr=0xb400f5d3a3831a60
+[+494ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+494ms] WATCH_ARM addr=0xb400f5d3a382cd30
+[+495ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+495ms] WATCH_ARM addr=0xb400f5d3a382cd30
+[+496ms] ALLOC_64 addr=0xb400f5d3a38382c0 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+496ms] WATCH_ARM addr=0xb400f5d3a38382c0
+[+526ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+526ms] WATCH_ARM addr=0xb400f5d3a3831a60
+[+526ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+526ms] WATCH_ARM addr=0xb400f5d3a382cd30
+[+527ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+527ms] WATCH_ARM addr=0xb400f5d3a382cd30
+[+528ms] ALLOC_64 addr=0xb400f5d3a3834df0 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+543ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+543ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+544ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+545ms] ALLOC_64 addr=0xb400f5d3a383c000 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+546ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+546ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+546ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+548ms] ALLOC_64 addr=0xb400f5d3a3837c30 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+549ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+550ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+550ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+552ms] ALLOC_64 addr=0xb400f5d3a38386d0 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+552ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+552ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+553ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+554ms] ALLOC_64 addr=0xb400f5d3a383bec0 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+555ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+555ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+555ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+557ms] ALLOC_64 addr=0xb400f5d3a3831b50 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+558ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+558ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+558ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+560ms] ALLOC_64 addr=0xb400f5d3a382da00 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+560ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+560ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+561ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+562ms] ALLOC_64 addr=0xb400f5d3a382d3c0 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+563ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+563ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+563ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+565ms] ALLOC_64 addr=0xb400f5d3a3837f50 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+565ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+566ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+566ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+567ms] ALLOC_64 addr=0xb400f5d3a382b930 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+568ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+568ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+568ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+570ms] ALLOC_64 addr=0xb400f5d3a3838770 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+570ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+570ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+571ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+572ms] ALLOC_64 addr=0xb400f5d3a3836830 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+573ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+573ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+573ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+575ms] ALLOC_64 addr=0xb400f5d3a3837d70 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+575ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+575ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+576ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+577ms] ALLOC_64 addr=0xb400f5d3a3838220 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+579ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+579ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+580ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+581ms] ALLOC_64 addr=0xb400f5d3a383c500 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+582ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+582ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+582ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+584ms] ALLOC_64 addr=0xb400f5d3a38341c0 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+584ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+584ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+585ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+586ms] ALLOC_64 addr=0xb400f5d3a3838400 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+590ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+590ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+591ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+592ms] ALLOC_64 addr=0xb400f5d3a38331d0 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+600ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+600ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+601ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+602ms] ALLOC_64 addr=0xb400f5d3a3834990 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+604ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+605ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+605ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+606ms] ALLOC_64 addr=0xb400f5d3a384ab50 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+611ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+611ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+612ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+613ms] ALLOC_64 addr=0xb400f5d3a384a330 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+613ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+614ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+614ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+616ms] ALLOC_64 addr=0xb400f5d3a384a5b0 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+620ms] ALLOC_64 addr=0xb400f5d3a3831a60 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+621ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+621ms] ALLOC_64 addr=0xb400f5d3a382cd30 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+622ms] ALLOC_64 addr=0xb400f5d3a384a790 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+622ms] ALLOC_64 addr=0xb400f5d3a384a0b0 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+623ms] ALLOC_64 addr=0xb400f5d3a384a150 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+623ms] ALLOC_64 addr=0xb400f5d3a384a150 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+624ms] ALLOC_64 addr=0xb400f5d3a384aba0 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+630ms] ALLOC_64 addr=0xb400f5d3a384b910 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+630ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+630ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+631ms] ALLOC_64 addr=0xb400f5d3a384b5f0 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+639ms] ALLOC_64 addr=0xb400f5d3a384b910 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+640ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+640ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+641ms] ALLOC_64 addr=0xb400f5d3a3849520 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+651ms] ALLOC_64 addr=0xb400f5d3a384b910 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+651ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+651ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+653ms] ALLOC_64 addr=0xb400f5d3a384b2d0 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+655ms] ALLOC_64 addr=0xb400f5d3a384b910 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+656ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+656ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+658ms] ALLOC_64 addr=0xb400f5d3a384b410 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+658ms] ALLOC_64 addr=0xb400f5d3a384b910 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+658ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+659ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+660ms] ALLOC_64 addr=0xb400f5d3a384bb40 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+660ms] ALLOC_64 addr=0xb400f5d3a384b910 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+661ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+661ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+663ms] ALLOC_64 addr=0xb400f5d3a384b640 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+665ms] ALLOC_64 addr=0xb400f5d3a384b910 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+665ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+666ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+667ms] ALLOC_64 addr=0xb400f5d3a384bfa0 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+667ms] ALLOC_64 addr=0xb400f5d3a384b910 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+667ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+668ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+668ms] ALLOC_64 addr=0xb400f5d3a384c040 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+670ms] ALLOC_64 addr=0xb400f5d3a384b910 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+670ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+671ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+672ms] ALLOC_64 addr=0xb400f5d3a384c590 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+684ms] ALLOC_64 addr=0xb400f5d3a384b910 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+685ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+685ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+686ms] ALLOC_64 addr=0xb400f5d3a384c7c0 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+695ms] ALLOC_64 addr=0xb400f5d3a384b910 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+695ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+695ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+697ms] ALLOC_64 addr=0xb400f5d3a384c450 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+698ms] ALLOC_64 addr=0xb400f5d3a384b910 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+699ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+699ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+700ms] ALLOC_64 addr=0xb400f5d3a384c130 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+703ms] ALLOC_64 addr=0xb400f5d3a384b910 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+704ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+704ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+706ms] ALLOC_64 addr=0xb400f5d3a384cc70 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd2c
+[+722ms] ALLOC_64 addr=0xb400f5d3a384b910 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
+[+723ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x35f5d27172cd98 caller3_lr=linker64+50f00
+[+723ms] ALLOC_64 addr=0xb400f5d3a384b050 caller_lr=0x72f5d27172e1b8 caller3_lr=linker64+50f00
+[+724ms] ALLOC_64 addr=0xb400f5d3a384c1d0 caller_lr=0x73f5d271763c08 caller3_lr=libengine.so+79bd9c
+[+725ms] ALLOC_64 addr=0xb400f5d3a384b910 caller_lr=libengine.so+7991f8 caller3_lr=linker64+50f00
