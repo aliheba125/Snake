@@ -1,289 +1,54 @@
-# Snake Engine — SE_2.2.6.apk — Full Reverse Engineering Documentation
+# Snake Engine — Reverse-Engineering Study
 
-Raw technical documentation of the decompilation and analysis of `SE_2.2.6.apk`.
+A defensive reverse-engineering study of the Android app **Snake Engine** (`com.snake` v2.2.6),
+a Flutter-based commercial game-cheat / enhancement platform.
 
----
+> **➡️ Start with [MASTER_INDEX.md](MASTER_INDEX.md).** It is the entry point and defines the
+> reading order. This repository is organized as a **single source of truth**: every claim carries
+> an explicit confidence status and links to raw evidence.
 
-## Package Metadata
-
-| Field | Value |
-|-------|-------|
-| Package name | `com.snake` |
-| App name | Snake Engine |
-| versionName | 2.2.6 |
-| APK SHA-256 | `f847608605ea1da9a7452f2072ee59e4dc26a900ca2aad0315c967c9c896d561` |
-| minSdkVersion | 28 (Android 9) |
-| targetSdkVersion / compileSdkVersion | 35 (Android 15) |
-| ABI | `arm64-v8a` only |
-| UI framework | Flutter |
-| Dart version | 3.5.4 (≈ Flutter 3.24.x) |
-| Dart snapshot hash | `80a49c7111088100a233b2ae788e1f48` |
-| Build flags | product, arm64, android, compressed-pointers, dwarf_stack_traces, dedup_instructions |
-| NDK (native) | r25b / clang 14.0.6 |
+**Status legend:** ✅ Confirmed · 🟨 Partially Confirmed · 🟦 In Progress · ⬜ Not Started ·
+❓ Unknown · ❌ Disproved
 
 ---
 
-## APK Contents
+## TL;DR (with honest status)
+
+- ✅ The cold-launch **beacon** `z` is `0x0c ‖ AES‑256‑ECB(key, plaintext)`, where the key is
+  **derived from wall-clock time** and was **reproduced offline byte-for-byte**. The server
+  decrypts `z` and keys its reply to the nonce+time inside it — a challenge/response reproduced in
+  **both** directions.
+- ✅ The beacon endpoint has **no cert pinning, attestation, IP filter, or authenticity check**.
+- ✅ On-device **activation** (6-digit Entry Key) is validated **locally** with **symmetric**
+  crypto (libengine has zero asymmetric primitives).
+- ❓/⬜ The exact **Entry-Key algorithm** is **not** reverse-engineered and **no valid key was
+  forged**. Activation was **not** bypassed. The seller REST API was **not** accessed.
+
+## Navigation
+
+| Doc | Purpose |
+|-----|---------|
+| [MASTER_INDEX.md](MASTER_INDEX.md) | Entry point + reading order |
+| [docs/](docs/) | The study, 00→11 (overview, architecture, static, dynamic, crypto, beacon, activation, runtime, findings, evidence, open questions, next steps) |
+| [KNOWLEDGE_MAP.md](KNOWLEDGE_MAP.md) | How all components relate |
+| [EVIDENCE_MATRIX.md](EVIDENCE_MATRIX.md) | Conclusion → evidence mapping |
+| [UNKNOWNS.md](UNKNOWNS.md) | What we don't know + how to resolve |
+| [ROADMAP.md](ROADMAP.md) | Progress per axis |
+| [REPOSITORY_TREE.md](REPOSITORY_TREE.md) | Every folder/file explained |
+
+## Layout
 
 ```
-classes.dex                         Android embedding + AndroidX/Google/Firebase libs
-lib/arm64-v8a/libapp.so   (5.4 MB)  Dart AOT compiled app logic
-lib/arm64-v8a/libengine.so(8.2 MB)  Native engine (obfuscated)
-lib/arm64-v8a/libflutter.so(11 MB)  Flutter engine (Google)
-assets/flutter_assets/              Fonts (FontAwesome, slick.ttf), SVG icons
-resources.arsc, res/                643 XML, 229 PNG, 15 WEBP
+docs/        authoritative study (READ THIS)
+artifacts/   inputs: apk/, native-libs/, decompiled/
+evidence/    raw proof: screenshots, traces, pcaps, logs, samples
+scripts/     tooling: beacon-crypto, memory-scanners, network, frida-agents
+archive/     historical working notes (superseded; docs/ overrides)
 ```
 
-Native library SHA-256:
-| Library | Size | SHA-256 |
-|---------|------|---------|
-| libapp.so | 5.4 MB | `2d3577fbaaacc7cb63e5b04a5a21572eeee1e0d55b223941d6a5496a91a427c8` |
-| libengine.so | 8.2 MB | `f5d751e6bde8f0595eda9836338e845b029a41d2362743a2a4619ba99f41e3be` |
-| libflutter.so | 11 MB | `0baa710d6b7f7de2f8bcc05aa2950bab2989f3a4c95bc7f7bcc23ce84626ee52` |
+## Scope & ethics
 
----
-
-## Architecture
-
-```
-com.snake (Snake Engine v2.2.6)
-│
-├── libapp.so   (Flutter / Dart)  — front-end / management UI
-│     Seller panel: Global Seller, Code Sale, Account Manager, Accounts List,
-│                   Create Key, Key Details
-│     Subscription + device-locked activation: Enter code, Add Device,
-│                   Device removed, Enter device id, ban system, Balance, Convert
-│     Game Selection, update checker, Facebook login, feeds, notifications
-│     Backend: https://rest.snakeseller.com/api/request/
-│
-└── libengine.so  (Native C/C++, obfuscated)  — engine
-      App-virtualization container (loads target game in-process)
-      Native inline-hook engine (Java method hooking)
-      Runtime code generation into RWX memory
-      UID/PID remapping
-```
-
----
-
-## Tools Used
-
-| Purpose | Tool | Version |
-|---------|------|---------|
-| DEX → Java | jadx | 1.5.1 |
-| Resources / manifest / smali | apktool | 2.10.0 |
-| Dart AOT (libapp.so) | Blutter | built from source (Dart VM 3.5.4) |
-| Native decompilation (libengine.so) | Ghidra | 12.1.2 |
-| ELF / disassembly | pyelftools, capstone | — |
-| Dynamic emulation | Qiling / Unicorn | 1.4.6 / 2.1.4 |
-
----
-
-## Analysis Workflow (what was done)
-
-1. Downloaded `SE_2.2.6.apk` from the release; verified SHA-256 against the release asset.
-2. Identified the app as Flutter (Dart AOT) with an obfuscated native engine.
-3. jadx 1.5.1 — decompiled `classes.dex` to Java (3086 .java files).
-4. apktool 2.10.0 — decoded manifest, resources, smali.
-5. Blutter (built against Dart VM 3.5.4) — recovered Dart pseudo-source + object pool from `libapp.so`.
-6. Ghidra 12.1.2 — decompiled 2241 of 2283 defined functions of `libengine.so` to C (2418 total entries incl. ~135 external/imported).
-7. pyelftools/capstone — analyzed ELF sections, 44 constructors, relocations, protection.
-8. Qiling/Unicorn — emulated init constructors; observed runtime `mmap(RWX)` + timing checks.
-9. Extracted strings from every binary (~76k) and consolidated documentation.
-
-## Servers & Endpoints
-
-| Host / URL | Role |
-|------------|------|
-| `https://rest.snakeseller.com/api/request/` | Primary backend API (single endpoint; encrypted payload) |
-| `https://www.snakeengine.com/topup/` | Top-up / purchase page |
-| `firebaseinstallations.googleapis.com` | Firebase Installations |
-| `www.googleapis.com/auth/userinfo.email` | Google OAuth scope |
-| `play.google.com/store/apps/details` | Play Store links |
-| `apkpure.com/search` | External APK search |
-| `flagsapi.com` | Country flags (UI) |
-| `t.me`, `wa.me`, `discord.com/invite`, `facebook.com`, `imgur.com` | Social / share links |
-
-API request fields (Dart layer): `encryptedData`, `deviceId`, `timestamp` — application-layer encrypted payload over HTTPS.
-
-## Databases & Storage
-
-- Cloud: Firebase project `fennec-6d906`; storage bucket `fennec-6d906.firebasestorage.app`; Firebase Cloud Messaging; Firebase Analytics/Measurement (local SQLite measurement DB — `ALTER TABLE apps ...`).
-- Local: Isar (Flutter embedded NoSQL) indicators present in `libapp.so` (`Isar`, `pragma`); SQLite underlying.
-
-## Libraries & Dependencies
-
-### AndroidX / Google / Kotlin (from META-INF *.version)
-| Library | Version |
-|---------|---------|
-| androidx.core | 1.13.1 |
-| androidx.appcompat | 1.7.0 |
-| androidx.activity | 1.8.1 |
-| androidx.fragment | 1.7.1 |
-| androidx.lifecycle-runtime | 2.7.0 |
-| androidx.recyclerview | 1.1.0 |
-| androidx.window | 1.2.0 |
-| com.google.android.material | 1.11.0 |
-| kotlinx-coroutines-core | 1.7.1 |
-
-Also present: androidx annotation, cardview, coordinatorlayout, drawerlayout, dynamicanimation, emoji2, viewpager/viewpager2, transition, vectordrawable(-animated), startup-runtime, profileinstaller, tracing, savedstate, documentfile, localbroadcastmanager, privacysandbox.ads-adservices, databinding/viewbinding.
-
-### Firebase / Google Play Services
-Firebase Messaging, Firebase Installations, Firebase Analytics/Measurement, Firebase Common/Components/Concurrent, Google Sign-In (GMS auth), Google DataTransport, Google Play Services (measurement, dynamite).
-
-### Flutter / Dart
-Flutter engine ≈ 3.24.x (Dart 3.5.4). Dart packages detected: `ffi`, `stack_trace`; cryptography stack via pointycastle/asn1 (RSA, ECDSA, SHA family, AES GCM/CBC, PKCS, base64).
-
-### Native libraries
-- `libengine.so` — custom native engine (virtualization container + hook engine), NDK r25b / clang 14.
-- `libflutter.so` — Flutter engine (Google).
-- `libapp.so` — Dart AOT compiled app code.
-
-## Repository Layout
-
-```
-raw/                                Original inputs (no re-extraction needed)
-├── SE_2.2.6.apk                    Original APK (30 MB)
-└── lib/arm64-v8a/
-    ├── libapp.so                   Raw Dart AOT library
-    ├── libengine.so                Raw native engine
-    └── libflutter.so               Raw Flutter engine
-
-decompiled/
-├── REPORT.md                       Overview report
-├── AndroidManifest.xml             Decoded manifest
-├── apktool.yml                     Build metadata
-├── java-jadx/                      Decompiled Java (3086 .java files)
-│   ├── com/snake/                  App classes (container + JNI bridge)
-│   ├── com/google/                 Firebase / GMS / Material
-│   └── io/flutter/                 Flutter embedding
-├── dart-blutter/                   Dart analysis
-│   ├── asm/                        670 .dart files (pseudo-source + asm per function)
-│   ├── pp.txt                      Object pool (all constants / strings)
-│   ├── objs.txt                    Pre-initialized objects
-│   └── blutter_frida.js            Frida trace script (Dart functions)
-├── smali/                          Full Smali (Dalvik bytecode)
-├── resources/res/                  Decoded resources
-├── assets/flutter_assets/          Flutter assets
-├── apktool-extras/                 original/, unknown/, META-INF/, kotlin/
-├── native-libs/
-│   └── native-libs-analysis.txt    ELF symbols / hashes
-└── native-deep/
-    ├── FINAL_SUMMARY.md            Unified evidence matrix
-    ├── NATIVE_DEEP_ANALYSIS.md     Ghidra + ELF findings
-    ├── DYNAMIC_ANALYSIS.md         Emulation findings
-    ├── runtime-behavior-java.md    Java runtime behavior extracts
-    ├── ghidra/
-    │   ├── libengine_decompiled.c  2241 of 2283 defined functions decompiled to C (5 MB)
-    │   ├── JNI_OnLoad.c            Extracted native entry point
-    │   └── function_inventory.tsv  All 2283 defined functions (addr/size/xrefs)
-    ├── strings/
-    │   ├── strings_libengine.txt   2061 strings
-    │   ├── strings_libapp.txt      11727 strings
-    │   ├── strings_libflutter.txt  33374 strings
-    │   └── strings_classes_dex.txt 29198 strings
-    └── emulation/
-        ├── emulate_engine.py       Qiling emulation (v1)
-        ├── emulate_engine2.py      Qiling emulation (real syscall layer)
-        ├── emulation_trace.txt     Run trace v1
-        ├── emulation_trace2.txt    Run trace v2
-        ├── syscall_enum.py         Static syscall scan (unreliable)
-        └── syscall_profile.txt     Static scan output (artifact)
-```
-
----
-
-## Obfuscation / Protection (libengine.so)
-
-- Type: source-level obfuscation (OLLVM-style), compiled with Android NDK r25b/clang14. No commercial packer, no embedded DEX/payload.
-- Function entries (Ghidra): 2418 total, including ~135 external/imported references with no body. Defined functions (function_inventory.tsv): 2283. Decompiled to C: 2241. Not decompiled: 42 — 17 too-large OLLVM-flattened constructors (~175 KB each, ~6 MB of `.text`) + 24 failed + 1 unmarked.
-- Control-flow flattening: giant flattened dispatcher functions, unrecoverable jumptables.
-- String encryption: native method names not present as plaintext; decrypted at runtime.
-- Encryption scheme (fully reverse-engineered, static): **AES-256** with key `= SHA-256( xorshift-PRNG(seed1, seed2) )`. AES confirmed (MixColumns `x<<1 ^ 0x1b` + S-box @ `DAT_009281a8`); SHA-256 K-table at file offset `0x2b450`; KDF in `FUN_00161788` (golden-ratio constant `0x9e3779b1`). Seeds and ciphertext are runtime-sourced (object fields, files) — algorithm recovered, but actual data not statically decryptable. See `native-deep/static-max/`.
-- Deep static pass: 2 of the 42 undecompiled functions recovered via angr (`_INIT_16`, `_INIT_36`); the 26 giant `_INIT_*` proven 95.6% identical clones; 4 `FUN_*` proven to lie beyond file end (runtime-generated only). See `native-deep/static-max/STATIC_MAX_ANALYSIS.md`.
-- Inline syscalls: direct `svc #0` (bypasses libc).
-- Runtime code generation / self-modifying: writes ARM64 branch opcodes (`| 0x14000000`) into RWX memory.
-- Custom `.mytext` section (244 B), 1731 B overlay, 44 `.init_array` constructors, BIND_NOW / full RELRO.
-- JNI_OnLoad: 12388 bytes; registers native methods with runtime-decrypted names.
-
-Native methods (from `com/snake/helper/Native.java`): `ac`, `aior`, `awl`, `chl(byte[])→bool`, `djp(int)→byte[]`, `eio`, `i(int)`, `ic(Context)`, `ilil(int)→String`, `pjowqpxe(Object,Object,Object)`, `update(Object,Method)`, `gcuid(int)`.
-
----
-
-## Runtime Behavior (evidence)
-
-| Behavior | Evidence source |
-|----------|-----------------|
-| Loads libengine.so at startup | `App.java`: `System.loadLibrary("engine")` |
-| Dynamic code loading | custom `PathClassLoader` (`lk1.java`, `fh.java`), `createPackageContext` ×11 |
-| Reflection class faking | `fh.loadClass`: `Executable→cz.c`, `MethodHandle→cz.e`, `Class→cz.b` |
-| Java method hooking | `Native.update(Object,Method)` + `MethodUtils` |
-| UID/PID remapping | `Native.gcuid()` → `Binder.getCallingPid()` |
-| Runtime RWX code generation | Ghidra JNI_OnLoad `mmap(prot=7,flags=0x22)`; Qiling observed 37–39× mmap prot=RWX |
-| Timing checks | Qiling observed `clock_gettime` ×36 during init |
-| Persistence | `DaemonService` re-schedules via AlarmManager |
-| Container IPC | `SystemCallProvider.call("VM", …)` |
-| Runtime string/data decrypt | `Native.ilil(int)→String`, `djp(int)→byte[]` |
-| License/signature check | `Native.chl(byte[])→bool` |
-
----
-
-## Network / Communication
-
-- Endpoint: `https://rest.snakeseller.com/api/request/`
-- Related: `https://www.snakeengine.com/topup/`
-- Request fields (Dart layer): `encryptedData`, `deviceId`, `timestamp` — application-layer encrypted payload over HTTPS.
-- No `networkSecurityConfig` / `usesCleartextTraffic` attribute in manifest.
-- Crypto libraries present in Dart (pointycastle/asn1/crypto): RSA, ECDSA, SHA family, base64, PKCS, AES/GCM/CBC primitives.
-- Other referenced hosts: play.google.com, apkpure.com, flagsapi.com, imgur.com, t.me, wa.me, discord.com, facebook.com.
-
----
-
-## Firebase Configuration (res/values/strings.xml)
-
-| Key | Value |
-|-----|-------|
-| project_id | `fennec-6d906` |
-| gcm_defaultSenderId | `918010152455` |
-| google_app_id | `1:918010152455:android:84aea0e9d3230800664ca2` |
-| google_api_key | `AIzaSyDitW-Y6M8-R2ejqmAL7yd2jqL9Gj_5ANs` |
-| google_storage_bucket | `fennec-6d906.firebasestorage.app` |
-| default_web_client_id | `918010152455-ev1pjrrdjvp44r4bjme4ti3khom570eo.apps.googleusercontent.com` |
-
-Firebase services: Messaging, Installations, Analytics/Measurement, Google Sign-In, DataTransport.
-
----
-
-## Localization
-
-UI strings present in: English, Spanish, Filipino (Tagalog), Malay.
-
----
-
-## Dynamic Emulation Results (Qiling/Unicorn)
-
-- Environment: no KVM / no hardware virtualization; ARM64-only library.
-- Real syscall layer built (mmap allocates, mprotect/etc. succeed, paths logged).
-- Constructors: fault at ~94 instructions with zero-filled allocations; enter infinite loops when allocations filled with RET.
-- Observed syscalls: `mmap` (prot=RWX) ×39, `clock_gettime` ×36.
-- No file/network/exec syscalls reached during the guarded init phase.
-- Runtime-decrypted strings not recovered via CPU emulation.
-
-## Static Syscall Scan (unreliable)
-
-Linear disassembly of `.text` produced 25804 `svc` sites resolving to only 2 values — an artifact of self-modifying/obfuscated code and computed syscall numbers. Not a valid behavior profile. Retained in `emulation/syscall_profile.txt` for reference.
-
----
-
-## Coverage Status
-
-| Item | Status |
-|------|--------|
-| Java decompilation | Complete (obfuscated names) |
-| Resources / manifest / smali | Complete |
-| Dart pseudo-source | Complete (obfuscated names) |
-| Native → C decompilation | 2241 of 2283 defined functions (2418 total incl. externals) |
-| ELF / protection analysis | Complete |
-| Dynamic emulation | Partial (anti-emulation wall) |
-| Live traffic interception | Not performed |
-| Communication payload decryption | Not performed (confirmed encrypted, key/algorithm not extracted) |
-| Server-side behavior | Not analyzed |
+This is a documentary/defensive analysis of an app that itself facilitates game cheating. It maps
+how the system works and where its security actually lies. **No key generator, cracked key, or
+server attack was produced.** Items that were attempted and failed are recorded as honest negative
+results.
