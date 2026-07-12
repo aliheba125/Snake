@@ -19,6 +19,6 @@ cd artifacts/decompiled/native-deep/dynamic-live/agents/
 npm install
 ```
 
-See [`../../../../../../REPOSITORY_TREE.md`](../../../../../../REPOSITORY_TREE.md) and
-[`../../../../../../FINAL_REPOSITORY_AUDIT.md`](../../../../../../FINAL_REPOSITORY_AUDIT.md) for
+See [`REPOSITORY_TREE.md`](../../../../../REPOSITORY_TREE.md) and
+[`FINAL_REPOSITORY_AUDIT.md`](../../../../../FINAL_REPOSITORY_AUDIT.md) for
 the full audit record.
