@@ -37,6 +37,7 @@
 | [ROADMAP.md](ROADMAP.md) | Completed vs remaining, realistic % per axis |
 | [REPOSITORY_TREE.md](REPOSITORY_TREE.md) | Every folder/file explained; why it exists |
 | [FINAL_REPOSITORY_AUDIT.md](FINAL_REPOSITORY_AUDIT.md) | Independent audit of this repository: broken references, orphaned evidence, duplicates, and fixes applied |
+| [.kiro/steering/mandatory-context.md](.kiro/steering/mandatory-context.md) | **Required onboarding for any new agent**: review the whole repo first, reuse existing scripts/evidence, obey anti-tamper rules, and update ROADMAP/Next_Steps/EVIDENCE_MATRIX after any work |
 
 ## The three-sentence summary
 
@@ -58,7 +59,8 @@
 ├── artifacts/          ← inputs: apk/, native-libs/, decompiled/
 ├── evidence/           ← raw proof: screenshots, traces, pcaps, logs, samples
 ├── scripts/            ← tooling: beacon-crypto, memory-scanners, network, frida-agents
-└── archive/            ← historical session working-notes (superseded; see docs/ for truth)
+├── archive/            ← historical session working-notes (superseded; see docs/ for truth)
+└── .kiro/steering/     ← mandatory onboarding for any new agent (auto-loaded)
 ```
 
 ## How to trust this repo

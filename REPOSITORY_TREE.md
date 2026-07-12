@@ -17,8 +17,18 @@ Snake/
 ├── UNKNOWNS.md              ← what we don't know + how to resolve
 ├── ROADMAP.md              ← progress % per axis, done vs remaining
 ├── REPOSITORY_TREE.md       ← this file
+├── FINAL_REPOSITORY_AUDIT.md ← independent repo audit (broken links, orphans, dupes, fixes)
+├── .gitignore               ← excludes reproducible build dirs (node_modules/, __pycache__/, .venv/)
+│
+├── .kiro/                   ← agent workflow config (auto-loaded, NOT analysis content)
+│   └── steering/
+│       └── mandatory-context.md  ← REQUIRED first read for any new agent: forces a full
+│                                    repo review, cache of file locations, reuse of existing
+│                                    scripts/evidence, anti-tamper rules, and mandatory update
+│                                    of ROADMAP/Next_Steps/EVIDENCE_MATRIX after any work
 │
 ├── docs/                    ← THE authoritative study (single source of truth)
+│   ├── ENVIRONMENT_ACCESS.md   ← how to reach server/device/Frida (run-code entry point)
 │   ├── 00_Project_Overview.md
 │   ├── 01_Architecture.md
 │   ├── 02_Static_Analysis.md
@@ -101,6 +111,7 @@ Snake/
 | `evidence/` | Raw proof for every ✅ claim | Reference |
 | `scripts/` | Reproduce/verify the evidence | Reference |
 | `archive/` | Chronological working notes (some ❌ disproved) | **History only** |
+| `.kiro/` | Agent workflow config (auto-loaded steering that forces a full repo review before any new work) | Process, not analysis |
 
 ## Notes on the archive (important)
 
