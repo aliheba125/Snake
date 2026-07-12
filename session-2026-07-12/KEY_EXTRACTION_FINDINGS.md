@@ -101,9 +101,28 @@ likely one of:
 - **H4 — Hybrid/asymmetric.** The pool carries **X25519 / RSA / ECDSA**; the working AEAD key may
   come from an X25519 ECDH → HKDF, i.e. ephemeral/derived rather than a stored constant.
 
+- **H5 — Encrypt-then-MAC — RULED OUT.** `scanner5.c` tested whether the 16-byte trailer is a
+  keyed MAC over the ciphertext: HMAC-SHA256[:16], HMAC-SHA1[:16], HMAC-MD5, and naive
+  `SHA256(key‖M)` / `SHA256(M‖key)`, for message M ∈ {ct, nonce‖ct, ver‖nonce‖ct, nonce‖ct‖ver}
+  and key length 16/32, over the full main-process memory (both fresh + old samples). **No MAC key
+  found** (≥93 % of memory scanned; effectively negative). So the trailer is not a standard
+  keyed MAC with a stored key either.
+
 The `z`→`push-…run.app` channel appears **distinct** from the main `POST rest.snakeseller.com/
 api/request/` JSON `{encryptedData, deviceId, timestamp}` channel documented in
 `decompiled/native-deep/dynamic-live/PROTOCOL_ANALYSIS.md`.
+
+### 3a. Decisive interpretation
+
+A **fresh** `z` proven to be in the process's memory is encrypted by whatever key is *currently*
+active — yet no static AEAD key, no CTR key, and no MAC key is present as contiguous bytes. The
+strongest reading of this is **H2 (per-message derived key)**: the working key is computed on the
+fly (`KDF(secret, nonce)` — the app family already uses a golden-ratio/SHA-256 KDF natively) and
+**wiped after each encryption**, so at dump time only the ciphertext survives, not the key. This
+also matches the earlier constant-scan and object-pool negatives (no stored AEAD key/S-box). Under
+this model, **no passive memory/constant scan can ever recover the working key** — the only viable
+routes are (a) recovering the *master secret + KDF* or (b) intercepting the cipher `init` at
+runtime.
 
 ---
 
@@ -130,6 +149,7 @@ the key in seconds.
 - `tools/scanner.c` — hand-rolled AES-GCM tag verifier (configurable key size + alignment), NIST self-test.
 - `tools/scanner2.c` — OpenSSL-EVP AES-256-GCM **and** ChaCha20-Poly1305 verifier, multi-AAD, self-test.
 - `tools/scanner3.c` — AAD-independent known-plaintext AES-CTR keystream scanner.
+- `tools/scanner5.c` — encrypt-then-MAC key scanner (HMAC-SHA256/SHA1/MD5 + naive keyed SHA256).
 - `samples/z_fresh_live.txt` — fresh `z` recovered from live main-process memory (+ parsed fields).
 - `samples/z_samples_prior.txt` — the prior session's captured `z` values.
 - `RESULTS_MATRIX.md` — the scan matrix above with the raw scanner stdout.
