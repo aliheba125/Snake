@@ -84,11 +84,11 @@ Snake/
 │   └── network-diagnosis-logs/ (July-11 DNS/crash/strings logs)
 │
 ├── scripts/                 ← TOOLING (reproduction + capture)
-│   ├── beacon-crypto/          (44 files, Python/JS: capture, reproduce, prove, decode, trace —
+│   ├── beacon-crypto/          (71 files, Python/JS: capture, reproduce, prove, decode, trace —
 │   │                            most cited in docs/09; remainder are exploratory/one-off, see docs/09)
 │   ├── memory-scanners/        (scanner.c … scanner9.c, 8 files — AEAD/CTR/MAC/KDF scans)
-│   ├── network-diagnosis/      (July-11/12 capture/bypass/diagnosis, ~90 files)
-│   ├── network-diagnosis-extra/(additional scripts, ~65 files, incl. `kiro_sandbox/` subfolder:
+│   ├── network-diagnosis/      (July-11/12 capture/bypass/diagnosis, 93 files)
+│   ├── network-diagnosis-extra/(additional scripts, 53 files, incl. `kiro_sandbox/` subfolder:
 │   │                            ~24 unique files + a handful byte-identical to sibling files in the
 │   │                            same tree — kept in both places, nothing deleted)
 │   └── frida-agents/           (agent_*.ts + compiled_*.js — July-11 Frida agents)

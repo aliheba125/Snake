@@ -57,8 +57,8 @@ conclusions are sourced and cross-linked.
 
 ### C — Script directories without individual documentation
 
-`scripts/beacon-crypto/` (44 files), `scripts/memory-scanners/` (8 files), and
-`scripts/network-diagnosis*/` (~155 files) each contain a number of scripts never named
+`scripts/beacon-crypto/` (71 files), `scripts/memory-scanners/` (8 files), and
+`scripts/network-diagnosis*/` (146 files) each contain a number of scripts never named
 individually in any doc. Most of the *load-bearing* scripts (the ones that produced a cited
 finding) already were named in `docs/09_Evidence.md`; the rest are legitimate one-off,
 exploratory, or dead-end steps from the investigation (URL-assembly tracing attempts, raw memory
@@ -130,9 +130,13 @@ found**: every real folder in the repository is reachable within two hops from
 | `artifacts/decompiled/native-deep/dynamic-live/agents/node_modules/` | **Deleted** (804 files, 77 MB) — see E1 above |
 | `FINAL_REPOSITORY_AUDIT.md` *(this file)* | New |
 
-**Verification performed after all fixes:** re-ran an automated markdown-link checker across all
-44 tracked `.md` files (`docs/`, root, `archive/`) — **0 broken links**. Re-confirmed the
-screenshot count is now "17" everywhere it is mentioned.
+**Verification performed after all fixes:** re-ran an automated markdown-link checker across the
+**entire tree — all 63 tracked `.md` files** (`docs/`, root, `archive/`, `artifacts/`, `.kiro/`),
+70 internal links — **0 broken links**. (An earlier pass only covered `docs/`+root+`archive/`;
+the full-tree scan additionally caught and fixed two 6-level `../` links in
+`artifacts/.../agents/REMOVED_NODE_MODULES.md`.) File-count claims were re-checked against the
+working tree: `beacon-crypto/` = 71, `memory-scanners/` = 8, `network-diagnosis*/` = 146
+(93 + 53), `java-jadx/` = 3086, screenshots = 17 — all now consistent across every doc.
 
 ---
 
