@@ -5,7 +5,7 @@
 ما يمكن استرجاعه ساكنياً.
 
 ## الأدوات المستخدمة (منفّذة فعلياً)
-- **capstone 5.0.7** — تحليل ARM64 وتحليل بنيوي
+- **capstone 5.0.7** — تفكيك ARM64 وتحليل بنيوي
 - **pyelftools** — تحليل ELF/المقاطع/الأقسام
 - **unicorn** — محاكاة جراحية (CPU) مع تحييد مقاومة المحاكاة
 - **angr 9.2.102** — استرجاع CFG + مفكّك (كسر تسطيح OLLVM)
@@ -43,8 +43,8 @@
 | (سكربت Frida) | مُنقول إلى `../dynamic/frida_capture.js` (نسخة مُحصّنة) |
 | `_INIT_16_angr_decompiled.c` | فكّ `_INIT_16` بـ angr (1,294 سطر) — حيث فشل Ghidra |
 | `_INIT_36_angr_decompiled.c` | فكّ `_INIT_36` بـ angr (1,550 سطر) |
-| `_INIT_1_representative.asm` | تحليل كامل لـ`_INIT_1` (43,941 تعليمة) يمثّل الـ26 نسخة |
-| `FUN_005a24f0.asm` | تحليل كامل (محمّل مفاتيح — مُسترجَع) |
-| `mytext_dispatcher.asm` | تحليل قسم `.mytext` المخصّص (بصمة المُحزِّم) |
+| `_INIT_1_representative.asm` | تفكيك كامل لـ`_INIT_1` (43,941 تعليمة) يمثّل الـ26 نسخة |
+| `FUN_005a24f0.asm` | تفكيك كامل (محمّل مفاتيح — مُسترجَع) |
+| `mytext_dispatcher.asm` | تفكيك قسم `.mytext` المخصّص (بصمة المُحزِّم) |
 | `angr_cfg.py`, `angr_decomp.py`, `angr_decomp_any.py`, `angr_force.py` | سكربتات angr |
 | `surgical_emulate.py` | محاكاة unicorn الجراحية (وثّقت فشل العزل) |

@@ -13,14 +13,14 @@ The OLLVM-obfuscated native engine (`libengine.so`) actively defends against dyn
 | Layer | Behavior | Evidence |
 |-------|----------|----------|
 | **ptrace detection** | Any ptrace-based tracer kills the app. `frida -f`/spawn and ptrace-attach → `process-terminated` within ~2 s. Even a **bare spawn with no script** dies. | `frida.spawn()` + resume → immediate `DETACHED: process-terminated`; matches `dobby`/inline `svc` ptrace self-checks. |
-| **Direct `svc` syscalls** | The engine issues raw `svc #0` for its checks, avoiding libc — so hooking libc `ptrace`/`open`/`read` does **not** intercept them. | Documented in `NATIVE_DEEP_ANALYSIS.md`; confirmed: libc `ptrace` replacement had no effect on spawn death. |
+| **Direct `svc` syscalls** | The engine issues raw `svc #0` for its checks, bypassing libc — so hooking libc `ptrace`/`open`/`read` does **not** intercept them. | Documented in `NATIVE_DEEP_ANALYSIS.md`; confirmed: libc `ptrace` replacement had no effect on spawn death. |
 | **Startup-only crypto** | `Native.ilil/djp/chl` and the internal AES run during `JNI_OnLoad` / early init, then cache. No calls during idle UI, navigation, or game-tile taps. | Attach at 6 s + 75 s heavy interaction → 0 calls; confirmed repeatedly. |
 
 **What is NOT detected:** arbitrary injected libraries loaded by the **dynamic linker** (no ptrace). A benign system library (`libjnigraphics.so`) preloaded via `LD_PRELOAD` — and the **Frida Gadget** itself — run fine. The app only self-destructs under *ptrace*, not under linker-level injection.
 
 ---
 
-## 2. The technique that works: Frida Gadget via `wrap.<pkg>` (LD_PRELOAD, no ptrace)
+## 2. The bypass that works: Frida Gadget via `wrap.<pkg>` (LD_PRELOAD, no ptrace)
 
 Because the build is `userdebug` (`ro.debuggable=1`) with SELinux disabled, the `wrap.com.snake` property injects an `LD_PRELOAD` at process creation — linker-level, **no ptrace**, so the anti-debug never triggers.
 

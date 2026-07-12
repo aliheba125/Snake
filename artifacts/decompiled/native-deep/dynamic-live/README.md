@@ -13,7 +13,7 @@ string table**, **corrected the crypto architecture**, **installed the latest ta
 ```
 dynamic-live/
 ├── README.md                  ← this file (index + summary)
-├── LIVE_DYNAMIC_ANALYSIS.md   ← the full narrative: protection, analysis, results, crypto correction
+├── LIVE_DYNAMIC_ANALYSIS.md   ← the full narrative: protection, bypass, results, crypto correction
 ├── TOOLCHAIN.md               ← exact reproduction steps (gadget, apkeep, frida-compile, wrap.sh)
 ├── PROTOCOL_ANALYSIS.md       ← encryptedData network protocol + activation/seller economy model
 ├── recovered_strings.json     ← 6 runtime-decrypted native strings (Native.ilil)
@@ -47,7 +47,7 @@ dynamic-live/
 ## One-paragraph summary of results
 
 The engine's OLLVM-obfuscated `libengine.so` self-terminates under any **ptrace** tracer
-(frida-server spawn/attach) using direct `svc` syscalls. This was **fully addressed** by injecting
+(frida-server spawn/attach) using direct `svc` syscalls. This was **fully bypassed** by injecting
 **Frida Gadget via `LD_PRELOAD`** through the `wrap.com.snake` property on the `userdebug` redroid
 build — linker-level, no ptrace — after which the app runs normally under full instrumentation
 (a benign preload and the gadget itself both survive; the only thing the engine kills is ptrace).
@@ -60,7 +60,7 @@ engine's **internal game-patch decryptor** (`FUN_0017e148`/`FUN_00189774`, seeds
 fields), which runs **only when a subscribed game is loaded** — confirmed by early dlopen-time
 hooks recording zero AES/KDF across a full cold startup. The latest **8 Ball Pool v56.26.2** was
 side-loaded (clearing the install gate); the remaining blocker is a **server-issued subscription**
-enforced in the Dart layer. All technical protection layers are addressed and the live hooks are
+enforced in the Dart layer. All technical protection layers are bypassed and the live hooks are
 staged to capture `seed1/seed2 + ciphertext + plaintext` automatically the moment a subscribed game
 is loaded.
 
