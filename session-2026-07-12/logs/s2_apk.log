@@ -1,0 +1,6 @@
+SELFTEST AES-256-GCM: PASS
+SELFTEST ChaCha20-Poly1305: PASS
+algos=2 samples=2 align=1
+dump 59 MB
+
+NO MATCH (algo=both)

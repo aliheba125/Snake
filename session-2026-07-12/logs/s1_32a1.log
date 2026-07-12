@@ -1,0 +1,6 @@
+SELFTEST-128 PASS
+align=1
+loaded 1 samples, keybytes=32
+dump 1487437824 bytes (1419 MB)
+
+NO MATCH for keybytes=32

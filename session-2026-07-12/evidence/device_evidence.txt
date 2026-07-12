@@ -1,0 +1,29 @@
+### android_id
+8840bf6a81679fc4
+### com.snake.xml (cip_pub)
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <string name="cip_pub"></string>
+</map>
+### firebase messaging prefs
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <boolean name="auto_init" value="true" />
+    <boolean name="proxy_notification_initialized" value="true" />
+</map>
+### PersistedInstallation (FID)
+{"Fid":"cgdwkVZ3Q9-sB_aQC4S3e_","Status":3,"AuthToken":"eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjE6OTE4MDEwMTUyNDU1OmFuZHJvaWQ6ODRhZWEwZTlkMzIzMDgwMDY2NGNhMiIsImV4cCI6MTc4NDQyODA0OCwiZmlkIjoiY2dkd2tWWjNROS1zQl9hUUM0UzNlXyIsInByb2plY3ROdW1iZXIiOjkxODAxMDE1MjQ1NX0.AB2LPV8wRQIhAJ3GV4BFATesU69yZ5xMR4h0C206VhQ45VlBMtJ18iWuAiBVXCXPsgwLEt8t2hACHZC2c3wG8FMAkorHiWnuPmp_uA","RefreshToken":"3_AS3qfwKkDb2Ye_RAziYTmhRKxsY9KIVTBXZUgJu-RsHdX5xRqDKWu59eyqbF2F5sZTbHSlgRKdS1PGpoBaxb5C2xuqDoJ2y5u545na8GSB0rdfE","TokenCreationEpochInSecs":1783823248,"ExpiresInSecs":604800}### processes
+u0_a87         12927     133   19701276 376600 ep_poll             0 S com.snake
+u0_a87         12959     133   14537052 171528 ep_poll             0 S com.snake:engine
+### backend host strings resident in main-process memory
+europe-west1.run.app
+rest.snakeseller.com
+rest.snakeseller.com/api/files/
+rest.snakeseller.com/api/files/1.jpg?r=4t
+rest.snakeseller.com/api/files/2.jpg?r=44R
+rest.snakeseller.com/api/files/2.jpg?r=4t
+rest.snakeseller.com/api/files/3.jpg?r=44
+rest.snakeseller.com/api/files/8_ball_pool_icon.png
+rest.snakeseller.com/api/files/carrom_pool_icon.png
+rest.snakeseller.com/api/files/soccer_stars_icon.png
+rest.snakeseller.com/api/request/
