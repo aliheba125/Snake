@@ -1,0 +1,12 @@
+# Fresh z request recovered LIVE from com.snake main-process memory (2026-07-12)
+# via: grep -aoE 'z=0c[0-9a-f]{96}' /proc/<pid>/mem dump
+z=0c08148dc1591739cd5f11ccabf10855ede1ee301088089963d7d86200ef70d17359cae7a7570d91d308a6badb2947afc3
+
+# Parsed (hypothesis: version|nonce|ct|tag):
+version : 0c
+nonce   : 08148dc1591739cd5f11ccab            (12 bytes)
+ct      : f10855ede1ee301088089963d7d86200ef70d173  (20 bytes)
+tag     : 59cae7a7570d91d308a6badb2947afc3    (16 bytes)
+
+# android_id at capture: 8840bf6a81679fc4
+# backend host strings co-resident in memory: europe-west1.run.app , rest.snakeseller.com/api/request/
