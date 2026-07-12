@@ -1,4 +1,4 @@
-# Server Interaction Proof — Can a Crafted z Bypass Server Protections?
+# Server Interaction Proof — Testing Crafted z on Server
 
 **Date**: 2026-07-12  
 **Status**: PROVEN — a crafted z (generated offline from wall-clock time alone) is accepted by the production server with no additional authentication. However, this endpoint is a **beacon/telemetry** endpoint, not the authenticated seller API.
@@ -135,9 +135,9 @@ Based on all evidence:
 
 ### What z-knowledge does NOT enable:
 - ❌ Logging into seller accounts (requires email+password on a separate endpoint)
-- ❌ Accessing user data (REST API rejects unauthorized requests)
+- ❌ Accessing user data (REST API rejects unauthenticated requests)
 - ❌ Impersonating another user/device (z contains only timestamp + random nonce, no identity)
-- ❌ Bypassing seller authentication (completely separate system)
+- ❌ Accessing seller authentication (completely separate system)
 - ❌ Gaining any privileged access (push endpoint returns same response for everyone)
 
 ---
@@ -166,7 +166,7 @@ The "ملخص التنفيذي" (executive summary) review was **partially corre
 
 > ✅ Correct: "Understanding how z is created ≠ ability to access app functionality"
 
-The seller REST API (`rest.snakeseller.com`) has separate authentication that z does not bypass.
+The seller REST API (`rest.snakeseller.com`) has separate authentication that z does not reach.
 
 > ❌ However, the review overstated remaining protections:
 

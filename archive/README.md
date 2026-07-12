@@ -10,7 +10,7 @@
 | Folder | What it is | Superseded by |
 |--------|-----------|---------------|
 | `2026-07-11_network-session/` | Network + account diagnosis on an environment that had lost outbound TCP; live-validation attempts; frida binaries; env config tarballs. | `docs/03`, `docs/07` (environment was fixed later on a different host) |
-| `2026-07-12_working-notes/` | 20 chronological working docs from the day the crypto was cracked — including early **wrong** hypotheses (AES-GCM/CBC, "key unextractable") that were corrected the same day. | `docs/04`, `docs/05`, `docs/06`, `docs/08` |
+| `2026-07-12_working-notes/` | 20 chronological working docs from the day the crypto was solved — including early **wrong** hypotheses (AES-GCM/CBC, "key unextractable") that were corrected the same day. | `docs/04`, `docs/05`, `docs/06`, `docs/08` |
 
 ## Specific disproved claims found in these notes
 

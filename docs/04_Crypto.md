@@ -80,4 +80,4 @@ correct `resp_key(time,id)` (16/32 constant byte positions) and **noise** under 
 | ❌ `z` is AES‑GCM / ChaCha20‑Poly1305 / any AEAD | No AEAD key found in 2.6 GB memory (all sizes/alignments/AADs); ECB reproduces `z` exactly |
 | ❌ `z` is AES‑256‑CBC | ECB (not CBC) reproduces `z` byte-for-byte; no CBC key found |
 | ❌ key is per-message and wiped (unrecoverable) | key reproduced offline from time; it is deterministic |
-| ❌ activation is asymmetric (RSA/ECDSA) → unforgeable | libengine has no asymmetric crypto at all |
+| ❌ activation is asymmetric (RSA/ECDSA) → irreproducible | libengine has no asymmetric crypto at all |

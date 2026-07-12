@@ -23,7 +23,7 @@ curl -sL https://github.com/EFForg/apkeep/releases/latest/download/apkeep-x86_64
 chmod +x apkeep
 ```
 
-## 2. Frida Gadget (LD_PRELOAD injection — bypasses ptrace anti-tamper)
+## 2. Frida Gadget (LD_PRELOAD injection — avoids ptrace anti-tamper)
 
 ```sh
 # match the gadget version to frida-server (17.15.4 here)

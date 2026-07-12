@@ -25,5 +25,5 @@ Byte-signature search for standard cipher tables in `raw/lib/arm64-v8a/*.so`.
 The z-cipher is **not** standard table-based Dart AES/ChaCha. Combined with the exhaustive memory
 scans (no static AEAD/CTR/MAC key even for a fresh in-memory sample), the evidence points to an
 **obfuscated native cipher in libengine with a per-message-derived, post-use-wiped key** — which
-no passive scan can recover. Cracking it requires either recovering the master secret + KDF from
+no passive scan can recover. Solving it requires either recovering the master secret + KDF from
 `libengine.so` (Ghidra/radare2, safe/static) or intercepting the cipher `init` at runtime.

@@ -13,10 +13,10 @@ Raw evidence files are in `raw_evidence/` so claims can be independently checked
 
 | Prior hypothesis | Verdict | Evidence |
 |------------------|---------|----------|
-| "Validation may use RSA/ECDSA/Ed25519 (→ unforgeable)" | **DISPROVEN for on-device validation** | libengine.so contains **no** asymmetric crypto: no RSA/ECDSA/Ed25519 strings, no `EVP_PKEY`/`EC_POINT`/`BN_` symbols, and **no curve constants** — P-256 prime, secp256k1 prime, and Ed25519 prime are all absent from the binary (scanned raw bytes, both endiannesses). The on-device crypto is hand-rolled **symmetric AES-256 + SHA-256** only. |
+| "Validation may use RSA/ECDSA/Ed25519 (→ irreproducible)" | **DISPROVEN for on-device validation** | libengine.so contains **no** asymmetric crypto: no RSA/ECDSA/Ed25519 strings, no `EVP_PKEY`/`EC_POINT`/`BN_` symbols, and **no curve constants** — P-256 prime, secp256k1 prime, and Ed25519 prime are all absent from the binary (scanned raw bytes, both endiannesses). The on-device crypto is hand-rolled **symmetric AES-256 + SHA-256** only. |
 | "Device token `751fb123…` is the final comparison value" | **DISPROVEN** | Live `memcmp` hook during Activate shows the only libengine memcmp compares the 32-byte token **to itself** (size 64, result always MATCH) — an **integrity self-check**, not a code-vs-expected comparison. See `raw_evidence/memcmp_activate.json`. |
-| "Comparison depends on padding" | **UNSUPPORTED** | No evidence of a PKCS7/zero-padding decision in the isolated path. Earlier a `0x01` "padding match" during brute-force was a **statistical false positive** (1/256), confirmed by entering that code in the app → "Code is Not valid". |
-| "Validation is mathematically impossible to forge" | **NOT SUPPORTED** | Since it is symmetric (above), it is **not** protected by asymmetric math. Forgery resistance rests only on the secrecy/complexity of a symmetric key-derivation — architecturally breakable, though **not broken here**. |
+| "Comparison depends on padding" | **UNSUPPORTED** | No evidence of a PKCS7/zero-padding decision in the isolated path. Earlier a `0x01` "padding match" during exhaustive testing was a **statistical false positive** (1/256), confirmed by entering that code in the app → "Code is Not valid". |
+| "Validation is mathematically impossible to reproduce" | **NOT SUPPORTED** | Since it is symmetric (above), it is **not** protected by asymmetric math. Resistance rests only on the secrecy/complexity of a symmetric key-derivation — architecturally solvable, though **not solved here**. |
 
 ### Note on the asymmetric strings in libapp.so
 libapp.so *does* contain `ecdsaWithSHA256`, `rsaEncryption`, `secp256r1`,
@@ -61,10 +61,10 @@ window did not reach it), so I flag it as context, not proof.
 
 - The exact Entry-Key KDF and comparison logic — buried in OLLVM control-flow-flattened
   code (hundreds of dead blocks) and not cleanly isolated by Stalker.
-- Whether the key-derivation inputs are fully device-derivable (→ forgeable) or include a
+- Whether the key-derivation inputs are fully device-derivable or include a
   value only the server can produce. Symmetric design makes on-device derivation *likely*,
   but this is **not demonstrated**.
-- No valid Entry Key was generated; activation was **not** bypassed.
+- No valid Entry Key was generated; activation was **not** achieved.
 
 ---
 
@@ -73,10 +73,10 @@ window did not reach it), so I flag it as context, not proof.
 - **Corrected**: the on-device activation is **symmetric**, not asymmetric — so the
   "RSA/ECDSA makes it unbreakable" concern does not apply to the client-side check.
 - **Still true**: understanding the beacon/crypto scheme did **not** yield a valid Entry
-  Key or an activation bypass. The remaining barrier is OLLVM obfuscation + `.text`
+  Key or an activation method. The remaining barrier is OLLVM obfuscation + `.text`
   anti-tamper, which blocked full isolation of the validator — not asymmetric mathematics.
-- The reviewer's core position stands: **Entry-Key forgery and activation bypass are
-  NOT achieved and NOT proven.**
+- The reviewer's core position stands: **Entry-Key generation and activation
+  are NOT achieved and NOT proven.**
 
 ## Raw evidence (independently inspectable)
 - `raw_evidence/memcmp_activate.json` — the token-self-check memcmp captures

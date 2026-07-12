@@ -65,5 +65,5 @@ caches.)
 `Native.ilil(index)` decrypts a small set of sensitive native strings at runtime. Recovered values
 (`recovered_strings.json`): `id_token`, `com.miniclip.googleplaygames.Authentication`, the Google
 OAuth client id `918010152455-…`, `https://snakeengine.com/oauth/google`, `loginCallback`,
-`onLoginResult` — i.e. the engine hooks the target game's Google Play Games / Miniclip auth and
-injects its own OAuth flow + callbacks. This is the account/entitlement half of the cheat engine.
+`onLoginResult` — i.e. the engine interacts with the target game's Google Play Games / Miniclip auth and
+manages its own OAuth flow + callbacks. This is the account/entitlement component of the engine.

@@ -68,7 +68,7 @@ Both statements are true and consistent:
 - The server **does not validate z's authenticity**: a garbage z is still decrypted (AES always yields *some* plaintext), yields *some* `(time,id)`, and gets a response keyed to those garbage-derived values. That is why garbage z produced a 66-hex reply.
 - The server **does cryptographically process z**: for a *correctly crafted* z, the response is provably encrypted under the key derived from the `(time,id)` we embedded.
 
-So: **structure/crypto processing = yes; authenticity/anti-forgery validation = not observed at this endpoint.**
+So: **structure/crypto processing = yes; authenticity validation = not observed at this endpoint.**
 
 ---
 
@@ -96,8 +96,8 @@ The constant little-endian-looking markers (`0x0000149c`, `0x083â€¦`, `0x08dee0â
 ## Honest limitations (unchanged boundaries)
 
 1. We decoded the response **structure** (constant/variable layout) but not the **meaning** of the variable fields.
-2. This is the **beacon** protocol only. It is separate from the seller REST API (`rest.snakeseller.com`), which uses email+password auth. Nothing here bypasses that login.
-3. No user-account access, session hijack, or authentication bypass was achieved or attempted.
+2. This is the **beacon** protocol only. It is separate from the seller REST API (`rest.snakeseller.com`), which uses email+password auth. Nothing here accesses that login.
+3. No user-account access, session control, or authentication access was achieved or attempted.
 4. We did not test server-side abuse controls at scale.
 
 ---

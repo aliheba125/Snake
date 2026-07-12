@@ -67,7 +67,7 @@ The constant markers (`0x00149c`, `131`, `217`, `0x08dee000`) are stable across 
 ## Limitations (unchanged)
 
 - The semantics of the fixed markers and the server-varying bytes are **not** determined (could be timestamp, sequence counter, or session token — not proven).
-- Still the beacon protocol only; the seller REST API auth (email+password) is untouched; no account access or auth bypass.
+- Still the beacon protocol only; the seller REST API auth (email+password) is untouched; no account access or auth obtained.
 
 ## Scripts
 - `scripts/decode_response.py` — deterministic-vs-varying + field interpretation

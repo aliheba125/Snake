@@ -43,7 +43,7 @@
    keys its reply to the nonce+time inside it (challenge/response, both directions reproduced). ✅
 2. On-device **activation** (6-digit Entry Key) is validated **locally** with **symmetric** crypto
    (libengine has zero asymmetric primitives), but its exact algorithm is **not** reverse-engineered
-   and **no valid key was forged**. ❓ / ⬜
+   and **no valid key was generated**. ❓ / ⬜
 3. The beacon endpoint has **no meaningful transport/authenticity protection**; the real business
    boundary is the separate seller REST API (not accessed). ✅ / 🟨
 

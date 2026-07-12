@@ -29,7 +29,7 @@ conclusion↔evidence mapping is in [`../EVIDENCE_MATRIX.md`](../EVIDENCE_MATRIX
 | | `test_code_network.py`, `capture_activate*.py`, `hook_memcmp.py`, `stalker_*.py`, `correlate_activate.py`, `plaintext_decode.py` | activation internals |
 | | `server_test.py`, `discriminating_test.py`, `probe_logic.py`, `trace_hosts.py`, `trace_interact.py` | server behaviour + network topology |
 | `scripts/memory-scanners/` | `scanner.c` … `scanner9.c` | AEAD/CTR/MAC/KDF memory scans (negative results) |
-| `scripts/network-diagnosis/`, `network-diagnosis-extra/` | July‑11 capture/bypass/diagnosis scripts | archived network session |
+| `scripts/network-diagnosis/`, `network-diagnosis-extra/` | July‑11 capture/diagnosis scripts | archived network session |
 | `scripts/frida-agents/` | `agent_*.ts` + `compiled_*.js` | July‑11 Frida agents (string recovery, memscan, net capture) |
 
 ## Static artifacts ([`../artifacts/`](../artifacts/))

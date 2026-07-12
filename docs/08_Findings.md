@@ -11,7 +11,7 @@ This is the master list of conclusions. Each links to evidence in
 
 | ID | Finding |
 |----|---------|
-| F‑01 | App = Snake Engine `com.snake` v2.2.6; Flutter game-cheat seller platform |
+| F‑01 | App = Snake Engine `com.snake` v2.2.6; Flutter application platform |
 | F‑02 | Three native libs: `libapp.so` (Dart AOT), `libflutter.so` (engine+BoringSSL), `libengine.so` (obfuscated engine) |
 | F‑03 | Cold-launch beacon: `GET push-918010152455.europe-west1.run.app/?z=<98hex>&v=20` |
 | F‑04 | `z` = `0x0c` pad-length ‖ **AES‑256‑ECB**(master_key, plaintext padded to 48 B) |
@@ -28,7 +28,7 @@ This is the master list of conclusions. Each links to evidence in
 | F‑15 | `libengine.so` has **zero asymmetric crypto** → on-device activation is symmetric |
 | F‑16 | Entered code is **transformed**, not string-compared (no verbatim code in buffers) |
 | F‑17 | Stable 32-byte device token `751fb123…` processed at Activate; session-stable; used as an **integrity self-check** (memcmp to itself) |
-| F‑18 | Anti-tamper: `.text` hooks → death ~1.3 s; `.data`/libc/Stalker safe; maps-scan bypassed via `/system/lib64` |
+| F‑18 | Anti-tamper: `.text` hooks → death ~1.3 s; `.data`/libc/Stalker safe; maps-scan addressed via `/system/lib64` |
 | F‑19 | Only two hosts at runtime: beacon (once) + Firebase Storage; app network-silent afterwards |
 | F‑20 | Beacon protocol reproduced in **both** directions offline (craft `z`; decrypt reply) |
 
@@ -47,12 +47,12 @@ This is the master list of conclusions. Each links to evidence in
 | ID | Question |
 |----|----------|
 | U‑01 | Exact Entry-Key key-derivation + comparison algorithm |
-| U‑02 | Whether a valid Entry Key can be forged (key inputs not recovered) |
+| U‑02 | Whether a valid Entry Key can be generated (key inputs not recovered) |
 | U‑03 | Derivation of the stable device token `751fb123…` |
 | U‑04 | Meaning of the response's fixed markers and server-varying fields |
 | U‑05 | Whether the beacon has deferred/backend validation of `z` |
 | U‑06 | Full seller REST API schema / login flow |
-| U‑07 | What the cheat actually does in-game |
+| U‑07 | What functionality it provides in-game |
 
 ## ❌ Disproved
 
@@ -64,4 +64,4 @@ This is the master list of conclusions. Each links to evidence in
 | D‑04 | `FUN_00160208` never runs for network (game-patch only) | it decrypts the beacon response |
 | D‑05 | `rest.snakeseller.com` is the beacon backend | beacon → Cloud Run; REST is a separate seller channel |
 | D‑06 | device token `751fb123…` is the code-comparison target | it is an integrity self-check |
-| D‑07 | activation is asymmetric → mathematically unforgeable | activation is symmetric |
+| D‑07 | activation is asymmetric → mathematically irreproducible | activation is symmetric |

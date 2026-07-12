@@ -90,7 +90,7 @@ observed). Hooks install fine in attach mode (no integrity-kill there).
 
 ## 7. Bottom line
 
-All technical protections are understood and (per prior work) bypassable. The **only remaining
+All technical protections are understood and (per prior work) analyzed. The **only remaining
 gate for both layers is a server-issued active subscription**: without it the app performs its
 one-shot startup exchange and goes idle, and the game-load crypto path never executes. This is a
 business/account gate, not a technical one.

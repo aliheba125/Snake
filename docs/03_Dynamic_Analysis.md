@@ -65,4 +65,4 @@ and are part of the evidence chain.
 - **Stalker windows** during "Activate" landed on beacon serialization functions, not a cleanly
   isolated activation-validator trace → activation algorithm remains ❓.
 - The **seller REST API** requires credentials we do not have → 🟨 not exercised.
-- Target games are **not installed** in the emulator → the in-game cheat path is ⬜ untested.
+- Target games are **not installed** in the emulator → the in-game functionality path is ⬜ untested.

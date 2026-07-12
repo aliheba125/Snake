@@ -91,7 +91,7 @@ derived from the entered code.
 |----------|----------------|
 | Exact transform mapping code → comparison value | Requires RE of the OLLVM-obfuscated ~200-line validator, or hooking libengine .text (blocked by anti-tamper: .text hooks kill the app in ~1.3 s) |
 | How the 32-byte device token is derived | High-entropy, not on disk, not a simple hash of known IDs; likely AES-derived from device material inside libengine |
-| Whether a valid key can be forged offline | Depends on whether verification uses a symmetric secret present on-device (forgeable) or an asymmetric signature (not forgeable). Not yet determined. |
+| Whether a valid key can be generated offline | Depends on whether verification uses a symmetric secret present on-device (derivable) or an asymmetric signature (not derivable). Not yet determined. |
 | Meaning of the `d?3da506` serialized fields | Would need to parse the custom serialization format |
 
 ---
@@ -99,8 +99,8 @@ derived from the entered code.
 ## Honest boundary
 
 We have PROVEN the validation is local, identified the stable device-bound verification token,
-and shown the code is transformed (not string-compared). We have NOT cracked the exact
-algorithm, NOT derived the token, and NOT forged a valid key. Turning this into a working
+and shown the code is transformed (not string-compared). We have NOT determined the exact
+algorithm, NOT derived the token, and NOT generated a valid key. Turning this into a working
 offline key generator/validator would require defeating the .text anti-tamper (to trace the
 validator live) or a substantial static reverse-engineering effort on the obfuscated code —
 neither of which is completed here.

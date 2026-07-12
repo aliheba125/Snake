@@ -69,10 +69,10 @@ t≈0.53s  decrypted beacon response stored in global (DAT_009280f8)
 ## Process/anti-analysis characteristics (✅ Confirmed)
 
 - **Anti-tamper watchdog**: modifying `libengine` `.text` (Frida `Interceptor.attach`) kills the
-  process in ~1.3 s via an inline `svc` exit (bypasses libc). Writing to `.data`/`.bss`, hooking
+  process in ~1.3 s via an inline `svc` exit (avoids libc). Writing to `.data`/`.bss`, hooking
   `libc`, and Frida **Stalker** (dynamic recompilation) all survive.
 - **maps detection**: a Gadget under `/data/local/tmp/` is detected on UI interaction; placing it
-  at `/system/lib64/libskia_android.so` bypasses this.
+  at `/system/lib64/libskia_android.so` avoids this.
 - Runtime string decryption via `Native.ilil(index)`; no plaintext endpoint/URL constants in any
   static artifact.
 

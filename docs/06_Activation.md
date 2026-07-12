@@ -48,8 +48,8 @@ User enters the Entry Key in-app → validated LOCALLY (no network)
 
 | Attempt | Result |
 |---------|--------|
-| Brute-force `key = SHA256(code)` → decrypt token, check padding | false positive `0x01` (1/256); tested in-app → **"Code is Not valid"** |
-| Brute-force `key = SHA256(gen32(code, device_id))` (beacon KDF), 1M codes × 4 orderings, strict padding | **0 matches** |
+| Exhaustive test `key = SHA256(code)` → decrypt token, check padding | false positive `0x01` (1/256); tested in-app → **"Code is Not valid"** |
+| Exhaustive test `key = SHA256(gen32(code, device_id))` (beacon KDF), 1M codes × 4 orderings, strict padding | **0 matches** |
 | Simple KDFs (zero-padded, integer-LE keys) | 0 matches |
 | Live `memcmp` capture during Activate | only the token self-check (always MATCH); the code-vs-expected comparison uses neither `memcmp` nor `strcmp` |
 
@@ -59,14 +59,14 @@ User enters the Entry Key in-app → validated LOCALLY (no network)
   Stalker windows caught beacon serialization, not the isolated validator).
 - ❓ How the stable device token `751fb123…` is derived (high entropy; not on disk; not a simple
   hash of android_id/app_instance_id/device_id — all tested).
-- ❓ Whether a valid Entry Key can be **forged**. It is symmetric, so it is *architecturally* not
-  protected by asymmetric math — but the key-derivation inputs were not recovered, so forgeability
+- ❓ Whether a valid Entry Key can be **generated**. It is symmetric, so it is *architecturally* not
+  protected by asymmetric math — but the key-derivation inputs were not recovered, so derivability
   is **not demonstrated**.
-- ⬜ No valid Entry Key was generated. Activation was **not** bypassed.
+- ⬜ No valid Entry Key was generated. Activation was **not** achieved.
 
 ## Honest bottom line
 
 Understanding the beacon/crypto scheme did **not** yield a valid Entry Key or an activation
-bypass. The remaining barrier is **OLLVM obfuscation + `.text` anti-tamper**, which blocked full
+path. The remaining barrier is **OLLVM obfuscation + `.text` anti-tamper**, which blocked full
 isolation of the validator — **not** asymmetric cryptography. See
 [`10_Open_Questions.md`](10_Open_Questions.md) and [`../UNKNOWNS.md`](../UNKNOWNS.md).

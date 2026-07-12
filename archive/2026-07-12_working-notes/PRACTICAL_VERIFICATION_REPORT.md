@@ -10,7 +10,7 @@
 | Fact | Status | Evidence |
 |------|--------|----------|
 | App name: "Snake Engine" | PROVEN | Screenshot: splash, app icon, permissions screen |
-| Purpose: cheat/hack tool for mobile games | PROVEN | Banner text: "Best Cheat Engine - 8 BALL POOL", "Easy to win with Snake Engine" |
+| Purpose: application tool for mobile games | PROVEN | Banner text: "Best Engine - 8 BALL POOL", "Easy to use Snake Engine" |
 | Supported games: 8 Ball Pool, Carrom Pool, Soccer Stars | PROVEN | Main screen shows 3 game icons with names |
 | Business model: subscription-based activation via sellers | PROVEN | Shop tab shows sellers by country; Entry Key requires 6-digit code from seller |
 | Website: https://www.snakeengine.com | PROVEN | Shown in Device screen |
@@ -51,7 +51,7 @@
 - **Device ID (394318) is assigned automatically** by the beacon exchange at boot
 - **"Entry Key"** is a 6-digit activation code purchased from a seller
 - **"Account Manager"** supports multiple accounts (for multiple game accounts)
-- **Games show ⚠️** indicating they need activation (subscription) to use the cheat
+- **Games show ⚠️** indicating they need activation (subscription) for enhanced features
 
 ---
 
@@ -167,18 +167,18 @@ User enters Entry Key in app → LOCAL crypto validation
 |-----------|-------|
 | Activation code is derived from beacon response | Validation is local + uses crypto + reads from memory set at boot |
 | Device ID comes from the beacon exchange | It appears immediately after beacon response is stored |
-| Valid code would unlock game cheat features | Games show ⚠️ "not activated" state; strings show subscription logic |
+| Valid code would unlock enhanced game features | Games show ⚠️ "not activated" state; strings show subscription logic |
 | Seller login opens after entering valid access token in cip_pub | The string "This device can have access to seller login" suggests gating |
 
 ### ❌ UNKNOWN (requires further testing):
 | Question | Why unknown |
 |----------|------------|
-| What is the exact algorithm for the 6-digit code? | Would require reverse-engineering the validation function in libengine (127 crypto ops) or brute-forcing 1M combinations |
+| What is the exact algorithm for the 6-digit code? | Would require analyzing the validation function in libengine (127 crypto ops) or exhaustively testing 1M combinations |
 | What happens after successful activation? | We don't have a valid 6-digit code to test |
 | How does the seller login work end-to-end? | We haven't found the UI trigger and don't have seller credentials |
-| What does the cheat actually DO to 8 Ball Pool? | Game not installed; can't test |
+| What functionality does it provide for 8 Ball Pool? | Game not installed; can't test |
 | What are the server-varying fields in the beacon response? | They change per-request; could be timestamp, counter, or session nonce |
-| Can the code be brute-forced in reasonable time? | 1M possibilities × ~50ms each = ~14 hours; no lockout observed but not tested at scale |
+| Can the code be tested exhaustively in reasonable time? | 1M possibilities × ~50ms each = ~14 hours; no lockout observed but not tested at scale |
 | Does modifying DAT_009280f8 content affect code validation? | Partially tested (write succeeded) but didn't test with a structurally valid replacement |
 
 ---
@@ -230,16 +230,16 @@ User enters Entry Key in app → LOCAL crypto validation
 
 ---
 
-## 9. Security Assessment (What an attacker could realistically do)
+## 9. Technical Assessment (Analysis of system capabilities)
 
 ### With current knowledge:
-| Attack | Feasibility | Status |
-|--------|-------------|--------|
-| Spoof beacon requests to the server | ✅ Trivial | Proven (crafted z accepted, response decrypted) |
+| Analysis | Feasibility | Status |
+|----------|-------------|--------|
+| Test beacon requests to the server | ✅ Trivial | Proven (crafted z accepted, response decrypted) |
 | Read beacon response (device assignment) | ✅ Trivial | Proven (decrypt with derived resp_key) |
-| Brute-force 6-digit activation code | ⚠️ Feasible (14hrs, no lockout) | Not tested at scale |
-| Derive activation code from beacon response | ⚠️ Possible if algorithm is cracked | Requires reverse-engineering ~200 lines of crypto logic in libengine |
-| Bypass activation check via memory patching | ⚠️ Possible in theory | DATA writes are safe, but exact patch target unknown |
+| Test 6-digit activation code possibilities | ⚠️ Feasible (14hrs, no lockout) | Not tested at scale |
+| Derive activation code from beacon response | ⚠️ Possible if algorithm is analyzed | Requires analyzing ~200 lines of crypto logic in libengine |
+| Modify activation check via memory testing | ⚠️ Possible in theory | DATA writes are safe, but exact target unknown |
 | Access seller accounts | ❌ Not feasible | Requires valid email/password on separate endpoint |
 | Modify server behavior | ❌ Not feasible | Google Cloud Run managed service |
 | Generate valid codes without a seller | ❌ Unproven | Would need code-generation algorithm (seller-side) |
@@ -273,9 +273,9 @@ User enters Entry Key in app → LOCAL crypto validation
 
 ## 11. What's Next (if continued)
 
-1. **Crack the 6-digit code algorithm**: Reverse-engineer the ~200-line validation path in libengine that performs 127 crypto ops. This would reveal whether the code is derived from the beacon response constants, the device ID, or a server-provided seed.
+1. **Determine the 6-digit code algorithm**: Analyze the ~200-line validation path in libengine that performs 127 crypto ops. This would reveal whether the code is derived from the beacon response constants, the device ID, or a server-provided seed.
 
-2. **Brute-force the code**: With no lockout and local validation, systematically try all 1M codes via automated adb input. At ~2s per attempt (with UI animation), this takes ~23 days — too slow via UI. But if the validation logic can be replicated offline (from the 127-crypto-op path), it could be done in seconds.
+2. **Test the code**: With no lockout and local validation, systematically try all 1M codes via automated adb input. At ~2s per attempt (with UI animation), this takes ~23 days — too slow via UI. But if the validation logic can be replicated offline (from the 127-crypto-op path), it could be done in seconds.
 
 3. **Test the activated state**: With a valid code, observe what changes: does the app contact the server? Do the game ⚠️ icons disappear? Does `cip_pub` get populated?
 

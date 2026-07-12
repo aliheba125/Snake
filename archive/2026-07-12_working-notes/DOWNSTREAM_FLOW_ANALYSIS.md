@@ -85,7 +85,7 @@ Polling the global `DAT_009280f8` (read-only; no code hook, so no anti-tamper tr
 2. We did **not** decode the meaning of the decrypted value or of `DAT_009280f8`'s contents.
 3. We did **not** exercise the post-login flow (`rest.snakeseller.com`), so any use of the beacon result *after* authentication is untested.
 4. We did **not** test for asynchronous/backend validation of z (a server could flag a bad z later without changing the immediate 200 response).
-5. No login bypass, account access, or authentication defeat was attempted or achieved.
+5. No login, account access, or authentication defeat was attempted or achieved.
 
 ---
 
@@ -93,7 +93,7 @@ Polling the global `DAT_009280f8` (read-only; no code hook, so no anti-tamper tr
 
 - **Measured**: at launch the app contacts only the z beacon (once) and Firebase storage; the response is not persisted; malformed z → HTTP 500; z < 32 bytes → no token; z ≥ 32 bytes → 33-byte token.
 - **Capability-proven (static)**: the app contains a dedicated routine to hex-decode and **decrypt** an incoming value with a nonce/time-derived key and store the result — so the response is plausibly *consumed*, not merely discarded telemetry.
-- **Unproven**: the exact runtime data flow of the response, its semantic meaning, any deferred/backend validation of z, and anything about bypassing the authenticated REST API.
+- **Unproven**: the exact runtime data flow of the response, its semantic meaning, any deferred/backend validation of z, and anything about accessing the authenticated REST API.
 
 The reviewer's framing stands: understanding and reproducing z is fully established; the *role of the endpoint within the wider system* is now partially mapped (one-shot beacon + a client-side decrypt routine keyed to the request nonce), but a complete, runtime-proven data-flow and any claim about defeating the overall system's authentication remain **out of what has been demonstrated**.
 

@@ -56,7 +56,7 @@ as such and never treated as fact.
 - **libc hooks (memcpy/malloc/clock_gettime) are safe** — 333 real events captured; process
   survived. Chosen over Interceptor-on-libengine because Interceptor triggers an integrity check.
 - **Frida Gadget from `/data/local/tmp/` is detected** (maps scan). Placing the Gadget in
-  `/system/lib64/libskia_android.so` bypasses that detection.
+  `/system/lib64/libskia_android.so` avoids that detection.
 - **Gadget script-mode timers** (`setTimeout`/`setInterval`) don't fire; listen-mode connect takes
   ~18 s (too late for startup TLS).
 - classify: 4 periodic callers into libengine, zero relation to tap/subscription; KDF/AES not

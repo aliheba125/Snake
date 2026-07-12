@@ -65,7 +65,7 @@ Snake/
 ├── scripts/                 ← TOOLING (reproduction + capture)
 │   ├── beacon-crypto/          (Python/JS: capture, reproduce, prove, decode, trace)
 │   ├── memory-scanners/        (scanner.c … scanner9.c — AEAD/CTR/MAC/KDF scans)
-│   ├── network-diagnosis/      (July-11 capture/bypass/diagnosis)
+│   ├── network-diagnosis/      (July-11 capture/diagnosis)
 │   ├── network-diagnosis-extra/(additional July-11 scripts)
 │   └── frida-agents/           (agent_*.ts + compiled_*.js — July-11 Frida agents)
 │

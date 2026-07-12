@@ -18,11 +18,11 @@ would prove or disprove it. Nothing here should be cited as fact.
   the comparison operands. Blocker: OLLVM flattening + `.text` anti-tamper (no `Interceptor` on
   libengine).
 
-### U‑02 — Whether a valid Entry Key can be forged ❓ / ⬜
+### U‑02 — Whether a valid Entry Key can be generated ❓ / ⬜
 - **Known:** symmetric ⇒ not protected by asymmetric math; server issues keys bound to Device ID.
 - **Missing:** the key-derivation inputs and algorithm (U‑01) and token derivation (U‑03).
 - **To resolve:** only after U‑01+U‑03; then derive key, encrypt a valid payload with the current
-  time bucket, and test in-app. **Not attempted successfully; do not claim forgeability.**
+  time bucket, and test in-app. **Not attempted successfully; do not claim generation capability.**
 
 ### U‑03 — Derivation of the stable device token `751fb123…` ❓
 - **Known:** 32 bytes, high entropy, session-stable, not on disk, not `SHA256` of
@@ -41,7 +41,7 @@ would prove or disprove it. Nothing here should be cited as fact.
 ### U‑05 — Deferred/backend validation of `z` ❓
 - **Known:** ingress accepts garbage `z` (no authenticity check at the edge).
 - **To resolve:** volume/behavioral testing — does the backend ever flag, rate-limit, or later
-  reject forged beacons? Not observable from the client alone.
+  reject crafted beacons? Not observable from the client alone.
 
 ## Business-tier unknowns (require access we don't have)
 
@@ -50,8 +50,8 @@ would prove or disprove it. Nothing here should be cited as fact.
   rejects unauthenticated calls with "Authentication failed"; `action=*` parameter exists.
 - **To resolve:** legitimate seller credentials (out of scope) to map the schema.
 
-### U‑07 — In-game cheat behaviour ⬜
-- **Known:** libengine has an app-virtualization/hooking engine (July‑8 static/emulation).
+### U‑07 — In-game behaviour ⬜
+- **Known:** libengine has an app-virtualization engine (July‑8 static/emulation).
 - **To resolve:** install a target game + a valid subscription; observe the `:engine` process and
   the `FUN_00160208` game-patch decryption path live.
 
@@ -69,7 +69,7 @@ would prove or disprove it. Nothing here should be cited as fact.
 
 ## What "resolving these" would and would not mean
 
-- Resolving U‑01+U‑02+U‑03 could establish whether the activation is forgeable. Until then, **the
+- Resolving U‑01+U‑02+U‑03 could establish whether the activation key is derivable. Until then, **the
   activation is neither broken nor proven unbreakable — it is undetermined.**
 - U‑06/U‑07 concern the business/seller system and the in-game engine, which are separate from the
   beacon work that is already ✅ complete.

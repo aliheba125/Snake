@@ -19,16 +19,16 @@ Realistic progress per axis. Percentages reflect **evidence-backed completion**,
 | Server behaviour (beacon endpoint) | ~85% | ✅ | ingress fully characterized; backend/deferred validation ❓ |
 | Runtime behaviour / anti-tamper | ~90% | ✅ | UI, network, storage, FFI, watchdog all characterized |
 | Activation model (Entry Key) | ~60% | 🟨 | model + locality + symmetry confirmed; algorithm ❓ |
-| Activation algorithm (KDF/compare) | ~15% | ❓ | patterns found; validator not isolated; no forge |
-| Entry-Key forgery / activation bypass | 0% | ⬜ | not achieved; explicitly not demonstrated |
+| Activation algorithm (KDF/compare) | ~15% | ❓ | patterns found; validator not isolated; not generated |
+| Entry-Key generation / activation | 0% | ⬜ | not achieved; explicitly not demonstrated |
 | Seller REST API | ~10% | 🟨 | endpoint + auth-required known; schema unknown (no creds) |
-| In-game cheat / virtualization (live) | ~20% | 🟨 | static/emulation evidence; not run live (no target game) |
+| In-game functionality / virtualization (live) | ~20% | 🟨 | static/emulation evidence; not run live (no target game) |
 
 ## Overall
 
 - **Beacon + crypto reverse-engineering:** ✅ essentially complete and independently reproducible.
 - **Application understanding:** 🟨 high, but Dart-layer logic and the in-game engine are partial.
-- **Activation system:** 🟨 model understood; ❓ algorithm undetermined; ⬜ no forge/bypass.
+- **Activation system:** 🟨 model understood; ❓ algorithm undetermined; ⬜ not demonstrated.
 - **Business/server control:** 🔴 not achieved and not attempted beyond confirming auth is required.
 
 ## Milestones — done vs remaining
@@ -46,7 +46,7 @@ Realistic progress per axis. Percentages reflect **evidence-backed completion**,
 ### Remaining ⬜ / ❓ (ordered — see [docs/11_Next_Steps.md](docs/11_Next_Steps.md))
 - [ ] Isolate the Entry-Key validator precisely (Stalker on UI thread)
 - [ ] Recover the device-token derivation
-- [ ] Determine Entry-Key KDF + comparison → decide forgeability
+- [ ] Determine Entry-Key KDF + comparison → decide derivability
 - [ ] Decode response record field semantics
 - [ ] (Access-gated) seller REST API schema; in-game engine live
 

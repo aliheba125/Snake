@@ -211,7 +211,7 @@ Each of the four launches sends a different `z` (the 36-byte plaintext differs p
 
 ## Security implication
 
-Because the AES-256 key is a pure function of a 16-second time bucket (plus a device baseline), an attacker who knows the approximate wall-clock time of a request — and reproduces `FUN_001614a4` + SHA-256 + the keyed shuffle — can regenerate the exact key without any per-session secret, then decrypt every `z`. The key space is effectively the number of candidate time buckets, not 2^256. This is a design weakness, documented here as a factual consequence of the proven derivation, not a recommendation.
+Because the AES-256 key is a pure function of a 16-second time bucket (plus a device baseline), anyone who knows the approximate wall-clock time of a request — and reproduces `FUN_001614a4` + SHA-256 + the keyed shuffle — can regenerate the exact key without any per-session secret, then decrypt every `z`. The key space is effectively the number of candidate time buckets, not 2^256. This is a design weakness, documented here as a factual consequence of the proven derivation, not a recommendation.
 
 ## Full answer to "source of key / IV / seeds"
 

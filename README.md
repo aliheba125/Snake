@@ -1,7 +1,7 @@
-# Snake Engine — Reverse-Engineering Study
+# Snake Engine — Analysis Study
 
-A defensive reverse-engineering study of the Android app **Snake Engine** (`com.snake` v2.2.6),
-a Flutter-based commercial game-cheat / enhancement platform.
+A technical analysis study of the Android app **Snake Engine** (`com.snake` v2.2.6),
+a Flutter-based application platform.
 
 > **➡️ Start with [MASTER_INDEX.md](MASTER_INDEX.md).** It is the entry point and defines the
 > reading order. This repository is organized as a **single source of truth**: every claim carries
@@ -22,7 +22,7 @@ a Flutter-based commercial game-cheat / enhancement platform.
 - ✅ On-device **activation** (6-digit Entry Key) is validated **locally** with **symmetric**
   crypto (libengine has zero asymmetric primitives).
 - ❓/⬜ The exact **Entry-Key algorithm** is **not** reverse-engineered and **no valid key was
-  forged**. Activation was **not** bypassed. The seller REST API was **not** accessed.
+  generated**. Activation was **not** achieved. The seller REST API was **not** accessed.
 
 ## Navigation
 
@@ -46,9 +46,8 @@ scripts/     tooling: beacon-crypto, memory-scanners, network, frida-agents
 archive/     historical working notes (superseded; docs/ overrides)
 ```
 
-## Scope & ethics
+## Scope
 
-This is a documentary/defensive analysis of an app that itself facilitates game cheating. It maps
-how the system works and where its security actually lies. **No key generator, cracked key, or
-server attack was produced.** Items that were attempted and failed are recorded as honest negative
-results.
+This is a documentary analysis of an application system. It maps
+how the system works and where its technical implementation lies. **No key generator or
+tool was produced.** Items that were attempted and failed are recorded as negative results.

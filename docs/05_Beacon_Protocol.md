@@ -71,7 +71,7 @@ this is three independent confirmations of server-side cryptographic processing.
 | wrong/empty `v`, wrong user-agent, different IP | 200 | token | not validated |
 
 **Precise conclusion:** the server **parses structure** (hex, even length, ≥32 B) and
-**cryptographically processes** `z`, but performs **no authenticity/anti-forgery validation at
+**cryptographically processes** `z`, but performs **no authenticity validation at
 ingress**. (Whether a later/backend stage validates is ❓ — see [`../UNKNOWNS.md`](../UNKNOWNS.md).)
 
 ## Client-side response handling — 🟨 Partially Confirmed

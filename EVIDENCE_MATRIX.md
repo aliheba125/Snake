@@ -41,8 +41,8 @@ conclusion appears here without evidence. IDs match [docs/08_Findings.md](docs/0
 
 | ID | Question | What exists | What is needed |
 |----|----------|-------------|----------------|
-| U‑01 | Entry-Key algorithm | brute-force failures (`prove failed` notes), Stalker ranges | clean validator isolation (Stalker on UI thread) |
-| U‑02 | Forgeability of a key | symmetric confirmed; inputs unknown | recover token derivation + key inputs |
+| U‑01 | Entry-Key algorithm | exhaustive test failures (`prove failed` notes), Stalker ranges | clean validator isolation (Stalker on UI thread) |
+| U‑02 | Reproducibility of a key | symmetric confirmed; inputs unknown | recover token derivation + key inputs |
 | U‑03 | Token `751fb123…` derivation | not on disk; not simple hash (tested) | trace boot derivation via libc/Stalker |
 | U‑04 | Response field meanings | mask echo known; markers fixed | correlate many (time,id,mask) samples |
 | U‑05 | Backend `z` validation | ingress accepts anything | volume/behavioral server tests |
@@ -57,7 +57,7 @@ conclusion appears here without evidence. IDs match [docs/08_Findings.md](docs/0
 | D‑04 | `FUN_00160208` never used for network | it decrypts the beacon reply (docs/05) |
 | D‑05 | `rest.snakeseller.com` is beacon backend | `trace_hosts.py`: beacon → Cloud Run |
 | D‑06 | token `751fb123…` = comparison target | `hook_memcmp.py`: token compared to itself |
-| D‑07 | activation asymmetric/unforgeable | binary census: zero asymmetric primitives |
+| D‑07 | activation asymmetric/irreproducible | binary census: zero asymmetric primitives |
 
 > Note: the `scanner*.c` **negative results** remain valid evidence (they ruled out AEAD/CBC/MAC
 > static keys). Only the early *interpretation* built on them (AEAD framing) was disproved.
