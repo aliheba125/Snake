@@ -89,7 +89,7 @@ The static docs hypothesized the AES at `FUN_00160208` (KDF `FUN_00161788`) as *
 - `FUN_00160208` (AES) is only invoked from `FUN_0017e148` and `FUN_00189774`. `FUN_00189774(obj, input)` reads its KDF seeds from **object fields** (`obj+0x3a0`, `obj+0x3a8`) and decrypts `input` into global `DAT_009280f8` — i.e. this is the engine's **internal game-data / patch decryptor**, exercised only when a **target game is actually loaded** into the virtualization container. With no target game installed (all three show ⚠️), this path never runs.
 - The **network payload** (`encryptedData`) is encrypted in the **Dart layer (pointycastle)**, not in `libengine`. Live: `getaddrinfo("snakeseller.com")` fires at startup; the HTTPS connection is established in the first ~2 s and reused (no new requests from UI navigation).
 
-**Net:** `seed1/seed2 + ciphertext` for `FUN_00160208` remain uncaptured **only because their trigger (a launched target game) is absent**, not because of technical limitations — the analysis approach was effective.
+**Net:** `seed1/seed2 + ciphertext` for `FUN_00160208` remain uncaptured **only because their trigger (a launched target game) is absent**, not because of the protection — the protection is fully bypassed.
 
 ---
 
