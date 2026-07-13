@@ -61,19 +61,43 @@ would prove or disprove it. Nothing here should be cited as fact.
 
 - **July‑13, .bss globals before/after Activate:**
   Reading libengine .bss globals before and after tapping Activate revealed:
-  - `bss_8228` changed from URL string (`https://rest.snakeseller.com/ap...`) to
-    **error message: `"Code is Not valid"`** (ASCII at offset +2).
+  - `bss_8228` pointer changed; after Activate it points to memory containing
+    `"Code is Not valid"` (ASCII at offset +2).
   - `bss_80f0` (master_key pointer) changed (new time bucket → new key).
   - `bss_8238` (decrypt_store global) **did not change** (remains same struct).
   
-  **This confirms:** libengine **does execute the validation in native code** and produces the
-  "Code is Not valid" error string. The validation is NOT in Dart — it happens inside libengine,
-  but the exact function/path that makes the decision was not directly instrumented in this
-  session.
-- **To resolve:** disassemble the 21 identified ranges in Ghidra (now known exactly); correlate
-  32-byte intermediates with entered code and device token; instrument specific sub-ranges with
-  Stalker `callout` to capture register state at branch points.
-- **Evidence:** `evidence/beacon-crypto-traces/stalker_v2_135790.json`, `stalker_v2_999888.json`.
+  **However (corrected July‑13, trace_error_write.py):**
+  - `Memory.scanSync` for "Code is Not valid" within libengine.so = **empty** — the string
+    does NOT exist in the libengine binary itself.
+  - All `memcpy` calls copying this string were traced to callers **outside libengine**
+    (identified by Frida's `Process.findModuleByAddress` as `libflutter.so` at offsets
+    `0x53cbf8` and `0x53cfe4`).
+  - The `bss_8228` pointer likely points to memory managed by another component (Dart heap,
+    Flutter runtime, or dynamically generated code). The exact propagation path of the error
+    string remains **undetermined**.
+  - **What this does NOT tell us:** whether the validation decision itself is made in libengine
+    (returning a code/boolean) or elsewhere. The memcpy observation alone cannot distinguish
+    between "libengine decided, Flutter displays" vs other architectures.
+
+- **July‑13, OLLVM jump table target (`capture_br_x11.py`):**
+  `br x11` at 0xa61c8 was captured across 3 codes (135790, 999888, 246810):
+  - Target: **always `0xaa1a0`**, jump table index **x9 = 7** (fixed, code-independent).
+  - This means the OLLVM case selection is state-dependent, not code-dependent — the same
+    case (7) executes regardless of the entered 6-digit code.
+  - `0xaa1a0` matches the "pre-burst" range observed in `stalker_immediate` (the code that
+    runs from the first malloc before the burst of 5+ that triggers burst-detection Stalker).
+  - The validation logic operates **within** this `0xaa1a0` path and its callees.
+
+- **Missing:** the exact function that evaluates the 6-digit code and sets the pass/fail state;
+  the KDF that transforms the code into a crypto key; the comparison/gate that produces the
+  result returned to the caller.
+- **To resolve:** (a) Instrument deeper within the `0xaa1a0` path — especially the sequence
+  `0x8d61c` → `FUN_00189774` → `cbz w20` identified in disassembly. (b) Capture w20 (the
+  return value of FUN_00189774) during Activate to confirm it's the pass/fail signal.
+  (c) Trace which function writes the error result that eventually becomes the UI message.
+- **Evidence:** `evidence/beacon-crypto-traces/stalker_v2_*.json`, `callout_v3b_*.json`,
+  `blr_target_*.json`, `globals_before_after_135790.json`, `activation_ranges_disasm.txt`,
+  `validator_chain_disasm.txt`.
 
 ### U‑02 — Whether a valid Entry Key can be generated ❓ / ⬜
 - **Known:** symmetric ⇒ not protected by asymmetric math; server issues keys bound to Device ID.
@@ -157,13 +181,3 @@ would prove or disprove it. Nothing here should be cited as fact.
 - U‑06/U‑07 concern the business/seller system and the in-game engine, which are separate from the
   beacon work that is already ✅ complete.
 
-
-- **Missing:** the exact function that evaluates the 6-digit code and sets the pass/fail state;
-  the KDF that transforms the code into a crypto key; the comparison/gate that produces the error.
-- **To resolve:** (a) Instrument the OLLVM jump-table dispatch path (0xa61c8 `br x11`) more
-  deeply — capture register state at each jump-table case. (b) Trace which function writes the
-  "Code is Not valid" string to `bss_8228`. (c) Test with varied vtable indices to see if the
-  `ret` stub at 0x7d7780 changes for valid keys.
-- **Evidence:** `evidence/beacon-crypto-traces/stalker_v2_*.json`, `callout_v3b_*.json`,
-  `blr_target_*.json`, `globals_before_after_135790.json`, `activation_ranges_disasm.txt`,
-  `validator_chain_disasm.txt`.

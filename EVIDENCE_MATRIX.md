@@ -32,8 +32,10 @@ conclusion appears here without evidence. IDs match [docs/08_Findings.md](docs/0
 | F‑24 | Response record: 20 bytes stable within same (time+mask+id) triple, 12 server-varying | `response_correlation_extended.py` → `response_correlation_extended.json` | 20 samples/test; changing mask/time/id → noise (resp_key dependency); Test F disambiguates: key-derivation sensitivity, not server-side rejection |
 | F‑25 | Call graph: Range06→Range03→Range04→vtable_dispatch→FUN_0017e148 (conditional) | `activation_ranges_disasm.txt` (r2 disassembly) | `bl` chain visible in disassembly; `tbz w21,0` guards FUN_0017e148 call |
 | F‑26 | FUN_0017e148 associated with success path (not validator) | `stalker_callout_v3b.py` → `callout_v3b_*.json` | w21=0 across 3 invalid codes → never reached; hypothesis: only called on success; not yet confirmed with real activation |
-| F‑27 | Validation logic hypothesized inside vtable-dispatched code (blr x8) | `callout_v3b_*.json` + `activation_ranges_disasm.txt` | cmp x19,x0 at gate is always-equal (struct mgmt); hypothesis: actual decision made by indirect call |
+| F‑27 | blr x8 at 0x7d3d50 → 0x7d7780 (ret stub) in all tested invalid-code scenarios | `capture_blr_target.py` → `blr_target_*.json` | target fixed across 3 codes; 0x7d7780 = single `ret`; interpretation open (polymorphic dispatch? pre-decision? different path?) |
 | F‑28 | Buffer correlation: 0 common 32-byte values across runs; 1-3 high-entropy real data | `stalker_v2_*.json` analysis | all 105/101 buffers session-unique; most are heap ptrs; SHA256(code) not found |
+| F‑29 | "Code is Not valid" string NOT in libengine.so binary | `trace_error_write.py` (Memory.scanSync = empty) | string originates outside libengine; memcpy callers identified as libflutter.so; propagation path undetermined |
+| F‑30 | OLLVM br x11 → 0xaa1a0 (x9=7) fixed across 3 codes | `capture_br_x11.py` → `br_*.json` | case selection is state-dependent, not code-dependent; 0xaa1a0 = pre-burst activation entry |
 
 ## 🟨 Partially Confirmed
 
