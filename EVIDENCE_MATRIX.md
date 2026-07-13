@@ -26,6 +26,10 @@ conclusion appears here without evidence. IDs match [docs/08_Findings.md](docs/0
 | F‑18 | Anti-tamper: `.text` dies, `.data`/libc/Stalker safe | `test_inject.py`, `stalker_funcs.py`, comparative runs | write global → survives; Interceptor → dies 1.3 s |
 | F‑19 | Only beacon + Firebase at runtime | `trace_hosts.py`, `trace_interact.py` | getaddrinfo shows 2 hosts over 30 s |
 | F‑20 | Both beacon directions reproduced | `end_to_end.py` (up) + `prove_cr2.py` (down) | offline craft + offline decrypt |
+| F‑21 | Activation path uses SEPARATE functions from beacon | `stalker_activate_v2.py` → `stalker_v2_135790.json`, `stalker_v2_999888.json` | 2 runs with different codes produce identical 21 ranges; 0 overlap with beacon functions (FUN_00160208/00161788/etc.) |
+| F‑22 | Activation code path: 21 ranges identified precisely | `stalker_activate_v2.py` → `stalker_v2_*.json` | ranges reproducible across codes; include `0x618a4`, `0x7aef0`, `0x81cb8`, `0xaa39c`, `0xae3e8`, `0x7d3d14` (OLLVM dispatcher?) |
+| F‑23 | Device token processed during Activate (3x ASCII-hex) | `stalker_activate_v2.py` → crypto buffers | `751fb123…` appears in 48/96/80-byte buffers as hex-encoded ASCII |
+| F‑24 | Response record: 1 mask-byte + 19 time-dependent + 12 server-nonce | `response_correlation_v2.py` → `response_correlation_v2.json` | 5-test systematic correlation (same/vary id/time/mask/random); future-time → noise |
 
 ## 🟨 Partially Confirmed
 
@@ -36,6 +40,7 @@ conclusion appears here without evidence. IDs match [docs/08_Findings.md](docs/0
 | P‑03 | `FUN_0017e148`: symmetric decrypt + ±0xFF time window | Ghidra read of `libengine_decompiled.c` | not confirmed as THE Entry-Key validator |
 | P‑04 | `DAT_009280f8` holds decrypted beacon reply | `poll_decrypt_global.py` | contents unstable; timing-based only |
 | P‑05 | Virtualization engine loads game in `:engine` | July‑8 static/Qiling notes (archive) | not re-verified live (no target game) |
+| P‑06 | Response record: mask-byte + 19 time-dep + 12 server-nonce; future time → noise | `response_correlation_v2.py` → `response_correlation_v2.json` | semantic meaning of individual fields |
 
 ## ❓ Unknown (no sufficient evidence either way)
 
@@ -58,6 +63,7 @@ conclusion appears here without evidence. IDs match [docs/08_Findings.md](docs/0
 | D‑05 | `rest.snakeseller.com` is beacon backend | `trace_hosts.py`: beacon → Cloud Run |
 | D‑06 | token `751fb123…` = comparison target | `hook_memcmp.py`: token compared to itself |
 | D‑07 | activation asymmetric/irreproducible | binary census: zero asymmetric primitives |
+| D‑08 | `FUN_0017e148` is the Entry-Key validator | Stalker v2: `0x7e148` NOT in activation 21 ranges (July‑13) |
 
 > Note: the `scanner*.c` **negative results** remain valid evidence (they ruled out AEAD/CBC/MAC
 > static keys). Only the early *interpretation* built on them (AEAD framing) was disproved.
