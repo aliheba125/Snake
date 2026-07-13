@@ -1,0 +1,59 @@
+import frida, time, subprocess, json, sys
+
+CODE = sys.argv[1] if len(sys.argv) > 1 else "135790"
+def sh(*a): return subprocess.run(list(a), capture_output=True, text=True)
+
+sh("adb","-s","localhost:5555","shell","am","force-stop","com.snake")
+time.sleep(1.5)
+sh("adb","-s","localhost:5555","shell","am","start","-n","com.snake/com.Entry")
+print("[*] Waiting 14s...")
+time.sleep(14)
+pid = int(sh("adb","-s","localhost:5555","shell","pidof","com.snake").stdout.strip().split()[0])
+print("[*] PID:", pid)
+
+device = frida.get_device_manager().add_remote_device("localhost:27042")
+session = device.attach(pid)
+script = session.create_script(open("/tmp/agent_java_hook.js").read())
+msgs=[]
+def on_msg(m,d):
+    if m["type"]=="send":
+        p=m["payload"]; msgs.append(p); t=p.get("t","")
+        if t=="HOOKED": print("  [Java hooks installed]")
+        elif t=="HOOK_ERR": print("  [HOOK_ERR %s]" % p.get("e"))
+        elif t=="LOG":
+            r=p.get("rec",{})
+            print("  CALL %-12s armed=%s  %s" % (r.get("fn"), r.get("armed"), json.dumps({k:v for k,v in r.items() if k not in ("ts","armed","fn")})))
+    elif m["type"]=="error":
+        print("  [ERR] "+str(m.get("description",""))[:200])
+script.on("message", on_msg)
+script.load()
+time.sleep(2)
+
+sh("adb","-s","localhost:5555","shell","am","start","-n","com.snake/com.Entry")
+time.sleep(2)
+print("[*] navigate...")
+sh("adb","-s","localhost:5555","shell","input","swipe","140","100","141","101","100"); time.sleep(3)
+sh("adb","-s","localhost:5555","shell","input","tap","360","1117"); time.sleep(2)
+sh("adb","-s","localhost:5555","shell","input","tap","165","590"); time.sleep(0.5)
+for dch in CODE:
+    sh("adb","-s","localhost:5555","shell","input","keyevent",str(7+int(dch))); time.sleep(0.15)
+time.sleep(0.4)
+print("[*] ARM + Activate (%s)..." % CODE)
+try: script.exports_sync.arm()
+except Exception as e: print("arm fail", e)
+time.sleep(0.3)
+sh("adb","-s","localhost:5555","shell","input","tap","495","745")
+print("[*] waiting 12s...")
+time.sleep(12)
+
+try:
+    lg = script.exports_sync.getlog()
+    armed = [x for x in lg if x.get("armed")]
+    print("\n=== CALLS AFTER ACTIVATE (%d) ===" % len(armed))
+    for x in armed:
+        print("  %s" % json.dumps(x))
+    with open("/tmp/java_hook_result.json","w") as f: json.dump(lg,f,indent=2)
+    print("[*] saved /tmp/java_hook_result.json (total %d calls)" % len(lg))
+except Exception as e:
+    print("getlog fail", e)
+session.detach()
