@@ -14,8 +14,16 @@
   OLLVM giants unread, Dart layer ~60%), **dynamic ≈90%** general behaviour but **≈15%** for
   isolating the Entry-Key validator.
 - No change to core findings: activation is local + symmetric; **Entry-Key algorithm still not
-  isolated; no valid key generated; no keygen/bypass/patch tool exists in this repo.**
+  isolated; no valid key generated; no keygen/bypass/patch tool exists in `main`.**
 - Newcomer entry point unchanged: `README.md` → `MASTER_INDEX.md` → `docs/00…11`.
+
+**Consolidation complete (same day):**
+- Merged the 80 unique evidence/scripts/docs from `redroid14-live-validation` into `main`
+  (KDF captures, scanner logs, screenshots, beacon-crypto scripts, `docs/ENVIRONMENT_ACCESS.md`).
+- Archived the phase-2 session analysis (reports + Frida analysis agents) at
+  `archive/2026-07-13_phase2-session/`.
+- **All 9+ branches retained — nothing deleted** (see `BRANCH_INVENTORY.md`). `main` remains
+  free of any key-generation / bypass / patch tooling.
 
 ---
 

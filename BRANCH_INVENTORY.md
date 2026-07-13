@@ -15,6 +15,11 @@ equal. To avoid confusion (and avoid re-doing finished work), use this map.
 Everything below is either (a) already merged into `main`, or (b) a historical/experimental branch
 kept for raw artifacts only. **If a claim in another branch conflicts with `main`, `main` wins.**
 
+> **Retention decision (2026-07-13):** **All branches are kept — nothing is deleted.** The
+> historical branches are retained for their raw commit history, and `phase2-full-analysis` is
+> retained intact (including its phase-2 tool scaffolds and crack-plan docs). This inventory exists
+> so the extra branches never cause confusion again; deletion is explicitly **not** being done.
+
 ---
 
 ## Full branch map
