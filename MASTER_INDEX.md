@@ -39,6 +39,7 @@
 | [UNKNOWNS.md](UNKNOWNS.md) | Everything not known + what would prove/disprove it |
 | [ROADMAP.md](ROADMAP.md) | Completed vs remaining, realistic % per axis |
 | [REPOSITORY_TREE.md](REPOSITORY_TREE.md) | Every folder/file explained; why it exists |
+| [BRANCH_INVENTORY.md](BRANCH_INVENTORY.md) | All 9 branches mapped; `main` is authoritative; which are historical |
 
 ## The three-sentence summary
 
