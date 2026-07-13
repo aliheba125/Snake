@@ -11,6 +11,9 @@ a Flutter-based application platform.
 > reading order. This repository is organized as a **single source of truth**: every claim carries
 > an explicit confidence status and links to raw evidence.
 
+> **⚠️ Multiple branches?** This repo has 9 branches from different sessions. **`main` is
+> authoritative.** See [BRANCH_INVENTORY.md](BRANCH_INVENTORY.md) before reading any other branch.
+
 **Status legend:** ✅ Confirmed · 🟨 Partially Confirmed · 🟦 In Progress · ⬜ Not Started ·
 ❓ Unknown · ❌ Disproved
 
@@ -39,6 +42,7 @@ a Flutter-based application platform.
 | [UNKNOWNS.md](UNKNOWNS.md) | What we don't know + how to resolve |
 | [ROADMAP.md](ROADMAP.md) | Progress per axis |
 | [REPOSITORY_TREE.md](REPOSITORY_TREE.md) | Every folder/file explained |
+| [BRANCH_INVENTORY.md](BRANCH_INVENTORY.md) | All 9 branches mapped; which to trust |
 
 ## Layout
 

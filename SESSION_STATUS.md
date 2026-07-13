@@ -1,7 +1,21 @@
 # SESSION STATUS — Where to Resume
 
-> Last updated: 2026-07-13 (commit `ec3666a`)
+> Last updated: 2026-07-13 (repo-wide verification pass)
 > GitHub: https://github.com/aliheba125/Snake
+
+---
+
+## 2026-07-13 — Repo-wide verification (latest)
+
+- Audited **all 9 branches**. `main` confirmed as the authoritative superset; the other 7
+  session branches are historical/folded-in; `phase2-full-analysis` is a disconnected ~167-file
+  subset (separate git root). Full map added in **[BRANCH_INVENTORY.md](BRANCH_INVENTORY.md)**.
+- Re-confirmed completion levels (see `ROADMAP.md`): **static ≈85–90%** (not 100% — libengine
+  OLLVM giants unread, Dart layer ~60%), **dynamic ≈90%** general behaviour but **≈15%** for
+  isolating the Entry-Key validator.
+- No change to core findings: activation is local + symmetric; **Entry-Key algorithm still not
+  isolated; no valid key generated; no keygen/bypass/patch tool exists in this repo.**
+- Newcomer entry point unchanged: `README.md` → `MASTER_INDEX.md` → `docs/00…11`.
 
 ---
 
