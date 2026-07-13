@@ -30,12 +30,21 @@ Ordered by value and feasibility. Nothing here is started yet (this refactor pau
    payload with a current time bucket, and test in-app. (Would be the decisive proof either way.)
 
 ### New sub-steps identified (enabled by July‑13 findings):
-- ⬜ **A3a:** Capture the vtable dispatch target address (`blr x8` at 0x7d3d50) — what function
-  does it actually jump to? Use Stalker callout on 0x7d3d50 to read x8.
-- ⬜ **A3b:** Once the target is known, extend Stalker into that function to map its OLLVM
-  structure and identify the comparison/branch that sets w21.
+- ✅ **A3a:** Capture the vtable dispatch target address (`blr x8` at 0x7d3d50).
+  Result: target = `0x7d7780` (single `ret` instruction) — fixed across 3 codes.
+- ✅ **A3a+:** Capture OLLVM `br x11` target at 0xa61c8.
+  Result: always jumps to `0xaa1a0` (x9=7) — did not change between 3 tested codes.
+- 🟨 **A3b:** Capture w20 at the `cbz w20, 0xaaef0` gate (pass/fail candidate).
+  **Status: NOT captured.** Stalker callout at 0xa6228/0xa6238 produced 0 hits.
+  Possible explanations (not exhaustive): (a) the code block was already compiled before
+  Stalker started on that thread (Stalker `transform` only fires on first JIT compilation);
+  (b) the block was not executed in this thread during the Stalker window; (c) internal Frida
+  optimizations skipped the block; (d) the app's execution path differed from what disassembly
+  suggests due to runtime state. **Further investigation needed.**
+  Possible next approaches: `Stalker.invalidate()`, hook within allocator wrappers, or
+  `/proc/pid/mem` direct register read.
 - ⬜ **A3c:** Patch w21 to 1 (write to register in callout at tbz gate) and observe whether
-  `FUN_0017e148` + `pthread_create` execute → confirms it's the success path.
+  `FUN_0017e148` + `pthread_create` execute → would support the success-path hypothesis.
 - ⬜ **A2:** Trace device token derivation at boot (unchanged from previous plan).
 
 ## Track B — Server/protocol (medium value)
