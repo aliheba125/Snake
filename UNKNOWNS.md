@@ -49,10 +49,14 @@ would prove or disprove it. Nothing here should be cited as fact.
 - **To resolve:** systematically vary `(time, id, mask)` and correlate every byte; collect many
   samples to classify markers (version? record type? seller id?).
 
-### U‑05 — Deferred/backend validation of `z` ❓
-- **Known:** ingress accepts garbage `z` (no authenticity check at the edge).
+### U‑05 — Deferred/backend validation of `z` 🟨
+- **Known:** ingress accepts garbage `z` (no authenticity check at the edge). **NEW (July 13):**
+  confirmed with controlled tests — all-zeros z, random z, any user-agent, any `v=` value all
+  produce a valid 33-byte response. Short z (<49 bytes) or missing z → empty response.
+  Same z sent 5× in rapid succession → 5 different responses (server adds randomness/nonce).
 - **To resolve:** volume/behavioral testing — does the backend ever flag, rate-limit, or later
   reject forged beacons? Not observable from the client alone.
+- **Evidence:** `evidence/network-diagnosis-logs/server_response_analysis.json`
 
 ## Business-tier unknowns (require access we don't have)
 

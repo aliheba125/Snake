@@ -16,7 +16,7 @@ Realistic progress per axis. Percentages reflect **evidence-backed completion**,
 | Beacon protocol (uplink `z`) | ~100% | ✅ | structure + cipher + key + plaintext reproduced offline |
 | Beacon protocol (downlink) | ~90% | ✅ | server processing proven; reply decrypted; field meanings ❓ |
 | Crypto (beacon) | ~100% | ✅ | AES‑256‑ECB + time-bucket key, byte-for-byte reproduced |
-| Server behaviour (beacon endpoint) | ~85% | ✅ | ingress fully characterized; backend/deferred validation ❓ |
+| Server behaviour (beacon endpoint) | ~95% | ✅ | ingress fully characterized; garbage-z accepted; no edge auth; response=33B always; backend/deferred ❓ |
 | Runtime behaviour / anti-tamper | ~90% | ✅ | UI, network, storage, FFI, watchdog all characterized |
 | Activation model (Entry Key) | ~75% | 🟨 | model + locality + symmetry + KDF pattern confirmed; exact KDF algorithm ❓ |
 | Activation algorithm (KDF/compare) | ~40% | 🟨 | KDF output captured for 2 codes; 41 function trace; exact transform TBD |
