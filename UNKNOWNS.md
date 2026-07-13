@@ -21,7 +21,8 @@ would prove or disprove it. Nothing here should be cited as fact.
   Instead, 21 different code ranges were recorded:
   `0x618a4–0x61904`, `0x61938–0x6196c`, `0x7aef0–0x7afc8`, `0x81cb8–0x81db0`, `0xaa39c–0xaa4a4`,
   `0xae3e8–0xaf6e4`, `0x7d3d14–0x7d4004` (vtable dispatcher), + allocator ranges.
-  The device token `751fb123…` appears 3x as ASCII-hex in captured buffers.
+  The device token `751fb123…` appears inside several buffers (sz=48/80/96) as ASCII-hex
+  during the Activate window (observation; does not confirm "processing" vs passive presence).
   **Caveats:** Stalker records only compiled blocks during its window. Functions may be absent
   because they are inlined, called via indirect jump tables, executed before/after the window,
   or optimized into the captured ranges under different names.
@@ -109,16 +110,16 @@ would prove or disprove it. Nothing here should be cited as fact.
 
 ## Method-level uncertainties
 
-### U‑08 — Is `FUN_0017e148` the Entry-Key validator? 🟨 (Revised: it's the SUCCESS handler)
+### U‑08 — Is `FUN_0017e148` the Entry-Key validator? 🟨 (Revised: likely associated with success path)
 - **July‑13 disassembly** shows `FUN_0017e148` is called from 0x81d40 with `tbz w21, bit0` guard.
 - **July‑13 callout** (3 codes): `w21 = 0` always when code is invalid → the function is **never
-  reached** on failed activation. It is called only when `w21 bit0 = 1` (i.e., activation
-  succeeded).
-- **Revised interpretation:** `FUN_0017e148` is a **post-activation success handler** (likely
-  persists the activated state, spawns the engine thread via `pthread_create`). It is NOT the
-  validation/comparison function.
-- **The validator** is inside the vtable-dispatched code reached by `blr x8` at 0x7d3d50,
-  which sets `w21` based on the code validity.
+  reached** on failed activation. It is called only when `w21 bit0 = 1`.
+- **Revised interpretation:** `FUN_0017e148` is a **function associated with the success path**
+  (likely persists the activated state, spawns the engine thread via `pthread_create`). It is
+  probably NOT the validation/comparison function — but this remains a hypothesis until a real
+  activation success is observed.
+- **The validator** is hypothesized to be inside the vtable-dispatched code reached by `blr x8`
+  at 0x7d3d50, which presumably sets `w21` based on code validity. This has not been confirmed.
 
 ### U‑09 — Is `DAT_009280f8` byte-exactly the decrypted reply? 🟨
 - Timing matches (~+110 ms after beacon) but contents were unstable across polls.
