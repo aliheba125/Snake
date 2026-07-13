@@ -35,7 +35,7 @@ conclusion appears here without evidence. IDs match [docs/08_Findings.md](docs/0
 | F‑27 | blr x8 at 0x7d3d50 → 0x7d7780 (ret stub) in all tested invalid-code scenarios | `capture_blr_target.py` → `blr_target_*.json` | target fixed across 3 codes; 0x7d7780 = single `ret`; interpretation open (polymorphic dispatch? pre-decision? different path?) |
 | F‑28 | Buffer correlation: 0 common 32-byte values across runs; 1-3 high-entropy real data | `stalker_v2_*.json` analysis | all 105/101 buffers session-unique; most are heap ptrs; SHA256(code) not found |
 | F‑29 | "Code is Not valid" string NOT in libengine.so binary | `trace_error_write.py` (Memory.scanSync = empty) | string originates outside libengine; memcpy callers identified as libflutter.so; propagation path undetermined |
-| F‑30 | OLLVM br x11 → 0xaa1a0 (x9=7) fixed across 3 codes | `capture_br_x11.py` → `br_*.json` | case selection is state-dependent, not code-dependent; 0xaa1a0 = pre-burst activation entry |
+| F‑30 | OLLVM br x11 → 0xaa1a0 (x9=7) same across 3 tested codes | `capture_br_x11.py` → `br_*.json` | did not change between 135790/999888/246810; whether it varies with valid key or other inputs unknown; 0xaa1a0 = pre-burst activation entry |
 
 ## 🟨 Partially Confirmed
 

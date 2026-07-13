@@ -81,9 +81,9 @@ would prove or disprove it. Nothing here should be cited as fact.
 
 - **July‑13, OLLVM jump table target (`capture_br_x11.py`):**
   `br x11` at 0xa61c8 was captured across 3 codes (135790, 999888, 246810):
-  - Target: **always `0xaa1a0`**, jump table index **x9 = 7** (fixed, code-independent).
-  - This means the OLLVM case selection is state-dependent, not code-dependent — the same
-    case (7) executes regardless of the entered 6-digit code.
+  - Target: **always `0xaa1a0`**, jump table index **x9 = 7** (fixed across 3 tested codes).
+  - This means the OLLVM case selection **did not change between the 3 tested codes** (135790,
+    999888, 246810). Whether it depends on a valid key or other input type is not yet known.
   - `0xaa1a0` matches the "pre-burst" range observed in `stalker_immediate` (the code that
     runs from the first malloc before the burst of 5+ that triggers burst-detection Stalker).
   - The validation logic operates **within** this `0xaa1a0` path and its callees.
