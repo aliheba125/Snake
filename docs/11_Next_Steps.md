@@ -8,30 +8,47 @@ Ordered by value and feasibility. Nothing here is started yet (this refactor pau
 
 ## Track A — Entry-Key algorithm (highest value, hardest)
 
-1. ✅ **Isolate the validator with Stalker precisely.** *(Completed July 13)*
-   Burst-detection Stalker (`stalker_activate_v2.py`) successfully isolated the activation path:
-   21 contiguous ranges, 372 instructions, reproducible across 2 codes. **Key finding:** activation
-   does NOT use any beacon crypto functions — it is a separate code path entirely.
+1. 🟨 **Isolate the validator with Stalker precisely.** *(July 13 — partial success)*
+   Burst-detection Stalker (`stalker_activate_v2.py`) recorded 21 reproducible code ranges
+   (372 instructions, 600ms window) during Activate. Known beacon crypto functions were **not
+   observed** within this window — this suggests (but does not prove) that activation uses a
+   different code path. Caveats: inlining, indirect jumps, or execution outside the window could
+   explain the absence. See UNKNOWNS U‑01 for full discussion.
    → Evidence: `evidence/beacon-crypto-traces/stalker_v2_*.json`
 2. ⬜ **Recover the token derivation (`751fb123…`).** Trace the libengine calls that produce it at
    boot using libc/Stalker (safe methods), to learn whether it is device-derivable
    or seeded by a server value.
-3. 🟦 **Deep-dive the 21 activation ranges.** *(New step, enabled by #1)*
-   Disassemble and analyze the newly identified ranges (especially `0x7aef0–0x7afc8`,
-   `0x81cb8–0x81db0`, `0xaa39c–0xaa4a4`, `0xae3e8–0xaf6e4`) in Ghidra. Correlate the 105
-   captured 32-byte intermediates with the entered code and device token. Use Stalker `callout`
-   on specific sub-ranges to capture register state at branch points.
+3. 🟦 **Deep-dive the 21 activation ranges.** *(July 13 — partially completed)*
+   - ✅ Disassembled all ranges with radare2. Call graph mapped.
+   - ✅ Callout captured register state at key_engine entry, tbz gate, and cmp gate (3 codes).
+   - ✅ Buffer correlation: most 32-byte values are heap pointers; 1–3 real crypto intermediates.
+   - **Key conclusion:** The actual validator runs inside OLLVM-flattened code reached via vtable
+     indirect call (`blr x8` at 0x7d3d50). The pass/fail result sets `w21` which gates
+     `FUN_0017e148` (success handler + `pthread_create`).
+   - **Remaining:** instrument the vtable dispatch target to trace the OLLVM-flattened validator.
 4. ⬜ **Attempt a controlled test** only if Q1+Q3 resolve: derive the key, encrypt a valid
    payload with a current time bucket, and test in-app. (Would be the decisive proof either way.)
 
+### New sub-steps identified (enabled by July‑13 findings):
+- ⬜ **A3a:** Capture the vtable dispatch target address (`blr x8` at 0x7d3d50) — what function
+  does it actually jump to? Use Stalker callout on 0x7d3d50 to read x8.
+- ⬜ **A3b:** Once the target is known, extend Stalker into that function to map its OLLVM
+  structure and identify the comparison/branch that sets w21.
+- ⬜ **A3c:** Patch w21 to 1 (write to register in callout at tbz gate) and observe whether
+  `FUN_0017e148` + `pthread_create` execute → confirms it's the success path.
+- ⬜ **A2:** Trace device token derivation at boot (unchanged from previous plan).
+
 ## Track B — Server/protocol (medium value)
 
-4. ✅ **Response field semantics.** *(Completed July 13)*
-   Systematic 5-test correlation (`response_correlation_v2.py`): byte[0]=mask-dependent,
-   19 bytes=time-dependent, 12 bytes=server-nonce/counter. No byte exclusively depends on ID.
-   Future-time beacons decrypt to noise (server time-validity check). The previously documented
-   "fixed markers" (`9c1400`, `83000000`, `d900`, `00e0de08`) are time-bucket-stable, not
-   epoch-fixed.
+4. 🟨 **Response field semantics.** *(July 13 — preliminary results, needs more samples)*
+   Systematic 5-test correlation (`response_correlation_v2.py`): initial classification suggests
+   byte[0]=mask-dependent, ~19 bytes=time-bucket-dependent, ~12 bytes=server-varying.
+   No byte exclusively depends on ID. Beacons with future time buckets decrypt to noise
+   (possible time-validity check OR key-derivation mismatch — not yet disambiguated).
+   Previously documented "fixed markers" (`9c1400`, `83000000`, `d900`, `00e0de08`) appear stable
+   within a time bucket but change across buckets.
+   **Needs:** 20+ samples per test for statistical confidence; disambiguation of time-rejection
+   vs key-mismatch for future-time beacons.
    → Evidence: `evidence/beacon-crypto-traces/response_correlation_v2.json`
 5. ⬜ **Backend validation of `z`.** Send many crafted/garbage beacons and look for any
    server-side rate-limiting, flagging, or delayed rejection.
@@ -49,6 +66,15 @@ Ordered by value and feasibility. Nothing here is started yet (this refactor pau
 - Inject the Gadget from `/system/lib64/…` to avoid the maps scan.
 - Capture crypto buffers by hooking `libc malloc`/`free` filtered by the wrapper return address
   `0x800290`.
+
+## Explicitly out of scope / not to be claimed
+
+- Do **not** state activation is "broken" or that keys can be "generated" unless a valid key is
+  demonstrated in-app.
+- Keep the proven/inferred/unknown separation in every future report.
+- Do **not** claim Stalker observations as definitive proofs of function absence — Stalker
+  records compiled blocks within its window; absence of a function in the trace ≠ proof it is
+  never called (it may be inlined, indirect, or outside the window).
 
 ## Explicitly out of scope / not to be claimed
 

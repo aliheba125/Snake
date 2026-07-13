@@ -26,10 +26,16 @@ conclusion appears here without evidence. IDs match [docs/08_Findings.md](docs/0
 | F‑18 | Anti-tamper: `.text` dies, `.data`/libc/Stalker safe | `test_inject.py`, `stalker_funcs.py`, comparative runs | write global → survives; Interceptor → dies 1.3 s |
 | F‑19 | Only beacon + Firebase at runtime | `trace_hosts.py`, `trace_interact.py` | getaddrinfo shows 2 hosts over 30 s |
 | F‑20 | Both beacon directions reproduced | `end_to_end.py` (up) + `prove_cr2.py` (down) | offline craft + offline decrypt |
-| F‑21 | Activation path uses SEPARATE functions from beacon | `stalker_activate_v2.py` → `stalker_v2_135790.json`, `stalker_v2_999888.json` | 2 runs with different codes produce identical 21 ranges; 0 overlap with beacon functions (FUN_00160208/00161788/etc.) |
-| F‑22 | Activation code path: 21 ranges identified precisely | `stalker_activate_v2.py` → `stalker_v2_*.json` | ranges reproducible across codes; include `0x618a4`, `0x7aef0`, `0x81cb8`, `0xaa39c`, `0xae3e8`, `0x7d3d14` (OLLVM dispatcher?) |
+| F‑21 | Activation Stalker trace: 21 ranges, no beacon functions observed | `stalker_activate_v2.py` → `stalker_v2_135790.json`, `stalker_v2_999888.json` | 3 runs (135790, 999888, 246810) identical ranges; beacon functions not observed in 600ms window |
+| F‑22 | Activation code path: 21 ranges identified (reproducible) | `stalker_activate_v2.py` → `stalker_v2_*.json` | ranges reproducible across codes; include `0x618a4`, `0x7aef0`, `0x81cb8`, `0xaa39c`, `0xae3e8`, `0x7d3d14` |
 | F‑23 | Device token processed during Activate (3x ASCII-hex) | `stalker_activate_v2.py` → crypto buffers | `751fb123…` appears in 48/96/80-byte buffers as hex-encoded ASCII |
-| F‑24 | Response record: 1 mask-byte + 19 time-dependent + 12 server-nonce | `response_correlation_v2.py` → `response_correlation_v2.json` | 5-test systematic correlation (same/vary id/time/mask/random); future-time → noise |
+| F‑24 | Response record: 20 bytes stable within same (time+mask+id) triple, 12 server-varying | `response_correlation_extended.py` → `response_correlation_extended.json` | 20 samples/test; changing mask/time/id → noise (resp_key dependency); Test F disambiguates: it's key-derivation sensitivity, not server-side rejection |
+| F‑25 | Call graph: Range06→Range03→Range04→vtable_dispatch→FUN_0017e148 (conditional) | `activation_ranges_disasm.txt` (r2 disassembly) | `bl` chain visible in disassembly; `tbz w21,0` guards FUN_0017e148 call |
+| F‑26 | FUN_0017e148 = post-activation success handler (not validator) | `stalker_callout_v3b.py` → `callout_v3b_*.json` | w21=0 across 3 invalid codes → never reached; only called when w21 bit0=1 (success) |
+| F‑27 | Validation logic inside vtable-dispatched OLLVM code (blr x8) | `callout_v3b_*.json` + `activation_ranges_disasm.txt` | cmp x19,x0 at gate is always-equal (struct mgmt); actual decision made by indirect call |
+| F‑28 | Buffer correlation: 0 common 32-byte values across runs; 1-3 high-entropy real data | `stalker_v2_*.json` analysis | all 105/101 buffers session-unique; most are heap ptrs; SHA256(code) not found |
+| F‑23 | Device token processed during Activate (3x ASCII-hex) | `stalker_activate_v2.py` → crypto buffers | `751fb123…` appears in 48/96/80-byte buffers as hex-encoded ASCII |
+| F‑24 | Response record correlation (5 samples each): byte[0] varies with mask, 19 bytes vary only with time bucket, 12 bytes vary even with identical inputs | `response_correlation_v2.py` → `response_correlation_v2.json` | 5-test systematic correlation; classification is preliminary (5 samples/test); future-time beacons decrypt to noise (needs more samples to confirm time-validity hypothesis) |
 
 ## 🟨 Partially Confirmed
 
@@ -40,7 +46,7 @@ conclusion appears here without evidence. IDs match [docs/08_Findings.md](docs/0
 | P‑03 | `FUN_0017e148`: symmetric decrypt + ±0xFF time window | Ghidra read of `libengine_decompiled.c` | not confirmed as THE Entry-Key validator |
 | P‑04 | `DAT_009280f8` holds decrypted beacon reply | `poll_decrypt_global.py` | contents unstable; timing-based only |
 | P‑05 | Virtualization engine loads game in `:engine` | July‑8 static/Qiling notes (archive) | not re-verified live (no target game) |
-| P‑06 | Response record: mask-byte + 19 time-dep + 12 server-nonce; future time → noise | `response_correlation_v2.py` → `response_correlation_v2.json` | semantic meaning of individual fields |
+| P‑06 | Response: 20 stable bytes + 12 server-varying; "noise on time change" = resp_key sensitivity | `response_correlation_extended.py` → `response_correlation_extended.json` | 20 samples disambiguated: resp_key depends on (time,id) so any mismatch → wrong decryption → noise; not server rejection |
 
 ## ❓ Unknown (no sufficient evidence either way)
 
@@ -63,7 +69,7 @@ conclusion appears here without evidence. IDs match [docs/08_Findings.md](docs/0
 | D‑05 | `rest.snakeseller.com` is beacon backend | `trace_hosts.py`: beacon → Cloud Run |
 | D‑06 | token `751fb123…` = comparison target | `hook_memcmp.py`: token compared to itself |
 | D‑07 | activation asymmetric/irreproducible | binary census: zero asymmetric primitives |
-| D‑08 | `FUN_0017e148` is the Entry-Key validator | Stalker v2: `0x7e148` NOT in activation 21 ranges (July‑13) |
+| D‑08 | `FUN_0017e148` is the Entry-Key validator | Disasm: it's behind `tbz w21,0` guard; callout: w21=0 on all invalid codes → never reached → it's the success handler, not validator |
 
 > Note: the `scanner*.c` **negative results** remain valid evidence (they ruled out AEAD/CBC/MAC
 > static keys). Only the early *interpretation* built on them (AEAD framing) was disproved.
