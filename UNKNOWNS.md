@@ -9,14 +9,20 @@ would prove or disprove it. Nothing here should be cited as fact.
 
 ## Critical unknowns
 
-### U‑01 — The exact Entry-Key validation algorithm ❓
-- **Known:** validation is local, symmetric, ~127 AES ops; the entered code is transformed (not
-  string-compared); a representative decrypt+time-window pattern exists in `FUN_0017e148`.
-- **Missing:** the precise key-derivation from the 6-digit code and the exact comparison.
-- **To resolve:** Stalker-trace the *UI thread* starting exactly when the Dart→FFI activation call
-  enters libengine (avoid catching the periodic beacon task); capture args to `FUN_00160208` and
-  the comparison operands. Blocker: OLLVM flattening + `.text` anti-tamper (no `Interceptor` on
-  libengine).
+### U‑01 — The exact Entry-Key validation algorithm 🟨
+- **Known (NEW — July 13 session):**
+  - Validation is local, symmetric, uses the AES engine built into libengine.
+  - The 6-digit code is stored as 8-byte ASCII (`"135790"` → `31 33 35 37 39 30 00 00`).
+  - The code is **immediately transformed** into a 32-byte (256-bit) high-entropy value (KDF):
+    - `111111` → `6a37c0115fcfbde920775cffb0dc409052ef5e8b04b167a8491fd9a1e35136cf`
+    - `135790` → `2ca02fce9ca0f0b2fa432a0258d2168499e4323e0412aa3c7a148a9ac2917d80`
+  - The KDF output is **expanded as AES-256 key schedule** (8→16→32→64→128 bytes growth).
+  - A **session-stable device constant** (`738738368b08c14fc7578908f99eb9da249f84a2785adc6af8cb6cb45f0b41c9`) is also present — different from the raw device token but likely derived from it.
+  - Stalker successfully traced the validator: **1507 unique blocks across 41 function ranges** (vs. the old run's 200 blocks which caught beacon instead).
+  - The comparison does NOT use libc `memcmp`/`strcmp` — it is inline.
+- **Missing:** the precise KDF algorithm (code → 32 bytes), and whether the comparison is direct equality or another transform.
+- **To resolve:** isolate the specific function that transforms the 8-byte code into the 32-byte output. The Stalker trace narrowed it to ~41 candidates; the function at `0x7eae18-0x7eb2cc` (584 bytes) is the prime suspect.
+- **Evidence:** `evidence/beacon-crypto-traces/entry_key_kdf_evidence.json`
 
 ### U‑02 — Whether a valid Entry Key can be forged ❓ / ⬜
 - **Known:** symmetric ⇒ not protected by asymmetric math; server issues keys bound to Device ID.
@@ -24,10 +30,14 @@ would prove or disprove it. Nothing here should be cited as fact.
 - **To resolve:** only after U‑01+U‑03; then derive key, encrypt a valid payload with the current
   time bucket, and test in-app. **Not attempted successfully; do not claim forgeability.**
 
-### U‑03 — Derivation of the stable device token `751fb123…` ❓
+### U‑03 — Derivation of the stable device token `751fb123…` 🟨
 - **Known:** 32 bytes, high entropy, session-stable, not on disk, not `SHA256` of
   android_id/app_instance_id/device_id/model (all tested; the android_id value used,
   `8840bf6a81679fc4`, is recorded in `evidence/runtime-memory/device_evidence.txt`).
+- **NEW (July 13):** Token is stored in heap as **ASCII hex string** (64 chars), not raw bytes.
+  It lives in a Dart `_OneByteString` object near `/data/user/0/com.snake/code_cache` string.
+  A **separate session constant** `738738368b08c14fc7578908f99eb9da249f84a2785adc6af8cb6cb45f0b41c9`
+  (32 raw bytes) is derived from it and used in the validation comparison.
 - **To resolve:** trace the libengine calls that produce it at boot (libc/Stalker), or diff it
   against device inputs across multiple devices.
 

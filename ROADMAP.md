@@ -18,8 +18,8 @@ Realistic progress per axis. Percentages reflect **evidence-backed completion**,
 | Crypto (beacon) | ~100% | ✅ | AES‑256‑ECB + time-bucket key, byte-for-byte reproduced |
 | Server behaviour (beacon endpoint) | ~85% | ✅ | ingress fully characterized; backend/deferred validation ❓ |
 | Runtime behaviour / anti-tamper | ~90% | ✅ | UI, network, storage, FFI, watchdog all characterized |
-| Activation model (Entry Key) | ~60% | 🟨 | model + locality + symmetry confirmed; algorithm ❓ |
-| Activation algorithm (KDF/compare) | ~15% | ❓ | patterns found; validator not isolated; no forge |
+| Activation model (Entry Key) | ~75% | 🟨 | model + locality + symmetry + KDF pattern confirmed; exact KDF algorithm ❓ |
+| Activation algorithm (KDF/compare) | ~40% | 🟨 | KDF output captured for 2 codes; 41 function trace; exact transform TBD |
 | Entry-Key forgery / activation bypass | 0% | ⬜ | not achieved; explicitly not demonstrated |
 | Seller REST API | ~10% | 🟨 | endpoint + auth-required known; schema unknown (no creds) |
 | In-game cheat / virtualization (live) | ~20% | 🟨 | static/emulation evidence; not run live (no target game) |
