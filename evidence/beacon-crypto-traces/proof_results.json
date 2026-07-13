@@ -1,0 +1,51 @@
+[
+  {
+    "t": "boot",
+    "ts": 0,
+    "pid": 25476
+  },
+  {
+    "t": "hook_ok",
+    "target": "malloc",
+    "ts": 1
+  },
+  {
+    "t": "init_done",
+    "ts": 1
+  },
+  {
+    "t": "modules_loaded",
+    "ts": 785,
+    "flutter": "0xe0d8786ba000",
+    "engine": "0xe0d891c03000",
+    "libapp": "0xe0d87140c000"
+  },
+  {
+    "t": "all_hooks_installed",
+    "ts": 786
+  },
+  {
+    "t": "Z_SINK_HIT",
+    "z_hex_full": "0c1689fe70e39f119f46e146f390a9991102228ba7d3764cd70335eb7e20223a159855567d590ede5869782519d8e259de",
+    "z48": "1689fe70e39f119f46e146f390a9991102228ba7d3764cd70335eb7e20223a159855567d590ede5869782519d8e259de",
+    "iv_hex": "1689fe70e39f119f46e146f390a99911",
+    "ct_hex": "02228ba7d3764cd70335eb7e20223a159855567d590ede5869782519d8e259de",
+    "sink_bt": [
+      "libflutter+6d4b5c",
+      "libflutter+6d9260",
+      "libflutter+7f1bfc",
+      "libflutter+7e8808",
+      "libflutter+87a5b0",
+      "libflutter+86bd78",
+      "libflutter+86bb08",
+      "libflutter+8ff0c4",
+      "libflutter+8c3540",
+      "0xe0dbc970b6ac"
+    ],
+    "ring_size": 190,
+    "n_matches": 0,
+    "buffer_matches": [],
+    "http_head": "GET /?z=0c1689fe70e39f119f46e146f390a9991102228ba7d3764cd70335eb7e20223a159855567d590ede5869782519d8e259de&v=20 HTTP/1.1\r\nuser-agent: Dart/3.5 (dart:io)\r\naccept-encoding: gzip\r\nhost: push-918010152455.europe-west1.run.app\r\n\r\n\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd",
+    "ts": 949
+  }
+]

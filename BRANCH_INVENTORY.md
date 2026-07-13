@@ -29,8 +29,7 @@ kept for raw artifacts only. **If a claim in another branch conflicts with `main
 | `dynamic-capture-guide` | ~10,457 | Dynamic-capture guide + hardened Frida script. Folded into `main`. | Historical |
 | `decompiled-source` | ~10,442 | Raw decompiled source (jadx/blutter/native). Inputs live in `main` `artifacts/`. | Historical |
 | `clean-terminology` | ~11,654 | Terminology + ownership/authorization notes pass. Folded into `main`. | Historical |
-| `phase2-full-analysis` | ~167 | ⚠️ **Disconnected subset** (separate git root, no shared history). A focused re-verification of the JNI/local-gate/worker path with its own `STATE.md`, `DECISION_LOCATION_EVIDENCE.md`, and session Frida agents. **Not a superset of `main`.** | Subset — see note |
-| `phase2` scaffolding inside `phase2-full-analysis` | — | Contains planning docs and empty tool scaffolds only; **no working key generator / bypass / patch exists** and none was produced. | Scaffold only |
+| `phase2-full-analysis` | ~167 | ⚠️ **Isolated branch — pending decision.** Separate git root (no shared history). Its **analysis** part (reports + Frida agents) is now merged into `main` at `archive/2026-07-13_phase2-session/`. What remains ONLY on this branch is **phase-2 planning docs + tool scaffolds oriented toward key-generation / validation-bypass / license-patching**, which were intentionally kept out of `main`. | Isolated — see below |
 
 ---
 
@@ -45,9 +44,16 @@ only ~167 files. Its genuinely useful, reusable results are:
 
 These are **consistent with `main`** and, where `main` already documents the same path (case-7
 dispatch, vtable `blr x8` → `0x7d7780` `ret` stub, "Code is Not valid" not present in libengine),
-`main`'s version is more complete. The phase2 branch also carries planning docs whose stated goals
-(key generation / validation bypass / license patch) were **not** implemented — no such tool exists
-in this repository.
+`main`'s version is more complete. The analysis reports and Frida agents from this branch are now
+preserved in `main` at **`archive/2026-07-13_phase2-session/`** (see its `ARCHIVE_NOTE.md`).
+
+### Status of this branch: ISOLATED — pending decision ⬜
+
+What still lives **only** on `phase2-full-analysis` (not in `main`) is the phase-2 material oriented
+toward **key-generation / validation-bypass / license-patching** (planning docs + empty tool
+scaffolds). This was intentionally excluded from `main`. The branch is **left intact** so that a
+future decision can be made about it — options include: keep as-is, edit/repurpose, or delete.
+Nothing there is a working tool; it is not required by `main` and `main` does not depend on it.
 
 ---
 

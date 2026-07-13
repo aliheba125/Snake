@@ -1,0 +1,50 @@
+{
+  "t": "boot",
+  "ts": 0
+}
+{
+  "t": "flutter",
+  "base": "0xe5074a917000",
+  "size": 10960896
+}
+{
+  "t": "scan_err",
+  "name": "AES_SBOX",
+  "err": "Error: access violation accessing 0xe5074ad45000"
+}
+{
+  "t": "scan_err",
+  "name": "CHACHA20",
+  "err": "Error: access violation accessing 0xe5074ad45000"
+}
+{
+  "t": "scan_err",
+  "name": "SHA256_H0",
+  "err": "Error: access violation accessing 0xe5074ad45000"
+}
+{
+  "t": "scan_err",
+  "name": "AES_TE0",
+  "err": "Error: access violation accessing 0xe5074ad45000"
+}
+{
+  "t": "scan_mod",
+  "mod": "libengine.so",
+  "name": "SHA256_H0",
+  "count": 1,
+  "off": "10a90"
+}
+{
+  "t": "scan_mod",
+  "mod": "libengine.so",
+  "name": "HEX_LOWER",
+  "count": 1,
+  "off": "402b0"
+}
+{
+  "t": "flutter_string_hits",
+  "hits": []
+}
+{
+  "t": "done"
+}

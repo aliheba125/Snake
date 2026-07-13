@@ -1,0 +1,10 @@
+Starting: Intent { cmp=com.snake/com.Entry }
+[*] Force-stopping snake...
+[*] Starting snake...
+[*] Polling for gadget...
+[+0.304s] Gadget stable PID 26374
+[+0.305s] attached
+[+0ms] {"t": "boot", "ts": 0, "pid": 26374}
+[+1ms] {"t": "init_done", "ts": 1}
+[+0.364s] script loaded
+[*] Saved.

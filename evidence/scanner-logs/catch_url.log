@@ -1,0 +1,314 @@
+Starting: Intent { cmp=com.snake/com.Entry }
+[*] Setting wrap.com.snake for gadget attach...
+[*] Polling for gadget...
+[+0.153s] Gadget PID 213696
+[+0ms] {"t": "boot", "ts": 0, "pid": 213696}
+[+1ms] {"t": "init_done", "ts": 1}
+[+0.196s] script loaded, monitoring 40s
+
+------------------------------------------------------------
+*** URL_COPY @ +209ms sz=52 name=memcpy ***
+    dst=0xf4b7f48028c8 src=0xffffec88b3c4 caller=libc.so+5bb10
+    src_str: z=��=��k=��}=��8=��Y=��=��&=��V=��5=��A=��S=��=��
+    src_hex: 7a3d0000143d00006b3d00007d3d0000383d0000593d00001a3d0000263d0000563d0000353d0000
+    backtrace:
+       libc.so+5bb10
+       libc.so+5bb10
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +209ms sz=52 name=memmove ***
+    dst=0xf4b7f48028c8 src=0xffffec88b3c4 caller=libc.so+5bb10
+    src_str: z=��=��k=��}=��8=��Y=��=��&=��V=��5=��A=��S=��=��
+    src_hex: 7a3d0000143d00006b3d00007d3d0000383d0000593d00001a3d0000263d0000563d0000353d0000
+    backtrace:
+       libc.so+5bb10
+       libc.so+5bb10
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +288ms sz=52 name=memcpy ***
+    dst=0xf4b979d31910 src=0xf4b7f48028c8 caller=libc.so+59efc
+    src_str: z=��=��k=��}=��8=��Y=��=��&=��V=��5=��A=��S=��=��
+    src_hex: 7a3d0000143d00006b3d00007d3d0000383d0000593d00001a3d0000263d0000563d0000353d0000
+    backtrace:
+       libc.so+59efc
+       libc.so+59efc
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +288ms sz=52 name=memmove ***
+    dst=0xf4b979d31910 src=0xf4b7f48028c8 caller=libc.so+59efc
+    src_str: z=��=��k=��}=��8=��Y=��=��&=��V=��5=��A=��S=��=��
+    src_hex: 7a3d0000143d00006b3d00007d3d0000383d0000593d00001a3d0000263d0000563d0000353d0000
+    backtrace:
+       libc.so+59efc
+       libc.so+59efc
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +1487ms sz=68 name=memcpy ***
+    dst=0x12e86516 src=0x12e857b0 caller=libart.so+57aa58
+    src_str: https://firebaselogging-pa.googleapis.com/v1/firelog/legacy/batchlog
+    src_hex: 68747470733a2f2f66697265626173656c6f6767696e672d70612e676f6f676c65617069732e636f
+    backtrace:
+       libart.so+57aa58
+       libart.so+57aa58
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +1488ms sz=68 name=memmove ***
+    dst=0x12e86516 src=0x12e857b0 caller=libart.so+57aa58
+    src_str: https://firebaselogging-pa.googleapis.com/v1/firelog/legacy/batchlog
+    src_hex: 68747470733a2f2f66697265626173656c6f6767696e672d70612e676f6f676c65617069732e636f
+    backtrace:
+       libart.so+57aa58
+       libart.so+57aa58
+------------------------------------------------------------
+[+1640ms] {"t": "modules_ready", "ts": 1640}
+[+1641ms] {"t": "sink_ready", "ts": 1641}
+
+------------------------------------------------------------
+*** URL_COPY @ +1952ms sz=54 name=memcpy ***
+    dst=0xf4b50056de78 src=0xf4b50056de28 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/notifications_en
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6e6f
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +1953ms sz=54 name=memmove ***
+    dst=0xf4b50056de78 src=0xf4b50056de28 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/notifications_en
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6e6f
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +1953ms sz=57 name=memcpy ***
+    dst=0xf4b50056dee8 src=0xf4b50056de78 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/notifications_en?r=
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6e6f
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +1954ms sz=57 name=memmove ***
+    dst=0xf4b50056dee8 src=0xf4b50056de78 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/notifications_en?r=
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6e6f
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +1974ms sz=50 name=memcpy ***
+    dst=0xb400f4b80484a680 src=0xf4b65d8b9000 caller=libengine.so+801d80
+    src_str: https://push-918010152455.europe-west1.run.app/?z=
+    src_hex: 68747470733a2f2f707573682d3931383031303135323435352e6575726f70652d77657374312e72
+    backtrace:
+       libengine.so+801d80
+       libengine.so+801d80
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +1974ms sz=50 name=memmove ***
+    dst=0xb400f4b80484a680 src=0xf4b65d8b9000 caller=libengine.so+801d80
+    src_str: https://push-918010152455.europe-west1.run.app/?z=
+    src_hex: 68747470733a2f2f707573682d3931383031303135323435352e6575726f70652d77657374312e72
+    backtrace:
+       libengine.so+801d80
+       libengine.so+801d80
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +1975ms sz=153 name=memcpy ***
+    dst=0xb400f4b7d481d2d1 src=0xb400f4b80484a680 caller=libengine.so+5b7f0
+    src_str: https://push-918010152455.europe-west1.run.app/?z=0c85263b2fc71908ce8e9a20319683bea0dac2d1fbf3ddf8f940ff1b936ff5557c9f8a36d7279708bcb007739961891d89&v=20
+    src_hex: 68747470733a2f2f707573682d3931383031303135323435352e6575726f70652d77657374312e72
+    backtrace:
+       libengine.so+5b7f0
+       libengine.so+5b7f0
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +1976ms sz=153 name=memmove ***
+    dst=0xb400f4b7d481d2d1 src=0xb400f4b80484a680 caller=libengine.so+5b7f0
+    src_str: https://push-918010152455.europe-west1.run.app/?z=0c85263b2fc71908ce8e9a20319683bea0dac2d1fbf3ddf8f940ff1b936ff5557c9f8a36d7279708bcb007739961891d89&v=20
+    src_hex: 68747470733a2f2f707573682d3931383031303135323435352e6575726f70652d77657374312e72
+    backtrace:
+       libengine.so+5b7f0
+       libengine.so+5b7f0
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +1976ms sz=153 name=memcpy ***
+    dst=0xf4b647df8528 src=0xb400f4b80484a680 caller=libc.so+b25f4
+    src_str: https://push-918010152455.europe-west1.run.app/?z=0c85263b2fc71908ce8e9a20319683bea0dac2d1fbf3ddf8f940ff1b936ff5557c9f8a36d7279708bcb007739961891d89&v=20
+    src_hex: 68747470733a2f2f707573682d3931383031303135323435352e6575726f70652d77657374312e72
+    backtrace:
+       libc.so+b25f4
+       libc.so+b25f4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +1976ms sz=153 name=memmove ***
+    dst=0xf4b647df8528 src=0xb400f4b80484a680 caller=libc.so+b25f4
+    src_str: https://push-918010152455.europe-west1.run.app/?z=0c85263b2fc71908ce8e9a20319683bea0dac2d1fbf3ddf8f940ff1b936ff5557c9f8a36d7279708bcb007739961891d89&v=20
+    src_hex: 68747470733a2f2f707573682d3931383031303135323435352e6575726f70652d77657374312e72
+    backtrace:
+       libc.so+b25f4
+       libc.so+b25f4
+------------------------------------------------------------
+
+[+2015ms] Z_SINK: GET /?z=0c85263b2fc71908ce8e9a20319683bea0dac2d1fbf3ddf8f940ff1b936ff5557c9f8a36d7279708bcb007739961891d89&v=20 HTTP/1.1
+user-agent: Dart/3.5 (dart:io)
+accept-encoding: gzip
+host: push-918010152455
+
+------------------------------------------------------------
+*** URL_COPY @ +2154ms sz=51 name=memcpy ***
+    dst=0xf4b500741608 src=0xf4b5007415b8 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/notifications
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6e6f
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +2154ms sz=51 name=memmove ***
+    dst=0xf4b500741608 src=0xf4b5007415b8 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/notifications
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6e6f
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +2155ms sz=54 name=memcpy ***
+    dst=0xf4b500741678 src=0xf4b500741608 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/notifications?r=
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6e6f
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +2156ms sz=54 name=memmove ***
+    dst=0xf4b500741678 src=0xf4b500741608 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/notifications?r=
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6e6f
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +2809ms sz=46 name=memcpy ***
+    dst=0xf4b500168908 src=0xf4b5001688c8 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/feeds_en
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6665
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +2810ms sz=46 name=memmove ***
+    dst=0xf4b500168908 src=0xf4b5001688c8 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/feeds_en
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6665
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +2811ms sz=49 name=memcpy ***
+    dst=0xf4b500168978 src=0xf4b500168908 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/feeds_en?r=
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6665
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +2811ms sz=49 name=memmove ***
+    dst=0xf4b500168978 src=0xf4b500168908 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/feeds_en?r=
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6665
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +3010ms sz=43 name=memcpy ***
+    dst=0xf4b5007ca0d8 src=0xf4b5007ca098 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/feeds
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6665
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +3011ms sz=43 name=memmove ***
+    dst=0xf4b5007ca0d8 src=0xf4b5007ca098 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/feeds
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6665
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +3011ms sz=46 name=memcpy ***
+    dst=0xf4b5007ca138 src=0xf4b5007ca0d8 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/feeds?r=
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6665
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +3012ms sz=46 name=memmove ***
+    dst=0xf4b5007ca138 src=0xf4b5007ca0d8 caller=libflutter.so+894ae4
+    src_str: https://storage.googleapis.com/notics/feeds?r=
+    src_hex: 68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6e6f746963732f6665
+    backtrace:
+       libflutter.so+894ae4
+       libflutter.so+894ae4
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +9010ms sz=52 name=memcpy ***
+    dst=0xf4b7f4804d08 src=0xf4b979d31a90 caller=libc.so+5bb10
+    src_str: z=��09���>��B?��l<��t7���@���5��BB��R#���@��<��*-��
+    src_hex: 7a3d000030390000dc3e0000423f00006c3c000074370000e6400000b83500004242000052230000
+    backtrace:
+       libc.so+5bb10
+       libc.so+5bb10
+------------------------------------------------------------
+
+------------------------------------------------------------
+*** URL_COPY @ +9011ms sz=52 name=memmove ***
+    dst=0xf4b7f4804d08 src=0xf4b979d31a90 caller=libc.so+5bb10
+    src_str: z=��09���>��B?��l<��t7���@���5��BB��R#���@��<��*-��
+    src_hex: 7a3d000030390000dc3e0000423f00006c3c000074370000e6400000b83500004242000052230000
+    backtrace:
+       libc.so+5bb10
+       libc.so+5bb10
+------------------------------------------------------------

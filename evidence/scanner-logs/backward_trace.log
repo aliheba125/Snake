@@ -1,0 +1,13 @@
+Starting: Intent { cmp=com.snake/com.Entry }
+[*] Force-stopping snake...
+[*] Starting snake...
+[*] Polling for gadget...
+[+0.154s] Gadget found PID 26122
+[+0.154s] attached
+[+0ms] {"t": "boot", "ts": 0, "pid": 26122}
+[+1ms] {"t": "init_done", "ts": 1}
+[+0.197s] script loaded
+
+================================================================================
+[*] Z SINK hits: 0
+[*] Saved to /tmp/backward_trace.json

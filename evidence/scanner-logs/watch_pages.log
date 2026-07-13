@@ -1,0 +1,14 @@
+Starting: Intent { cmp=com.snake/com.Entry }
+[*] Restart snake...
+[+0.154s] Gadget PID 214074
+[+0ms] {"t": "boot", "ts": 0, "pid": 214074}
+[+1ms] {"t": "boot_done", "ts": 1}
+[+304ms] {"t": "modules_ready", "ts": 304}
+[+304ms] {"t": "prefix_hook_installed", "ts": 304}
+[+305ms] {"t": "init_ready", "ts": 305}
+
+*** PREFIX_WRITE @ +340ms sz=50 dst=0xb400f9548543f300 ***
+  src_str: https://push-918010152455.europe-west1.run.app/?z=��������������������������������������������������
+[+340ms] {"t": "monitor_arm", "url_dst": "0xb400f9548543f300", "page_start": "0xb400f9548543f000", "pageSize": 4096, "ts": 340}
+
+[*] Total events: 7, MEM_ACCESS: 0
