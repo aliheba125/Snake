@@ -35,14 +35,18 @@ Ordered by value and feasibility. Nothing here is started yet (this refactor pau
 - ✅ **A3a+:** Capture OLLVM `br x11` target at 0xa61c8.
   Result: always jumps to `0xaa1a0` (x9=7) — did not change between 3 tested codes.
 - 🟨 **A3b:** Capture w20 at the `cbz w20, 0xaaef0` gate (pass/fail candidate).
-  **Status: NOT captured.** Stalker callout at 0xa6228/0xa6238 produced 0 hits.
-  Possible explanations (not exhaustive): (a) the code block was already compiled before
-  Stalker started on that thread (Stalker `transform` only fires on first JIT compilation);
-  (b) the block was not executed in this thread during the Stalker window; (c) internal Frida
-  optimizations skipped the block; (d) the app's execution path differed from what disassembly
-  suggests due to runtime state. **Further investigation needed.**
-  Possible next approaches: `Stalker.invalidate()`, hook within allocator wrappers, or
-  `/proc/pid/mem` direct register read.
+  **Status: DISPROVED as the active path.** Multiple attempts (callout, invalidate) confirmed
+  that the code block at 0xa6220-0xa6238 (containing `cbz w20`) is **not executed** during
+  Activate with invalid codes. The `br x11` OLLVM dispatcher jumps to case 7 (`0xaa1a0`),
+  NOT to 0xa61cc where `cbz w20` resides. The `0xa61cc → 0x8d61c → 0x89774 → cbz w20` path
+  is a **different OLLVM case** that was not active in any tested scenario.
+  
+  **What this means:** The pass/fail decision for invalid codes is made entirely within the
+  case 7 path (0xaa1a0 → 0xaa39c → 0x81cb8 → vtable dispatch → ret). The cbz w20 gate may
+  only be relevant for a valid key (different OLLVM case) or a different activation state.
+  
+  **Revised next step:** Instrument deeper within the case 7 path itself (0xaa1a0 → 0xaa39c)
+  to find where the pass/fail decision occurs within THAT specific code path.
 - ⬜ **A3c:** Patch w21 to 1 (write to register in callout at tbz gate) and observe whether
   `FUN_0017e148` + `pthread_create` execute → would support the success-path hypothesis.
 - ⬜ **A2:** Trace device token derivation at boot (unchanged from previous plan).
