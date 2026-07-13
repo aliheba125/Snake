@@ -1,0 +1,9 @@
+[*] Attaching to Gadget PID 25114...
+[+0ms] {"t": "modules", "flutter": "0xfb07856c7000", "engine": "0xfb079ec95000", "libapp": "0xfb077c645000", "flutter_size": 10960896, "engine_size": 8630272, "libapp_size": 5640192}
+[+0ms] {"t": "hook_installed", "target": "FUN_00161788 (KDF)"}
+[+0ms] {"t": "hook_installed", "target": "FUN_00160208 (AES decrypt)"}
+[+0ms] {"t": "hook_installed", "target": "FUN_0015fdec (AES encrypt)"}
+[+0ms] {"t": "hook_installed", "target": "FUN_00167d38"}
+[+0ms] {"t": "hook_installed", "target": "SINK libflutter+0x6d4be8"}
+[+0ms] {"t": "hook_installed", "target": "libc malloc(small sizes)"}
+[+1ms] {"t": "ALL_HOOKS_READY", "ts": 1}

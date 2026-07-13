@@ -1,0 +1,33 @@
+Starting: Intent { cmp=com.snake/com.Entry }
+[*] Force-stop + start snake...
+[+0.153s] Gadget PID 26433
+[+0ms] {"t": "boot", "ts": 0, "pid": 26433}
+[+1ms] {"t": "init_done", "ts": 1}
+[+0.197s] script loaded
+[+289ms] {"t": "modules_ready", "ts": 289, "flutter": "0xe1ca15004000", "engine": "0xe1ca2e8a3000", "libapp": "0xe1ca0f426000"}
+[+289ms] {"t": "sink_installed", "ts": 289}
+
+================================================================================
+*** Z SINK HIT @ +793ms ***
+z48: ad78fa57ac111a64e6719b4fd3a1b482d2ada646c90e99a90b53da5039ea62b2a7f9a4792bafa1967fe57c816314045a
+iv : ad78fa57ac111a64e6719b4fd3a1b482
+ct : d2ada646c90e99a90b53da5039ea62b2a7f9a4792bafa1967fe57c816314045a
+scan_success: 1077, scan_errors: 11
+z48 raw locations found: 0
+iv-only locations: 0
+SINK backtrace:
+   libflutter.so+6d4b5c
+   libflutter.so+6d9260
+   libflutter.so+7f1bfc
+   libflutter.so+7e8808
+   libflutter.so+87a5b0
+   libflutter.so+86bd78
+   libflutter.so+86bb08
+   libflutter.so+8ff0c4
+   libflutter.so+8c3540
+   libc.so+cb6ac
+   libc.so+68220
+================================================================================
+[*] Saved.
+[*] Snake PID: 26433
+[*] z= ad78fa57ac111a64e6719b4fd3a1b482d2ada646c90e99a90b53da5039ea62b2a7f9a4792bafa1967fe57c816314045a

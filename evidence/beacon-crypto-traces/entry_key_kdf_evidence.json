@@ -1,0 +1,40 @@
+{
+  "description": "Entry-Key KDF evidence: code transform outputs captured during Activate",
+  "capture_date": "2026-07-13",
+  "device_id": "394318",
+  "device_token": "751fb1231d3452a779807c5646d048ee0a8a93a2ed0cb70bc8fb419a692ae9ed",
+  "session_constant_key": "738738368b08c14fc7578908f99eb9da249f84a2785adc6af8cb6cb45f0b41c9",
+  "kdf_outputs": {
+    "111111": "6a37c0115fcfbde920775cffb0dc409052ef5e8b04b167a8491fd9a1e35136cf",
+    "135790": "2ca02fce9ca0f0b2fa432a0258d2168499e4323e0412aa3c7a148a9ac2917d80"
+  },
+  "stalker_trace": {
+    "total_raw_addresses": 1634,
+    "unique_blocks": 1507,
+    "function_ranges": 41,
+    "key_functions": [
+      {"range": "0x7d2ca8-0x7d2e30", "size": 396, "role": "memcmp caller (integrity self-check)"},
+      {"range": "0x7eae18-0x7eb2cc", "size": 584, "role": "likely validator logic"},
+      {"range": "0x800270-0x8002b0", "size": 68, "role": "malloc wrapper (known)"},
+      {"range": "0x8011e0-0x80136c", "size": 400, "role": "crypto processing"},
+      {"range": "0x7c4d10-0x7c4fb8", "size": 684, "role": "unknown (large function)"},
+      {"range": "0x798998-0x798c44", "size": 688, "role": "unknown (large function)"}
+    ]
+  },
+  "observations": [
+    "Code is stored as 8-byte ASCII (null-padded)",
+    "Code is transformed to 32-byte high-entropy value (KDF output)",
+    "KDF output is expanded as AES-256 key schedule (8→16→32→64→128)",
+    "A session-stable 32-byte device constant is compared against the KDF output",
+    "memcmp is used for integrity self-check (token vs itself), NOT for code validation",
+    "The actual code comparison does NOT use memcmp/strcmp — likely inline XOR or AES-based"
+  ],
+  "navigation": {
+    "main_screen": "tap 165,97 → Device page",
+    "entry_key_button": "tap 360,1117",
+    "focus_first_box": "tap 165,605",
+    "enter_digit_N": "keyevent (7+N) where 0=7, 1=8, ..., 9=16",
+    "activate_button": "tap 490,745",
+    "close_dialog": "tap 225,745"
+  }
+}

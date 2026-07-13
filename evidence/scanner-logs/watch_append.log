@@ -1,0 +1,28 @@
+Starting: Intent { cmp=com.snake/com.Entry }
+[*] Force-stop + start snake with wrap...
+[+0.154s] Gadget PID 213923
+[+0ms] {"t": "boot", "ts": 0, "pid": 213923}
+[+1ms] {"t": "boot_done", "ts": 1}
+[+289ms] {"t": "modules_ready", "ts": 289, "flutter": "0xf6bfbbce3000", "engine": "0xf6bfd2d04000", "libapp": "0xf6bfb5c74000"}
+[+289ms] {"t": "prefix_hook_installed", "ts": 289}
+[+289ms] {"t": "init_ready", "ts": 289}
+
+================================================================================
+*** URL_LIBENGINE_PREFIX @ +417ms sz=50 ***
+  dst=0xb400f6c1de838a10 src=0xf6bfce73e000
+  src_str: https://push-918010152455.europe-west1.run.app/?z=
+  dst_hex_after: 68747470733a2f2f707573682d3931383031303135323435352e6575726f70652d77657374312e72756e2e6170702f3f7a3d
+  bt:
+    libengine.so+801d80
+    libengine.so+801d80
+[+417ms] {"t": "append_watch_arm", "dst": "0xb400f6c1de838a10", "region": "0xb400f6c1de838a42..0xb400f6c1de838ad8", "ts": 417}
+[+418ms] {"t": "append_watch_installed", "ts": 418}
+
+================================================================================
+*** URL_LIBENGINE_PREFIX @ +418ms sz=50 ***
+  dst=0xb400f6c1de838a10 src=0xf6bfce73e000
+  src_str: https://push-918010152455.europe-west1.run.app/?z=
+  dst_hex_after: 68747470733a2f2f707573682d3931383031303135323435352e6575726f70652d77657374312e72756e2e6170702f3f7a3d
+  bt:
+    libengine.so+801d80
+    libengine.so+801d80

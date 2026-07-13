@@ -1,0 +1,37 @@
+{
+  "description": "Beacon server (push-918010152455.europe-west1.run.app) response behavior analysis",
+  "capture_date": "2026-07-13",
+  "endpoint": "https://push-918010152455.europe-west1.run.app/",
+  "findings": {
+    "response_size": "33 bytes (66 hex chars) — constant for all valid requests",
+    "same_z_different_response": true,
+    "garbage_z_accepted": true,
+    "zeros_z_accepted": true,
+    "short_z_rejected": true,
+    "no_z_rejected": true,
+    "user_agent_not_validated": true,
+    "v_parameter_any_value_works": true,
+    "minimum_z_length": "49 bytes (0x0c prefix + 48 bytes hex = 98 hex chars total)"
+  },
+  "samples_same_z_different_time": [
+    "2483ab7d28f8f81f31d3c2e2a79c0bb776c6377a5922cc28a831655385dc4b5cad",
+    "ca7409e7e3f7366921c49f2b4c4707e6a45b0fe1f0a59e2c477abe5414bd466a29",
+    "bb3cbdc05383ce76a8901383db79b0f493cb158aae5dc6b949e6cb959cdd5890ce",
+    "7bb0f41df44f621d04d8af163f5ec230cf9acaf112e76532ea8db93b4192490873",
+    "0e187eaa029e0bfb8c42c9212d7f588d0ed58cfc85b02778fe860067d29a0cb519"
+  ],
+  "v_parameter_variations": {
+    "v=10": "ab4c3264010983606336ca192bf457d3a7a391bb94d4ad66cec35d50f558c95eac",
+    "v=20": "f22c9d8cd9c67ea5ae58ba082c92b19f1fc0b84eb442c6c7ca0ac047b5abd3723d",
+    "v=30": "3420ac9c9ad49646a28d832a06cd7f3cdb78c30d5d77e93179a3a76f451cb183ee",
+    "v=99": "6e2990abaaea2ba595a597dd47ae38425d2e360f19a568766f66474bb21529ffbd"
+  },
+  "garbage_z_response": "458fa68fa52fcb96416a7478717b0d344f8cdaa87ae05d2e195a9d1c39d3a17f7d",
+  "conclusions": [
+    "Server does NOT validate z cryptographic authenticity at ingress level",
+    "Server adds randomness to each response (likely nonce or timestamp-based)",
+    "Response is ALWAYS 33 bytes regardless of z content",
+    "This confirms U-05: no edge-level authentication check on the beacon",
+    "Backend/deferred validation may still exist but is not observable from client"
+  ]
+}

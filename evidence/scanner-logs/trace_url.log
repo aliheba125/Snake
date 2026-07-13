@@ -1,0 +1,401 @@
+Starting: Intent { cmp=com.snake/com.Entry }
+[*] Force-stop + start snake with gadget wrap...
+[+0.154s] Gadget PID 213863
+[+0ms] {"t": "boot", "ts": 0, "pid": 213863}
+[+1ms] {"t": "init_done", "ts": 1}
+[+0.196s] loaded, watching 40s
+
+--- COPY @ +3935ms sz=9 name=memcpy caller=libengine.so+8024a0 ---
+  dst=0xfffff7580131 src=0xfffff757fd64
+  src_str: 402370942
+  bt: ['libengine.so+8024a0', 'libengine.so+8024a0']
+
+--- COPY @ +3936ms sz=9 name=memmove caller=libengine.so+8024a0 ---
+  dst=0xfffff7580131 src=0xfffff757fd64
+  src_str: 402370942
+  bt: ['libengine.so+8024a0', 'libengine.so+8024a0']
+
+--- COPY @ +3936ms sz=9 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400edee2902f729 src=0xfffff75800c1
+  src_str: 402370942
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +3937ms sz=9 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400edee2902f729 src=0xfffff75800c1
+  src_str: 402370942
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +3938ms sz=22 name=memcpy caller=libengine.so+800bd8 ---
+  dst=0xb400eded7903eb50 src=0xfffff757fba1
+  src_str: Features	: fp asimd ev
+  bt: ['libengine.so+800bd8', 'libengine.so+800bd8']
+
+--- COPY @ +3938ms sz=22 name=memmove caller=libengine.so+800bd8 ---
+  dst=0xb400eded7903eb50 src=0xfffff757fba1
+  src_str: Features	: fp asimd ev
+  bt: ['libengine.so+800bd8', 'libengine.so+800bd8']
+
+--- COPY @ +3939ms sz=47 name=memcpy caller=libengine.so+800bd8 ---
+  dst=0xb400ededc9007500 src=0xb400eded7903eb50
+  src_str: Features	: fp asimd evtstrm aes pmull sha1 sha2
+  bt: ['libengine.so+800bd8', 'libengine.so+800bd8']
+
+--- COPY @ +3940ms sz=47 name=memmove caller=libengine.so+800bd8 ---
+  dst=0xb400ededc9007500 src=0xb400eded7903eb50
+  src_str: Features	: fp asimd evtstrm aes pmull sha1 sha2
+  bt: ['libengine.so+800bd8', 'libengine.so+800bd8']
+
+--- COPY @ +3940ms sz=95 name=memcpy caller=libengine.so+800bd8 ---
+  dst=0xb400edee090515d0 src=0xb400ededc9007500
+  src_str: Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm jscvt
+  bt: ['libengine.so+800bd8', 'libengine.so+800bd8']
+
+--- COPY @ +3941ms sz=95 name=memmove caller=libengine.so+800bd8 ---
+  dst=0xb400edee090515d0 src=0xb400ededc9007500
+  src_str: Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm jscvt
+  bt: ['libengine.so+800bd8', 'libengine.so+800bd8']
+
+--- COPY @ +4005ms sz=22 name=memcpy caller=libengine.so+800bd8 ---
+  dst=0xb400eded79040750 src=0xfffff7580021
+  src_str: 12c00000-32c00000 rw-p
+  bt: ['libengine.so+800bd8', 'libengine.so+800bd8']
+
+--- COPY @ +4006ms sz=22 name=memmove caller=libengine.so+800bd8 ---
+  dst=0xb400eded79040750 src=0xfffff7580021
+  src_str: 12c00000-32c00000 rw-p
+  bt: ['libengine.so+800bd8', 'libengine.so+800bd8']
+
+--- COPY @ +4007ms sz=47 name=memcpy caller=libengine.so+800bd8 ---
+  dst=0xb400ededc900c660 src=0xb400eded79040750
+  src_str: 12c00000-32c00000 rw-p 00000000 00:00 0        
+  bt: ['libengine.so+800bd8', 'libengine.so+800bd8']
+
+--- COPY @ +4007ms sz=47 name=memmove caller=libengine.so+800bd8 ---
+  dst=0xb400ededc900c660 src=0xb400eded79040750
+  src_str: 12c00000-32c00000 rw-p 00000000 00:00 0        
+  bt: ['libengine.so+800bd8', 'libengine.so+800bd8']
+
+--- COPY @ +4008ms sz=95 name=memcpy caller=libengine.so+800bd8 ---
+  dst=0xb400edee090515d0 src=0xb400ededc900c660
+  src_str: 12c00000-32c00000 rw-p 00000000 00:00 0                                  [anon:dalvik-main spac
+  bt: ['libengine.so+800bd8', 'libengine.so+800bd8']
+
+--- COPY @ +4008ms sz=95 name=memmove caller=libengine.so+800bd8 ---
+  dst=0xb400edee090515d0 src=0xb400ededc900c660
+  src_str: 12c00000-32c00000 rw-p 00000000 00:00 0                                  [anon:dalvik-main spac
+  bt: ['libengine.so+800bd8', 'libengine.so+800bd8']
+
+--- COPY @ +4009ms sz=112 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 12c00000-32c00000 rw-p 00000000 00:00 0                                  [anon:dalvik-main space (region space)]
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4010ms sz=112 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 12c00000-32c00000 rw-p 00000000 00:00 0                                  [anon:dalvik-main space (region space)]
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4010ms sz=113 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 70607000-708c0000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot.art]
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4011ms sz=113 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 70607000-708c0000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot.art]
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4012ms sz=125 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 708c0000-70909000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-core-libart
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4012ms sz=125 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 708c0000-70909000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-core-libart
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4013ms sz=120 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 70909000-70933000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-okhttp.art]
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4014ms sz=120 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 70909000-70933000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-okhttp.art]
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4014ms sz=126 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 70933000-70971000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-bouncycastl
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4015ms sz=126 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 70933000-70971000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-bouncycastl
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4016ms sz=124 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 70971000-70972000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-apache-xml.
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4016ms sz=124 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 70971000-70972000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-apache-xml.
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4017ms sz=123 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 70972000-71646000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-framework.a
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4017ms sz=123 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 70972000-71646000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-framework.a
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4018ms sz=117 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 71647000-71666000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-ext.art]
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4019ms sz=117 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 71647000-71666000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-ext.art]
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4020ms sz=125 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 717b3000-71853000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-voip-common
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4020ms sz=125 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 717b3000-71853000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-voip-common
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4021ms sz=124 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 71853000-7189c000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-ims-common.
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4022ms sz=124 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 71853000-7189c000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-ims-common.
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4023ms sz=124 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 7189c000-71a10000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-core-icu4j.
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4023ms sz=124 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 7189c000-71a10000 rw-p 00000000 00:00 0                                  [anon:dalvik-/system/framework/boot-core-icu4j.
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4024ms sz=105 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 71a10000-71aac000 r--p 00000000 00:31 324484                             /system/framework/arm64/boot.oat
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4024ms sz=105 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 71a10000-71aac000 r--p 00000000 00:31 324484                             /system/framework/arm64/boot.oat
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4025ms sz=8 name=memcpy caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580009
+  src_str: 71a10000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4026ms sz=8 name=memmove caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580009
+  src_str: 71a10000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4026ms sz=8 name=memcpy caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580012
+  src_str: 71aac000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4027ms sz=8 name=memmove caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580012
+  src_str: 71aac000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4028ms sz=106 name=memcpy caller=libengine.so+122130 ---
+  dst=0xb400eded59015c60 src=0xb400edee090515d0
+  src_str: 71a10000-71aac000 r--p 00000000 00:31 324484                             /system/framework/arm64/boot.oat�
+  bt: ['libengine.so+122130', 'libengine.so+122130']
+
+--- COPY @ +4028ms sz=106 name=memmove caller=libengine.so+122130 ---
+  dst=0xb400eded59015c60 src=0xb400edee090515d0
+  src_str: 71a10000-71aac000 r--p 00000000 00:31 324484                             /system/framework/arm64/boot.oat�
+  bt: ['libengine.so+122130', 'libengine.so+122130']
+
+--- COPY @ +4029ms sz=106 name=memcpy caller=libengine.so+122274 ---
+  dst=0xb400eded59017370 src=0xb400eded59015c60
+  src_str: 71a10000-71aac000 r--p 00000000 00:31 324484                             /system/framework/arm64/boot.oat�
+  bt: ['libengine.so+122274', 'libengine.so+122274']
+
+--- COPY @ +4029ms sz=106 name=memmove caller=libengine.so+122274 ---
+  dst=0xb400eded59017370 src=0xb400eded59015c60
+  src_str: 71a10000-71aac000 r--p 00000000 00:31 324484                             /system/framework/arm64/boot.oat�
+  bt: ['libengine.so+122274', 'libengine.so+122274']
+
+--- COPY @ +4030ms sz=105 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 71aac000-71d22000 r-xp 0009c000 00:31 324484                             /system/framework/arm64/boot.oat
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4031ms sz=105 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 71aac000-71d22000 r-xp 0009c000 00:31 324484                             /system/framework/arm64/boot.oat
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4031ms sz=8 name=memcpy caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580009
+  src_str: 71aac000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4032ms sz=8 name=memmove caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580009
+  src_str: 71aac000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4033ms sz=8 name=memcpy caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580012
+  src_str: 71d22000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4033ms sz=8 name=memmove caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580012
+  src_str: 71d22000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4034ms sz=106 name=memcpy caller=libengine.so+122130 ---
+  dst=0xb400eded59015c60 src=0xb400edee090515d0
+  src_str: 71aac000-71d22000 r-xp 0009c000 00:31 324484                             /system/framework/arm64/boot.oat�
+  bt: ['libengine.so+122130', 'libengine.so+122130']
+
+--- COPY @ +4034ms sz=106 name=memmove caller=libengine.so+122130 ---
+  dst=0xb400eded59015c60 src=0xb400edee090515d0
+  src_str: 71aac000-71d22000 r-xp 0009c000 00:31 324484                             /system/framework/arm64/boot.oat�
+  bt: ['libengine.so+122130', 'libengine.so+122130']
+
+--- COPY @ +4035ms sz=106 name=memcpy caller=libengine.so+122274 ---
+  dst=0xb400eded590164d0 src=0xb400eded59015c60
+  src_str: 71aac000-71d22000 r-xp 0009c000 00:31 324484                             /system/framework/arm64/boot.oat�
+  bt: ['libengine.so+122274', 'libengine.so+122274']
+
+--- COPY @ +4036ms sz=106 name=memmove caller=libengine.so+122274 ---
+  dst=0xb400eded590164d0 src=0xb400eded59015c60
+  src_str: 71aac000-71d22000 r-xp 0009c000 00:31 324484                             /system/framework/arm64/boot.oat�
+  bt: ['libengine.so+122274', 'libengine.so+122274']
+
+--- COPY @ +4037ms sz=84 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400ededc900c660 src=0xb400edee090515d0
+  src_str: 71d22000-71d23000 rw-p 00000000 00:00 0                                  [anon:.bss]
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4037ms sz=84 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400ededc900c660 src=0xb400edee090515d0
+  src_str: 71d22000-71d23000 rw-p 00000000 00:00 0                                  [anon:.bss]
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4038ms sz=100 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 71d23000-71d36000 rw-p 00000000 00:31 324499                             /system/framework/boot.vdex
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4039ms sz=100 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 71d23000-71d36000 rw-p 00000000 00:31 324499                             /system/framework/boot.vdex
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4039ms sz=8 name=memcpy caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580009
+  src_str: 71d23000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4040ms sz=8 name=memmove caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580009
+  src_str: 71d23000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4041ms sz=8 name=memcpy caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580012
+  src_str: 71d36000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4041ms sz=8 name=memmove caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580012
+  src_str: 71d36000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4042ms sz=101 name=memcpy caller=libengine.so+122130 ---
+  dst=0xb400eded59015c60 src=0xb400edee090515d0
+  src_str: 71d23000-71d36000 rw-p 00000000 00:31 324499                             /system/framework/boot.vdex�
+  bt: ['libengine.so+122130', 'libengine.so+122130']
+
+--- COPY @ +4042ms sz=101 name=memmove caller=libengine.so+122130 ---
+  dst=0xb400eded59015c60 src=0xb400edee090515d0
+  src_str: 71d23000-71d36000 rw-p 00000000 00:31 324499                             /system/framework/boot.vdex�
+  bt: ['libengine.so+122130', 'libengine.so+122130']
+
+--- COPY @ +4043ms sz=101 name=memcpy caller=libengine.so+122580 ---
+  dst=0xb400eded590169e0 src=0xb400eded59015c60
+  src_str: 71d23000-71d36000 rw-p 00000000 00:31 324499                             /system/framework/boot.vdex�
+  bt: ['libengine.so+122580', 'libengine.so+122580']
+
+--- COPY @ +4044ms sz=101 name=memmove caller=libengine.so+122580 ---
+  dst=0xb400eded590169e0 src=0xb400eded59015c60
+  src_str: 71d23000-71d36000 rw-p 00000000 00:31 324499                             /system/framework/boot.vdex�
+  bt: ['libengine.so+122580', 'libengine.so+122580']
+
+--- COPY @ +4044ms sz=101 name=memcpy caller=libengine.so+79c274 ---
+  dst=0xb400eded59015ab0 src=0xb400eded590169e0
+  src_str: 71d23000-71d36000 rw-p 00000000 00:31 324499                             /system/framework/boot.vdex�
+  bt: ['libengine.so+79c274', 'libengine.so+79c274']
+
+--- COPY @ +4045ms sz=101 name=memmove caller=libengine.so+79c274 ---
+  dst=0xb400eded59015ab0 src=0xb400eded590169e0
+  src_str: 71d23000-71d36000 rw-p 00000000 00:31 324499                             /system/framework/boot.vdex�
+  bt: ['libengine.so+79c274', 'libengine.so+79c274']
+
+--- COPY @ +4046ms sz=105 name=memcpy caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 71d36000-71d37000 r--p 00312000 00:31 324484                             /system/framework/arm64/boot.oat
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4046ms sz=105 name=memmove caller=libengine.so+8009ec ---
+  dst=0xb400eded59015990 src=0xb400edee090515d0
+  src_str: 71d36000-71d37000 r--p 00312000 00:31 324484                             /system/framework/arm64/boot.oat
+  bt: ['libengine.so+8009ec', 'libengine.so+8009ec']
+
+--- COPY @ +4047ms sz=8 name=memcpy caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580009
+  src_str: 71d36000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4047ms sz=8 name=memmove caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580009
+  src_str: 71d36000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4048ms sz=8 name=memcpy caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580012
+  src_str: 71d37000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4049ms sz=8 name=memmove caller=libengine.so+8010f8 ---
+  dst=0xfffff7582351 src=0xfffff7580012
+  src_str: 71d37000
+  bt: ['libengine.so+8010f8', 'libengine.so+8010f8']
+
+--- COPY @ +4049ms sz=106 name=memcpy caller=libengine.so+122130 ---
+  dst=0xb400eded59016ef0 src=0xb400edee090515d0
+  src_str: 71d36000-71d37000 r--p 00312000 00:31 324484                             /system/framework/arm64/boot.oat�
+  bt: ['libengine.so+122130', 'libengine.so+122130']

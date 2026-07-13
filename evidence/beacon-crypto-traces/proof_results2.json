@@ -1,0 +1,128 @@
+[
+  {
+    "t": "boot",
+    "ts": 0,
+    "pid": 25633
+  },
+  {
+    "t": "hook_ok",
+    "target": "malloc",
+    "ts": 0
+  },
+  {
+    "t": "init_done",
+    "ts": 0
+  },
+  {
+    "t": "modules_loaded",
+    "ts": 695,
+    "flutter": "0xeb05f9586000",
+    "engine": "0xeb0610a6c000",
+    "libapp": "0xeb05f2825000",
+    "flutter_size": 10960896,
+    "engine_size": 8630272,
+    "libapp_size": 5640192
+  },
+  {
+    "t": "flutter_exports_found",
+    "syms": []
+  },
+  {
+    "t": "libapp_exports_sample",
+    "exports": [
+      {
+        "type": "variable",
+        "name": "_kDartVmSnapshotInstructions",
+        "address": "0xeb05f2985000",
+        "size": 92944
+      },
+      {
+        "type": "variable",
+        "name": "_kDartIsolateSnapshotInstructions",
+        "address": "0xeb05f299bb40",
+        "size": 4085920
+      },
+      {
+        "type": "variable",
+        "name": "_kDartVmSnapshotData",
+        "address": "0xeb05f2825200",
+        "size": 16032
+      },
+      {
+        "type": "variable",
+        "name": "_kDartIsolateSnapshotData",
+        "address": "0xeb05f28290c0",
+        "size": 1378048
+      },
+      {
+        "type": "variable",
+        "name": "_kDartSnapshotBuildId",
+        "address": "0xeb05f28251c8",
+        "size": 32
+      }
+    ]
+  },
+  {
+    "t": "all_hooks_installed",
+    "ts": 720
+  },
+  {
+    "t": "Z_SINK_HIT",
+    "z_hex_full": "0ced50e7debcdc8d5d82a8a9c79590f9295f902963893d10b43b5663e5e04d1549df67c9273cde2bea1f9bd476766696b8",
+    "z48": "ed50e7debcdc8d5d82a8a9c79590f9295f902963893d10b43b5663e5e04d1549df67c9273cde2bea1f9bd476766696b8",
+    "iv_hex": "ed50e7debcdc8d5d82a8a9c79590f929",
+    "ct_hex": "5f902963893d10b43b5663e5e04d1549df67c9273cde2bea1f9bd476766696b8",
+    "sink_bt": [
+      {
+        "addr": "0xeb05f9c5ab5c",
+        "mod": "libflutter+6d4b5c"
+      },
+      {
+        "addr": "0xeb05f9c5f260",
+        "mod": "libflutter+6d9260"
+      },
+      {
+        "addr": "0xeb05f9d77bfc",
+        "mod": "libflutter+7f1bfc"
+      },
+      {
+        "addr": "0xeb05f9d6e808",
+        "mod": "libflutter+7e8808"
+      },
+      {
+        "addr": "0xeb05f9e005b0",
+        "mod": "libflutter+87a5b0"
+      },
+      {
+        "addr": "0xeb05f9df1d78",
+        "mod": "libflutter+86bd78"
+      },
+      {
+        "addr": "0xeb05f9df1b08",
+        "mod": "libflutter+86bb08"
+      },
+      {
+        "addr": "0xeb05f9e850c4",
+        "mod": "libflutter+8ff0c4"
+      },
+      {
+        "addr": "0xeb05f9e49540",
+        "mod": "libflutter+8c3540"
+      },
+      {
+        "addr": "0xeb09247086ac",
+        "mod": "0xeb09247086ac"
+      },
+      {
+        "addr": "0xeb09246a5220",
+        "mod": "0xeb09246a5220"
+      }
+    ],
+    "ring_size": 3000,
+    "n_matches": 0,
+    "buffer_matches": [],
+    "raw_locations": [],
+    "http_head": "GET /?z=0ced50e7debcdc8d5d82a8a9c79590f9295f902963893d10b43b5663e5e04d1549df67c9273cde2bea1f9bd476766696b8&v=20 HTTP/1.1\r\nuser-agent: Dart/3.5 (dart:io)\r\naccept-encoding: gzip\r\nhost: push-918010152455.europe-west1.run.app\r\n\r\n\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd",
+    "ts": 1123
+  }
+]
