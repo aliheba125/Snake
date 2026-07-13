@@ -1,0 +1,47 @@
+{
+  "code": "999888",
+  "captures": [
+    {
+      "ts": 17633,
+      "name": "blr_x8_dispatch1_0x7d3d50",
+      "x8_abs": "0xeb9823189780",
+      "x8_offset": "0x7d7780",
+      "x0": "b400eb9968c351b0",
+      "x1": "eb98073fa8f0",
+      "x19": "b400eb9968c351b0"
+    },
+    {
+      "ts": 17634,
+      "name": "blr_x8_dispatch1b_0x7d3d8c",
+      "x8_abs": "0xeb9823185f8c",
+      "x8_offset": "0x7d3f8c",
+      "x0": "eb98073fa8f0",
+      "x1": "b400eb9968c351b0",
+      "x19": "b400eb9968c351b0"
+    },
+    {
+      "ts": 17634,
+      "name": "blr_x8_dispatch2_0x7d3ddc",
+      "x8_abs": "0xeb9823186004",
+      "x8_offset": "0x7d4004",
+      "x0": "b400eb9968c351e0",
+      "x1": "eb98073fa960",
+      "x19": "b400eb9968c351e0"
+    },
+    {
+      "ts": 17634,
+      "name": "blr_x8_dispatch2b_0x7d3e18",
+      "x8_abs": "0xeb9823185ff0",
+      "x8_offset": "0x7d3ff0",
+      "x0": "eb98073fa960",
+      "x1": "b400eb9968c351e0",
+      "x19": "b400eb9968c351e0"
+    }
+  ],
+  "unique_targets": [
+    "blr_x8_dispatch1_0x7d3d50:0x7d7780",
+    "blr_x8_dispatch1b_0x7d3d8c:0x7d3f8c",
+    "blr_x8_dispatch2_0x7d3ddc:0x7d4004",
+    "blr_x8_dispatch2b_0x7d3e18:0x7d3ff0"
+  ]
+}

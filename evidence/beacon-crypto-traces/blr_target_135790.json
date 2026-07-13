@@ -1,0 +1,47 @@
+{
+  "code": "135790",
+  "captures": [
+    {
+      "ts": 17634,
+      "name": "blr_x8_dispatch1_0x7d3d50",
+      "x8_abs": "0xe2c210459780",
+      "x8_offset": "0x7d7780",
+      "x0": "b400e2c46cc32470",
+      "x1": "e2c1f5bfa8f0",
+      "x19": "b400e2c46cc32470"
+    },
+    {
+      "ts": 17634,
+      "name": "blr_x8_dispatch1b_0x7d3d8c",
+      "x8_abs": "0xe2c210455f8c",
+      "x8_offset": "0x7d3f8c",
+      "x0": "e2c1f5bfa8f0",
+      "x1": "b400e2c46cc32470",
+      "x19": "b400e2c46cc32470"
+    },
+    {
+      "ts": 17635,
+      "name": "blr_x8_dispatch2_0x7d3ddc",
+      "x8_abs": "0xe2c210456004",
+      "x8_offset": "0x7d4004",
+      "x0": "b400e2c46cc324a0",
+      "x1": "e2c1f5bfa960",
+      "x19": "b400e2c46cc324a0"
+    },
+    {
+      "ts": 17635,
+      "name": "blr_x8_dispatch2b_0x7d3e18",
+      "x8_abs": "0xe2c210455ff0",
+      "x8_offset": "0x7d3ff0",
+      "x0": "e2c1f5bfa960",
+      "x1": "b400e2c46cc324a0",
+      "x19": "b400e2c46cc324a0"
+    }
+  ],
+  "unique_targets": [
+    "blr_x8_dispatch1_0x7d3d50:0x7d7780",
+    "blr_x8_dispatch1b_0x7d3d8c:0x7d3f8c",
+    "blr_x8_dispatch2_0x7d3ddc:0x7d4004",
+    "blr_x8_dispatch2b_0x7d3e18:0x7d3ff0"
+  ]
+}

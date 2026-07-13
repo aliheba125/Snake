@@ -40,13 +40,36 @@ would prove or disprove it. Nothing here should be cited as fact.
   After filtering heap pointers, only 1–3 high-entropy 32-byte buffers per run exist
   (likely AES/SHA256 output). SHA256 of code variants and device token not found in buffers.
   The KDF is not a simple hash of the code.
-- **Missing:** the exact algorithm inside the vtable-dispatched OLLVM function; the inputs that
-  produce w21=1 (activation success); the derivation from 6-digit code → crypto input.
-- **To resolve:** (a) Extended Stalker inside the vtable-dispatched function (instrument `blr x8`
-  target), (b) patch w21 to 1 to observe post-activation behavior, (c) binary pattern analysis
-  of OLLVM-flattened code at the dispatch target.
-- **Evidence:** `evidence/beacon-crypto-traces/stalker_v2_*.json`,
-  `callout_v3b_*.json`, `activation_ranges_disasm.txt`.
+- **July‑13, blr x8 target capture (`capture_blr_target.py`):**
+  Callout on all 4 `blr x8` sites in the vtable dispatcher captured their targets across 3 codes
+  (135790, 999888, 246810). All targets are **fixed** (code-independent):
+  - `0x7d3d50` → **`0x7d7780`** (primary dispatch)
+  - `0x7d3d8c` → `0x7d3f8c`, `0x7d3ddc` → `0x7d4004`, `0x7d3e18` → `0x7d3ff0` (secondary)
+  
+  **Observation:** `0x7d7780` contains a single `ret` instruction (verified via r2 raw bytes:
+  `c0 03 5f d6`). In the tested scenarios (all invalid codes), the primary vtable dispatch
+  **calls a no-op stub**.
+  
+  **Possible interpretations (none confirmed):**
+  - (a) The vtable entry may differ for valid keys (polymorphic dispatch — different code path on
+    success vs failure).
+  - (b) The validation may occur *before* this dispatch (somewhere in the OLLVM jump-table path).
+  - (c) The dispatch stub may be intentional (the validation decision was already made earlier).
+  - (d) The validation happens in a different call sequence not covered by our instrumentation.
+  
+  **We cannot determine the validator's location from this observation alone.**
+
+- **July‑13, .bss globals before/after Activate:**
+  Reading libengine .bss globals before and after tapping Activate revealed:
+  - `bss_8228` changed from URL string (`https://rest.snakeseller.com/ap...`) to
+    **error message: `"Code is Not valid"`** (ASCII at offset +2).
+  - `bss_80f0` (master_key pointer) changed (new time bucket → new key).
+  - `bss_8238` (decrypt_store global) **did not change** (remains same struct).
+  
+  **This confirms:** libengine **does execute the validation in native code** and produces the
+  "Code is Not valid" error string. The validation is NOT in Dart — it happens inside libengine,
+  but the exact function/path that makes the decision was not directly instrumented in this
+  session.
 - **To resolve:** disassemble the 21 identified ranges in Ghidra (now known exactly); correlate
   32-byte intermediates with entered code and device token; instrument specific sub-ranges with
   Stalker `callout` to capture register state at branch points.
@@ -133,3 +156,14 @@ would prove or disprove it. Nothing here should be cited as fact.
   activation is neither broken nor proven unbreakable — it is undetermined.**
 - U‑06/U‑07 concern the business/seller system and the in-game engine, which are separate from the
   beacon work that is already ✅ complete.
+
+
+- **Missing:** the exact function that evaluates the 6-digit code and sets the pass/fail state;
+  the KDF that transforms the code into a crypto key; the comparison/gate that produces the error.
+- **To resolve:** (a) Instrument the OLLVM jump-table dispatch path (0xa61c8 `br x11`) more
+  deeply — capture register state at each jump-table case. (b) Trace which function writes the
+  "Code is Not valid" string to `bss_8228`. (c) Test with varied vtable indices to see if the
+  `ret` stub at 0x7d7780 changes for valid keys.
+- **Evidence:** `evidence/beacon-crypto-traces/stalker_v2_*.json`, `callout_v3b_*.json`,
+  `blr_target_*.json`, `globals_before_after_135790.json`, `activation_ranges_disasm.txt`,
+  `validator_chain_disasm.txt`.
