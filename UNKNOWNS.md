@@ -9,20 +9,21 @@ would prove or disprove it. Nothing here should be cited as fact.
 
 ## Critical unknowns
 
-### U‑01 — The exact Entry-Key validation algorithm 🟨
-- **Known (NEW — July 13 session):**
+### U‑01 — The exact Entry-Key validation algorithm 🟨 (~45%)
+- **Known (UPDATED — July 13 late session):**
   - Validation is local, symmetric, uses the AES engine built into libengine.
-  - The 6-digit code is stored as 8-byte ASCII (`"135790"` → `31 33 35 37 39 30 00 00`).
-  - The code is **immediately transformed** into a 32-byte (256-bit) high-entropy value (KDF):
-    - `111111` → `6a37c0115fcfbde920775cffb0dc409052ef5e8b04b167a8491fd9a1e35136cf`
-    - `135790` → `2ca02fce9ca0f0b2fa432a0258d2168499e4323e0412aa3c7a148a9ac2917d80`
-  - The KDF output is **expanded as AES-256 key schedule** (8→16→32→64→128 bytes growth).
-  - A **session-stable device constant** (`738738368b08c14fc7578908f99eb9da249f84a2785adc6af8cb6cb45f0b41c9`) is also present — different from the raw device token but likely derived from it.
-  - Stalker successfully traced the validator: **1507 unique blocks across 41 function ranges** (vs. the old run's 200 blocks which caught beacon instead).
+  - **CRITICAL NEW FINDING:** KDF has TWO inputs: the 6-digit code AND `floor(unix_time/16)` (time bucket).
+  - Same code produces DIFFERENT KDF outputs at different times (proven: 111111 gave different values across sessions).
+  - Uses the SAME time-bucket mechanism as the beacon protocol.
+  - **7 code samples captured** (000000, 111111, 123456, 222222, 394318, 654321, 999999) — all produce unique outputs.
+  - PRNG state structure: `[time_bucket(4)][zeros(4)][interleaved_data(8)][time_bucket(4)][size(4)]`
+  - The interleaved data has last 2 bytes always repeated (structural pattern).
+  - Device ID (394318) triggers slightly different code path (tail=0x08 vs 0x07).
+  - Each validation performs: PRNG(code, time_bucket) → SHA-256 → AES-256 key schedule → inline compare.
   - The comparison does NOT use libc `memcmp`/`strcmp` — it is inline.
-- **Missing:** the precise KDF algorithm (code → 32 bytes), and whether the comparison is direct equality or another transform.
-- **To resolve:** isolate the specific function that transforms the 8-byte code into the 32-byte output. The Stalker trace narrowed it to ~41 candidates; the function at `0x7eae18-0x7eb2cc` (584 bytes) is the prime suspect.
-- **Evidence:** `evidence/beacon-crypto-traces/entry_key_kdf_evidence.json`
+- **Missing:** the precise PRNG formula (how code maps to seed values), and what the comparison target is derived from.
+- **To resolve:** static disassembly (Ghidra) of the OLLVM-flattened function at `0x7eae18-0x7eb2cc` (584 bytes). Or: input the same code at two different time_buckets, solve the 2-equation system for the PRNG coefficients.
+- **Evidence:** `evidence/beacon-crypto-traces/entry_key_kdf_evidence.json`, `/tmp/cap_ke_*.json` (7 code captures)
 
 ### U‑02 — Whether a valid Entry Key can be forged ❓ / ⬜
 - **Known:** symmetric ⇒ not protected by asymmetric math; server issues keys bound to Device ID.
@@ -49,21 +50,28 @@ would prove or disprove it. Nothing here should be cited as fact.
 - **To resolve:** systematically vary `(time, id, mask)` and correlate every byte; collect many
   samples to classify markers (version? record type? seller id?).
 
-### U‑05 — Deferred/backend validation of `z` 🟨
-- **Known:** ingress accepts garbage `z` (no authenticity check at the edge). **NEW (July 13):**
-  confirmed with controlled tests — all-zeros z, random z, any user-agent, any `v=` value all
-  produce a valid 33-byte response. Short z (<49 bytes) or missing z → empty response.
-  Same z sent 5× in rapid succession → 5 different responses (server adds randomness/nonce).
-- **To resolve:** volume/behavioral testing — does the backend ever flag, rate-limit, or later
-  reject forged beacons? Not observable from the client alone.
-- **Evidence:** `evidence/network-diagnosis-logs/server_response_analysis.json`
+### U‑05 — Deferred/backend validation of `z` 🟨 (~40%)
+- **Known:** ingress accepts garbage `z` (no authenticity check at the edge). **UPDATED (July 13 late):**
+  - **50 rapid requests** from same IP accepted without any rate-limiting or blocking.
+  - **Replay works**: same z sent 5× produces 5 different responses (server adds fresh nonce).
+  - No IP filtering, no User-Agent check, no mutual TLS requirement.
+  - Invalid hex → 200 with empty body (not 500 as previously reported — may have changed).
+  - Short z (< 32 bytes) → 200 with empty body.
+- **To resolve:** volume/behavioral testing at scale (hundreds of requests per minute), or server-side log access.
+  Not fully provable from client alone — deferred analysis is invisible to the sender.
+- **Evidence:** `FINAL_ANALYSIS_REPORT.md` (this session)
 
 ## Business-tier unknowns (require access we don't have)
 
-### U‑06 — Seller REST API schema + login 🟨
-- **Known:** `rest.snakeseller.com/api/request/`; needs `Authorization`/`X-Req`/`X-Client`;
-  rejects unauthenticated calls with "Authentication failed"; `action=*` parameter exists.
-- **To resolve:** legitimate seller credentials (out of scope) to map the schema.
+### U‑06 — Seller REST API schema + login 🟨 (~25%)
+- **Known:** `rest.snakeseller.com`; ALL paths (including `/`, `/api/request/`, `/api/login/`) return
+  `{"error":true,"error_code":-2,"message":"Invalid action"}` — indicating the action parameter must
+  be encrypted or use a non-obvious format. Basic JSON POST with plain action names all rejected.
+- **UPDATED (July 13):** Server responds identically to GET and POST. Fake Bearer tokens get same
+  "Invalid action" response (not "Authentication failed" as previously reported).
+- **To resolve:** legitimate seller credentials (out of scope) OR reverse the Dart API client code
+  to determine the encrypted action format.
+- **Evidence:** `FINAL_ANALYSIS_REPORT.md`
 
 ### U‑07 — In-game cheat behaviour ⬜
 - **Known:** libengine has an app-virtualization/hooking engine (July‑8 static/emulation).
@@ -76,9 +84,18 @@ would prove or disprove it. Nothing here should be cited as fact.
 - Stalker windows during Activate landed on beacon serialization, not a confirmed validator trace.
 - Resolve with U‑01's precise isolation.
 
-### U‑09 — Is `DAT_009280f8` byte-exactly the decrypted reply? 🟨
-- Timing matches (~+110 ms after beacon) but contents were unstable across polls.
-- Resolve by hooking the store site precisely (Stalker) and comparing to the decrypted reply.
+### U‑09 — Is `DAT_009280f8` byte-exactly the decrypted reply? ✅ (~95%)
+- **PROVEN (July 13 late session):** Direct memory read confirms DAT_009280f8 is a POINTER to a
+  32-byte buffer containing the decrypted server response record.
+  Live captured value: `5a9c14001800b0eff43b00a5b6fac2ad83000000d900e0ad00bc3f7900e0de08`
+  All 4 documented constant markers present at exact offsets:
+  - `9c 14 00` at offset 1-3 ✓
+  - `83 00 00 00` at offset 16-19 ✓
+  - `d9 00` at offset 20-21 ✓
+  - `00 e0 de 08` at offset 28-31 ✓
+  - Client mask at bytes [0,4,8,12] ✓
+- Adjacent pointer `DAT_009280f0` → 32-byte high-entropy value (likely the derived decryption key).
+- **Evidence:** `/tmp/follow_ptr.py` output, `FINAL_ANALYSIS_REPORT.md`
 
 ---
 
