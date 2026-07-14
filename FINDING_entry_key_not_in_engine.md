@@ -99,3 +99,43 @@ Full token: `751fb1231d3452a779807c5646d048ee0a8a93a2ed0cb70bc8fb419a692ae9ed`
 2. **Identify pointycastle encryption** — what key is used? Is it the beacon-derived session key?
 3. **Compare with beacon protocol** — does the `encryptedData` format match the z-parameter?
 4. **Hook Dart HTTP client** — capture the plaintext JSON before encryption (if possible via Java layer)
+
+---
+
+## ADDENDUM: Dart request-builder class identified
+
+**Date:** 2026-07-14 (same session)
+**Method:** Binary search for pool-entry references + blutter asm correlation
+
+### Discovery
+
+Searched for ARM64 `ldr` instructions that load "deviceId" (pp+0x43c0) and "code" (pp+0x4628)
+from the Dart object pool inside `libapp.so`:
+
+| Pool entry | String | Load site(s) in libapp.so |
+|:---:|:---:|:---:|
+| pp+0x43c0 | "deviceId" | 0x500620 (1 hit) |
+| pp+0x4628 | "code" | 0x501a80, 0x3997c0, 0x39a364, 0x40e378, 0x2ce280 |
+
+The two primary sites (0x500620 and 0x501a80) are **in the same function region** — identified
+via blutter as belonging to **class `JS`** in `beg.dart`:
+
+```dart
+class JS extends Object {
+    Future<Map<String, dynamic>> cmd(dynamic, dynamic)  // addr: 0x4feb18
+    void _fmd(dynamic, ET)                              // addr: 0x501cd0  
+    bool Zld(dynamic, hq)                               // addr: 0x50259c
+}
+```
+
+**`JS.cmd()` is the HTTP request builder** — it:
+1. Loads "deviceId" and "code" from pool as Map keys
+2. Builds the JSON payload `{deviceId: "...", code: "...", ...}`
+3. Returns `Future<Map<String, dynamic>>` (the parsed server response)
+
+### Next step
+
+Disassemble `JS.cmd()` (0x4feb18, ~6KB) to identify:
+- All pool keys used in the request body
+- Where pointycastle encryption is called
+- How the response is parsed and which field determines the verdict
