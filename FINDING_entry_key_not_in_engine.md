@@ -139,3 +139,32 @@ Disassemble `JS.cmd()` (0x4feb18, ~6KB) to identify:
 - All pool keys used in the request body
 - Where pointycastle encryption is called
 - How the response is parsed and which field determines the verdict
+
+---
+
+## CORRECTION: pp+0x43c0 "deviceId" and pp+0x4628 "code" are Flutter KeyEvent fields
+
+**Date:** 2026-07-14
+
+Upon full pool-string extraction of the `JS.cmd()` region, ALL strings in range 0x42c0-0x4690
+belong to **Flutter keyboard/key-event serialization** (keymap, android, flags, codePoint,
+keyCode, scanCode, metaState, source, vendorId, productId, deviceId, repeatCount...).
+
+The "deviceId" at pp+0x43c0 = Flutter input device ID (keyboard), NOT the activation device ID.
+The "code" at pp+0x4628 = keyboard key code, NOT the entry activation code.
+
+### Implication
+
+The activation request JSON field names are NOT in the Dart object pool as static strings.
+They are likely:
+1. Built at runtime from encrypted/obfuscated sources (via ilil or channel "A")
+2. Or the request is serialized in a lower layer (Java platform channel → HTTP)
+3. Or uses Dart AOT inline strings not captured by blutter
+
+### Updated status
+
+The `PROTOCOL_ANALYSIS.md` schema `{encryptedData, deviceId, timestamp}` was previously
+documented from network observation (likely mitmproxy or similar). The Dart pool search
+did NOT find these field names → they are constructed at runtime, not in static pool.
+
+This is consistent with the app's overall obfuscation strategy (encrypted strings everywhere).
