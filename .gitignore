@@ -3,3 +3,6 @@ node_modules/
 __pycache__/
 *.pyc
 .venv/
+
+# Local Kiro runtime settings (do not track)
+.kiro/settings
