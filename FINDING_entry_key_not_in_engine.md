@@ -168,3 +168,31 @@ documented from network observation (likely mitmproxy or similar). The Dart pool
 did NOT find these field names → they are constructed at runtime, not in static pool.
 
 This is consistent with the app's overall obfuscation strategy (encrypted strings everywhere).
+
+---
+
+## ADDENDUM: MITM attempt — blocked by Redroid kernel (no NAT table)
+
+**Date:** 2026-07-14
+
+Attempted transparent MITM proxy (mitmdump) to capture the activation HTTP request:
+- mitmproxy installed successfully
+- CA cert installed in system store (hash c8750f0d)
+- Android `http_proxy` setting does NOT work (Flutter ignores system proxy)
+- iptables NAT redirect FAILED: Redroid kernel has no NAT table (`can't initialize iptables table 'nat'`)
+- Transparent proxy is not possible without kernel NAT support
+
+### What DID work (heap scan):
+- "Code is Not valid" found in Dart heap (6 hits) — confirms it exists as constant
+- "encryptedData" found as Dart pool string (not as live JSON body)
+- Device token found (4 hits, stable)
+- Live JSON body `{"encryptedData":...}` NOT found (ephemeral, freed after send)
+
+### Remaining options for protocol capture:
+1. **Custom Redroid kernel with NAT** (rebuild container)
+2. **Network-level MITM** (ARP spoof or DNS redirect on docker bridge)
+3. **Frida BoringSSL internal hooks** (find SSL_write by signature scan in libflutter)
+4. **Dart-level hook** (if Java bridge becomes available or via alternative injection)
+5. **Use existing network captures** from prior sessions if available
+
+### Status: protocol capture blocked by environment limitation, not by app protection.
