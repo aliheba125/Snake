@@ -232,3 +232,34 @@ Or: install a more comprehensive hook that intercepts ALL calls to the kernel wr
 confirms the path exists).
 
 ### Gadget config restored to listen mode after testing.
+
+---
+
+## SESSION END NOTE (2026-07-14)
+
+### Final blocker: UI navigation coordinates stale after multiple restarts
+
+The last several attempts to capture the activation POST failed because the app's UI state
+changed after repeated force-stops. The tap coordinates (140,97 → 360,1117 → 160,585 →
+490,745) from the original `stalker_callout_v3b.py` no longer navigate correctly.
+
+**This is an environment/automation issue, not a technical analysis blocker.**
+
+### What was proven in this session:
+1. TLS write path for startup GET = flutter+0x80403c (via libc write, fd>100)
+2. The function at 0x6d4be8 only fires during Gadget script mode (not frida-server attach)
+3. Activation POST uses the SAME underlying write path (0x80403c) but on a pre-existing
+   socket (no new connect() during activation)
+
+### To resume:
+1. Take a fresh screenshot to determine current UI state
+2. Use `uiautomator dump` to get exact button coordinates
+3. Re-run activation with correct tap positions
+4. The TLS capture infrastructure (Gadget script + 0x80403c hook) is proven to work
+
+### Summary of session findings:
+- Architecture fully revised: validation is 100% server-side
+- libengine provides device token only, never sees entry key
+- TLS GET traffic successfully captured in plaintext
+- POST activation traffic confirmed to exist (getaddrinfo fires) but requires
+  proper UI automation to trigger while hooks are active
