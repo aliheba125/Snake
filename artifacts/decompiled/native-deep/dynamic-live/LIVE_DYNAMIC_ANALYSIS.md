@@ -102,7 +102,7 @@ python3 run_sweep2.py     # resilient sweep of structured index groups (auto-rec
 ```
 See `agent_conn.js` (connected-client agent: native AES/KDF + decryptor + SSL + Java `Native` hooks + `dump`/`dumpList` rpc), `ssl_agent.js` (early script-mode SSL capturer), and the `run_*.py` runners.
 
-## 7. Target game installed — remaining gate is a server-issued subscription
+## 7. Target game installed — game-load is conditioned on a server-issued subscription entitlement
 
 Installed the **latest 8 Ball Pool v56.26.2** (versionCode 3990, `com.miniclip.eightballpool`, arm64-v8a), pulled from APKPure via `apkeep` and side-loaded with `adb install-multiple` (base + `config.arm64_v8a`). The device has no GMS, but the engine fakes Google auth, so that is not a blocker.
 
