@@ -87,3 +87,36 @@ while `751fb123...` is the cryptographic device fingerprint sent in requests.
 2. **DNS redirect**: point snakeseller.com to a local HTTPS server with mitmproxy cert
 3. **HTTP/2 frame hook**: if the connection uses h2, the POST goes through nghttp2/h2 framing
    functions (different from the h1 path we hooked)
+
+---
+
+## ADDENDUM: DNS redirect attempted but Dart bypasses /etc/hosts
+
+**Date:** 2026-07-14
+
+### Attempt:
+- Added `172.17.0.1 rest.snakeseller.com` to `/etc/hosts` inside Redroid
+- Verified `ping rest.snakeseller.com` resolves to `172.17.0.1` ✅
+- Set up HTTPS server on host:443 with cert signed by mitmproxy CA for `rest.snakeseller.com`
+- Cert: subject=CN=rest.snakeseller.com, issuer=CN=mitmproxy,O=mitmproxy
+
+### Result: FAILED
+- App still connects to **172.253.62.172:443** (Google Cloud) — NOT 172.17.0.1
+- Dart's DNS resolver does NOT use /etc/hosts (uses Android's system DNS service instead)
+- The fake server received zero requests from the app
+
+### Why ping works but app doesn't:
+- `ping` uses bionic libc `getaddrinfo()` which reads /etc/hosts
+- Dart uses Android's `InetAddress.getByName()` or its own async DNS resolver
+  which queries the system DNS server (172.17.0.1:53 or configured DNS) directly
+
+### Server IP confirmed: 
+rest.snakeseller.com → 172.253.62.172 (Google Cloud Run, CF3EFDAC in /proc/net/tcp)
+
+### Correct approach for DNS redirect:
+1. **Modify the actual DNS server** response (run dnsmasq on 172.17.0.1 with override)
+2. **Or use iptables DNAT** (requires kernel NAT — not available in Redroid)
+3. **Or patch the app's DNS resolution** at runtime via Frida hook on getaddrinfo
+   (replace IP for snakeseller.com → 172.17.0.1)
+
+### Hosts file cleaned up after test.
