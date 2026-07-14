@@ -50,3 +50,40 @@ From uiautomator dump: `content-desc="Device id:\n394318"`
 This is the **short numeric device ID** displayed in UI (different from the 64-char hex token
 `751fb123...` used internally). Relationship: likely `394318` is an account/registration ID,
 while `751fb123...` is the cryptographic device fingerprint sent in requests.
+
+---
+
+## ADDENDUM: Activation CONFIRMED working but POST plaintext still not captured
+
+**Date:** 2026-07-14 (session continuation)
+
+### Proof activation works with Gadget + correct navigation:
+- Gadget script mode + hooks on 0x6d4be8 (+ 3 other offsets)
+- Navigation: tap(140,98) → tap(360,1117) → tap(165,590) → text(135790) → tap(495,745)
+- **Result: "Code is Not valid" dialog confirmed via uiautomator dump**
+- Startup GET requests captured in plaintext (beacon z, notifications, feeds)
+- **POST activation NOT captured by any of the 4 hooks**
+
+### Conclusions:
+1. The POST request goes through a DIFFERENT BoringSSL code path than GETs
+2. This is likely because:
+   - GETs use HTTP/1.1 with fresh connections (captured at handshake+first-write)
+   - POST reuses an existing connection (already established during startup)
+   - OR POST uses HTTP/2 multiplexing (different write function)
+3. Server response JSON is ephemeral (not in heap after processing)
+4. The hook at 0x6d4be8 specifically handles the "first write after SSL_connect" case
+
+### What we KNOW about the activation request (from all evidence combined):
+- Endpoint: POST https://rest.snakeseller.com/api/request/
+- TLS socket: fd=122 (from I/O capture)
+- Payload size: ~418 bytes encrypted (22 × 19 byte TLS fragments)
+- Contains: encryptedData, deviceId, timestamp (from PROTOCOL_ANALYSIS.md)
+- Response: {"error":true,"error_code":N,"message":"..."} (from api_response.txt)
+- The app maps error_code to local Dart constant strings
+
+### Remaining approach for POST plaintext:
+1. **Stalker on libflutter** during the 2-second window between Activate tap and response
+   to identify which function writes the POST body to the TLS buffer
+2. **DNS redirect**: point snakeseller.com to a local HTTPS server with mitmproxy cert
+3. **HTTP/2 frame hook**: if the connection uses h2, the POST goes through nghttp2/h2 framing
+   functions (different from the h1 path we hooked)
