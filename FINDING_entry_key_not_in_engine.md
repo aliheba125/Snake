@@ -196,3 +196,39 @@ Attempted transparent MITM proxy (mitmdump) to capture the activation HTTP reque
 5. **Use existing network captures** from prior sessions if available
 
 ### Status: protocol capture blocked by environment limitation, not by app protection.
+
+---
+
+## ADDENDUM: TLS capture via Gadget — GET captured, POST still missing
+
+**Date:** 2026-07-14
+
+### What worked:
+- Gadget mode (script injection via LD_PRELOAD) successfully hooks `0x6d4be8` in libflutter.so
+- All 4 known TLS offsets hooked: 0x6d4be8, 0x9ab14c, 0x9d0a38, 0x9d0a4c
+- **GET requests captured in plaintext** (beacon z-parameter, notifications, file downloads)
+- Confirms TLS decryption hook is functional
+
+### What did NOT work:
+- **Activation POST request was NOT captured** by any of the 4 hooks
+- Activation definitely reaches the server (proven by getaddrinfo hook in format_probe.py)
+- This means activation uses a DIFFERENT TLS write path than startup GET requests
+
+### Implication:
+The app likely uses two separate HTTP client instances or connection pools:
+1. **Startup/file requests** → goes through the hooked BoringSSL path (captured)
+2. **Activation/API requests** → goes through a DIFFERENT path (not captured)
+
+Possible explanations:
+- The API requests use a separate `SecurityContext` (Dart) with different TLS config
+- Or they use a completely different network stack (Java layer via platform channel?)
+- Or there is a second BoringSSL instance (in libengine? unlikely since no SSL exports)
+
+### Next step:
+Use Stalker on the UI thread during activation to identify ALL functions called in libflutter
+during the POST. Compare with the GET path to find the divergence point.
+Or: install a more comprehensive hook that intercepts ALL calls to the kernel write() syscall
+(via seccomp or sys_enter) to capture the POST at syscall level (will be TLS ciphertext but
+confirms the path exists).
+
+### Gadget config restored to listen mode after testing.
