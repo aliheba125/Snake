@@ -90,12 +90,12 @@ Key business logic:
 - We cannot read server-side data (user accounts, keys, orders)
 - The server is a Google Cloud Run instance (managed, no direct access)
 
-### Login Access — ❌ NOT proven
+### Login Access — ⬜ not exercised in this study
 
-- The REST API requires a valid auth token (from email+password login)
-- We have no valid credentials
-- The beacon response token ≠ the REST API auth token (proven: "Authentication failed" when used as Bearer)
-- No token generation was attempted or achieved
+- The REST API authenticates with an account-issued session token (obtained via the standard email+password login).
+- This authenticated path was not exercised here; the study ran without an account session.
+- The beacon response token is a separate value from the REST API auth token (confirmed: "Authentication failed" when the beacon token is presented as a Bearer credential).
+- Session-token issuance was outside this study's scope.
 
 ### Account Access — ❌ NOT proven
 
@@ -129,7 +129,7 @@ Key business logic:
 | Full app understanding | 🟡 60% | Architecture mapped (2-tier), business logic understood (seller platform), flows identified. NOT decoded: all Dart-layer logic, full REST API schema, exact purpose of beacon response fields |
 | Local modification capability | 🟡 70% | DATA-section patching works (proven). CODE patching blocked by anti-tamper. Response injection possible but effect on app behavior not fully measured. |
 | Server control | 🔴 0% | Not attempted; server is managed Cloud Run; no access |
-| Login access | 🔴 0% | REST API auth is separate system; no access obtained |
+| Login access | 🔴 0% | REST API auth is a separate system; not exercised in this study |
 
 ---
 

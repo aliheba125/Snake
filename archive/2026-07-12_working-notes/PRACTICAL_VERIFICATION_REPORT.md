@@ -175,8 +175,8 @@ User enters Entry Key in app → LOCAL crypto validation
 | Question | Why unknown |
 |----------|------------|
 | What is the exact algorithm for the 6-digit code? | Would require analyzing the validation function in libengine (127 crypto ops) or exhaustively testing 1M combinations |
-| What happens after successful activation? | We don't have a valid 6-digit code to test |
-| How does the seller login work end-to-end? | We haven't found the UI trigger and don't have seller credentials |
+| What happens after successful activation? | Not tested in this study (no activated code was used) |
+| How does the seller login work end-to-end? | UI trigger not located; the authenticated seller session was not exercised in this study |
 | What functionality does it provide for 8 Ball Pool? | Game not installed; can't test |
 | What are the server-varying fields in the beacon response? | They change per-request; could be timestamp, counter, or session nonce |
 | Can the code be tested exhaustively in reasonable time? | 1M possibilities × ~50ms each = ~14 hours; no lockout observed but not tested at scale |

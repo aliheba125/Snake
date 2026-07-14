@@ -5,8 +5,8 @@ environment** (Redroid Android 14, ARM64, AWS Graviton `m9g.2xlarge`). This docu
 only what was **directly observed** this session, separating proven facts from hypotheses.
 
 > Scope note: this is a runtime-behavior validation. It confirms/extends the existing
-> `native-deep/dynamic-live/` analysis. No new secret material was extracted; the terminal
-> blocker (a server-issued subscription) is unchanged.
+> `native-deep/dynamic-live/` analysis. No new secret material was extracted; the game-load path
+> remains conditioned on a server-issued subscription entitlement (unchanged from prior analysis).
 >
 > **Ownership & authorization:** All app and server interaction here was performed on the
 > **owner's own** devices, against the owner's own app/account/backend, with the owner's explicit
@@ -94,10 +94,11 @@ observed). Hooks install fine in attach mode (no integrity-kill there).
 
 ## 7. Bottom line
 
-All technical protections are understood and (per prior work) analyzed. The **only remaining
-gate for both layers is a server-issued active subscription**: without it the app performs its
-one-shot startup exchange and goes idle, and the game-load crypto path never executes. This is a
-business/account gate, not a technical one.
+All technical protections are understood and (per prior work) analyzed. For both layers the
+determining factor is a **server-issued subscription entitlement** tied to the account: with no
+entitlement provisioned, the app completes its one-shot startup exchange and then goes idle, so the
+game-load crypto path does not execute. This is an account/entitlement condition by design — not a
+technical limitation of the analysis.
 
 ### New this session
 Fresh-environment (Redroid 14) reproduction; live backend metrics + certificate chain; proven
